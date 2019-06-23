@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="/assets/index.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand">Estuary</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <% if(!user){ %>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                            <% } else { %>
+                            <li>
+                                <a href="#">Signed In As <%=user.username%></a>
+                            </li>
+                            <li><a href="/logout">Logout</a></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger"><%=error%></div>
+            <% } else if (success && success.length > 0) { %>
+            <div class="alert alert-success"><%=success%></div>
+            <% } else if (ownership && ownership.length > 0) { %>
+            <div class="alert alert-warning"><%=ownership%></div>
+            <% } %>
