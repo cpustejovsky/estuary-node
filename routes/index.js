@@ -31,7 +31,7 @@ router.post(
 
 //handle register logic
 router.post("/register", (req, res) => {
-   const newUser = new User({ username: req.body.username });
+   var newUser = new User({ username: req.body.username });
    User.register(newUser, req.body.password, function(err, user) {
       if (err) {
          res.redirect("/register");
