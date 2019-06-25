@@ -6,49 +6,53 @@ const middleWare = require("../middleware/index.js");
 
 router.get("/", (req, res) => res.render("index"));
 router.get("/secret", middleWare.isLoggedIn, (req, res) =>
-   res.render("secret")
+  res.render("secret")
 );
 
 //show login form
 router.get("/login", (req, res) => {
-   res.render("login");
+  res.render("login");
 });
 //show register form
 router.get("/register", (req, res) => {
-   res.render("register");
+  res.render("register");
 });
 //handle login logic
 router.post(
-   "/login",
-   passport.authenticate("local", {
-      successRedirect: "/secret",
-      failureRedirect: "/login"
-   }),
-   (req, res) => {
-      //currently nothing?
-   }
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/secret",
+    failureRedirect: "/login"
+  }),
+  (req, res) => {
+    //currently nothing?
+  }
 );
 
 //handle register logic
 router.post("/register", (req, res) => {
-   var newUser = new User({ username: req.body.username });
-   User.register(newUser, req.body.password, function(err, user) {
-      if (err) {
-         res.redirect("/register");
-         console.log(`oops! something went wrong \n ${err}`);
-      }
-      passport.authenticate("local")(req, res, () => {
-         res.redirect("/secret");
-         console.log("successfully registered!");
-      });
-   });
+  var newUser = new User({ username: req.body.username });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      res.redirect("/register");
+      console.log(`oops! something went wrong \n ${err}`);
+    }
+    passport.authenticate("local")(req, res, () => {
+      user.firstName = req.body.user.firstName;
+      user.lastName = req.body.user.lastName;
+      user.age = req.body.user.age;
+      user.save();
+      console.log(user);
+      res.redirect("/secret");
+    });
+  });
 });
 
 //logout route and logic
 router.get("/logout", (req, res) => {
-   req.logout();
-   req.flash("success", "Logged out");
-   res.redirect("/");
+  req.logout();
+  req.flash("success", "Logged out");
+  res.redirect("/");
 });
 
 module.exports = router;

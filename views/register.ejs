@@ -1,58 +1,58 @@
 <% include partials/header %>
 
 <div class="container" style="text-align:center">
-   <div class="row">
-      <h1>Create User</h1>
-      <div style="margin: 30px auto; max-width: 30%;">
-         <form action="/register" method="post">
-            <div class="form-group">
-               <input
-                  class="form-control"
-                  type="text"
-                  name="username"
-                  placeholder="username"
-               />
-            </div>
-            <!-- <div class="form-group">
-               <input
-                  class="form-control"
-                  type="text"
-                  name="user[firstName]"
-                  placeholder="Satoshi"
-               />
-            </div>
-            <div class="form-group">
-               <input
-                  class="form-control"
-                  type="text"
-                  name="user[lastName]"
-                  placeholder="Nakamoto"
-               />
-            </div>
-            <div class="form-group">
-               <input
-                  class="form-control"
-                  type="number"
-                  name="user[age]"
-                  placeholder="44"
-               />
-            </div> -->
-            <div class="form-group">
-               <input
-                  class="form-control"
-                  type="password"
-                  name="password"
-                  placeholder="password"
-               />
-            </div>
-            <div class="form-group">
-               <button class="btn btn-lg btn-primary btn-block">
-                  Register
-               </button>
-            </div>
-         </form>
-      </div>
-   </div>
+  <div class="row">
+    <h1>Create User</h1>
+    <div style="margin: 30px auto; max-width: 30%;">
+      <form action="/register" method="post">
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            name="username"
+            placeholder="username"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            name="user[firstName]"
+            placeholder="Satoshi"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            name="user[lastName]"
+            placeholder="Nakamoto"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="number"
+            name="user[age]"
+            placeholder="44"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="password"
+            name="password"
+            placeholder="password"
+          />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <% include partials/footer %>
