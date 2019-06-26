@@ -8,4 +8,8 @@ router.get("/", middleWare.isLoggedIn, (req, res) => {
   res.render("notes/index");
 });
 
+router.get("/new", middleWare.isLoggedIn, (req, res) => {
+  res.render("notes/new");
+});
+
 module.exports = router;
