@@ -13,6 +13,7 @@ const methodOverride = require("method-override");
 const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
+const notesRoutes = require("./routes/notesRoute.js");
 const port = (process.env.PORT = 3000);
 const localDb = "mongodb://localhost:27017/estuary";
 mongoose
@@ -54,6 +55,7 @@ app.use(function(req, res, next) {
 });
 
 app.use("/", indexRoutes);
+app.use("/notes", notesRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);

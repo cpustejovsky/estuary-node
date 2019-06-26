@@ -1,13 +1,17 @@
 //require in mongoose
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
+const NoteSchema = require("../schemas/note");
+const Schema = mongoose.Schema;
+
 //set up a Schema
-const UserSchema = new mongoose.Schema({
-   username: String,
-   password: String,
-   firstName: String,
-   lastName: String,
-   age: Number
+const UserSchema = new Schema({
+  username: String,
+  password: String,
+  firstName: String,
+  lastName: String,
+  age: Number,
+  notes: [NoteSchema]
 });
 
 UserSchema.plugin(passportLocalMongoose);
