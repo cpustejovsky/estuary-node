@@ -1,7 +1,7 @@
 //require in mongoose
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
-const NoteSchema = require("../schemas/note");
+const NoteSchema = require("../schemas/noteSchema");
 const Schema = mongoose.Schema;
 
 //set up a Schema
