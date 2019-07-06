@@ -1,23 +1,22 @@
-<<<<<<< HEAD
-<h1>Soon We'll Be Creating New Notes on Here!</h1>
-=======
 <% include ../partials/header %>
 
-<h1>New Note!</h1>
-<form action="/notes" method="post">
+<h1>Free Write</h1>
+<p>Stream of Consciousness Writing</p>
+<form action="/free-writes" method="post">
   <div class="form-group">
     <input
       class="form-control"
       type="text"
-      name="note[title]"
+      name="freeWrite[title]"
       placeholder="Title"
+      value="<%=time%>"
       required
     />
   </div>
   <div class="form-group">
     <textarea
       class="form-control"
-      name="note[content"
+      name="freeWrite[content]"
       rows="10"
       required
     ></textarea>
@@ -25,10 +24,9 @@
   </div>
   <div class="form-group">
     <button class="btn btn-lg btn-primary btn-block">
-      Create Note
+      Submit
     </button>
   </div>
 </form>
 
 <% include ../partials/footer %>
->>>>>>> origin/master

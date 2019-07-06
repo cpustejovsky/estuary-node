@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -13,11 +14,11 @@ const methodOverride = require("method-override");
 const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
-const notesRoutes = require("./routes/notesRoute.js");
+const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const port = (process.env.PORT = 3000);
-const localDb = "mongodb://localhost:27017/estuary";
+// const localDb = "mongodb://localhost:27017/estuary";
 mongoose
-  .connect(localDb, { useNewUrlParser: true })
+  .connect(process.env.DATABASEURL, { useNewUrlParser: true })
   .then(() => console.log("connected to database"))
   .catch(err => console.log(`ERROR: ${err}`));
 
@@ -55,7 +56,7 @@ app.use(function(req, res, next) {
 });
 
 app.use("/", indexRoutes);
-app.use("/notes", notesRoutes);
+app.use("/free-writes", freeWriteRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
