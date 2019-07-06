@@ -42,7 +42,7 @@ router.post("/register", (req, res) => {
       user.lastName = req.body.user.lastName;
       user.age = req.body.user.age;
       user.save();
-      console.log(user);
+      // console.log(user);
       res.redirect("/secret");
     });
   });

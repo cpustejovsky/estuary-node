@@ -32,7 +32,7 @@ app.use(flash());
 app.use(
   sessions({
     cookieName: "session",
-    secret: "COME_BACK_TO_THIS_LATER",
+    secret: process.env.SESSION_SECRET,
     duration: 30 * 60 * 1000, // 30 mins
     activeDuration: 5 * 60 * 1000,
     httpOnly: true, // don't let JS code access cookies
