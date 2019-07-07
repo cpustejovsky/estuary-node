@@ -1,0 +1,14 @@
+<% include partials/header %>
+
+<div class="container">
+  <h1><%=user.username%></h1>
+  <h3>Your information</h3>
+  <ul>
+    <li><strong>Name:</strong> <%=user.firstName%> <%=user.lastName%></li>
+    <li><strong>Age:</strong> <%=user.age%></li>
+  </ul>
+</div>
+<hr />
+<h1>Debugging Information</h1>
+<p><%=user%></p>
+<% include partials/footer %>

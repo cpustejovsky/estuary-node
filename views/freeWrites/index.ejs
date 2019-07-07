@@ -1,10 +1,17 @@
 <% include ../partials/header %>
 
-<h1>Here be the Free Writes page!</h1>
-<h1>Number of Free Writes: <%=user.freeWrites.length%></h1>
-<p><%=user.freeWrites%></p>
-<a href="/free-writes/new"
-  ><button class="btn btn-success">Create New Note</button></a
->
+<div class="container">
+  <h1>Free Writes</h1>
+  <p>Number of Free Writes: <strong><%=user.freeWrites.length%></strong></p>
+  <a href="/free-writes/new"
+    ><button class="btn btn-success">New Free Write</button>
+  </a>
+  <h2>Your Free Writes</h2>
+  <% user.freeWrites.forEach((freeWrite)=> { %>
+    <h3><%= freeWrite.title %></h3>
+    <p><%= freeWrite.content %></p>
+  <% }) %>
+
+</div>
 
 <% include ../partials/footer %>

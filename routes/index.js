@@ -5,9 +5,7 @@ const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
 
 router.get("/", (req, res) => res.render("index"));
-router.get("/secret", middleWare.isLoggedIn, (req, res) =>
-  res.render("secret")
-);
+router.get("/user", middleWare.isLoggedIn, (req, res) => res.render("user"));
 
 //show login form
 router.get("/login", (req, res) => {
@@ -21,7 +19,7 @@ router.get("/register", (req, res) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/secret",
+    successRedirect: "/user",
     failureRedirect: "/login"
   }),
   (req, res) => {
@@ -43,7 +41,7 @@ router.post("/register", (req, res) => {
       user.age = req.body.user.age;
       user.save();
       // console.log(user);
-      res.redirect("/secret");
+      res.redirect("/user");
     });
   });
 });
