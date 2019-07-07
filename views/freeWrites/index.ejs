@@ -1,7 +1,8 @@
 <% include ../partials/header %>
 
 <h1>Here be the Free Writes page!</h1>
-<h1><%=user.freeWrites.length%></h1>
+<h1>Number of Free Writes: <%=user.freeWrites.length%></h1>
+<p><%=user.freeWrites%></p>
 <a href="/free-writes/new"
   ><button class="btn btn-success">Create New Note</button></a
 >

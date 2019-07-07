@@ -1,8 +1,8 @@
 //require in mongoose
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
-const FreeWriteSchema = require("../schemas/freeWriteSchema");
 const Schema = mongoose.Schema;
+const FreeWriteSchema = require("../schemas/freeWriteSchema");
 
 //set up a Schema
 const UserSchema = new Schema({

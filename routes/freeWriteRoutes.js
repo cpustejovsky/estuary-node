@@ -21,7 +21,14 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content
   };
-  User.find
+  req.user.freeWrites.push(newFreeWrite);
+  req.user.save(err => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("freeWrites/index");
+    }
+  });
 });
 
 module.exports = router;
