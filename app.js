@@ -49,7 +49,6 @@ passport.deserializeUser(User.deserializeUser());
 //setting up res.locals
 app.use(function(req, res, next) {
   res.locals.user = req.user;
-  res.locals.freeWrites = req.user.freeWrites;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
   res.locals.ownership = req.flash("ownership");

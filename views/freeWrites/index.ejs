@@ -7,10 +7,14 @@
     ><button class="btn btn-success">New Free Write</button>
   </a>
   <h2>Your Free Writes</h2>
-  <% user.freeWrites.forEach((freeWrite)=> { %>
-    <h3><%= freeWrite.title %></h3>
-    <p><%= freeWrite.content %></p>
-  <% }) %>
+  <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
+    <h3><%= user.freeWrites[i].title %></h3>
+    <p><%= user.freeWrites[i].content %></p>
+    <form action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE" method="POST" class="sidebyside">
+      <button class="btn btn-sm btn-danger">Delete</button>
+    </form>  
+    <hr>
+  <% } %>
 
 </div>
 
