@@ -34,15 +34,24 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
 router.delete("/:id", middleWare.isLoggedIn, (req, res) => {
   console.log("hit the delete route!");
   console.log(req.params.id);
-  
-  // for (let i = 0; i < req.user.freeWrites.length; i++) {
-  //   if (req.params.id === req.user.freeWrites._id) {
-  //     console.log(`
-  //     found a match!:
-  //     ${req.params.id} should match ${req.user.freeWrites._id}
-  //     `);
-  //   }
-  // }
+
+  for (let i = 0; i < req.user.freeWrites.length; i++) {
+    if (req.params.id.toString() === req.user.freeWrites[i]._id.toString()) {
+      User.findById(req.user._id).then(user => {
+        user.freeWrites[i].remove();
+        user.save();
+      });
+      res.redirect("/free-writes");
+    } else {
+      console.log(`
+      Not a match!
+      req.params.id is ${req.params.id} and its type is ${typeof req.params.id} 
+      req.user.freeWritees[${i}]._id is ${
+        req.user.freeWrites[i]._id
+      } and its type is ${typeof req.user.freeWrites[i]._id} 
+      `);
+    }
+  }
 });
 
 module.exports = router;

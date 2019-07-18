@@ -16,7 +16,7 @@ const User = require("./models/user");
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const port = (process.env.PORT = 3000);
-// const localDb = "mongodb://localhost:27017/estuary";
+
 mongoose
   .connect(process.env.DATABASEURL, { useNewUrlParser: true })
   .then(() => console.log("connected to database"))
