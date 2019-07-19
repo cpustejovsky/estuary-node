@@ -19,12 +19,13 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 router.post("/", middleWare.isLoggedIn, (req, res) => {
   const newFreeWrite = {
     title: req.body.freeWrite.title,
-    content: req.body.freeWrite.content
+    content: req.body.freeWrite.content,
+    wordCount: 42
   };
   req.user.freeWrites.push(newFreeWrite);
   req.user.save(err => {
     if (err) {
-      console.log(err);
+      console.log(`oopsy!!!! here's the error: ${err}`);
     } else {
       res.render("freeWrites/index");
     }
