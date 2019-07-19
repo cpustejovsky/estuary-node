@@ -2,7 +2,6 @@
 Where your streams of consciousness meet
 
 - [Estuary (WIP)](#Estuary-WIP)
-  - [3. Acknowledgments](#3-Acknowledgments)
   - [To-Dos](#To-Dos)
   - [Setup](#Setup)
   - [Acknowledgments](#Acknowledgments)
