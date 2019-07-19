@@ -1,59 +1,30 @@
-const fs = require("fs");
-
-function initialize() {
-  const options = {
-    path: process.argv[2]
-  };
-  return new Promise(function(resolve, reject) {
-    fs.readFile(options.path, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
+const freeWriteCheckerObject = {
+  wordCount(string) {
+    let stringArr = string.split(" ");
+    let counter = 0;
+    stringArr.forEach(element => {
+      if (element.length > 0) {
+        counter++;
       }
     });
-  });
-}
-wordCount = string => {
-  let stringArr = string.split(" ");
-  let counter = 0;
-  stringArr.forEach(element => {
-    if (element.length > 0) {
-      counter++;
+    let newLineCount = 0;
+    for (let index = 0; index < string.length; index++) {
+      if (string[index] === "\n") newLineCount++;
     }
-  });
-  return counter;
-};
-
-noteChecker = string => {
-  notes = [];
-  stringArrNL = string.split("\n");
-  stringArrNL.forEach(element => {
-    if (element[0] === "#" && element[1] === "n") {
-      notes.push(element.slice(2));
-    }
-  });
-  return notes;
-};
-
-function main() {
-  let initializePromise = initialize();
-  initializePromise.then(
-    result => {
-      readableStream = result.toString();
-      wordCount = wordCount(readableStream);
-      notes = noteChecker(readableStream);
-      let newLineCount = 0;
-      for (let index = 0; index < readableStream.length; index++) {
-        if (readableStream[index] === "\n") newLineCount++;
+    counter += newLineCount;
+    console.log(counter);
+    return counter;
+  },
+  noteChecker(string) {
+    notes = [];
+    stringArrNL = string.split("\n");
+    stringArrNL.forEach(element => {
+      if (element[0] === "#" && element[1] === "N") {
+        notes.push(element.slice(2));
       }
-      console.log(`Word Count: ${wordCount + newLineCount}`);
-      console.log(`Here are the notes: ${notes}`);
-    },
-    err => {
-      console.log(err);
-    }
-  );
-}
-
-main();
+    });
+    console.log(notes);
+    return notes;
+  }
+};
+module.exports = freeWriteCheckerObject;

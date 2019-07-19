@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const moment = require("moment");
 const middleWare = require("../middleware/index.js");
+const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
 
 const User = require("../models/user");
 const FreeWrite = require("../schemas/freeWriteSchema");
@@ -20,7 +21,7 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content,
-    wordCount: 42
+    wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content)
   };
   req.user.freeWrites.push(newFreeWrite);
   req.user.save(err => {
