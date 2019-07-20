@@ -15,7 +15,7 @@ const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
-const port = (process.env.PORT = 3000);
+let port = (process.env.PORT = 3000);
 
 mongoose
   .connect(process.env.DATABASEURL, { useNewUrlParser: true })
@@ -58,6 +58,13 @@ app.use(function(req, res, next) {
 app.use("/", indexRoutes);
 app.use("/free-writes", freeWriteRoutes);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
-});
+app
+  .listen(port, () => {
+    console.log(`Example app listening on port ${port}!`);
+  })
+  .on("error", function helperFunction() {
+    port += 1;
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}!`);
+    });
+  });
