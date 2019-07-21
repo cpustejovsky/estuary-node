@@ -29,7 +29,7 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
     if (err) {
       console.log(`oopsy!!!! here's the error: ${err}`);
     } else {
-      res.render("freeWrites/index");
+      res.redirect("/free-writes");
     }
   });
 });
