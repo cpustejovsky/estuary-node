@@ -18,14 +18,15 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {
-  let newNotes = ;
+  let newNotesArray = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content,
     wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content)
   };
   req.user.freeWrites.push(newFreeWrite);
-  console.log(FreeWriteChecker.noteChecker(req.body.freeWrite.content));
+  console.log(newNotesArray);
+  // req.user.notes.push();
   req.user.save(err => {
     if (err) {
       console.log(`oopsy!!!! here's the error: ${err}`);
@@ -42,18 +43,14 @@ router.delete("/:id", middleWare.isLoggedIn, (req, res) => {
   for (let i = 0; i < req.user.freeWrites.length; i++) {
     let freeWriteId = req.user.freeWrites[i]._id.toString();
     if (req.params.id.toString() === freeWriteId) {
-      console.log("GOT A MATCH!");
+      console.log("YES match!");
       User.findById(req.user._id).then(user => {
         user.freeWrites[i].remove();
         user.save();
       });
       res.redirect("/free-writes");
     } else {
-      console.log(`
-      Not a match!
-      req.params.id is ${req.params.id} and its type is ${typeof req.params.id} 
-      req.user.freeWritees[${i}]._id is ${freeWriteId} and its type is ${typeof freeWriteId} 
-      `);
+      console.log(`NO match!`);
     }
   }
 });

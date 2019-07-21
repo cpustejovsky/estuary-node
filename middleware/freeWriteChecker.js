@@ -13,7 +13,6 @@ const freeWriteCheckerObject = {
       if (string[index] === "\n") newLineCount++;
     }
     counter += newLineCount;
-    console.log(counter);
     return counter;
   },
   noteChecker(string) {
