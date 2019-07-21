@@ -18,6 +18,7 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {
+  let newNotes = ;
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content,
