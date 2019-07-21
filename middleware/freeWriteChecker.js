@@ -1,4 +1,5 @@
 const freeWriteCheckerObject = {
+  //TODO: Refine wordCount; It takes every newline as a new character.
   wordCount(string) {
     let stringArr = string.split(" ");
     let counter = 0;
@@ -23,7 +24,6 @@ const freeWriteCheckerObject = {
         notes.push(element.slice(2));
       }
     });
-    console.log(notes);
     return notes;
   }
 };
