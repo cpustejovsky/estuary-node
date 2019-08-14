@@ -9,8 +9,8 @@
   <h2>Your Free Writes</h2>
   <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
   <h3><%= user.freeWrites[i].title %></h3>
-  <p><%= user.freeWrites[i].content %></p>
-  <p><%= user.freeWrites[i].wordCount %></p>
+  <div><%= user.freeWrites[i].content %></div>
+  <p><strong>Word Count: </strong><%= user.freeWrites[i].wordCount %></p>
   <form
     action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE"
     method="POST"

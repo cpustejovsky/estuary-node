@@ -15,11 +15,15 @@ const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5faeddfb2ca852fbf2a8c64adbceaccbc2b4a6b4
 const notesRoutes = require("./routes/notesRoutes");
 let port = (process.env.PORT = 3000);
 
 mongoose
-  .connect(process.env.DATABASEURL, { useNewUrlParser: true })
+  .connect(process.env.TESTDATABASEURL, { useNewUrlParser: true })
   .then(() => console.log("connected to database"))
   .catch(err => console.log(`ERROR: ${err}`));
 
