@@ -20,7 +20,7 @@ const freeWriteCheckerObject = {
     notes = [];
     stringArrNL = string.split("\n");
     stringArrNL.forEach(element => {
-      if (element[0] === "#" && element[1] === "N") {
+      if (element[0] === "#" && element[1].toString().toUpperCase() === "N") {
         notes.push(element.slice(2));
       }
     });

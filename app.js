@@ -15,12 +15,8 @@ const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
-<<<<<<< HEAD
 const notesRoutes = require("./routes/notesRoutes");
-const port = (process.env.PORT = 3000);
-=======
 let port = (process.env.PORT = 3000);
->>>>>>> f8bc7234aba589e73dffa93b5d866829ca933b52
 
 mongoose
   .connect(process.env.DATABASEURL, { useNewUrlParser: true })
