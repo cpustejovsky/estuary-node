@@ -4,7 +4,7 @@ const passport = require("passport");
 const moment = require("moment");
 const middleWare = require("../middleware/index.js");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
-
+const mongoose = require("mongoose");
 const User = require("../models/user");
 const FreeWrite = require("../schemas/freeWriteSchema");
 
@@ -18,21 +18,44 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {
-  let newNotes;
+  console.log("hit the post route");
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content,
     wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content)
   };
-  req.user.freeWrites.push(newFreeWrite);
-  console.log(FreeWriteChecker.noteChecker(req.body.freeWrite.content));
-  req.user.save(err => {
-    if (err) {
-      console.log(`oopsy!!!! here's the error: ${err}`);
-    } else {
-      res.redirect("/free-writes");
-    }
-  });
+  if (mongoose.Types.ObjectId.isValid(req.user.id)) {
+    User.findById(req.user._id).then(user => {
+      user.freeWrites.push(newFreeWrite);
+      let newNotes = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
+      for (let i = 0; i < newNotes.length; i++) {
+        console.log(`notes array: ${user.notes}`);
+        console.log(`notes array length: ${user.notes.length}`);
+        console.log(newNotes[i].toString());
+        user.notes.push({ content: newNotes[i] });
+        console.log(`successfully pushed ${newNotes[i]} into notes array`);
+        console.log(`notes array length: ${user.notes.length}`);
+        console.log(`notes array: ${user.notes}`);
+      }
+      console.log(`
+    we're about to save! a few details
+    ========================================
+    USER
+    ========================================
+    ${user}
+    ========================================
+    `);
+      user.save(err => {
+        if (err) {
+          console.log(`oopsy!!!! here's the error: ${err}`);
+        } else {
+          res.redirect("/free-writes");
+        }
+      });
+    });
+  } else {
+    console.log("Please provide correct Id");
+  }
 });
 
 router.delete("/:id", middleWare.isLoggedIn, (req, res) => {
