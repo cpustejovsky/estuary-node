@@ -18,17 +18,12 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {
-<<<<<<< HEAD
-  console.log("hit the post route");
-=======
   let newNotesArray = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
->>>>>>> 5faeddfb2ca852fbf2a8c64adbceaccbc2b4a6b4
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: req.body.freeWrite.content,
     wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content)
   };
-<<<<<<< HEAD
   if (mongoose.Types.ObjectId.isValid(req.user.id)) {
     User.findById(req.user._id).then(user => {
       user.freeWrites.push(newFreeWrite);
@@ -61,18 +56,6 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
   } else {
     console.log("Please provide correct Id");
   }
-=======
-  req.user.freeWrites.push(newFreeWrite);
-  console.log(newNotesArray);
-  // req.user.notes.push();
-  req.user.save(err => {
-    if (err) {
-      console.log(`oopsy!!!! here's the error: ${err}`);
-    } else {
-      res.redirect("/free-writes");
-    }
-  });
->>>>>>> 5faeddfb2ca852fbf2a8c64adbceaccbc2b4a6b4
 });
 
 router.delete("/:id", middleWare.isLoggedIn, (req, res) => {

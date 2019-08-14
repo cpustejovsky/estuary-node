@@ -15,10 +15,6 @@ const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
-<<<<<<< HEAD
-=======
-
->>>>>>> 5faeddfb2ca852fbf2a8c64adbceaccbc2b4a6b4
 const notesRoutes = require("./routes/notesRoutes");
 let port = (process.env.PORT = 3000);
 
