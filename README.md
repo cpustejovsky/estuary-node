@@ -1,20 +1,17 @@
 # Estuary (WIP)
 Where your streams of consciousness meet
 
-- [Estuary (WIP)](#Estuary-WIP)
-  - [To-Dos](#To-Dos)
-  - [Setup](#Setup)
-  - [Acknowledgments](#Acknowledgments)
+- [Estuary (WIP)](#estuary-wip)
+  - [- Acknowledgments](#acknowledgments)
+  - [To-Dos](#to-dos)
+  - [Setup](#setup)
+  - [Acknowledgments](#acknowledgments)
 ---
 ## To-Dos
-* Finish adding CRUD functionality to Free Writes
-  * Update
-  * Destroy
 * Add search and filter functionality for free writes
   * title search
   * content search
-* Add CRUD functionality to User
-* 
+* Add CRUD functionality to User 
 
 ## Setup
 
