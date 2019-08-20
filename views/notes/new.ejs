@@ -1,22 +1,26 @@
 <% include ../partials/header %>
-
-<h1>New Note!</h1>
-<p>Save a new note below</p>
-<form action="/notes" method="post">
-  <div class="form-group">
-    <textarea
-      class="form-control"
-      name="note[content]"
-      rows="10"
-      required
-    ></textarea>
-    <!-- TODO: Style textarea -->
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <h1>New Note!</h1>
+      <p>Save a new note below</p>
+      <form action="/notes" method="post">
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="note[content]"
+            rows="10"
+            required
+          ></textarea>
+          <!-- TODO: Style textarea -->
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <button class="btn btn-lg btn-primary btn-block">
-      Submit
-    </button>
-  </div>
-</form>
-
+</div>
 <% include ../partials/footer %>

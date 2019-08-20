@@ -3,6 +3,10 @@ hr {
 }
 
 .homepage-image {
-  max-width: 600px;
+  max-width: fit-content;
   width: 100%;
+}
+
+div .container {
+  padding-top: 5%;
 }
