@@ -17,11 +17,30 @@ const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const notesRoutes = require("./routes/notesRoutes");
 let port = (process.env.PORT = 3000);
+const connectionString = `mongodb+srv://cpustejovsky:${
+  process.env.DBPASSWORD
+}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
+const logErrorAndExit = errMsg => {
+  console.log(errMsg);
+  process.exit(1);
+};
 
-mongoose
-  .connect(process.env.TESTDATABASEURL, { useNewUrlParser: true })
-  .then(() => console.log("connected to database"))
-  .catch(err => console.log(`ERROR: ${err}`));
+if (process.argv[2] === "test") {
+  mongoose
+    .connect(process.env.TESTDBURL, { useNewUrlParser: true })
+    .then(() => console.log("connected to database"))
+    .catch(err => logErrorAndExit(err));
+} else {
+  mongoose
+    .connect(connectionString, { useNewUrlParser: true })
+    .then(() => console.log("connected to database"))
+    .catch(err => {
+      console.log(
+        "Most likely what happened is you didn't run node app.js test to run it locally. If you tried to run production without the mongodb credentials, you'll get an error."
+      );
+      logErrorAndExit(err);
+    });
+}
 
 app.use(bodyParser.urlencoded({ extended: true })); // TODO: what does this mean?
 app.set("view engine", "ejs");
