@@ -4,7 +4,8 @@
   "description": "Note Taking and To-Do App",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./app.js"
+    "test": "nodemon ./app.js test",
+    "start": "node ./app.js"
   },
   "author": "cpustejovsky",
   "license": "MIT",
