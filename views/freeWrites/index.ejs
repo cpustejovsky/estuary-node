@@ -1,25 +1,29 @@
 <% include ../partials/header %>
 
 <div class="container">
-  <h1>Free Writes</h1>
-  <p>Number of Free Writes: <strong><%=user.freeWrites.length%></strong></p>
-  <a href="/free-writes/new"
-    ><button class="btn btn-success">New Free Write</button>
-  </a>
-  <h2>Your Free Writes</h2>
-  <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
-  <h3><%= user.freeWrites[i].title %></h3>
-  <div><%= user.freeWrites[i].content %></div>
-  <p><strong>Word Count: </strong><%= user.freeWrites[i].wordCount %></p>
-  <form
-    action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE"
-    method="POST"
-    class="sidebyside"
-  >
-    <button class="btn btn-sm btn-danger">Delete</button>
-  </form>
-  <hr />
-  <% } %>
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <h1>Free Writes</h1>
+      <p>Number of Free Writes: <strong><%=user.freeWrites.length%></strong></p>
+      <a href="/free-writes/new"
+        ><button class="btn btn-success">New Free Write</button>
+      </a>
+      <h2>Your Free Writes</h2>
+      <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
+      <h3><%= user.freeWrites[i].title %></h3>
+      <div><%= user.freeWrites[i].content %></div>
+      <p><strong>Word Count: </strong><%= user.freeWrites[i].wordCount %></p>
+      <form
+        action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE"
+        method="POST"
+        class="sidebyside"
+      >
+        <button class="btn btn-sm btn-danger">Delete</button>
+      </form>
+      <hr />
+      <% } %>
+    </div>
+  </div>
 </div>
 
 <% include ../partials/footer %>
