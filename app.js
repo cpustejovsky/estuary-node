@@ -17,9 +17,7 @@ const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const notesRoutes = require("./routes/notesRoutes");
 let port = process.env.PORT || 3000;
-const connectionString = `mongodb+srv://cpustejovsky:${
-  process.env.DBPASSWORD
-}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
 const logErrorAndExit = errMsg => {
   console.log(errMsg);
   process.exit(1);

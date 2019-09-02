@@ -4,7 +4,8 @@
   "description": "Note Taking and To-Do App",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon app.js test",
+    "test": "nodemon --exec 'mocha'",
+    "start-test": "nodemon app.js test",
     "start": "node app.js"
   },
   "engines": {
@@ -22,6 +23,7 @@
     "express-session": "^1.16.2",
     "lodash": "^4.17.14",
     "method-override": "^3.0.0",
+    "mocha": "^6.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.6.0",
     "passport": "^0.4.0",
