@@ -11,8 +11,15 @@ Where your streams of consciousness meet
 * Add search and filter functionality for free writes
   * title search
   * content search
-* Add CRUD functionality to User 
-
+* Add CRUD functionality to User
+* Email password reset
+* Add Mocha testing framework
+* Replace EJS with React for Front-End functionality
+* Email and/or text user with notes
+* Increase Efficiency
+  * Add logging and benchmarking
+  * Determine next steps _____
+  
 ## Setup
 
 * Have MongoDB Running
