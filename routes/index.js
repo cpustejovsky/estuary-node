@@ -19,9 +19,8 @@ router.put("/user", middleWare.isLoggedIn, (req, res) => {
   updatedUser.firstName = req.body.user.firstName;
   updatedUser.lastName = req.body.user.lastName;
   updatedUser.age = req.body.user.age;
-  console.log(req.user.id);
   User.findByIdAndUpdate(req.user.id, updatedUser).then(user => {
-    res.render("user/index");
+    res.redirect("/user");
   });
 });
 
