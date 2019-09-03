@@ -5,7 +5,14 @@ const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
 
 router.get("/", (req, res) => res.render("index"));
-router.get("/user", middleWare.isLoggedIn, (req, res) => res.render("user"));
+
+router.get("/user", middleWare.isLoggedIn, (req, res) =>
+  res.render("user/index")
+);
+
+router.get("/user/edit", middleWare.isLoggedIn, (req, res) => {
+  res.render("user/edit");
+});
 
 //show login form
 router.get("/login", (req, res) => {
