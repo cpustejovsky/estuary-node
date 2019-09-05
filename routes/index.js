@@ -4,7 +4,7 @@ const passport = require("passport");
 const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
 
-router.get("/", (req, res) => res.render("index"));
+// USER ROUTES
 
 router.get("/user", middleWare.isLoggedIn, (req, res) =>
   res.render("user/index")
@@ -13,6 +13,24 @@ router.get("/user", middleWare.isLoggedIn, (req, res) =>
 router.get("/user/edit", middleWare.isLoggedIn, (req, res) => {
   res.render("user/edit");
 });
+
+router.put("/user", middleWare.isLoggedIn, (req, res) => {
+  let updatedUser = {};
+  updatedUser.firstName = req.body.user.firstName;
+  updatedUser.lastName = req.body.user.lastName;
+  updatedUser.age = req.body.user.age;
+  User.findByIdAndUpdate(req.user.id, updatedUser).then(user => {
+    res.redirect("/user");
+  });
+});
+
+router.delete("/user", middleWare.isLoggedIn, (req, res) => {
+  res.send("hit the update route!");
+});
+
+// INDEX ROUTES
+
+router.get("/", (req, res) => res.render("index"));
 
 //show login form
 router.get("/login", (req, res) => {
