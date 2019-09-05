@@ -1,2 +1,5 @@
 node_modules
 .env
+scratch.js
+test.txt
+cleanTest.txt

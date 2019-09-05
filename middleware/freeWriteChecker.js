@@ -15,6 +15,17 @@ const freeWriteCheckerObject = {
     counter += newLineCount;
     return counter;
   },
+  noteRemover(freeWrite) {
+    freeWrite.split("\n");
+    stringArrNL.forEach(element => {
+      if (element[0] === "#" && element[1].toString().toUpperCase() === "N") {
+        let noteElem = stringArrNL.indexOf(element);
+        stringArrNL.splice(noteElem, 1);
+      }
+    });
+    let cleanFreeWrite = stringArrNL.join("\n");
+    return cleanFreeWrite;
+  },
   noteChecker(string) {
     notes = [];
     stringArrNL = string.split("\n");

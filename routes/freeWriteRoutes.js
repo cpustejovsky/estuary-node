@@ -21,7 +21,7 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
   let newNotesArray = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
   const newFreeWrite = {
     title: req.body.freeWrite.title,
-    content: req.body.freeWrite.content,
+    content: FreeWriteChecker.noteRemover(req.body.freeWrite.content),
     wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content)
   };
   if (mongoose.Types.ObjectId.isValid(req.user.id)) {
@@ -29,22 +29,8 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
       user.freeWrites.push(newFreeWrite);
       let newNotes = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
       for (let i = 0; i < newNotes.length; i++) {
-        console.log(`notes array: ${user.notes}`);
-        console.log(`notes array length: ${user.notes.length}`);
-        console.log(newNotes[i].toString());
         user.notes.push({ content: newNotes[i] });
-        console.log(`successfully pushed ${newNotes[i]} into notes array`);
-        console.log(`notes array length: ${user.notes.length}`);
-        console.log(`notes array: ${user.notes}`);
       }
-      console.log(`
-    we're about to save! a few details
-    ========================================
-    USER
-    ========================================
-    ${user}
-    ========================================
-    `);
       user.save(err => {
         if (err) {
           console.log(`oopsy!!!! here's the error: ${err}`);
