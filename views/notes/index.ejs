@@ -5,17 +5,28 @@
     <div class="col-md-10">
       <h1>Notes</h1>
       <p>Number of Notes: <strong><%=user.notes.length%></strong></p>
-      <a href="/notes/new"
-        ><button class="btn btn-success">New Note</button>
+      <a href="/notes/new"><button class="btn btn-success">New Note</button>
       </a>
-      <hr />
+      <% if (user.notes.length > 0) { %>
+      <hr>
       <h2>Your Notes</h2>
+      <% }  %>
       <hr />
-      <ul>
-        <% for (let i = user.notes.length - 1; i >= 0; i--) { %>
-        <li><%= user.notes[i].content %></li>
-        <% } %>
-      </ul>
+
+      <% for (let i = user.notes.length - 1; i >= 0; i--) { %>
+      <div class="row">
+        <div class="col-8">
+          <%= user.notes[i].content %>
+        </div>
+        <div class="col-4">
+          <form action="/notes/<%=user.notes[i]._id%>?_method=DELETE" method="POST" class="sidebyside">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+      <% } %>
+
     </div>
   </div>
 </div>
