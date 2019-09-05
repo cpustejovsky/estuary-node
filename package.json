@@ -4,7 +4,7 @@
   "description": "Note Taking and To-Do App",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha'",
+    "test": "nodemon --exec 'mocha test --recursive'",
     "start-test": "nodemon app.js test",
     "start": "node app.js"
   },
