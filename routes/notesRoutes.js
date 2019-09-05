@@ -31,4 +31,6 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
   });
 });
 
+//TODO: add delete route!
+
 module.exports = router;
