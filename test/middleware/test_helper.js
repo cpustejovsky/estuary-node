@@ -4,7 +4,8 @@ mongoose.Promise = global.Promise;
 
 before(done => {
   mongoose.connect("mongodb://localhost:27017/estuary", {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useFindAndModify: false
   });
   mongoose.connection
     .once("open", () => {

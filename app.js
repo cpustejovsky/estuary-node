@@ -25,12 +25,18 @@ const logErrorAndExit = errMsg => {
 
 if (process.argv[2] === "test") {
   mongoose
-    .connect(process.env.TESTDBURL, { useNewUrlParser: true })
+    .connect(process.env.TESTDBURL, {
+      useNewUrlParser: true,
+      useFindAndModify: false
+    })
     .then(() => console.log("connected to database"))
     .catch(err => logErrorAndExit(err));
 } else {
   mongoose
-    .connect(connectionString, { useNewUrlParser: true })
+    .connect(connectionString, {
+      useNewUrlParser: true,
+      useFindAndModify: false
+    })
     .then(() => console.log("connected to database"))
     .catch(err => {
       console.log(

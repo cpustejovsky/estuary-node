@@ -1,7 +1,7 @@
 const assert = require("assert");
 const User = require("../../models/user.js");
 
-describe("Creating User Model", () => {
+describe("Handling User Model", () => {
   it("saves a user", done => {
     const joe = new User({
       username: "testUser",
@@ -16,11 +16,12 @@ describe("Creating User Model", () => {
       done();
     });
   });
-});
-describe("Updating a User", () => {
-  let joe;
-
-  beforeEach(done => {
+  it("updates a user's name and age", done => {
+    let updatedUser = {
+      firstName: "Joseph",
+      lastName: "Robert",
+      age: 24
+    };
     joe = new User({
       username: "testUser",
       password: "test",
@@ -28,18 +29,13 @@ describe("Updating a User", () => {
       lastName: "Bob",
       age: 42
     });
-    joe.save().then(() => done());
-  });
-  it("updates a user's name and age", done => {
-    let updatedUser = {};
-    updatedUser.firstName = "Joseph";
-    updatedUser.lastName = "Robert";
-    updatedUser.age = 24;
-    User.findByIdAndUpdate(joe._id, updatedUser).then(user => {
-      assert((joe.firstName = "Joseph"));
-      assert((joe.lastName = "Robert"));
-      assert((joe.age = "24"));
-      done();
-    });
+    joe.save().then(
+      User.findByIdAndUpdate(joe._id, updatedUser).then(user => {
+        assert((joe.firstName = "Joseph"));
+        assert((joe.lastName = "Robert"));
+        assert((joe.age = "24"));
+        done();
+      })
+    );
   });
 });
