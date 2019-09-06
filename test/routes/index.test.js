@@ -1,24 +1,10 @@
 const assert = require("assert");
 const User = require("../../models/user.js");
 
-describe("Handling User Model", () => {
-  // it("saves a user", done => {
-  //   const joe = new User({
-  //     username: "testUser",
-  //     password: "test",
-  //     firstName: "Joe",
-  //     lastName: "Bob",
-  //     age: 42
-  //   });
-
-  //   joe.save().then(() => {
-  //     assert(!joe.isNew);
-  //     done();
-  //   });
-  // });
+describe("Creating User Model", () => {
   it("saves a user", done => {
     const joe = new User({
-      username: "jbob",
+      username: "testUser",
       password: "test",
       firstName: "Joe",
       lastName: "Bob",
@@ -30,13 +16,30 @@ describe("Handling User Model", () => {
       done();
     });
   });
-  it("adds 2 and 2", done => {
-    function addTwoNums(x, y) {
-      return x + y;
-    }
-    let addedNum = addTwoNums(2, 2);
+});
+describe("Updating a User", () => {
+  let joe;
 
-    assert(addedNum === 4);
-    done();
+  beforeEach(done => {
+    joe = new User({
+      username: "testUser",
+      password: "test",
+      firstName: "Joe",
+      lastName: "Bob",
+      age: 42
+    });
+    joe.save().then(() => done());
+  });
+  it("updates a user's name and age", done => {
+    let updatedUser = {};
+    updatedUser.firstName = "Joseph";
+    updatedUser.lastName = "Robert";
+    updatedUser.age = 24;
+    User.findByIdAndUpdate(joe._id, updatedUser).then(user => {
+      assert((joe.firstName = "Joseph"));
+      assert((joe.lastName = "Robert"));
+      assert((joe.age = "24"));
+      done();
+    });
   });
 });
