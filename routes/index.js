@@ -18,8 +18,9 @@ router.put("/user", middleWare.isLoggedIn, (req, res) => {
   let updatedUser = {};
   updatedUser.firstName = req.body.user.firstName;
   updatedUser.lastName = req.body.user.lastName;
+  updatedUser.email = req.body.user.email;
   updatedUser.age = req.body.user.age;
-  User.findByIdAndUpdate(req.user.id, updatedUser).then(user => {
+  User.findByIdAndUpdate(req.user.id, updatedUser).then(() => {
     res.redirect("/user");
   });
 });
@@ -29,7 +30,6 @@ router.delete("/user", middleWare.isLoggedIn, (req, res) => {
 });
 
 // INDEX ROUTES
-
 router.get("/", (req, res) => res.render("index"));
 
 //show login form
@@ -63,6 +63,7 @@ router.post("/register", (req, res) => {
     passport.authenticate("local")(req, res, () => {
       user.firstName = req.body.user.firstName;
       user.lastName = req.body.user.lastName;
+      user.email = req.body.user.email;
       user.age = req.body.user.age;
       user.save();
       // console.log(user);

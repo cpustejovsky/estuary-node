@@ -6,9 +6,13 @@
       <h3>Your information</h3>
       <ul>
         <li><strong>Name:</strong> <%=user.firstName%> <%=user.lastName%></li>
+        <li><strong>Email Address:</strong> <%=user.email%></li>
         <li><strong>Age:</strong> <%=user.age%></li>
       </ul>
-      <a href="/user/edit"><button class="btn btn-primary">Edit User Info</button></a>
+      <a href="/user/edit"
+        ><button class="btn btn-primary">Edit User Info</button></a
+      >
     </div>
   </div>
   <% include ../partials/footer %>
+</div>

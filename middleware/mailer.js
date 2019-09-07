@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 // async..await is not allowed in global scope, must use a wrapper
-async function main() {
+module.exports = async function emailUser() {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -20,6 +20,6 @@ async function main() {
 
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-}
+};
 
 main().catch(console.error);
