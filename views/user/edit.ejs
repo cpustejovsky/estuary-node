@@ -36,6 +36,22 @@
               name="user[age]"
               value="<%=user.age%>"
             />
+          </div>          
+          <div class="form-group">
+            <p>Do you want to receive daily updates of your notes?</p>
+            <input
+              type="radio"
+              name="user[emailUpdates]"
+              value="true"
+            />
+            <label for="user[emailUpdates]">Yes</label>            
+            <input
+              type="radio"
+              name="user[emailUpdates]"
+              checked
+              value="false"
+            />
+            <label for="user[emailUpdates]">No</label>
           </div>
           <!-- <div class="form-group">
             <input

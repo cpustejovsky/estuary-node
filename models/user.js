@@ -13,6 +13,7 @@ const UserSchema = new Schema({
   firstName: String,
   lastName: String,
   age: Number,
+  emailUpdates: { type: Boolean, default: false },
   freeWrites: [FreeWriteSchema],
   notes: [noteSchema]
 });

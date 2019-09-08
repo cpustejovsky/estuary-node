@@ -27,40 +27,40 @@ const logErrorAndExit = errMsg => {
 };
 
 //CRON JOB EMAIL TEST
-var rule = new schedule.RecurrenceRule();
-rule.second = 10;
+// var rule = new schedule.RecurrenceRule();
+// rule.second = 10;
 
-var j = schedule.scheduleJob(rule, function() {
-  User.findOne({ username: "cpustejovsky" }).then(user => {
-    console.log(`found user! \n ${user}`);
-    let emailAddress = user.email;
-    let noteContents = "<h1>Your Notes</h1>\n<ul>";
-    for (let i = 0; i < user.notes.length; i++) {
-      noteContents += `\n<li>${user.notes[i].content}</li>`;
-      if (user.notes[i] === user.notes.length - 1) {
-        noteContents += "</ul>";
-      }
-    }
-    let emailContent = noteContents;
-    async function emailUser(emailAddr) {
-      let transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.EMAIL_PW
-        }
-      });
-      // send mail with defined transport object
-      let info = await transporter.sendMail({
-        from: '"NodeJS Application" donotreply@estuary.com',
-        to: emailAddr,
-        subject: `${user.firstName} ${user.lastName}'s Notes`,
-        html: emailContent
-      });
-    }
-    emailUser(emailAddress);
-  });
-});
+// var j = schedule.scheduleJob(rule, function() {
+//   User.findOne({ username: "cpustejovsky" }).then(user => {
+//     console.log(`found user! \n ${user}`);
+//     let emailAddress = user.email;
+//     let noteContents = "<h1>Your Notes</h1>\n<ul>";
+//     for (let i = 0; i < user.notes.length; i++) {
+//       noteContents += `\n<li>${user.notes[i].content}</li>`;
+//       if (user.notes[i] === user.notes.length - 1) {
+//         noteContents += "</ul>";
+//       }
+//     }
+//     let emailContent = noteContents;
+//     async function emailUser(emailAddr) {
+//       let transporter = nodemailer.createTransport({
+//         service: "gmail",
+//         auth: {
+//           user: process.env.EMAIL,
+//           pass: process.env.EMAIL_PW
+//         }
+//       });
+//       // send mail with defined transport object
+//       let info = await transporter.sendMail({
+//         from: '"NodeJS Application" donotreply@estuary.com',
+//         to: emailAddr,
+//         subject: `${user.firstName} ${user.lastName}'s Notes`,
+//         html: emailContent
+//       });
+//     }
+//     emailUser(emailAddress);
+//   });
+// });
 
 if (process.argv[2] === "test") {
   mongoose
