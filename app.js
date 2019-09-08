@@ -28,7 +28,7 @@ const logErrorAndExit = errMsg => {
 
 //CRON JOB EMAIL TEST
 var rule = new schedule.RecurrenceRule();
-rule.second = 10;
+rule.hour = 24;
 
 var j = schedule.scheduleJob(rule, function() {
   User.find({ emailUpdates: true }).then(users => {
