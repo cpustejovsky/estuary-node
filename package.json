@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "nodemon --exec 'mocha test --recursive'",
-    "start-test": "nodemon app.js test",
+    "local": "nodemon app.js test",
     "start": "node app.js"
   },
   "engines": {

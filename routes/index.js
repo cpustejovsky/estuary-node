@@ -5,14 +5,14 @@ const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-//TEST EMAIL ROUTES
 
+//TEST EMAIL ROUTES
 router.post("/email", middleWare.isLoggedIn, (req, res) => {
   console.log("hit the email route!");
   console.log(req.body.user);
   User.findById(req.body.user.id).then(user => {
     let emailAddress = user.email;
-    let noteContents = "<ul>";
+    let noteContents = "<h1>Your Notes</h1>\n<ul>";
     for (let i = 0; i < user.notes.length; i++) {
       noteContents += `\n<li>${user.notes[i].content}</li>`;
       if (user.notes[i] === user.notes.length - 1) {

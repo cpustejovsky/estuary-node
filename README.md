@@ -2,6 +2,7 @@
 Where your streams of consciousness meet
 
 - [Estuary (WIP)](#estuary-wip)
+  - [- Acknowledgments](#acknowledgments)
   - [To-Dos](#to-dos)
   - [Setup](#setup)
   - [Acknowledgments](#acknowledgments)
@@ -27,7 +28,8 @@ Where your streams of consciousness meet
 * Set up and replace process.env.____ with:
   * a mongo database to connect to (you can uncomment the local one in app.js for something quick)
   * a secret for client-sessions
-* Run `npm run start`
+  * email address credentials for nodemailer
+* Run `npm run local`
   * If you don't have nodemon installed globally and don't wish to, you can just run `node app.js`
 
 ## Acknowledgments 
