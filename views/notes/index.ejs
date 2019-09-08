@@ -5,12 +5,13 @@
     <div class="col-md-10">
       <h1>Notes</h1>
       <p>Number of Notes: <strong><%=user.notes.length%></strong></p>
-      <a href="/notes/new"><button class="btn btn-success">New Note</button>
+      <a href="/notes/new"
+        ><button class="btn btn-success">New Note</button>
       </a>
       <% if (user.notes.length > 0) { %>
-      <hr>
+      <hr />
       <h2>Your Notes</h2>
-      <% }  %>
+      <% } %>
       <hr />
 
       <% for (let i = user.notes.length - 1; i >= 0; i--) { %>
@@ -19,14 +20,25 @@
           <%= user.notes[i].content %>
         </div>
         <div class="col-4">
-          <form action="/notes/<%=user.notes[i]._id%>?_method=DELETE" method="POST" class="sidebyside">
+          <form
+            action="/notes/<%=user.notes[i]._id%>?_method=DELETE"
+            method="POST"
+            class="sidebyside"
+          >
             <button class="btn btn-sm btn-danger">Delete</button>
           </form>
         </div>
       </div>
-      <hr>
+      <hr />
       <% } %>
-
+      <div>
+        <form action="/email" method="POST">
+          <input type="hidden" name="user[email]" value="<%=user.email%>" />
+          <input type="hidden" name="user[notes]" value="<%=user.notes%>" />
+          <input type="hidden" name="user[id]" value="<%=user.id%>" />
+          <button class="btn btn-primary">Send a Test Email</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
