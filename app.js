@@ -9,13 +9,23 @@ const sessions = require("client-sessions");
 const favicon = require("serve-favicon");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
+const schedule = require("node-schedule");
 
+var rule = new schedule.RecurrenceRule();
+rule.second = 10;
+
+var j = schedule.scheduleJob(rule, function() {
+  console.log(
+    "Bless the Lord oh my soul and all that is within me bless his holy name. Blessed art thou oh Lord!"
+  );
+});
 // MODELS
 const User = require("./models/user");
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const notesRoutes = require("./routes/notesRoutes");
+const emailRoutes = require("./routes/emailRoutes");
 let port = process.env.PORT || 3000;
 const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
 const logErrorAndExit = errMsg => {
@@ -82,6 +92,7 @@ app.use(function(req, res, next) {
 app.use("/", indexRoutes);
 app.use("/free-writes", freeWriteRoutes);
 app.use("/notes", notesRoutes);
+app.use("/email", emailRoutes);
 
 app
   .listen(port, () => {

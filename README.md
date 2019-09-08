@@ -2,20 +2,23 @@
 Where your streams of consciousness meet
 
 - [Estuary (WIP)](#estuary-wip)
-  - [- Acknowledgments](#acknowledgments)
   - [To-Dos](#to-dos)
   - [Setup](#setup)
   - [Acknowledgments](#acknowledgments)
+
 ---
 ## To-Dos
 * Add search and filter functionality for free writes
   * title search
   * content search
 * Add CRUD functionality to User
+  * ~~Update~~
+  * Destroy
 * Email password reset
 * Add Mocha testing framework
+  * Complete unit testing coverage
 * Replace EJS with React for Front-End functionality
-* Email and/or text user with notes
+* ~~Email and/or text user with notes~~
 * Increase Efficiency
   * Add logging and benchmarking
   * Determine next steps _____
@@ -29,8 +32,9 @@ Where your streams of consciousness meet
   * a mongo database to connect to (you can uncomment the local one in app.js for something quick)
   * a secret for client-sessions
   * email address credentials for nodemailer
+    * email and password
 * Run `npm run local`
-  * If you don't have nodemon installed globally and don't wish to, you can just run `node app.js`
+  * If you don't have nodemon installed globally and don't wish to, you can just run `node app.js test`
 
 ## Acknowledgments 
 
