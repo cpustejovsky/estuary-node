@@ -8,6 +8,11 @@
         <li><strong>Name:</strong> <%=user.firstName%> <%=user.lastName%></li>
         <li><strong>Email Address:</strong> <%=user.email%></li>
         <li><strong>Age:</strong> <%=user.age%></li>
+        <% if (user.emailUpdates) { %>
+        <li><strong>Daily Email Updates:</strong> On</li>
+        <% } else { %>
+        <li><strong>Daily Email Updates:</strong> Off</li>
+        <% } %>
       </ul>
       <a href="/user/edit"
         ><button class="btn btn-primary">Edit User Info</button></a
