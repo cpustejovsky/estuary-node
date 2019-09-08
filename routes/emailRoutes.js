@@ -5,7 +5,8 @@ const middleWare = require("../middleware/index.js");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-//TEST EMAIL ROUTES
+//EMAIL ROUTES
+
 router.post("/", middleWare.isLoggedIn, (req, res) => {
   console.log("hit the email route!");
   console.log(req.body.user);

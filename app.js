@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const schedule = require("node-schedule");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const emailUpdate = require("./cron/emailNoteUpdate.js");
 // MODELS
 const User = require("./models/user");
 //ROUTES
@@ -26,44 +27,14 @@ const logErrorAndExit = errMsg => {
   process.exit(1);
 };
 
-//CRON JOB EMAIL TEST
+// //CRON JOB EMAIL USERS
 var rule = new schedule.RecurrenceRule();
-rule.hour = 24;
+rule.dayOfWeek = [0, new schedule.Range(0, 6)];
+rule.hour = 6;
+rule.minute = 0;
 
-var j = schedule.scheduleJob(rule, function() {
-  User.find({ emailUpdates: true }).then(users => {
-    for (let i = 0; i < users.length; i++) {
-      console.log(`found user! Here is their username \n ${users[i].username}`);
-      User.findOne({ username: users[i].username }).then(user => {
-        let emailAddress = user.email;
-        let noteContents = "<h1>Your Notes</h1>\n<ul>";
-        for (let i = 0; i < user.notes.length; i++) {
-          noteContents += `\n<li>${user.notes[i].content}</li>`;
-          if (user.notes[i] === user.notes.length - 1) {
-            noteContents += "</ul>";
-          }
-        }
-        let emailContent = noteContents;
-        async function emailUser(emailAddr) {
-          let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: process.env.EMAIL,
-              pass: process.env.EMAIL_PW
-            }
-          });
-          // send mail with defined transport object
-          let info = await transporter.sendMail({
-            from: '"NodeJS Application" donotreply@estuary.com',
-            to: emailAddr,
-            subject: `${user.firstName} ${user.lastName}'s Notes`,
-            html: emailContent
-          });
-        }
-        emailUser(emailAddress);
-      });
-    }
-  });
+var dailyEmailUsersNotes = schedule.scheduleJob(rule, function() {
+  emailUpdate();
 });
 
 if (process.argv[2] === "test") {
@@ -129,11 +100,11 @@ app.use("/email", emailRoutes);
 
 app
   .listen(port, () => {
-    console.log(`Example app listening on port ${port}!`);
+    console.log(`Estuary listening on port ${port}!`);
   })
   .on("error", function helperFunction() {
     port += 1;
     app.listen(port, () => {
-      console.log(`Example app listening on port ${port}!`);
+      console.log(`Estuary listening on port ${port}!`);
     });
   });
