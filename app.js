@@ -30,8 +30,8 @@ const logErrorAndExit = errMsg => {
 // //CRON JOB EMAIL USERS
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
-rule.hour = 9;
-rule.minute = 0;
+rule.hour = 18;
+rule.minute = 3;
 
 var dailyEmailUsersNotes = schedule.scheduleJob(rule, function () {
   emailUpdate();
