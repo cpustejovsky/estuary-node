@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
+const moment = require('moment');
 
 // USER ROUTES
 
@@ -31,7 +32,10 @@ router.delete("/user", middleWare.isLoggedIn, (req, res) => {
 });
 
 // INDEX ROUTES
-router.get("/", (req, res) => res.render("index"));
+router.get("/", (req, res) => {
+  let time = moment().format('MMMM Do YYYY, h:mm:ss a');
+  res.render("index", { time: time })
+});
 
 //show login form
 router.get("/login", (req, res) => {
@@ -56,7 +60,7 @@ router.post(
 //handle register logic
 router.post("/register", (req, res) => {
   var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function(err, user) {
+  User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       res.redirect("/register");
       console.log(`oops! something went wrong \n ${err}`);

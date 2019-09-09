@@ -33,7 +33,7 @@ rule.dayOfWeek = [0, new schedule.Range(0, 6)];
 rule.hour = 6;
 rule.minute = 0;
 
-var dailyEmailUsersNotes = schedule.scheduleJob(rule, function() {
+var dailyEmailUsersNotes = schedule.scheduleJob(rule, function () {
   emailUpdate();
 });
 
@@ -85,7 +85,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //setting up res.locals
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.user = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
