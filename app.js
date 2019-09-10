@@ -5,27 +5,27 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const mongoose = require("mongoose");
+const moment = require("moment");
 const sessions = require("client-sessions");
 const favicon = require("serve-favicon");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const schedule = require("node-schedule");
-const nodemailer = require("nodemailer");
-require("dotenv").config();
 const emailUpdate = require("./cron/emailNoteUpdate.js");
+
 // MODELS
 const User = require("./models/user");
+
 //ROUTES
 const indexRoutes = require("./routes/index.js");
 const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
 const notesRoutes = require("./routes/notesRoutes");
 const emailRoutes = require("./routes/emailRoutes");
+
+//VARIABLES AND FUNCTIONS
 let port = process.env.PORT || 3000;
 const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
-const logErrorAndExit = errMsg => {
-  console.log(errMsg);
-  process.exit(1);
-};
+require("dotenv").config();
 
 // //CRON JOB EMAIL USERS
 var rule = new schedule.RecurrenceRule();
@@ -44,7 +44,10 @@ if (process.argv[2] === "test") {
       useFindAndModify: false
     })
     .then(() => console.log("connected to database"))
-    .catch(err => logErrorAndExit(err));
+    .catch(err => {
+      console.log(err);
+      process.exit(1);
+    });
 } else {
   mongoose
     .connect(connectionString, {
@@ -56,7 +59,8 @@ if (process.argv[2] === "test") {
       console.log(
         "Most likely what happened is you didn't run node app.js test to run it locally. If you tried to run production without the mongodb credentials, you'll get an error."
       );
-      logErrorAndExit(err);
+      console.log(err);
+      process.exit(1);
     });
 }
 
@@ -86,6 +90,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //setting up res.locals
 app.use(function(req, res, next) {
+  res.locals.time = moment().format("DD MMMM YYYY");
   res.locals.user = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");

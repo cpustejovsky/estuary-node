@@ -1,20 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
-const moment = require("moment");
 const middleWare = require("../middleware/index.js");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
 const mongoose = require("mongoose");
 const User = require("../models/user");
-const FreeWrite = require("../schemas/freeWriteSchema");
 
 router.get("/", middleWare.isLoggedIn, (req, res) => {
   res.render("freeWrites/index");
 });
 
 router.get("/new", middleWare.isLoggedIn, (req, res) => {
-  let today = moment().format("MM-DD-YYYY");
-  res.render("freeWrites/new", { time: today });
+  res.render("freeWrites/new");
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {

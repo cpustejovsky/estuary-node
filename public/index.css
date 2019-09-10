@@ -10,3 +10,11 @@ hr {
 div .container {
   padding-top: 5%;
 }
+
+div .footer {
+  text-align: right;
+}
+
+.footer a {
+  color: #212529;
+}
