@@ -30,8 +30,8 @@ require("dotenv").config();
 // //CRON JOB EMAIL USERS
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(0, 6)];
-rule.hour = 05;
-rule.minute = 00;
+rule.hour = 6;
+rule.minute = 15;
 
 var dailyEmailUsersNotes = schedule.scheduleJob(rule, function() {
   emailUpdate();
