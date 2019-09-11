@@ -35,6 +35,10 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+router.get("/about", (req, res) => {
+  res.render("about");
+});
+
 //show login form
 router.get("/login", (req, res) => {
   res.render("login");
