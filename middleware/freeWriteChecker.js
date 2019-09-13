@@ -16,7 +16,7 @@ const freeWriteCheckerObject = {
     return counter;
   },
   noteRemover(freeWrite) {
-    freeWrite.split("\n");
+    let stringArrNL = freeWrite.split("\n");
     stringArrNL.forEach(element => {
       if (element[0] === "#" && element[1].toString().toUpperCase() === "N") {
         let noteElem = stringArrNL.indexOf(element);
