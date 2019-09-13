@@ -17,7 +17,6 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
 });
 
 router.post("/", middleWare.isLoggedIn, (req, res) => {
-  let newNotesArray = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
   const newFreeWrite = {
     title: req.body.freeWrite.title,
     content: FreeWriteChecker.noteRemover(req.body.freeWrite.content),
@@ -48,8 +47,35 @@ router.post(
   upload.single("testFile"),
   middleWare.isLoggedIn,
   (req, res) => {
-    console.log(fs.readFileSync(req.file.path, "utf8"));
-    res.redirect("/free-writes");
+    const newFreeWrite = {
+      title: "Uploaded Free Write",
+      content: FreeWriteChecker.noteRemover(
+        fs.readFileSync(req.file.path, "utf8")
+      ),
+      wordCount: FreeWriteChecker.wordCount(
+        fs.readFileSync(req.file.path, "utf8")
+      )
+    };
+    if (mongoose.Types.ObjectId.isValid(req.user.id)) {
+      User.findById(req.user._id).then(user => {
+        user.freeWrites.push(newFreeWrite);
+        let newNotes = FreeWriteChecker.noteChecker(
+          fs.readFileSync(req.file.path, "utf8")
+        );
+        for (let i = 0; i < newNotes.length; i++) {
+          user.notes.push({ content: newNotes[i] });
+        }
+        user.save(err => {
+          if (err) {
+            console.log(`oopsy!!!! here's the error: ${err}`);
+          } else {
+            res.redirect("/free-writes");
+          }
+        });
+      });
+    } else {
+      console.log("Please provide correct Id");
+    }
   }
 );
 
