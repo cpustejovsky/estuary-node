@@ -3,18 +3,37 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-10">
-      <h1>Free Writes <span><a href="/free-writes/new"><button class="btn btn-success">New Free Write</button>
-          </a></span></h1>
+      <h1>
+        Free Writes
+        <span
+          ><a href="/free-writes/new"
+            ><button class="btn btn-success">New Free Write</button>
+          </a></span
+        >
+      </h1>
+      <form action="/free-writes/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" name="testFile" id="" required />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-sm btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
       <p>Number of Free Writes: <strong><%=user.freeWrites.length%></strong></p>
       <% if (user.freeWrites.length > 0) { %>
-      <hr>
+      <hr />
       <h2>Your Free Writes</h2>
-      <% }  %>
-      <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
+      <% } %> <% for (let i = user.freeWrites.length - 1; i >= 0; i--) { %>
       <h3><%= user.freeWrites[i].title %></h3>
       <div><%= user.freeWrites[i].content %></div>
       <p><strong>Word Count: </strong><%= user.freeWrites[i].wordCount %></p>
-      <form action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE" method="POST" class="sidebyside">
+      <form
+        action="/free-writes/<%=user.freeWrites[i]._id%>?_method=DELETE"
+        method="POST"
+        class="sidebyside"
+      >
         <button class="btn btn-sm btn-danger">Delete</button>
       </form>
       <hr />

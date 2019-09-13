@@ -1,8 +1,11 @@
+const fs = require("fs");
+const mongoose = require("mongoose");
+const multer = require("multer");
+const upload = multer({ dest: "temp/" });
 const express = require("express");
 const router = express.Router();
 const middleWare = require("../middleware/index.js");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
-const mongoose = require("mongoose");
 const User = require("../models/user");
 
 router.get("/", middleWare.isLoggedIn, (req, res) => {
@@ -39,6 +42,16 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
     console.log("Please provide correct Id");
   }
 });
+
+router.post(
+  "/upload",
+  upload.single("testFile"),
+  middleWare.isLoggedIn,
+  (req, res) => {
+    console.log(fs.readFileSync(req.file.path, "utf8"));
+    res.redirect("/free-writes");
+  }
+);
 
 router.delete("/:id", middleWare.isLoggedIn, (req, res) => {
   console.log("hit the delete route!");
