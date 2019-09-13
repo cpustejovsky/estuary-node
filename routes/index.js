@@ -79,6 +79,10 @@ router.post("/register", (req, res) => {
   });
 });
 
+router.delete("/user/delete", (req, res) => {
+  res.send("hit delete route!");
+});
+
 //logout route and logic
 router.get("/logout", (req, res) => {
   req.logout();

@@ -67,13 +67,9 @@
             </button>
           </div>
         </form>
-            <button class="btn btm-sm btn-danger" onclick="deleteUser()">Delete</button> 
-  
-    <script> 
-        function deleteUser() { 
-            confirm("Are you sure you want to delete your user account?"); 
-        } 
-    </script> 
+        <form action="/user/delete?_method=DELETE" method="POST" >
+          <button class="btn btm-sm btn-danger" onclick="return confirm('Are you sure you want to delete your user? This action cannot be undone');">Delete</button>
+        </form>
       </div>
     </div>
   </div>
