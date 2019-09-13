@@ -16,6 +16,10 @@ router.get("/new", middleWare.isLoggedIn, (req, res) => {
   res.render("freeWrites/new");
 });
 
+router.get("/upload", (req, res) => {
+  res.render("freeWrites/upload");
+});
+
 router.post("/", middleWare.isLoggedIn, (req, res) => {
   const newFreeWrite = {
     title: req.body.freeWrite.title,
@@ -48,7 +52,7 @@ router.post(
   middleWare.isLoggedIn,
   (req, res) => {
     const newFreeWrite = {
-      title: "Uploaded Free Write",
+      title: req.body.freeWrite.title,
       content: FreeWriteChecker.noteRemover(
         fs.readFileSync(req.file.path, "utf8")
       ),
@@ -65,6 +69,7 @@ router.post(
         for (let i = 0; i < newNotes.length; i++) {
           user.notes.push({ content: newNotes[i] });
         }
+        fs.unlinkSync(req.file.path);
         user.save(err => {
           if (err) {
             console.log(`oopsy!!!! here's the error: ${err}`);
@@ -74,6 +79,7 @@ router.post(
         });
       });
     } else {
+      fs.unlinkSync(req.file.path);
       console.log("Please provide correct Id");
     }
   }
