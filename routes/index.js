@@ -26,8 +26,11 @@ router.put("/user", middleWare.isLoggedIn, (req, res) => {
   });
 });
 
-router.delete("/user", middleWare.isLoggedIn, (req, res) => {
-  res.send("hit the update route!");
+router.delete("/user", (req, res) => {
+  User.findByIdAndDelete(req.user.id).then(() => {
+    req.flash("success", "User deleted");
+    res.redirect("/");
+  })
 });
 
 // INDEX ROUTES
@@ -62,7 +65,7 @@ router.post(
 //handle register logic
 router.post("/register", (req, res) => {
   var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function(err, user) {
+  User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       res.redirect("/register");
       console.log(`oops! something went wrong \n ${err}`);
@@ -77,10 +80,6 @@ router.post("/register", (req, res) => {
       res.redirect("/user");
     });
   });
-});
-
-router.delete("/user/delete", (req, res) => {
-  res.send("hit delete route!");
 });
 
 //logout route and logic
