@@ -12,6 +12,8 @@ const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const schedule = require("node-schedule");
 const emailUpdate = require("./cron/emailNoteUpdate.js");
+//do I need to use express sanitizer?
+// const expressSanitizer = require("express-sanitizer");
 
 // MODELS
 const User = require("./models/user");
@@ -33,7 +35,7 @@ rule.dayOfWeek = [0, new schedule.Range(0, 6)];
 rule.hour = 6;
 rule.minute = 15;
 
-var dailyEmailUsersNotes = schedule.scheduleJob(rule, function() {
+var dailyEmailUsersNotes = schedule.scheduleJob(rule, function () {
   emailUpdate();
 });
 
@@ -89,7 +91,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //setting up res.locals
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.time = moment().format("DD MMMM YYYY");
   res.locals.user = req.user;
   res.locals.error = req.flash("error");
