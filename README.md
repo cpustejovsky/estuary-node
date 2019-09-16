@@ -8,20 +8,25 @@ Where your streams of consciousness meet
 
 ---
 ## To-Dos
-* Add search and filter functionality for free writes
-  * title search
-  * content search
-* Add CRUD functionality to User
+* ~~Email and/or text user with notes~~
+* ~~Add CRUD functionality to User~~
   * ~~Update~~
-  * Destroy
+  * ~~Destroy~~
 * Email password reset
-* Add Mocha testing framework
+  * Set up nodemailer with MailGun
+  * Implement JWTs for password reset
+* Add search and filter functionality for free writes and notes
+  * Use mongoose to search through array of freeWrites and Notes and look for any match in content or title;
+  * Update view with app.
+* Add sufficient unit testing
+  * ~~Add Mocha testing framework to app~~
+  * Look at NestJS for inspiriation on testing structure
   * Complete unit testing coverage
 * Replace EJS with React for Front-End functionality
-* ~~Email and/or text user with notes~~
 * Increase Efficiency
   * Add logging and benchmarking
-  * Determine next steps _____
+* Turn Estuary in Electron App
+* Determine next steps _____
   
 ## Setup
 
@@ -40,3 +45,4 @@ Where your streams of consciousness meet
 
 * Colt Steele's [Web Development Bootcamp](https://www.udemy.com/the-web-developer-bootcamp/) was my launching off point for this application.
 * Stephen Grider's [Complete Developer's Guide to MongoDB](https://www.udemy.com/the-complete-developers-guide-to-mongodb/) has also been extremely helpful in structuring the server logic of the app.
+* Finally, Tony Alicea's works on JavaScript and NodeJS provide an invaluable baseline for understanding the technologies I'm using.
