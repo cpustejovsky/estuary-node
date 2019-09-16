@@ -18,3 +18,9 @@ div .footer {
 .footer a {
   color: #212529;
 }
+
+.error {
+    background-color: #ff000045;
+    color: #f9f9f9;
+    padding: 10px;
+}
