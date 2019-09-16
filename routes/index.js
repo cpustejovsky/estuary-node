@@ -30,7 +30,7 @@ router.delete("/user", (req, res) => {
   User.findByIdAndDelete(req.user.id).then(() => {
     req.flash("success", "User deleted");
     res.redirect("/");
-  })
+  });
 });
 
 // INDEX ROUTES
@@ -55,7 +55,9 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/user",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash: "Invalid username or password",
+    successFlash: `Howdy! Welcome back!`
   }),
   (req, res) => {
     //currently nothing?
@@ -65,7 +67,7 @@ router.post(
 //handle register logic
 router.post("/register", (req, res) => {
   var newUser = new User({ username: req.body.username });
-  User.register(newUser, req.body.password, function (err, user) {
+  User.register(newUser, req.body.password, function(err, user) {
     if (err) {
       req.flash("error", `Oops! ${err.message}`);
       res.redirect("/register");
