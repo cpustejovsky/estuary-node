@@ -107,11 +107,11 @@ app.use("/email", emailRoutes);
 
 app
   .listen(port, () => {
-    console.log(`Estuary listening on port ${port}!`);
+    console.log(`Estuary listening on localhost:${port}`);
   })
   .on("error", function helperFunction() {
     port += 1;
     app.listen(port, () => {
-      console.log(`Estuary listening on port ${port}!`);
+      console.log(`Estuary listening on localhost:${port}`);
     });
   });
