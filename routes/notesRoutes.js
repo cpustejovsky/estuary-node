@@ -32,7 +32,6 @@ router.post("/", middleWare.isLoggedIn, (req, res) => {
   });
 });
 
-//TODO: add delete route!
 router.delete("/:id", middleWare.isLoggedIn, (req, res) => {
   console.log("hit the delete route!");
   for (let i = 0; i < req.user.notes.length; i++) {
