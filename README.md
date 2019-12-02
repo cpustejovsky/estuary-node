@@ -22,7 +22,7 @@ and also building a robust app that I can proudly show off in my portfolio.
   * ~~Update~~
   * ~~Destroy~~
 * ~~Add Mocha testing framework to app~~
-* Remove document upload feature
+* ~~Remove document upload feature~~
 * Email password reset
 * Clean up note selector function
 * Add avatar image to user profiles
