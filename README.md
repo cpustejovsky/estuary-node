@@ -2,32 +2,45 @@
 Where your streams of consciousness meet
 
 - [Estuary (WIP)](#estuary-wip)
+  - [Inspiration](#inspiration)
   - [To-Dos](#to-dos)
   - [Setup](#setup)
   - [Acknowledgments](#acknowledgments)
 
 ---
+## Inspiration
+Thanksgiving weekend 2019, I started reading 
+[**Getting Things Done**](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) by David Allen.
+During my plane rides, I had the idea to turn this into an app that could facilitate the GTD process.
+
+That would have the dual benefit of cementing these practices for me 
+and also building a robust app that I can proudly show off in my portfolio.
+
 ## To-Dos
 * ~~Email and/or text user with notes~~
 * ~~Add CRUD functionality to User~~
   * ~~Update~~
   * ~~Destroy~~
+* ~~Add Mocha testing framework to app~~
+* Remove document upload feature
 * Email password reset
-  * Set up nodemailer with MailGun
-  * Implement JWTs for password reset
+* Clean up note selector function
+* Add avatar image to user profiles
+* Be able to add multiple notes at a time
+* Set priority for notes
+* Add customizable tags for notes
+* Export Free Writes and Notes
+* Add Next Actions List
+* Connect to Google Calendars via API
 * Add search and filter functionality for free writes and notes
-  * Use mongoose to search through array of freeWrites and Notes and look for any match in content or title;
-  * Update view with app.
 * Add sufficient unit testing
-  * ~~Add Mocha testing framework to app~~
-  * Look at NestJS for inspiriation on testing structure
-  * Complete unit testing coverage
-* Replace EJS with React for Front-End functionality
-* Increase Efficiency
-  * Add logging and benchmarking
+* Complete unit testing coverage
+* Replace EJS with React on Front-End
 * Turn Estuary in Electron App
-* Determine next steps _____
-  
+* Refactor in TypeScript
+* Add functionality to email notes to app
+* Create a system to file general reference items (potentially connect with Toby)
+
 ## Setup
 
 * Have MongoDB Running
