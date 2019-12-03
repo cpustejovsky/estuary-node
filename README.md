@@ -40,6 +40,7 @@ and also building a robust app that I can proudly show off in my portfolio.
 * Refactor in TypeScript
 * Add functionality to email notes to app
 * Create a system to file general reference items (potentially connect with Toby)
+* Hook up next action steps to to-dos in Habitica ([Habitica API](https://habitica.com/apidoc/))
 
 ## Setup
 
