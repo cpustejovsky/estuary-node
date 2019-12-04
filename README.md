@@ -22,7 +22,7 @@ and also building a robust app that I can proudly show off in my portfolio.
   * ~~Update~~
   * ~~Destroy~~
 * ~~Add Mocha testing framework to app~~
-* Remove document upload feature
+* ~~Remove document upload feature~~
 * Email password reset
 * Clean up note selector function
 * Add avatar image to user profiles
@@ -40,6 +40,7 @@ and also building a robust app that I can proudly show off in my portfolio.
 * Refactor in TypeScript
 * Add functionality to email notes to app
 * Create a system to file general reference items (potentially connect with Toby)
+* Hook up next action steps to to-dos in Habitica ([Habitica API](https://habitica.com/apidoc/))
 
 ## Setup
 
