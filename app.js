@@ -59,7 +59,8 @@ if (process.argv[2] === "test") {
     .then(() => console.log("connected to database"))
     .catch(err => {
       console.log(
-        "Most likely what happened is you didn't run node app.js test to run it locally. If you tried to run production without the mongodb credentials, you'll get an error."
+        "Most likely what happened is you didn't run node app.js test to run it locally." +
+          "If you tried to run production without the mongodb credentials, you'll get an error."
       );
       console.log(err);
       process.exit(1);
