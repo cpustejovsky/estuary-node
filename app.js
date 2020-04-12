@@ -25,7 +25,7 @@ const notesRoutes = require("./routes/notesRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 
 //VARIABLES AND FUNCTIONS
-let port = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
 require("dotenv").config();
 
@@ -106,12 +106,12 @@ app.use("/notes", notesRoutes);
 app.use("/email", emailRoutes);
 
 app
-  .listen(port, () => {
-    console.log(`Estuary listening on localhost:${port}`);
+  .listen(PORT, () => {
+    console.log(`Estuary listening on localhost:${PORT}`);
   })
   .on("error", function helperFunction() {
-    port += 1;
-    app.listen(port, () => {
-      console.log(`Estuary listening on localhost:${port}`);
+    PORT += 1;
+    app.listen(PORT, () => {
+      console.log(`Estuary listening on localhost:${PORT}`);
     });
   });
