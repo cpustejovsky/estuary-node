@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 export default function About() {
   return (
     <div className="row site__about">
@@ -10,7 +9,7 @@ export default function About() {
           <a
             href="https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
           >
             Getting Things Done by David Allen
           </a>
