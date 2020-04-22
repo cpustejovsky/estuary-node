@@ -61,9 +61,6 @@ if (process.argv[2] === "test") {
 }
 
 app.use(bodyParser.urlencoded({ extended: true })); // TODO: what does this mean?
-app.set("view engine", "ejs");
-app.use("/assets", express.static(__dirname + "/public"));
-app.use(favicon(__dirname + "/public/images/favicon.ico"));
 app.use(methodOverride("_method"));
 app.use(flash());
 // PASSPORT CONFIG
