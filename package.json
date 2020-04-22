@@ -6,7 +6,11 @@
   "scripts": {
     "test": "nodemon --exec 'mocha test --recursive'",
     "local": "nodemon app.js test",
-    "start": "node app.js"
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
     "node": "10.x"
@@ -16,6 +20,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "client-sessions": "^0.8.0",
+    "concurrently": "^5.1.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.0.0",
     "ejs": "^2.6.2",

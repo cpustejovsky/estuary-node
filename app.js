@@ -25,7 +25,7 @@ const notesRoutes = require("./routes/notesRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 
 //VARIABLES AND FUNCTIONS
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 5000;
 const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
 require("dotenv").config();
 

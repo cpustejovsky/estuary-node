@@ -15,7 +15,7 @@ const UserSchema = new Schema({
   age: Number,
   emailUpdates: { type: Boolean, default: false },
   freeWrites: [FreeWriteSchema],
-  notes: [noteSchema]
+  notes: [noteSchema],
 });
 
 UserSchema.plugin(passportLocalMongoose);
