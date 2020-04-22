@@ -37,10 +37,10 @@ if (process.argv[2] === "test") {
   mongoose
     .connect(process.env.TESTDBURL, {
       useNewUrlParser: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     })
     .then(() => console.log("connected to database"))
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       process.exit(1);
     });
@@ -48,10 +48,10 @@ if (process.argv[2] === "test") {
   mongoose
     .connect(connectionString, {
       useNewUrlParser: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     })
     .then(() => console.log("connected to database"))
-    .catch(err => {
+    .catch((err) => {
       console.log(
         "Most likely what happened is you didn't run node app.js test to run it locally. If you tried to run production without the mongodb credentials, you'll get an error."
       );
@@ -75,7 +75,7 @@ app.use(
     activeDuration: 5 * 60 * 1000,
     httpOnly: true, // don't let JS code access cookies
     secure: true, // only set cookies over https
-    ephemeral: true // destroy cookies when the browser closes
+    ephemeral: true, // destroy cookies when the browser closes
   })
 );
 app.use(passport.initialize());
@@ -99,7 +99,6 @@ require("./routes/userRoutes")(app);
 require("./routes/freeWriteRoutes")(app);
 require("./routes/noteRoutes")(app);
 
-
 if (process.env.NODE_ENV === "production") {
   //serve up production assets
   app.use(express.static("client/build"));
@@ -110,13 +109,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app
-  .listen(PORT, () => {
-    console.log(`Estuary listening on localhost:${PORT}`);
-  })
-  .on("error", function helperFunction() {
-    PORT += 1;
-    app.listen(PORT, () => {
-      console.log(`Estuary listening on localhost:${PORT}`);
-    });
-  });
+app.listen(PORT, () => console.log(`Estuary listening on localhost:${PORT}`));
