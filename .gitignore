@@ -1,9 +1,4 @@
 node_modules
-.env
-scratch.js
-test.txt
-cleanTest.txt
-testing.js
-temp
 .idea
 .vscode
+config/dev.js

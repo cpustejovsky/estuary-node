@@ -7,8 +7,7 @@ const noteSchema = require("../schemas/noteSchema");
 
 //set up a Schema
 const UserSchema = new Schema({
-  username: String,
-  password: String,
+  googleId: String,
   email: String,
   firstName: String,
   lastName: String,
@@ -20,4 +19,4 @@ const UserSchema = new Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 //export
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("users", UserSchema);

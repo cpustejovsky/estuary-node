@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
-const middleWare = require("../middleware/index.js");
+const requireLogin = require("../middleware/requireLogin");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
-const User = require("../models/user");
+const User = require("../models/User");
 
 module.exports = (app) => {
-  app.get("/", middleWare.isLoggedIn, (req, res) => {
+  app.get("/", requireLogin, (req, res) => {
     res.render("freeWrites/index");
   });
 
-  app.get("/new", middleWare.isLoggedIn, (req, res) => {
+  app.get("/new", requireLogin, (req, res) => {
     res.render("freeWrites/new");
   });
 
-  app.post("/", middleWare.isLoggedIn, (req, res) => {
+  app.post("/", requireLogin, (req, res) => {
     const newFreeWrite = {
       title: req.body.freeWrite.title,
       content: FreeWriteChecker.noteRemover(req.body.freeWrite.content),
@@ -38,7 +38,7 @@ module.exports = (app) => {
     }
   });
 
-  app.delete("/:id", middleWare.isLoggedIn, (req, res) => {
+  app.delete("/:id", requireLogin, (req, res) => {
     console.log("hit the delete route!");
     console.log(req.params.id);
 

@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const User = require("../models/user");
+const User = require("../models/User");
 
 module.exports = function() {
   User.find({ emailUpdates: true }).then(users => {

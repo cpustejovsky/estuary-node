@@ -1,15 +1,7 @@
-const User = require("../models/user");
-const middleWare = require("../middleware/index.js");
+const User = require("../models/User");
+const requireLogin = require("../middleware/requireLogin");
 module.exports = (app) => {
-  app.get("/user", middleWare.isLoggedIn, (req, res) =>
-    res.render("user/index")
-  );
-
-  app.get("/user/edit", middleWare.isLoggedIn, (req, res) => {
-    res.render("user/edit");
-  });
-
-  app.put("/user", middleWare.isLoggedIn, (req, res) => {
+  app.put("/user", requireLogin, (req, res) => {
     let updatedUser = {};
     updatedUser.firstName = req.body.user.firstName;
     updatedUser.lastName = req.body.user.lastName;

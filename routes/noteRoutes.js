@@ -1,14 +1,14 @@
 // const passport = require("passport");
 // const moment = require("moment");
-const middleWare = require("../middleware/index.js");
-const User = require("../models/user");
+const requireLogin = require("../middleware/requireLogin");
+const User = require("../models/User");
 const Note = require("../schemas/noteSchema");
 // const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
 
 // const User = require("../models/user");
 // const FreeWrite = require("../schemas/freeWriteSchema");
 module.exports = (app) => {
-  app.post("/api/notes", middleWare.isLoggedIn, (req, res) => {
+  app.post("/api/notes", requireLogin, (req, res) => {
     const newNote = {
       content: req.body.note.content,
     };
@@ -22,7 +22,7 @@ module.exports = (app) => {
     });
   });
 
-  app.delete("/api/notes:id", middleWare.isLoggedIn, (req, res) => {
+  app.delete("/api/notes:id", requireLogin, (req, res) => {
     console.log("hit the delete route!");
     for (let i = 0; i < req.user.notes.length; i++) {
       let notesId = req.user.notes[i]._id.toString();
