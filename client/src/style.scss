@@ -5,8 +5,12 @@
   min-height: 85vh;
   align-items: center;
   justify-content: space-between;
-  &__header {
-    
+  &__warning {
+    background-color: #ff9800;
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+    text-align: center
   }
   &__landing {
     display: flex;

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import history from "../history";
 import Header from "./Header";
+import Warning from "./Warning";
 import Default from "./Default";
 import Auth from "./Auth";
 import Landing from "./Landing";
@@ -12,6 +13,7 @@ function App() {
   return (
     <BrowserRouter history={history}>
       <Header />
+      <Warning />
       <div className="site">
         <Switch>
           <Route path="/" exact component={Landing} />
