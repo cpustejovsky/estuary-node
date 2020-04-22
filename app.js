@@ -18,12 +18,6 @@ const emailUpdate = require("./cron/emailNoteUpdate.js");
 // MODELS
 const User = require("./models/user");
 
-//ROUTES
-const indexRoutes = require("./routes/index.js");
-const freeWriteRoutes = require("./routes/freeWriteRoutes.js");
-const notesRoutes = require("./routes/notesRoutes");
-const emailRoutes = require("./routes/emailRoutes");
-
 //VARIABLES AND FUNCTIONS
 let PORT = process.env.PORT || 5000;
 const connectionString = `mongodb+srv://cpustejovsky:${process.env.DBPASSWORD}@cluster0-otlqc.mongodb.net/test?retryWrites=true&w=majority`;
@@ -99,11 +93,24 @@ app.use(function (req, res, next) {
   res.locals.ownership = req.flash("ownership");
   next();
 });
+//ROUTES
+const indexRoutes = require("./routes/index.js");
 
-app.use("/", indexRoutes);
-app.use("/free-writes", freeWriteRoutes);
-app.use("/notes", notesRoutes);
-app.use("/email", emailRoutes);
+require("./routes/authRoutes")(app);
+require("./routes/userRoutes")(app);
+require("./routes/freeWriteRoutes")(app);
+require("./routes/noteRoutes")(app);
+
+
+if (process.env.NODE_ENV === "production") {
+  //serve up production assets
+  app.use(express.static("client/build"));
+  //serve up html routes if it doesn't recognize route
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app
   .listen(PORT, () => {
