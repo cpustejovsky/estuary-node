@@ -4,6 +4,7 @@ import history from "../history";
 import Header from "./Header";
 import Default from "./Default";
 import Landing from "./Landing";
+import About from "./About";
 import Footer from "./Footer";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <div className="site">
         <Switch>
           <Route path="/" exact component={Landing} />
-          <Route path="/about" exact component={Default} />
+          <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Default} />
           <Route path="/register" exact component={Default} />
           <Route path="/user" exact component={Default} />

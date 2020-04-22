@@ -1,7 +1,7 @@
 .site {
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
+  width: 100vw;
   min-height: 85vh;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,12 @@
     
   }
   &__landing {
-    
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  &__about {
+
   }
   &__footer {
     padding: 5vh;
