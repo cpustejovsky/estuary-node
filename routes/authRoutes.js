@@ -1,6 +1,12 @@
 const passport = require("passport");
 const User = require("../models/user");
 module.exports = (app) => {
+  app.get("/auth/google", (req, res)=>{
+    res.send("hit the Google route")
+  })
+  app.get("/auth/github", (req, res)=>{
+    res.send("hit the GitHub route")
+  })
   //handle login logic
   app.post(
     "/login",

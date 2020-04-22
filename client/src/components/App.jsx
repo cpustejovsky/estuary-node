@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import history from "../history";
 import Header from "./Header";
 import Default from "./Default";
+import Auth from "./Auth";
 import Landing from "./Landing";
 import About from "./About";
 import Footer from "./Footer";
@@ -15,8 +16,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/about" exact component={About} />
-          <Route path="/login" exact component={Default} />
-          <Route path="/register" exact component={Default} />
+          <Route path="/login" exact component={Auth} />
+          <Route path="/register" exact component={Auth} />
           <Route path="/user" exact component={Default} />
           <Route path="/user/edit" exact component={Default} />
           <Route path="/free-writes" exact component={Default} />
