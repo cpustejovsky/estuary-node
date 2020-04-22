@@ -1,16 +1,23 @@
 .site {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  min-height: 100vh;
+  min-width: 100vw;
+  min-height: 85vh;
   align-items: center;
   justify-content: space-between;
-  &__content {
-    margin: 5% 0;
-    max-width: 1040px;
+  &__header {
+    
+  }
+  &__landing {
+    
   }
   &__footer {
-    padding-top: 10vh;
-    align-self: flex-start;
+    padding: 5vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    &__icon{
+      margin: 0 5px;
+    }
   }
 }
