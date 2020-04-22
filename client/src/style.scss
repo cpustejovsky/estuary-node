@@ -16,6 +16,24 @@
   &__about {
 
   }
+  &__auth {
+    min-width: 40vw;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    &__wave {
+      min-width: 50px;
+    }
+    &__button{
+      display:flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-around;
+      margin: 10px;
+      width: 275px;
+      border-radius: 15px;
+    }
+  }
   &__footer {
     padding: 5vh;
     display: flex;
