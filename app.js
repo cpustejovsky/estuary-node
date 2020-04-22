@@ -94,8 +94,6 @@ app.use(function (req, res, next) {
   next();
 });
 //ROUTES
-const indexRoutes = require("./routes/index.js");
-
 require("./routes/authRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/freeWriteRoutes")(app);
