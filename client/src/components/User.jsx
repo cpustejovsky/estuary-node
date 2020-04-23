@@ -10,9 +10,8 @@ class User extends Component {
     } else {
       return (
         <div>
-        <h3>{this.props.auth.firstName} {this.props.auth.lastName}</h3>
+        <h3>{this.props.auth.displayName || this.props.auth.firstName} {this.props.auth.lastName}</h3>
         <p><strong>Email Address: </strong>{this.props.auth.email}</p>
-        <p><strong>Age: </strong>{this.props.auth.age}</p>
         <p><strong>Daily Email Updates: </strong>{this.props.auth.emailUpdates === true ? "On": "Off"}</p>
         <Link className="btn" to="/user/edit">Edit Profile</Link>
         </div>
