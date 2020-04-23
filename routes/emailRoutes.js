@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const middleWare = require("../middleware/index.js");
 const nodemailer = require("nodemailer");
-require("dotenv").config();
+//TODO: add keys
 
 //EMAIL ROUTES
 module.exports = (app) => {

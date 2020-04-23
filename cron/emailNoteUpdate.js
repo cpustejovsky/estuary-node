@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config();
+//TODO: add keys
 const User = require("../models/User");
 
 module.exports = function() {

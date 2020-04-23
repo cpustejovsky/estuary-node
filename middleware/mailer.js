@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config();
+//TODO: add keys
 // async..await is not allowed in global scope, must use a wrapper
 module.exports = async function emailUser(emailAddress) {
   let transporter = nodemailer.createTransport({

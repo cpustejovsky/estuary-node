@@ -22,10 +22,8 @@
     "concurrently": "^5.1.0",
     "connect-flash": "^0.1.1",
     "cookie-session": "^1.4.0",
-    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5",
-    "express-session": "^1.16.2",
     "lodash": "^4.17.14",
     "mailgun-js": "^0.22.0",
     "method-override": "^3.0.0",
@@ -36,8 +34,6 @@
     "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.12",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local-mongoose": "^5.0.1",
-    "request": "^2.88.0"
+    "passport-google-oauth20": "^2.0.0"
   }
 }
