@@ -7,27 +7,27 @@ export default function Footer() {
         href="https://cpustejovsky.com/"
         target="_blank"
         rel="noreferrer noopener"
-        class="grey-text text-lighten-3"
+        className="grey-text text-lighten-3"
       >
-        Cpustejovsky <i class="far fa-thumbs-up"></i>,{" "}
+        Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
         {new Date().getFullYear()}
       </a>
       <span>
         <a
-          class="site__footer__icon grey-text text-lighten-3"
+          className="site__footer__icon grey-text text-lighten-3"
           href="https://github.com/cpustejovsky/estuary"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </a>
         <a
-          class="site__footer__icon grey-text text-lighten-3"
+          className="site__footer__icon grey-text text-lighten-3"
           href="https://twitter.com/CCPustejovsky"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <i class="fab fa-twitter"></i>
+          <i className="fab fa-twitter"></i>
         </a>
       </span>
     </footer>
