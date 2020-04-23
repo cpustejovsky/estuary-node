@@ -8,6 +8,7 @@ import Warning from "./Warning";
 import Default from "./Default";
 import Auth from "./Auth";
 import User from "./User";
+import UserEdit from "./UserEdit";
 import Landing from "./Landing";
 import About from "./About";
 import Footer from "./Footer";
@@ -27,7 +28,7 @@ class App extends Component {
             <Route path="/about" exact component={About} />
             <Route path="/auth" exact component={Auth} />
             <Route path="/user" exact component={User} />
-            <Route path="/user/edit" exact component={Default} />
+            <Route path="/user/edit" exact component={UserEdit} />
             <Route path="/free-writes" exact component={Default} />
             <Route path="/free-writes/new" exact component={Default} />
             <Route path="/notes" exact component={Default} />

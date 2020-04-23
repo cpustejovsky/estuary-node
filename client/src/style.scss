@@ -1,3 +1,6 @@
+.margin-top{
+  margin-top: 5%
+}
 .site {
   display: flex;
   flex-direction: column;
@@ -8,8 +11,8 @@
   &__warning {
     background-color: #ff9800;
     color: white;
-    font-size: 18px;
-    padding: 15px;
+    font-size: 15px;
+    padding: 10px;
     text-align: center
   }
   &__landing {
