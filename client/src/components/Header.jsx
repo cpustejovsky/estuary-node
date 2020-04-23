@@ -46,7 +46,7 @@ class Header extends Component {
           </ul>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
-              <Link to="/user">User</Link>
+              <Link to="/user">{this.props.auth ? this.props.auth.firstName : "User"}</Link>
             </li>
             {this.renderAuth()}
           </ul>
