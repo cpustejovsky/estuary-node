@@ -16,7 +16,9 @@ class Header extends Component {
       default:
         return (
           <>
-            {" "}
+            <li>
+              <Link to="/user">{this.props.auth.firstName}</Link>
+            </li>
             <li>
               <a href="/logout">Log Out</a>
             </li>
@@ -25,7 +27,7 @@ class Header extends Component {
     }
   }
   render() {
-    console.log(this.props.auth)
+    console.log(this.props.auth);
     return (
       <nav>
         <div className="nav-wrapper light-blue accent-4">
@@ -45,9 +47,6 @@ class Header extends Component {
             </li>
           </ul>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li>
-              <Link to="/user">{this.props.auth ? this.props.auth.firstName : "User"}</Link>
-            </li>
             {this.renderAuth()}
           </ul>
         </div>

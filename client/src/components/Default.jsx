@@ -4,7 +4,7 @@ export default class Default extends Component {
   render() {
     return (
       <div>
-        Default
+        <h1>WIP (Work in Progress)</h1>
       </div>
     )
   }
