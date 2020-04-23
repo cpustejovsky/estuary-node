@@ -17,7 +17,7 @@ class Header extends Component {
         return (
           <>
             <li>
-              <Link to="/user">{this.props.auth.firstName}</Link>
+              <Link to="/user">{this.props.auth.firstName || this.props.auth.displayName}</Link>
             </li>
             <li>
               <a href="/logout">Log Out</a>

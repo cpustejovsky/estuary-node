@@ -9,7 +9,8 @@ const schedule = require("node-schedule");
 const emailUpdate = require("./cron/emailNoteUpdate.js");
 const keys = require("./config/keys");
 require("./models/User");
-require("./services/passport")
+require("./services/passport/google")
+require("./services/passport/github")
 const PORT = process.env.PORT || 5000;
 
 mongoose

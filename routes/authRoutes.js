@@ -10,19 +10,23 @@ module.exports = (app) => {
     req,
     res
   ) {
-    // Successful authentication, redirect home.
+    res.redirect("/");
+  });
+
+  app.get(
+    "/auth/github",
+    passport.authenticate("github", { scope: ["profile", "email"] })
+  );
+
+  app.get("/auth/github/callback", passport.authenticate("github"), function (
+    req,
+    res
+  ) {
     res.redirect("/");
   });
 
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);
-  });
-
-
-  app.get("/auth/github", (req, res) => {
-    res.send(
-      "hit the GitHub route; currently unavailable. Email charles.pustejovsky@mgail.com and tell him to get his butt in gear if this is still the case past April 2020."
-    );
   });
 
   app.get("/logout", (req, res) => {
