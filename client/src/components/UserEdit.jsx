@@ -2,12 +2,11 @@ import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import axios from "axios"
+import {updateUser} from "../actions"
 class UserEdit extends Component {
-  async submitValues(values){
-    const res = await axios.put("/api/user", values)
-    // console.log(res.data)
-    this.props.history.push("/user")
+  submitValues(values){
+    let history = this.props.history
+    this.props.updateUser(values, history)
   }
   render() {
     if (this.props.auth) {
@@ -107,4 +106,4 @@ const mapStateToProps = ({ auth }) => {
   return { auth };
 };
 
-export default connect(mapStateToProps)(UserEdit);
+export default connect(mapStateToProps, {updateUser})(UserEdit);
