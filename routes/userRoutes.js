@@ -1,15 +1,22 @@
-const User = require("../models/User");
+const mongoose = require("mongoose");
+const User = mongoose.model("users");
 const requireLogin = require("../middleware/requireLogin");
 module.exports = (app) => {
-  app.put("/user", requireLogin, (req, res) => {
+  app.put("/api/user", requireLogin, async (req, res) => {
     let updatedUser = {};
-    updatedUser.firstName = req.body.user.firstName;
-    updatedUser.lastName = req.body.user.lastName;
-    updatedUser.email = req.body.user.email;
-    updatedUser.emailUpdates = req.body.user.emailUpdates;
-    User.findByIdAndUpdate(req.user.id, updatedUser).then(() => {
-      res.redirect("/user");
-    });
+    updatedUser.firstName = req.body.firstName;
+    updatedUser.lastName = req.body.lastName;
+    updatedUser.email = req.body.emailAddress;
+    updatedUser.emailUpdates = req.body.emailUpdates;
+    try {
+      await User.findByIdAndUpdate(req.user.id, updatedUser)
+      res.send("success");
+    } catch (error) {
+      console.log("OOPS!")
+      console.log(error)
+    }
+    console.log(req.body)
+
   });
 
   app.delete("/user", (req, res) => {

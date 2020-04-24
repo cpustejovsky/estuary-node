@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { fetchUser } from "../actions"
 
 class User extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
   render() {
     console.log(this.props.auth);
     if (!this.props.auth) {
@@ -24,4 +28,4 @@ const mapStateToProps = ({ auth }) => {
   return { auth };
 };
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, {fetchUser})(User);

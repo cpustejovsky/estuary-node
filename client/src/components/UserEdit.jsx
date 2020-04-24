@@ -2,11 +2,15 @@ import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-
+import axios from "axios"
 class UserEdit extends Component {
+  async submitValues(values){
+    const res = await axios.put("/api/user", values)
+    // console.log(res.data)
+    this.props.history.push("/user")
+  }
   render() {
     if (this.props.auth) {
-      console.log(this.props.auth);
       let updatedData = {
         firstName: this.props.auth.firstName,
         lastName: this.props.auth.lastName,
@@ -21,7 +25,7 @@ class UserEdit extends Component {
             initialValues={updatedData}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
-                console.log(values);
+                this.submitValues(values)
                 setSubmitting(false);
               }, 400);
             }}
