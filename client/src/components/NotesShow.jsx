@@ -27,7 +27,7 @@ class NotesShow extends Component {
     return (
       <div>
         <div className="button button__notes">
-          <h3 className="">Your Notes</h3>
+          <h4 className="">Your Notes</h4>
           <Link to="notes/new" className="btn-large green button">
             New Note
           </Link>

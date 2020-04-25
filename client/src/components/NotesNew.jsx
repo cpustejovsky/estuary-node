@@ -40,18 +40,12 @@ class NotesNew extends Component {
                 </button>
               </div>
               <div className="input-field">
-                <div className="row">
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <textarea
-                        name="content"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.content}
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
+                <textarea
+                  name="content"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.content}
+                ></textarea>
               </div>
             </form>
           )}

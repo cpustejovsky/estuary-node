@@ -1,7 +1,13 @@
-textarea {
+.textarea {
   resize: both;
-  height: 200px;
-  width: 400px;
+  &__notes{
+    height: 200px;
+    width: 400px;
+  }
+  &__freewrites{
+    height: 400px;
+    min-width: 200px;
+  }
 }
 .notes {
   max-width: 600px;
@@ -13,14 +19,18 @@ textarea {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-evenly;
-  max-width: 400px;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  h4 {
+    margin: 0;
+  }
+  &__free-writes {
+    max-width: 600px
+  }
   &__notes {
-    margin: 0 auto;
-    margin-top: 20px;
-    h3 {
-      margin: 0;
-    }
+    max-width: 400px;
+
   }
   &__auth {
     margin: 10px;

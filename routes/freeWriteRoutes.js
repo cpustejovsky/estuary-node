@@ -10,14 +10,14 @@ module.exports = (app) => {
 
   app.post("/api/free-writes", requireLogin, async (req, res) => {
     const newFreeWrite = {
-      title: req.body.freeWrite.title,
-      content: FreeWriteChecker.noteRemover(req.body.freeWrite.content),
-      wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content),
+      title: req.body.title,
+      content: FreeWriteChecker.noteRemover(req.body.content),
+      wordCount: FreeWriteChecker.wordCount(req.body.content),
     };
     if (mongoose.Types.ObjectId.isValid(req.user.id)) {
       const foundUser = await User.findById(req.user._id);
       foundUser.freeWrites.push(newFreeWrite);
-      let newNotes = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
+      let newNotes = FreeWriteChecker.noteChecker(req.body.content);
       for (let i = 0; i < newNotes.length; i++) {
         foundUser.notes.push({ content: newNotes[i] });
       }
