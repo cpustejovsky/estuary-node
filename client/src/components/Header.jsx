@@ -18,21 +18,21 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a href="/auth">Log in</a>
+            <Link to="/auth">Log in</Link>
           </li>
         );
       default:
         return (
           <>
             <li>
-              <a href="/user">
+              <Link to="/user">
                 {this.props.user
                   ? this.props.user.firstName || this.props.user.displayName
                   : this.props.auth.firstName || this.props.auth.displayName}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/logout">Log Out</a>
+              <Link to="/logout">Log Out</Link>
             </li>
           </>
         );
@@ -72,13 +72,13 @@ class Header extends Component {
           <ul id="nav-mobile" className="left">
             {this.renderAuth()}
             <li>
-              <a href="/about">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a href="/free-writes">Free Writes</a>
+              <Link to="/free-writes">Free Writes</Link>
             </li>
             <li>
-              <a href="/notes">Notes</a>
+              <Link to="/notes">Notes</Link>
             </li>
           </ul>
         </ul>
