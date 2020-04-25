@@ -10,7 +10,7 @@ module.exports = (app) => {
     updatedUser.emailUpdates = req.body.emailUpdates;
     try {
       await User.findByIdAndUpdate(req.user.id, updatedUser)
-      res.send("success");
+      res.send(updatedUser);
     } catch (error) {
       console.log("OOPS!")
       console.log(error)
