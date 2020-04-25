@@ -7,7 +7,7 @@ class FreeWriteShow extends Component {
   componentDidMount() {
     this.props.fetchFreeWrites();
   }
-  renderNotes() {
+  renderFreeWrites() {
     if (this.props.freeWrites.length > 0) {
       return this.props.freeWrites.map(({ content, _id, title }) => {
         return (
@@ -24,17 +24,27 @@ class FreeWriteShow extends Component {
   render() {
     console.log(this.props.freeWrites);
     //TODO: what is a good way to deal with auth redirects?
-    return (
-      <div>
-        <div className="button button__free-writes">
-          <h4 className="button__text__left">Your Free Writes</h4>
-          <Link to="free-writes/new" className="btn-large green">
-            New Free Write
-          </Link>
+    if (this.props.auth || this.props.user) {
+      return (
+        <div>
+          <div className="button button__free-writes">
+            <h4 className="button__text__left">Your Free Writes</h4>
+            <Link to="free-writes/new" className="btn-large green">
+              New Free Write
+            </Link>
+          </div>
+          {this.renderFreeWrites()}
         </div>
-        {this.renderNotes()}
-      </div>
-    );
+      );
+    } else if (this.props.auth === null && this.props.user === null) {
+      return (
+        <div className="progress">
+          <div className="indeterminate"></div>
+        </div>
+      );
+    } else if (!this.props.auth && !this.props.auth) {
+      return <>{this.props.history.push("/auth")}</>;
+    }
   }
 }
 
