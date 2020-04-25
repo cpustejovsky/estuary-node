@@ -17,7 +17,11 @@ class Header extends Component {
         return (
           <>
             <li>
-              <Link to="/user">{this.props.auth.firstName || this.props.auth.displayName}</Link>
+              <Link to="/user">
+                {this.props.user
+                  ? this.props.user.firstName || this.props.user.displayName
+                  : this.props.auth.firstName || this.props.auth.displayName}
+              </Link>
             </li>
             <li>
               <a href="/logout">Log Out</a>
@@ -55,8 +59,8 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
+const mapStateToProps = ({ auth, user }) => {
+  return { auth, user };
 };
 
 export default connect(mapStateToProps)(Header);

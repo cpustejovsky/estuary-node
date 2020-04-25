@@ -2,20 +2,30 @@ import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import {updateUser} from "../actions"
+import { updateUser } from "../actions";
 class UserEdit extends Component {
-  submitValues(values){
-    let history = this.props.history
-    this.props.updateUser(values, history)
+  submitValues(values) {
+    let history = this.props.history;
+    this.props.updateUser(values, history);
   }
   render() {
     if (this.props.auth) {
-      let updatedData = {
-        firstName: this.props.auth.firstName,
-        lastName: this.props.auth.lastName,
-        emailAddress: this.props.auth.email,
-        emailUpdates: this.props.auth.emailUpdates,
-      };
+      let updatedData;
+      if (this.props.user) {
+        updatedData = {
+          firstName: this.props.user.firstName,
+          lastName: this.props.user.lastName,
+          emailAddress: this.props.user.email,
+          emailUpdates: this.props.user.emailUpdates,
+        };
+      } else {
+        updatedData = {
+          firstName: this.props.auth.firstName,
+          lastName: this.props.auth.lastName,
+          emailAddress: this.props.auth.email,
+          emailUpdates: this.props.auth.emailUpdates,
+        };
+      }
 
       return (
         <div>
@@ -24,7 +34,7 @@ class UserEdit extends Component {
             initialValues={updatedData}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
-                this.submitValues(values)
+                this.submitValues(values);
                 setSubmitting(false);
               }, 400);
             }}
@@ -102,8 +112,8 @@ class UserEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
+const mapStateToProps = ({ auth, user }) => {
+  return { auth, user };
 };
 
-export default connect(mapStateToProps, {updateUser})(UserEdit);
+export default connect(mapStateToProps, { updateUser })(UserEdit);
