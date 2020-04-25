@@ -8,19 +8,21 @@ class FreeWriteShow extends Component {
     this.props.fetchFreeWrites();
   }
   renderNotes() {
-    return this.props.freeWrites.map(({ content, _id, title }) => {
-      return (
-        <div key={_id} className="card darken-1">
-          <div className="card-content">
-          <span class="card-title">{title}</span>
-            <p>{content}</p>
+    if (this.props.freeWrites.length > 0) {
+      return this.props.freeWrites.map(({ content, _id, title }) => {
+        return (
+          <div key={_id} className="card darken-1">
+            <div className="card-content">
+              <span class="card-title">{title}</span>
+              <p>{content}</p>
+            </div>
           </div>
-
-        </div>
-      );
-    });
+        );
+      });
+    }
   }
   render() {
+    console.log(this.props.freeWrites);
     //TODO: what is a good way to deal with auth redirects?
     return (
       <div>
@@ -30,7 +32,7 @@ class FreeWriteShow extends Component {
             New Free Write
           </Link>
         </div>
-        <ul className="notes">{this.renderNotes()}</ul>
+        {this.renderNotes()}
       </div>
     );
   }
