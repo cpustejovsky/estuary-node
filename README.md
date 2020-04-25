@@ -4,7 +4,6 @@ Where your streams of consciousness meet
 - [Estuary (WIP)](#estuary-wip)
   - [Inspiration](#inspiration)
   - [To-Dos](#to-dos)
-  - [Setup](#setup)
   - [Acknowledgments](#acknowledgments)
 
 ---
@@ -23,8 +22,8 @@ and also building a robust app that I can proudly show off in my portfolio.
   * ~~Destroy~~
 * ~~Add Mocha testing framework to app~~
 * ~~Remove document upload feature~~
-* Replace EJS with React on Front-End
-* Authorize users through Google API instead of username and password
+* ~~Replace EJS with React on Front-End~~
+* ~~Authorize users through Google API instead of username and password~~
 * Clean up note selector function
 * Add avatar image to user profiles
 * Be able to add multiple notes at a time
@@ -40,19 +39,6 @@ and also building a robust app that I can proudly show off in my portfolio.
 * Create a system to file general reference items (potentially connect with Toby)
 * Hook up next action steps to to-dos in Habitica ([Habitica API](https://habitica.com/apidoc/))
 * Turn Estuary in Electron App
-
-## Setup
-
-* Have MongoDB Running
-* Clone locally and cd into estuary
-* Run `npm install`
-* Set up and replace process.env.____ with:
-  * a mongo database to connect to (you can uncomment the local one in app.js for something quick)
-  * a secret for client-sessions
-  * email address credentials for nodemailer
-    * email and password
-* Run `npm run local`
-  * If you don't have nodemon installed globally and don't wish to, you can just run `node app.js test`
 
 ## Acknowledgments 
 
