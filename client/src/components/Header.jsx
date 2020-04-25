@@ -32,7 +32,7 @@ class Header extends Component {
               </Link>
             </li>
             <li>
-              <Link to="/logout">Log Out</Link>
+              <a href="/logout">Log Out</a>
             </li>
           </>
         );
