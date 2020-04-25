@@ -27,7 +27,6 @@ class NotesNew extends Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
           }) => (
             <form onSubmit={handleSubmit}>
               <div className="button button__notes">

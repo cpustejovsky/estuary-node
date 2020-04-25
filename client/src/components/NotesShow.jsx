@@ -8,26 +8,34 @@ class NotesShow extends Component {
     this.props.fetchNotes();
   }
   renderNotes() {
-    return this.props.notes.map((note) => {
-      return <li>{note.content}</li>;
+    return this.props.notes.map(({ content, _id }) => {
+      return (
+        // <>
+        //   <li key={_id}>{content}</li>
+        // </>
+        <div key={_id} className="card darken-1">
+          <div className="card-content">
+            <p>{content}</p>
+          </div>
+
+        </div>
+      );
     });
   }
   render() {
-    console.log(this.props.notes);
-    //TODO: is this a good way to deal with auth redirects?
-    if (this.props.auth || this.props.user) {
-      return (
-        <div>
-          <h3>Your Notes</h3>
+    //TODO: what is a good way to deal with auth redirects?
+    return (
+      <div>
+        <div className="button button__notes">
+          <h3 className="">Your Notes</h3>
           <Link to="notes/new" className="btn-large green button">
-            Create New Note
+            New Note
           </Link>
-          <ul>{this.renderNotes()}</ul>
         </div>
-      );
-    } else {
-      return <>{this.props.history.push("/auth")}</>;
-    }
+        {/* <hr /> */}
+        <ul className="notes">{this.renderNotes()}</ul>
+      </div>
+    );
   }
 }
 
