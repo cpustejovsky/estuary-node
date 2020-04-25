@@ -1,38 +1,28 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
-const User = require("../models/User");
+const User = mongoose.model("users");
 
 module.exports = (app) => {
-  app.get("/", requireLogin, (req, res) => {
-    res.render("freeWrites/index");
+  app.get("/api/free-writes", requireLogin, (req, res) => {
+    res.send(req.user.freeWrites);
   });
 
-  app.get("/new", requireLogin, (req, res) => {
-    res.render("freeWrites/new");
-  });
-
-  app.post("/", requireLogin, (req, res) => {
+  app.post("/api/free-writes", requireLogin, async (req, res) => {
     const newFreeWrite = {
       title: req.body.freeWrite.title,
       content: FreeWriteChecker.noteRemover(req.body.freeWrite.content),
       wordCount: FreeWriteChecker.wordCount(req.body.freeWrite.content),
     };
     if (mongoose.Types.ObjectId.isValid(req.user.id)) {
-      User.findById(req.user._id).then((user) => {
-        user.freeWrites.push(newFreeWrite);
-        let newNotes = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
-        for (let i = 0; i < newNotes.length; i++) {
-          user.notes.push({ content: newNotes[i] });
-        }
-        user.save((err) => {
-          if (err) {
-            console.log(`oopsy!!!! here's the error: ${err}`);
-          } else {
-            res.redirect("/free-writes");
-          }
-        });
-      });
+      const foundUser = await User.findById(req.user._id);
+      foundUser.freeWrites.push(newFreeWrite);
+      let newNotes = FreeWriteChecker.noteChecker(req.body.freeWrite.content);
+      for (let i = 0; i < newNotes.length; i++) {
+        foundUser.notes.push({ content: newNotes[i] });
+      }
+      const response = await foundUser.save();
+      res.send(response);
     } else {
       console.log("Please provide correct Id");
     }

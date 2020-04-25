@@ -1,12 +1,14 @@
-import { combineReducers} from 'redux'
-import { reducer as reduxForm } from 'redux-form';
-import authReducer from './authReducer'
-import notesReducer from './notesReducer'
-import userReducer from './userReducer'
+import { combineReducers } from "redux";
+import { reducer as reduxForm } from "redux-form";
+import authReducer from "./authReducer";
+import userReducer from "./userReducer";
+import notesReducer from "./notesReducer";
+import freeWritesReducer from "./freeWritesReducer";
 
 export default combineReducers({
-    notes: notesReducer,
-    auth: authReducer,
-    user: userReducer,
-    form: reduxForm,
-  });
+  auth: authReducer,
+  user: userReducer,
+  freeWrites: freeWritesReducer,
+  notes: notesReducer,
+  form: reduxForm,
+});
