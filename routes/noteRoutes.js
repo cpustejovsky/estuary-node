@@ -8,18 +8,20 @@ const Note = require("../schemas/noteSchema");
 // const User = require("../models/user");
 // const FreeWrite = require("../schemas/freeWriteSchema");
 module.exports = (app) => {
-  app.post("/api/notes", requireLogin, (req, res) => {
+  app.get("/api/notes", requireLogin, async (req, res) => {
+    console.log(req.user.notes)
+    res.send(req.user.notes)
+  });
+
+  app.post("/api/notes", requireLogin, async (req, res) => {
+    console.log(req.body.content)
     const newNote = {
-      content: req.body.note.content,
+      content: req.body.content,
     };
     req.user.notes.push(newNote);
-    req.user.save((err) => {
-      if (err) {
-        console.log(`oopsy!!!! here's the error: ${err}`);
-      } else {
-        res.redirect("/notes");
-      }
-    });
+    const response = await req.user.save()
+    console.log(response)
+    res.send(response);
   });
 
   app.delete("/api/notes:id", requireLogin, (req, res) => {
