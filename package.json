@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "Note Taking and To-Do App",
   "main": "app.js",
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
+  },
   "scripts": {
     "test": "nodemon --exec 'mocha test --recursive'",
-    "local": "nodemon app.js test",
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "engines": {
-    "node": "10.x"
   },
   "author": "cpustejovsky",
   "license": "MIT",
