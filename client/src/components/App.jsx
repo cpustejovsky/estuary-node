@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions"
 import history from "../history";
@@ -7,8 +7,10 @@ import Header from "./Header";
 import Warning from "./Warning";
 import Default from "./Default";
 import Auth from "./Auth";
-import User from "./User";
+import UserShow from "./UserShow";
 import UserEdit from "./UserEdit";
+import NotesShow from "./NotesShow";
+import NotesNew from "./NotesNew";
 import Landing from "./Landing";
 import About from "./About";
 import Footer from "./Footer";
@@ -19,7 +21,7 @@ class App extends Component {
   }
   render(){
     return (
-      <BrowserRouter history={history}>
+      <Router history={history}>
         <Header />
         <Warning />
         <div className="site">
@@ -27,17 +29,17 @@ class App extends Component {
             <Route path="/" exact component={Landing} />
             <Route path="/about" exact component={About} />
             <Route path="/auth" exact component={Auth} />
-            <Route path="/user" exact component={User} />
-            <Route path="/user/edit" exact component={UserEdit} />
             <Route path="/free-writes" exact component={Default} />
             <Route path="/free-writes/new" exact component={Default} />
-            <Route path="/notes" exact component={Default} />
-            <Route path="/notes/new" exact component={Default} />
+            <Route path="/notes" exact component={NotesShow} />
+            <Route path="/notes/new" exact component={NotesNew} />
             <Route path="/notes/edit" exact component={Default} />
+            <Route path="/user" exact component={UserShow} />
+            <Route path="/user/edit" exact component={UserEdit} />
           </Switch>
         </div>
         <Footer />
-      </BrowserRouter>
+      </Router>
     );
   }
 }

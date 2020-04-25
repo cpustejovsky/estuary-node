@@ -1,6 +1,33 @@
-.margin-top{
-  margin-top: 5%
+textarea{
+  resize: both;
+  height: 200px;
+  width: 400px;
 }
+
+.margin-top {
+  margin-top: 5%;
+}
+.button {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  &__notes {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  &__auth {
+    margin: 10px;
+    width: 275px;
+    border-radius: 15px;
+  }
+  &__text{
+    &__left{
+      padding-right: 15px;
+    }
+  }
+}
+
 .site {
   display: flex;
   flex-direction: column;
@@ -13,7 +40,7 @@
     color: white;
     font-size: 15px;
     padding: 10px;
-    text-align: center
+    text-align: center;
   }
   &__landing {
     display: flex;
@@ -21,24 +48,14 @@
     align-items: center;
   }
   &__about {
-
   }
   &__auth {
     min-width: 40vw;
-    display:flex;
+    display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     &__wave {
       min-width: 50px;
-    }
-    &__button{
-      display:flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: space-around;
-      margin: 10px;
-      width: 275px;
-      border-radius: 15px;
     }
   }
   &__footer {
@@ -46,7 +63,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    &__icon{
+    &__icon {
       margin: 0 5px;
     }
   }
