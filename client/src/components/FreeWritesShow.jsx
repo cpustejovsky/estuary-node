@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchFreeWrites } from "../actions";
+import Loader from "./Loader";
 
 class FreeWriteShow extends Component {
   componentDidMount() {
@@ -37,11 +38,7 @@ class FreeWriteShow extends Component {
         </div>
       );
     } else if (this.props.auth === null && this.props.user === null) {
-      return (
-        <div className="progress">
-          <div className="indeterminate"></div>
-        </div>
-      );
+      return <Loader />;
     } else if (!this.props.auth && !this.props.auth) {
       return <>{this.props.history.push("/auth")}</>;
     }

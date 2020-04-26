@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchNotes } from "../actions";
-
+import Loader from "./Loader"
 class NotesShow extends Component {
   componentDidMount() {
     this.props.fetchNotes();
@@ -36,9 +36,7 @@ class NotesShow extends Component {
       );
     } else if (this.props.auth === null && this.props.user === null) {
       return (
-        <div className="progress">
-          <div className="indeterminate"></div>
-        </div>
+        <Loader/>
       );
     } else if (!this.props.auth && !this.props.auth){
       return <>{this.props.history.push("/auth")}</>
