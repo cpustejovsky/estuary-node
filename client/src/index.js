@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from 'react-ga';
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
@@ -8,6 +9,8 @@ import "materialize-css/dist/css/materialize.min.css";
 import "./style.scss";
 import App from "./components/App";
 
+ReactGA.initialize(process.env.REACT_APP_GA_KEY);
+ReactGA.pageview(window.location.pathname + window.location.search);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
