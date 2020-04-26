@@ -3,7 +3,7 @@ export default function About() {
   return (
     <div className="row site__about">
       <div className="col m8 offset-m2">
-        <h1 className="center">What is Estuary?</h1>
+        <h3 className="">What is Estuary?</h3>
         <p>
           Thanksgiving weekend 2019, I started reading{" "}
           <a
@@ -21,44 +21,68 @@ export default function About() {
           and also building a robust app that I can proudly show off in my
           portfolio.
         </p>
-        {/* <h3>What can Estuary do so far?</h3>
-        <p>Well, you can do the following:</p>
-        <ul>
-          <li>Register and create a user</li>
-          <li>Log in and log out of your account</li>
-          <li>Create free writes or notes that save to the database</li>
-          <li>
-            Take notes during your free write by hitting <strong>enter</strong>{" "}
-            beginning the new line with <strong>#n</strong> or{" "}
-            <strong>#N</strong> and then hitting <strong>enter</strong> again
-          </li>
-          <li>
-            email a list of your notes to yourself at the push of a button
-          </li>
-          <li>
-            set the option to receive email updates of your notes every day at
-            6:00am EST
-          </li>
-        </ul>
-        <h3>What's under the hood?</h3>
-        <p>Here's what running Estuary behind the scenes:</p>
-        <ul>
-          <li>EJS templates (no fancy Front-End framework yet)</li>
-          <li>BootStrap and some custom CSS</li>
-          <li>Express for the routing</li>
-          <li>NodeJS for the server-side logic</li>
-          <li>MongoDB and Mongoose for Database and ORM, respectively</li>
-          <li>Heroku and GitHub for deployment</li>
-        </ul> */}
-        <h3>Have any ideas for improvements?</h3>
+        <h4>Have any ideas for improvements?</h4>
         <p>
           Here's the source code:{" "}
           <a href="https://github.com/cpustejovsky/estuary">
             https://github.com/cpustejovsky/estuary
           </a>
           . Feel free to leave a comment or even make a pull request if you're
-          so inclined.
+          so inclined (check my current list of to-dos first).
         </p>
+        <h4>To-Dos</h4>
+        <ul>
+          <li>
+            <del>Email and/or text user with notes</del>
+          </li>
+          <li>
+            <del>Add CRUD functionality to User</del>
+            <ul>
+              <li>
+                <del>Update</del>
+              </li>
+              <li>
+                <del>Destroy</del>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <del>Add Mocha testing framework to app</del>
+          </li>
+          <li>
+            <del>Remove document upload feature</del>
+          </li>
+          <li>
+            <del>Replace EJS with React on Front-End</del>
+          </li>
+          <li>
+            <del>
+              Authorize users through Google API instead of username and
+              password
+            </del>
+          </li>
+          <li>Clean up note selector function</li>
+          <li>Add avatar image to user profiles</li>
+          <li>Be able to add multiple notes at a time</li>
+          <li>Add Next Actions List</li>
+          <li>Set priority for notes</li>
+          <li>Add customizable tags for notes</li>
+          <li>Connect to Google Calendars via API</li>
+          <li>Add sufficient unit testing</li>
+          <li>Complete unit testing coverage</li>
+          <li>Refactor in TypeScript</li>
+          <li>Add search and filter functionality</li>
+          <li>Add functionality to email notes to app</li>
+          <li>
+            Create a system to file general reference items (potentially connect
+            with Toby)
+          </li>
+          <li>
+            Hook up next action steps to to-dos in Habitica (
+            <a href="https://habitica.com/apidoc/">Habitica API</a>)
+          </li>
+          <li>Turn Estuary in Electron App</li>
+        </ul>
       </div>
     </div>
   );
