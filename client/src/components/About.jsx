@@ -61,27 +61,23 @@ export default function About() {
               password
             </del>
           </li>
-          <li>Clean up note selector function</li>
-          <li>Add avatar image to user profiles</li>
-          <li>Be able to add multiple notes at a time</li>
-          <li>Add Next Actions List</li>
+          <li>
+            Refactoring notes and freewrites to be subdocs related to User
+            model, not living within the User model
+          </li>
+          <li>Drag and drop notes</li>
           <li>Set priority for notes</li>
           <li>Add customizable tags for notes</li>
+          <li>Be able to add multiple notes at a time</li>
+          <li>Add functionality to email notes from app with MailGun</li>
+          <li>Add Next Actions List</li>
           <li>Connect to Google Calendars via API</li>
-          <li>Add sufficient unit testing</li>
           <li>Complete unit testing coverage</li>
-          <li>Refactor in TypeScript</li>
           <li>Add search and filter functionality</li>
-          <li>Add functionality to email notes to app</li>
-          <li>
-            Create a system to file general reference items (potentially connect
-            with Toby)
-          </li>
-          <li>
-            Hook up next action steps to to-dos in Habitica (
-            <a href="https://habitica.com/apidoc/">Habitica API</a>)
-          </li>
+          <li>Create a system to file general reference items</li>
+          <li>Hook up next action steps to to-dos in Habitica</li>
           <li>Turn Estuary in Electron App</li>
+          <li>Refactor in TypeScript</li>
         </ul>
       </div>
     </div>
