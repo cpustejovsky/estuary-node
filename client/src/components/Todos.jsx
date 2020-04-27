@@ -24,18 +24,18 @@ export default function Todos() {
           complete
           text="Refactor notes and freewrites as subdocs related to User model"
         />
-        <Todo text="Email and/or text user with notes"/>
-        <Todo text="Drag and drop notes"/>
+        <Todo text="CRUD functionality for notes"/>
         <Todo text="Set priority for notes"/>
         <Todo text="Add customizable tags for notes"/>
         <Todo text="Be able to add multiple notes at a time"/>
-        <Todo text="Add functionality to email notes from app with MailGun"/>
+        <Todo text="Drag and drop notes"/>
         <Todo text="Add Next Actions List"/>
-        <Todo text="Connect to Google Calendars via API"/>
+        <Todo text="Create a system to file general reference items"/>
         <Todo text="Complete unit testing coverage"/>
         <Todo text="Add search and filter functionality"/>
-        <Todo text="Create a system to file general reference items"/>
+        <Todo text="Connect to Google Calendars via API"/>
         <Todo text="Hook up next action steps to to-dos in Habitica"/>
+        <Todo text="Add functionality to email notes from app with MailGun"/>
         <Todo text="Turn Estuary in Electron App"/>
         <Todo text="Refactor in TypeScript"/>
       </ul>
