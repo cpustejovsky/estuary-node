@@ -17,8 +17,6 @@ module.exports = (app) => {
   //TODO: is this the most efficient way to do update and destroy?
   //await axios.put("/api/notes", {noteId: "5ea6e09ea4e289a7a45e36e3",content: "updated content again!"})
   app.put("/api/notes", requireLogin, async (req, res) => {
-    console.log("hit put route!");
-    console.log(req.body);
     const updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
       { content: req.body.content }
