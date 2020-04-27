@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchFreeWrites } from "../actions";
-import Loader from "./Loader";
+import { fetchFreeWrites } from "../../actions";
+import Loader from "../partials/Loader";
 
 class FreeWriteShow extends Component {
   componentDidMount() {

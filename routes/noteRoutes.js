@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const User = require("../models/User");
-const Note = mongoose.model("notes")
+const Note = mongoose.model("notes");
 
 module.exports = (app) => {
   app.get("/api/notes", requireLogin, async (req, res) => {
@@ -10,26 +10,24 @@ module.exports = (app) => {
   });
 
   app.post("/api/notes", requireLogin, async (req, res) => {
-    const { content } = req.body;
-    const newNote = new Note({ content, _user: req.user.id });
+    const newNote = new Note({ content: req.body.content, _user: req.user.id });
     const response = await newNote.save();
-    res.send(response)
+    res.send(response);
+  });
+  //TODO: is this the most efficient way to do update and destroy?
+  //await axios.put("/api/notes", {noteId: "5ea6e09ea4e289a7a45e36e3",content: "updated content again!"})
+  app.put("/api/notes", requireLogin, async (req, res) => {
+    const updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      { content: req.body.content }
+    );
+    const response = await updatedNote.save();
+    res.send(response);
   });
 
-  app.delete("/api/notes:id", requireLogin, (req, res) => {
-    console.log("hit the delete route!");
-    for (let i = 0; i < req.user.notes.length; i++) {
-      let notesId = req.user.notes[i]._id.toString();
-      if (req.params.id.toString() === notesId) {
-        console.log("YES match!");
-        User.findById(req.user._id.toString()).then((user) => {
-          user.notes[i].remove();
-          user.save();
-        });
-        res.redirect("/notes");
-      } else {
-        console.log(`NO match!`);
-      }
-    }
+  //await axios.delete("http://localhost:3000/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
+  app.delete("/api/notes", requireLogin, async (req, res) => {
+    await Note.findOneAndDelete({ _user: req.user.id, _id: req.body.noteId });
+    res.send({});
   });
 };

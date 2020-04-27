@@ -3,19 +3,19 @@ import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 import history from "../history";
-import Header from "./Header";
-import Warning from "./Warning";
-import Default from "./Default";
+import Header from "./partials/Header";
+import Warning from "./partials/Warning";
+import Footer from "./partials/Footer";
 import Auth from "./Auth";
-import UserShow from "./UserShow";
-import UserEdit from "./UserEdit";
-import NotesShow from "./NotesShow";
-import NotesNew from "./NotesNew";
-import FreeWritesShow from "./FreeWritesShow";
-import FreeWritesNew from "./FreeWritesNew";
+import About from "./about/About";
 import Landing from "./Landing";
-import About from "./About";
-import Footer from "./Footer";
+import UserShow from "./user/UserShow";
+import UserEdit from "./user/UserEdit";
+import NotesShow from "./notes/NotesShow";
+import NotesNew from "./notes/NotesNew";
+import FreeWritesShow from "./freewrites/FreeWritesShow";
+import FreeWritesNew from "./freewrites/FreeWritesNew";
+import Test from "./Test";
 
 class App extends Component {
   componentDidMount() {
@@ -35,9 +35,9 @@ class App extends Component {
             <Route path="/free-writes/new" exact component={FreeWritesNew} />
             <Route path="/notes" exact component={NotesShow} />
             <Route path="/notes/new" exact component={NotesNew} />
-            <Route path="/notes/edit" exact component={Default} />
             <Route path="/user" exact component={UserShow} />
             <Route path="/user/edit" exact component={UserEdit} />
+            <Route path="/test" exact component={Test} />
           </Switch>
         </div>
         <Footer />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import { createNote } from "../actions";
+import { createNote } from "../../actions";
 class NotesNew extends Component {
   submitValues(values) {
     let history = this.props.history;
