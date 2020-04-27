@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchNotes } from "../actions";
-import Loader from "./Loader";
+import { fetchNotes } from "../../actions";
+import Loader from "../partials/Loader";
 class NotesShow extends Component {
   componentDidMount() {
     this.props.fetchNotes();

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import { updateUser } from "../actions";
+import { updateUser } from "../../actions";
 class UserEdit extends Component {
   submitValues(values) {
     let history = this.props.history;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import { createFreeWrite } from "../actions";
+import { createFreeWrite } from "../../actions";
 class FreeWritesNew extends Component {
   submitValues(values) {
     let history = this.props.history;
