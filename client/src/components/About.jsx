@@ -1,4 +1,5 @@
 import React from "react";
+import MailChimpForm from "./MailChimpForm";
 export default function About() {
   return (
     <div className="row site__about">
@@ -30,6 +31,8 @@ export default function About() {
           . Feel free to leave a comment or even make a pull request if you're
           so inclined (check my current list of to-dos first).
         </p>
+        <h5>Sign up to follow Estuary's progress</h5>
+        <MailChimpForm />
         <h4>To-Dos</h4>
         <ul>
           <li>
