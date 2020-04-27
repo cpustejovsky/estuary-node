@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "./Todo"
+import Todo from "./Todo";
 export default function Todos() {
   return (
     <>
@@ -24,20 +24,26 @@ export default function Todos() {
           complete
           text="Refactor notes and freewrites as subdocs related to User model"
         />
-        <Todo text="CRUD functionality for notes"/>
-        <Todo text="Set priority for notes"/>
-        <Todo text="Add customizable tags for notes"/>
-        <Todo text="Be able to add multiple notes at a time"/>
-        <Todo text="Drag and drop notes"/>
-        <Todo text="Add Next Actions List"/>
-        <Todo text="Create a system to file general reference items"/>
-        <Todo text="Complete unit testing coverage"/>
-        <Todo text="Add search and filter functionality"/>
-        <Todo text="Connect to Google Calendars via API"/>
-        <Todo text="Hook up next action steps to to-dos in Habitica"/>
-        <Todo text="Add functionality to email notes from app with MailGun"/>
-        <Todo text="Turn Estuary in Electron App"/>
-        <Todo text="Refactor in TypeScript"/>
+        <Todo complete text="CRUD functionality for notes" />
+        <Todo complete text="Add customizable tags for notes" />
+        <Todo text="Be able to add multiple notes at a time" />
+        <Todo text="Add Next Actions List (model, routes, front-end)" />
+        <Todo text="Set priority for next actions" />
+        <Todo text="Drag and drop next actions to show priority" />
+        <Todo text="Implement Immediate To-Dos List" />
+        <Todo text="Implement Projects List (model, routes, front-end)" />
+        <Todo text="Implement Delegated Item List" />
+        <Todo text="Implement Deferred file general reference items" />
+        <Todo text="Implement Waiting List" />
+        <Todo text="Implement Reference List" />
+        <Todo text="Implement Someday List" />
+        <Todo text="Complete unit testing coverage" />
+        <Todo text="Add search and filter functionality" />
+        <Todo text="Connect to Google Calendars via API" />
+        <Todo text="Hook up next action steps to to-dos in Habitica" />
+        <Todo text="Add functionality to email notes from app with MailGun" />
+        <Todo text="Turn Estuary in Electron App" />
+        <Todo text="Refactor in TypeScript" />
       </ul>
     </>
   );
