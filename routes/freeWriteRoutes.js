@@ -24,7 +24,6 @@ module.exports = (app) => {
         await new Note({ content: newNotes[i], _user: req.user.id }).save();
       }
       const response = await newFreeWrite.save();
-      console.log(response);
       res.send(response);
     } else {
       console.log("Please provide correct Id");
