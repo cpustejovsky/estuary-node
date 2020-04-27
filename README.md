@@ -16,29 +16,7 @@ That would have the dual benefit of cementing these practices for me
 and also building a robust app that I can proudly show off in my portfolio.
 
 ## To-Dos
-* ~~Email and/or text user with notes~~
-* ~~Add CRUD functionality to User~~
-  * ~~Update~~
-  * ~~Destroy~~
-* ~~Add Mocha testing framework to app~~
-* ~~Remove document upload feature~~
-* ~~Replace EJS with React on Front-End~~
-* ~~Authorize users through Google API instead of username and password~~
-* Clean up note selector function
-* Add avatar image to user profiles
-* Be able to add multiple notes at a time
-* Add Next Actions List
-* Set priority for notes
-* Add customizable tags for notes
-* Connect to Google Calendars via API
-* Add sufficient unit testing
-* Complete unit testing coverage
-* Refactor in TypeScript
-* Add search and filter functionality
-* Add functionality to email notes to app
-* Create a system to file general reference items (potentially connect with Toby)
-* Hook up next action steps to to-dos in Habitica ([Habitica API](https://habitica.com/apidoc/))
-* Turn Estuary in Electron App
+Visit Estuary's [about page](https://cpustejovsky-estuary.herokuapp.com/about) for the latest to-dos.
 
 ## Acknowledgments 
 
