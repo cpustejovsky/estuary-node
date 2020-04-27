@@ -2,26 +2,29 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
 const User = mongoose.model("users");
+const FreeWrite = mongoose.model("free-writes");
+const Note = mongoose.model("notes");
 
 module.exports = (app) => {
-  app.get("/api/free-writes", requireLogin, (req, res) => {
-    res.send(req.user.freeWrites);
+  app.get("/api/free-writes", requireLogin, async (req, res) => {
+    const userFreeWrites = await FreeWrite.find({ _user: req.user.id });
+    res.send(userFreeWrites);
   });
 
   app.post("/api/free-writes", requireLogin, async (req, res) => {
-    const newFreeWrite = {
-      title: req.body.title,
-      content: FreeWriteChecker.noteRemover(req.body.content),
-      wordCount: FreeWriteChecker.wordCount(req.body.content),
-    };
     if (mongoose.Types.ObjectId.isValid(req.user.id)) {
-      const foundUser = await User.findById(req.user._id);
-      foundUser.freeWrites.push(newFreeWrite);
+      const newFreeWrite = new FreeWrite({
+        title: req.body.title,
+        content: FreeWriteChecker.noteRemover(req.body.content),
+        wordCount: FreeWriteChecker.wordCount(req.body.content),
+        _user: req.user.id,
+      });
       let newNotes = FreeWriteChecker.noteChecker(req.body.content);
       for (let i = 0; i < newNotes.length; i++) {
-        foundUser.notes.push({ content: newNotes[i] });
+        await new Note({ content: newNotes[i], _user: req.user.id }).save();
       }
-      const response = await foundUser.save();
+      const response = await newFreeWrite.save();
+      console.log(response);
       res.send(response);
     } else {
       console.log("Please provide correct Id");

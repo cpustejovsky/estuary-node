@@ -1,24 +1,19 @@
-// const passport = require("passport");
-// const moment = require("moment");
+const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const User = require("../models/User");
-const Note = require("../schemas/noteSchema");
-// const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
+const Note = mongoose.model("notes")
 
-// const User = require("../models/user");
-// const FreeWrite = require("../schemas/freeWriteSchema");
 module.exports = (app) => {
   app.get("/api/notes", requireLogin, async (req, res) => {
-    res.send(req.user.notes)
+    const userNotes = await Note.find({ _user: req.user.id });
+    res.send(userNotes);
   });
 
   app.post("/api/notes", requireLogin, async (req, res) => {
-    const newNote = {
-      content: req.body.content,
-    };
-    req.user.notes.push(newNote);
-    const response = await req.user.save()
-    res.send(response);
+    const { content } = req.body;
+    const newNote = new Note({ content, _user: req.user.id });
+    const response = await newNote.save();
+    res.send(response)
   });
 
   app.delete("/api/notes:id", requireLogin, (req, res) => {
