@@ -22,17 +22,6 @@ export default function About() {
           and also building a robust app that I can proudly show off in my
           portfolio.
         </p>
-        <h4>Have any ideas for improvements?</h4>
-        <p>
-          Here's the source code:{" "}
-          <a href="https://github.com/cpustejovsky/estuary">
-            https://github.com/cpustejovsky/estuary
-          </a>
-          . Feel free to leave a comment or even make a pull request if you're
-          so inclined (check my current list of to-dos first).
-        </p>
-        <h5>Sign up to follow Estuary's progress</h5>
-        <MailChimpForm />
         <h4>To-Dos</h4>
         <ul>
           <li>
@@ -82,6 +71,17 @@ export default function About() {
           <li>Turn Estuary in Electron App</li>
           <li>Refactor in TypeScript</li>
         </ul>
+        <h4>Have any ideas for improvements?</h4>
+        <p>
+          Here's the source code:{" "}
+          <a href="https://github.com/cpustejovsky/estuary">
+            https://github.com/cpustejovsky/estuary
+          </a>
+          . Feel free to leave a comment or even make a pull request if you're
+          so inclined (check my current list of to-dos first).
+        </p>
+        <h5>Sign up to follow Estuary's progress</h5>
+        <MailChimpForm />
       </div>
     </div>
   );
