@@ -10,17 +10,26 @@ module.exports = (app) => {
   });
 
   app.post("/api/notes", requireLogin, async (req, res) => {
-    const { content } = req.body;
-    const newNote = new Note({ content, _user: req.user.id });
+    const newNote = new Note({ content: req.body.content, _user: req.user.id });
     const response = await newNote.save();
     res.send(response);
   });
-
-  app.delete("/api/notes", requireLogin, async (req, res) => {
-    console.log("hit the delete route!");
+  //TODO: is this the most efficient way to do update and destroy?
+  //await axios.put("/api/notes", {noteId: "5ea6e09ea4e289a7a45e36e3",content: "updated content again!"})
+  app.put("/api/notes", requireLogin, async (req, res) => {
+    console.log("hit put route!");
     console.log(req.body);
-    await Note.findOneAndDelete({ _user: req.user.id, _id: req.body.noteId  });
-    console.log("done!")
+    const updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      { content: req.body.content }
+    );
+    const response = await updatedNote.save();
+    res.send(response);
+  });
+
+  //await axios.delete("http://localhost:3000/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
+  app.delete("/api/notes", requireLogin, async (req, res) => {
+    await Note.findOneAndDelete({ _user: req.user.id, _id: req.body.noteId });
     res.send({});
   });
 };
