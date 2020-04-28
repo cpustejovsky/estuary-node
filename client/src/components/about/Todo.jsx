@@ -2,7 +2,7 @@ import React from 'react'
 const Todo = ({ complete, text }) => {
   if (complete) {
     return (
-      <li class="valign-wrapper">
+      <li className="valign-wrapper">
         <i className="material-icons green-text" style={{ fontSize: "" }}>
           check
         </i>
@@ -11,7 +11,7 @@ const Todo = ({ complete, text }) => {
     );
   } else {
     return (
-      <li class="valign-wrapper">
+      <li className="valign-wrapper">
         <i className="material-icons grey-text" style={{ fontSize: "" }}>
           crop_square
         </i>

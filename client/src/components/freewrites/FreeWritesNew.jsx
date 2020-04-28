@@ -72,7 +72,7 @@ class FreeWritesNew extends Component {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.content}
-                  class="textarea textarea__freewrites"
+                  className="textarea textarea__freewrites"
                 ></textarea>
               </div>
             </form>

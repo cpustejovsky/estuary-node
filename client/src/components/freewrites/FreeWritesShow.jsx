@@ -14,7 +14,7 @@ class FreeWriteShow extends Component {
         return (
           <div key={_id} className="card darken-1">
             <div className="card-content">
-              <span class="card-title">{title}</span>
+              <span className="card-title">{title}</span>
               <p>{content}</p>
             </div>
           </div>
