@@ -12,7 +12,6 @@ import Landing from "./Landing";
 import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
-import NotesNew from "./notes/NotesNew";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
 import Test from "./Test";
@@ -34,7 +33,6 @@ class App extends Component {
             <Route path="/free-writes" exact component={FreeWritesShow} />
             <Route path="/free-writes/new" exact component={FreeWritesNew} />
             <Route path="/notes" exact component={NotesShow} />
-            <Route path="/notes/new" exact component={NotesNew} />
             <Route path="/user" exact component={UserShow} />
             <Route path="/user/edit" exact component={UserEdit} />
             <Route path="/test" exact component={Test} />

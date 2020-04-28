@@ -34,9 +34,10 @@ export const fetchNotes = () => async (dispatch) => {
 export const createNote = (values, history) => async (dispatch) => {
   const response = await axios.post("/api/notes", values);
   history.push("/notes");
+  console.log(response.data)
   dispatch({
     type: CREATE_NOTE,
-    payload: response.data.notes,
+    payload: response.data,
   });
 };
 

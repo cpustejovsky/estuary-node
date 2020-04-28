@@ -9,7 +9,6 @@ class NotesNew extends Component {
     this.props.createNote(values, history);
   }
   render() {
-    console.log(this.props.history);
     return (
       <div>
         <Formik
@@ -30,7 +29,7 @@ class NotesNew extends Component {
           }) => (
             <form onSubmit={handleSubmit}>
               <div className="button button__notes">
-                <h4 className="button__text__left">Create New Note</h4>
+                <h5 className="button__text__left">Create New Note</h5>
                 <button
                   type="submit"
                   disabled={isSubmitting}
