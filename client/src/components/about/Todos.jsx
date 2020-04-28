@@ -25,7 +25,9 @@ export default function Todos() {
           text="Refactor notes and freewrites as subdocs related to User model"
         />
         <Todo complete text="CRUD functionality for notes" />
-        <Todo complete text="Add customizable tags for notes" />
+        <Todo complete text="Add customizable destinations for notes" />
+        <Todo text="edit and delete UI for notes" />
+        <Todo text="destination UI for notes" />
         <Todo text="Be able to add multiple notes at a time" />
         <Todo text="Add Next Actions List (model, routes, front-end)" />
         <Todo text="Set priority for next actions" />
@@ -37,13 +39,19 @@ export default function Todos() {
         <Todo text="Implement Waiting List" />
         <Todo text="Implement Reference List" />
         <Todo text="Implement Someday List" />
-        <Todo text="Complete unit testing coverage" />
         <Todo text="Add search and filter functionality" />
+        <Todo text="Complete unit testing coverage" />
         <Todo text="Connect to Google Calendars via API" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
         <Todo text="Add functionality to email notes from app with MailGun" />
-        <Todo text="Turn Estuary in Electron App" />
+        <Todo text="Create Chrome Extension for capturing notes" />
+        <Todo text="Create Estuary as Desktop App with Electron" />
+        <Todo text="Create Estuary as Mobile App with Electron" />
+        <Todo text="Use Docker and containers in app" />
+        <Todo text="Set up CI/CD" />
+        <h5>Maybe To-Dos</h5>
         <Todo text="Refactor in TypeScript" />
+        <Todo text="Migrate database to PostgreSQL" />
       </ul>
     </>
   );

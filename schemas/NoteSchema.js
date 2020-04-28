@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const NoteSchema = new Schema({
   content: String,
-  tag: {type: String,
-  default: "inbox"},
+  destination: { type: String, default: "inbox" },
+  tags: [String],
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
