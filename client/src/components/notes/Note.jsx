@@ -3,13 +3,24 @@ import { connect } from "react-redux";
 import { deleteNote, fetchNotes } from "../../actions";
 class Note extends Component {
   state = {
-    show: false,
+    deleteShow: false,
+    editShow: false,
   };
-  toggleDelete() {
-    this.setState({ show: !this.state.show });
+  toggleEdit() {
+    this.setState({ editShow: !this.state.editShow });
   }
-  renderDelete(show, id) {
-    if (show && id === this.props.id) {
+  renderEdit(editShow, id) {
+    if (editShow && id === this.props.id) {
+      return <p>Edit is still WIP</p>;
+    } else {
+      return null;
+    }
+  }
+  toggleDelete() {
+    this.setState({ deleteShow: !this.state.deleteShow });
+  }
+  renderDelete(deleteShow, id) {
+    if (deleteShow && id === this.props.id) {
       return (
         <>
           <p>
@@ -18,7 +29,7 @@ class Note extends Component {
           <a
             onClick={() => {
               this.props.deleteNote(this.props.id, this.props.history);
-              this.toggleDelete()
+              this.toggleDelete();
             }}
             className="green-text"
           >
@@ -39,11 +50,12 @@ class Note extends Component {
             <p>{this.props.content}</p>
           </div>
           <div className="card-action">
-            <a>Edit</a>
+            <a onClick={() => this.toggleEdit()}>Edit</a>
             <a onClick={() => this.toggleDelete()} className="red-text">
               Delete
             </a>
-            {this.renderDelete(this.state.show, this.props.id)}
+            {this.renderEdit(this.state.editShow, this.props.id)}
+            {this.renderDelete(this.state.deleteShow, this.props.id)}
           </div>
         </div>
       </div>
