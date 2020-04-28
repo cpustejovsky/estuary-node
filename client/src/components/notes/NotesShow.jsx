@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
+import Note from "./Note"
 class NotesShow extends Component {
   componentDidMount() {
     this.props.fetchNotes();
@@ -11,11 +12,7 @@ class NotesShow extends Component {
     if (this.props.notes) {
       return this.props.notes.map(({ content, _id }) => {
         return (
-          <div key={_id} className="card darken-1">
-            <div className="card-content">
-              <p>{content}</p>
-            </div>
-          </div>
+          <Note content={content} id={_id}/>
         );
       });
     }
