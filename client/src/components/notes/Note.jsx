@@ -42,7 +42,7 @@ class Note extends Component {
                   name="content"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.content}
+                  value={this.state.editedContent || values.content}
                 ></textarea>
                 <button
                   type="submit"
