@@ -42,11 +42,11 @@ export const createNote = (values, history) => async (dispatch) => {
 
 export const deleteNote = (noteId, history) => async (dispatch) => {
   await axios.delete("/api/notes", {data: {noteId: noteId}})
-  history.push("/notes");
   dispatch({
     type: DELETE_NOTE,
-    payload: null,
+    payload: noteId,
   });
+  history.push("/notes");
 };
 
 export const fetchFreeWrites = () => async (dispatch) => {

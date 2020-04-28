@@ -41,7 +41,7 @@ class NotesShow extends Component {
 }
 
 const mapStateToProps = ({ auth, user, notes }) => {
-  return { auth, user, notes };
+  return { auth, user, notes: Object.values(notes), };
 };
 
 export default connect(mapStateToProps, { fetchNotes })(NotesShow);

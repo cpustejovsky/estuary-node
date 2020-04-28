@@ -8,7 +8,7 @@ export default function (state = [], action) {
       return action.payload || false;
     case DELETE_NOTE:
       //TODO: best practice for delete reducer?
-      return state;
+      return state.filter((n) => n._id !== action.payload);
     default:
       return state;
   }
