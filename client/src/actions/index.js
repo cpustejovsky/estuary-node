@@ -32,32 +32,29 @@ export const fetchNotes = () => async (dispatch) => {
   });
 };
 
-export const createNote = (values, history) => async (dispatch) => {
+export const createNote = (values) => async (dispatch) => {
   const response = await axios.post("/api/notes", values);
-  history.push("/notes");
-  console.log(response.data)
+  // console.log(response.data.content.split("\n"))
   dispatch({
     type: CREATE_NOTE,
     payload: response.data,
   });
 };
 
-export const updateNote = (history, noteId, content) => async (dispatch) => {
-  await axios.put("/api/notes", {noteId ,content})
+export const updateNote = (noteId, content) => async (dispatch) => {
+  const response = await axios.patch("/api/notes", { noteId, content });
   dispatch({
     type: UPDATE_NOTE,
-    payload: noteId,
+    payload: response.data,
   });
-  history.push("/notes");
 };
 
-export const deleteNote = (noteId, history) => async (dispatch) => {
-  await axios.delete("/api/notes", {data: {noteId: noteId}})
+export const deleteNote = (noteId) => async (dispatch) => {
+  await axios.delete("/api/notes", { data: { noteId: noteId } });
   dispatch({
     type: DELETE_NOTE,
     payload: noteId,
   });
-  history.push("/notes");
 };
 
 export const fetchFreeWrites = () => async (dispatch) => {
