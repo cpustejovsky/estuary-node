@@ -40,6 +40,7 @@ class NotesNew extends Component {
               </div>
               <div className="input-field">
                 <textarea
+                  className="textarea__notes"
                   name="content"
                   onChange={handleChange}
                   onBlur={handleBlur}

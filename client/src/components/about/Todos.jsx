@@ -27,10 +27,10 @@ export default function Todos() {
         <Todo complete text="CRUD functionality for notes" />
         <Todo complete text="Add customizable destinations for notes" />
         <Todo complete text="delete UI for notes" />
-        <Todo complete text="search UI for notes" />
-        <Todo text="edit UI for notes" />
+        <Todo complete text="create UI for notes" />
+        <Todo complete text="edit UI for notes" />
         <Todo text="tag UI for notes" />
-        <Todo text="Be able to add multiple notes at a time" />
+        {/* <Todo text="Be able to add multiple notes at a time" /> */}
         <Todo text="Add Next Actions List (model, routes, front-end)" />
         <Todo text="destination UI for notes" />
         <Todo text="Set priority for next actions" />
