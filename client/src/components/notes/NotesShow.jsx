@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import _ from "lodash"
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note"
 import NotesNew from "./NotesNew"
+
 
 class NotesShow extends Component {
   componentDidMount() {
     this.props.fetchNotes();
   }
   renderNotes() {
-    if (this.props.notes) {
+    if (!(_.isEmpty(this.props.notes))) {
       return this.props.notes.map(({ content, _id }) => {
         return (
           <Note content={content} id={_id} history={this.props.history}/>
@@ -20,7 +21,7 @@ class NotesShow extends Component {
     }
   }
   render() {
-    // console.log(this.props.notes);
+    console.log(this.props.notes);
     //TODO: what is a good way to deal with auth redirects?
     if (this.props.auth || this.props.user) {
       return (
@@ -41,8 +42,8 @@ class NotesShow extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, user, notes }) => {
-  return { auth, user, notes };
+const mapStateToProps = ({ auth, user, notes}) => {
+  return { auth, user, notes: Object.values(notes) };
 };
 
 export default connect(mapStateToProps, { fetchNotes })(NotesShow);

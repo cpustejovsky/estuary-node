@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteNote, fetchNotes } from "../../actions";
+import { deleteNote, fetchNotes ,updateNote } from "../../actions";
 class Note extends Component {
   state = {
     deleteShow: false,

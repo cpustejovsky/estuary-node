@@ -1,14 +1,20 @@
-import { CREATE_NOTE, FETCH_NOTES, DELETE_NOTE } from "../actions/types";
-import _ from "lodash"
-export default function (state = [], action) {
+import {
+  CREATE_NOTE,
+  FETCH_NOTES,
+  DELETE_NOTE,
+  UPDATE_NOTE,
+} from "../actions/types";
+import _ from "lodash";
+export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_NOTES:
-      return action.payload || false;
+      return { ...state, ..._.mapKeys(action.payload, "_id") };
     case CREATE_NOTE:
-      return [...state, action.payload] || false;
+      return { ...state, [action.payload._id]: action.payload };
+    case UPDATE_NOTE:
+      return { ...state, [action.payload._id]: action.payload };
     case DELETE_NOTE:
-      //TODO: best practice for delete reducer?
-      return state.filter((n) => n._id !== action.payload);
+      return _.omit(state, action.payload);
     default:
       return state;
   }
