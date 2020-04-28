@@ -12,7 +12,7 @@ class NotesShow extends Component {
     if (this.props.notes) {
       return this.props.notes.map(({ content, _id }) => {
         return (
-          <Note content={content} id={_id}/>
+          <Note content={content} id={_id} history={this.props.history}/>
         );
       });
     }

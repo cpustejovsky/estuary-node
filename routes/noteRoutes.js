@@ -25,7 +25,7 @@ module.exports = (app) => {
     res.send(response);
   });
 
-  //await axios.delete("http://localhost:3000/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
+  //await axios.delete("/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
   app.delete("/api/notes", requireLogin, async (req, res) => {
     await Note.findOneAndDelete({ _user: req.user.id, _id: req.body.noteId });
     res.send({});

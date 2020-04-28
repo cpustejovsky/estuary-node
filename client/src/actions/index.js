@@ -4,6 +4,7 @@ import {
   UPDATE_USER,
   FETCH_NOTES,
   CREATE_NOTE,
+  DELETE_NOTE,
   FETCH_FREEWRITES,
   CREATE_FREEWRITE,
 } from "./types";
@@ -36,6 +37,15 @@ export const createNote = (values, history) => async (dispatch) => {
   dispatch({
     type: CREATE_NOTE,
     payload: response.data.notes,
+  });
+};
+
+export const deleteNote = (noteId, history) => async (dispatch) => {
+  await axios.delete("/api/notes", {data: {noteId: noteId}})
+  history.push("/notes");
+  dispatch({
+    type: DELETE_NOTE,
+    payload: null,
   });
 };
 

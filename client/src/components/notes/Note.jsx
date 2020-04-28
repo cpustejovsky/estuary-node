@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class Note extends Component {
+import { connect } from "react-redux";
+import { deleteNote, fetchNotes } from "../../actions";
+class Note extends Component {
   state = {
     show: false,
   };
@@ -12,8 +13,15 @@ export default class Note extends Component {
       return (
         <>
           <p>Are you sure?</p>
-          <a className="green-text">Yes</a>
-          <a onClick={() => this.toggleDelete()} >No</a>
+          <a
+            onClick={() => {
+              this.props.deleteNote(this.props.id, this.props.history);
+            }}
+            className="green-text"
+          >
+            Yes
+          </a>
+          <a onClick={() => this.toggleDelete()}>No</a>
         </>
       );
     } else {
@@ -39,3 +47,8 @@ export default class Note extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth, user, notes }) => {
+  return { auth, user, notes };
+};
+export default connect(mapStateToProps, { deleteNote, fetchNotes })(Note);
