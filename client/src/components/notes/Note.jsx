@@ -1,61 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Formik } from "formik";
-import { deleteNote, updateNote } from "../../actions";
 import NoteDelete from "./NoteDelete";
+import NoteEdit from "./NoteEdit";
 class Note extends Component {
   state = {
     deleteShow: false,
     editShow: false,
     editedContent: "",
   };
-  submitValues(values) {
-    this.props.updateNote(this.props.id, values.content);
-    this.setState({ editedContent: values.content });
-    this.setState({ editShow: false });
-  }
-  toggleEdit() {
+  setEditedContent = (editedContent) => {
+    this.setState({ editedContent });
+  };
+  toggleEdit = () => {
     this.setState({ editShow: !this.state.editShow });
-  }
+  };
   renderEdit(editShow, id) {
     if (editShow && id === this.props.id) {
       return (
-        <Formik
-          initialValues={{ content: this.props.content }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              this.submitValues(values);
-              setSubmitting(false);
-            }, 400);
-          }}
-        >
-          {({
-            values,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => (
-            <form onSubmit={handleSubmit}>
-              <div className="input-field">
-                <textarea
-                  // className="textarea__note"
-                  name="content"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={this.state.editedContent || values.content}
-                ></textarea>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn orange"
-                >
-                  Update
-                </button>
-              </div>
-            </form>
-          )}
-        </Formik>
+        <NoteEdit
+          id={this.props.id}
+          content={this.props.content}
+          editedContent={this.state.editedContent}
+          setEditedContent={this.setEditedContent.bind(this)}
+          toggleEdit={this.toggleEdit}
+        />
       );
     } else {
       return null;
@@ -101,4 +69,4 @@ class Note extends Component {
 const mapStateToProps = ({ auth, user, notes }) => {
   return { auth, user, notes };
 };
-export default connect(mapStateToProps, { deleteNote, updateNote })(Note);
+export default connect(mapStateToProps, null)(Note);
