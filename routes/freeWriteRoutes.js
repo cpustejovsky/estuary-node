@@ -17,6 +17,7 @@ module.exports = (app) => {
         title: req.body.title,
         content: FreeWriteChecker.noteRemover(req.body.content),
         wordCount: FreeWriteChecker.wordCount(req.body.content),
+        date: new Date(),
         _user: req.user.id,
       });
       let newNotes = FreeWriteChecker.noteChecker(req.body.content);

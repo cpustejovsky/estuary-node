@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const FreeWriteSchema = new Schema({
   title: String,
   content: String,
-  // date: Date, TODO: Add Date functionality to note taking application
+  date: Date,
   wordCount: Number,
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });

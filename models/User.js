@@ -1,8 +1,8 @@
 //require in mongoose
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const FreeWriteSchema = require("../schemas/freeWriteSchema");
-const NoteSchema = require("../schemas/NoteSchema");
+const FreeWriteSchema = require("../schemas/FreeWrite");
+const NoteSchema = require("../schemas/Note");
 
 //set up a Schema
 const UserSchema = new Schema({
