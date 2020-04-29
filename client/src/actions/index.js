@@ -2,12 +2,13 @@ import axios from "axios";
 import {
   FETCH_USER,
   UPDATE_USER,
+  FETCH_FREEWRITES,
+  CREATE_FREEWRITE,
   FETCH_NOTES,
   CREATE_NOTE,
   DELETE_NOTE,
   UPDATE_NOTE,
-  FETCH_FREEWRITES,
-  CREATE_FREEWRITE,
+  CATEGORIZE_NOTE,
 } from "./types";
 export const fetchUser = () => async (dispatch) => {
   const response = await axios.get("/api/current_user");
@@ -24,6 +25,24 @@ export const updateUser = (values, history) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+export const fetchFreeWrites = () => async (dispatch) => {
+  const response = await axios.get("/api/free-writes");
+  dispatch({
+    type: FETCH_FREEWRITES,
+    payload: response.data,
+  });
+};
+
+export const createFreeWrite = (values, history) => async (dispatch) => {
+  const response = await axios.post("/api/free-writes", values);
+  history.push("/free-writes");
+  dispatch({
+    type: CREATE_FREEWRITE,
+    payload: response.data,
+  });
+};
+
 export const fetchNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes");
   dispatch({
@@ -57,19 +76,10 @@ export const deleteNote = (noteId) => async (dispatch) => {
   });
 };
 
-export const fetchFreeWrites = () => async (dispatch) => {
-  const response = await axios.get("/api/free-writes");
+export const categorizeNote = (noteId, category) => async (dispatch) => {
+  const response = await axios.patch(`/api/notes/${category}`, { noteId });
   dispatch({
-    type: FETCH_FREEWRITES,
-    payload: response.data,
-  });
-};
-
-export const createFreeWrite = (values, history) => async (dispatch) => {
-  const response = await axios.post("/api/free-writes", values);
-  history.push("/free-writes");
-  dispatch({
-    type: CREATE_FREEWRITE,
+    type: CATEGORIZE_NOTE,
     payload: response.data,
   });
 };

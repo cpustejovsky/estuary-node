@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import NoteDelete from "./NoteDelete";
 import NoteEdit from "./NoteEdit";
+import { connect } from "react-redux";
+import { categorizeNote } from "../../actions";
 class Note extends Component {
   state = {
     deleteShow: false,
@@ -38,15 +40,9 @@ class Note extends Component {
       return null;
     }
   }
-  // renderTags() {
-  //   return this.props.tags.map((tag, index) => {
-  //     if (index === 0) {
-  //       return <span>{tag}</span>;
-  //     } else {
-  //       return <span>, {tag}</span>;
-  //     }
-  //   });
-  // }
+  renderOrganize = () => {
+    <NoteOrganize/>
+  }
   render() {
     console.log(this.props);
     return (
@@ -58,10 +54,7 @@ class Note extends Component {
                 ? this.state.editedContent || this.props.content
                 : null}
             </p>
-            {/* <hr />
-            {this.props.tags.length > 0 ? <strong>tags:</strong> : null}{" "}
-            {this.renderTags()} */}
-            {this.props.category}
+
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">
@@ -72,6 +65,15 @@ class Note extends Component {
               Delete
             </a>
             {this.renderDelete(this.state.deleteShow, this.props.id)}
+            {/* <a
+              onClick={() =>
+                this.props.categorizeNote(this.props.id, "next")
+              }
+              className="green-text click"
+            >
+              Next Action
+            </a> */}
+            {this.renderOrganize()}
           </div>
         </div>
       </div>
@@ -79,4 +81,4 @@ class Note extends Component {
   }
 }
 
-export default Note;
+export default connect(null, { categorizeNote })(Note);

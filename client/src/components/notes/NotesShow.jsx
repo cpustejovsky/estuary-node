@@ -7,6 +7,12 @@ import Note from "./Note";
 import NotesNew from "./NoteNew";
 
 class NotesShow extends Component {
+  state = {
+    category: "inbox",
+  };
+  changeCategory = (newCategory) => {
+    this.setState({ category: newCategory });
+  };
   componentDidMount() {
     this.props.fetchNotes();
   }
@@ -34,30 +40,66 @@ class NotesShow extends Component {
   }
   renderNotesLength(selectedCategory) {
     if (!_.isEmpty(this.props.notes)) {
-      return this.props.notes.filter(e=>e.category === selectedCategory).length
+      return this.props.notes.filter((e) => e.category === selectedCategory)
+        .length;
     }
   }
   render() {
-    console.log(this.renderNotes("test5"));
-    console.log(this.renderNotesLength("test5"));
     //TODO: what is a good way to deal with auth redirects?
     if (this.props.auth || this.props.user) {
       return (
         <div>
           <div className="center">
-            <button className="btn-small">Inbox</button>
-            <button className="btn-small">Projects</button>
-            <button className="btn-small">Next</button>
-            <button className="btn-small">3rd Party</button>
-            <button className="btn-small">Maybe</button>
-            <button className="btn-small">Done</button>
-            <button className="btn-small">Reference</button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Inbox
+            </button>
+            <button
+              onClick={() => this.changeCategory("next")}
+              className="btn-small orange darken-2"
+            >
+              Next
+            </button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Waiting
+            </button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Maybe
+            </button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Done
+            </button>
+            <button
+              onClick={() => this.changeCategory("inbox")}
+              className="btn-small orange darken-2"
+            >
+              Reference
+            </button>
           </div>
           <div>
-            <h3 className="center">Inbox ({this.renderNotesLength("inbox")})</h3>
+            <h3 className="center">
+              {this.state.category} ({this.renderNotesLength(this.state.category)})
+            </h3>
             <hr />
             <NotesNew history={this.props.history} />
-            <ul className="notes">{this.renderNotes("inbox")}</ul>
+            <ul className="notes">{this.renderNotes(this.state.category)}</ul>
           </div>
         </div>
       );
