@@ -61,6 +61,7 @@ class Note extends Component {
             {/* <hr />
             {this.props.tags.length > 0 ? <strong>tags:</strong> : null}{" "}
             {this.renderTags()} */}
+            {this.props.category}
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">

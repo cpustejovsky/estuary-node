@@ -47,7 +47,7 @@ class NotesNew extends Component {
                   Save
                 </button>
               </div>
-              <div className="input-field">
+              <div className="input-field center">
                 <textarea
                   className="textarea__notes"
                   name="content"
