@@ -7,10 +7,6 @@ class Header extends Component {
     let sidenav = document.querySelector("#mobile-nav");
     M.Sidenav.init(sidenav, {});
   }
-  test() {
-    let sidenav = document.querySelector("#mobile-nav");
-    M.Sidenav.init(sidenav, {});
-  }
   renderAuth() {
     switch (this.props.auth) {
       case null:
@@ -57,7 +53,7 @@ class Header extends Component {
                 <Link to="/free-writes">Free Writes</Link>
               </li>
               <li>
-                <Link onClick={() => this.test()} to="/notes">
+                <Link to="/notes">
                   Notes
                 </Link>
               </li>
@@ -70,7 +66,6 @@ class Header extends Component {
         {/* TODO: figure out how to close sidebar on click while using Link tags */}
         <ul className="sidenav" id="mobile-nav">
           <ul id="nav-mobile" className="left">
-            {this.renderAuth()}
             <li>
               <Link to="/about">About</Link>
             </li>
@@ -80,6 +75,8 @@ class Header extends Component {
             <li>
               <Link to="/notes">Notes</Link>
             </li>
+            <hr/>
+            {this.renderAuth()}
           </ul>
         </ul>
       </>

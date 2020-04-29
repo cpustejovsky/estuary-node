@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 import history from "../history";
 import Header from "./partials/Header";
-import Warning from "./partials/Warning";
 import Footer from "./partials/Footer";
 import Auth from "./Auth";
 import About from "./about/About";
@@ -24,7 +23,6 @@ class App extends Component {
     return (
       <Router history={history}>
         <Header />
-        <Warning />
         <div className="site">
           <Switch>
             <Route path="/" exact component={Landing} />
