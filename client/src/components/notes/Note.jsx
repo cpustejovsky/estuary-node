@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import NoteDelete from "./NoteDelete";
 import NoteEdit from "./NoteEdit";
 class Note extends Component {
@@ -39,7 +38,17 @@ class Note extends Component {
       return null;
     }
   }
+  renderTags() {
+    return this.props.tags.map((tag, index) => {
+      if (index === 0) {
+        return <span>{tag}</span>;
+      } else {
+        return <span>, {tag}</span>;
+      }
+    });
+  }
   render() {
+    console.log(this.props);
     return (
       <div>
         <div key={this.props.id} className="card darken-1">
@@ -49,6 +58,9 @@ class Note extends Component {
                 ? this.state.editedContent || this.props.content
                 : null}
             </p>
+            <hr />
+            {this.props.tags.length > 0 ? <strong>tags:</strong> : null}{" "}
+            {this.renderTags()}
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">
@@ -66,7 +78,4 @@ class Note extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, user, notes }) => {
-  return { auth, user, notes };
-};
-export default connect(mapStateToProps, null)(Note);
+export default Note;

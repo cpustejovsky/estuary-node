@@ -10,7 +10,11 @@ module.exports = (app) => {
   });
 
   app.post("/api/notes", requireLogin, async (req, res) => {
-    const newNote = new Note({ content: req.body.content, _user: req.user.id });
+    const newNote = new Note({
+      content: req.body.content,
+      _user: req.user.id,
+      tags: req.body.tags,
+    });
     const response = await newNote.save();
     res.send(response);
   });

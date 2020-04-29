@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import _ from "lodash"
+import _ from "lodash";
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
-import Note from "./Note"
-import NotesNew from "./NotesNew"
-
+import Note from "./Note";
+import NotesNew from "./NotesNew";
 
 class NotesShow extends Component {
   componentDidMount() {
     this.props.fetchNotes();
   }
   renderNotes() {
-    if (!(_.isEmpty(this.props.notes))) {
-      return this.props.notes.map(({ content, _id }) => {
+    if (!_.isEmpty(this.props.notes)) {
+      return this.props.notes.map(({ content, _id, tags, destination }) => {
         return (
-          <Note content={content} id={_id} history={this.props.history}/>
+          <Note
+            key={_id}
+            history={this.props.history}
+            id={_id}
+            content={content}
+            tags={tags}
+            destination={destination}
+          />
         );
       });
     }
@@ -27,10 +33,12 @@ class NotesShow extends Component {
       return (
         <div>
           <div className="button button__notes">
-            <h3 className="button__text__left">Your Notes ({this.props.notes.length})</h3>
+            <h3 className="button__text__left">
+              Your Notes ({this.props.notes.length})
+            </h3>
           </div>
-          <hr/>
-          <NotesNew history={this.props.history}/>
+          <hr />
+          <NotesNew history={this.props.history} />
           <ul className="notes">{this.renderNotes()}</ul>
         </div>
       );
@@ -42,7 +50,7 @@ class NotesShow extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, user, notes}) => {
+const mapStateToProps = ({ auth, user, notes }) => {
   return { auth, user, notes: Object.values(notes) };
 };
 
