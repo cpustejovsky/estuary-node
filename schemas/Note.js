@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const NoteSchema = new Schema({
   content: String,
-  destination: String,
+  category: { type: String, default: "Inbox"},
   tags: [String],
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });

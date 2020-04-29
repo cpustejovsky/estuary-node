@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
-const User = require("../models/User");
 const Note = mongoose.model("notes");
 
 module.exports = (app) => {
@@ -24,6 +23,15 @@ module.exports = (app) => {
     const updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
       { content: req.body.content }
+    );
+    const response = await updatedNote.save();
+    res.send(response);
+  });
+
+  app.patch("/api/notes/:category", requireLogin, async (req, res) => {
+    const updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      { category: req.params.category }
     );
     const response = await updatedNote.save();
     res.send(response);
