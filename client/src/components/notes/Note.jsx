@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Formik } from "formik";
 import { deleteNote, updateNote } from "../../actions";
+import NoteDelete from "./NoteDelete";
 class Note extends Component {
   state = {
     deleteShow: false,
@@ -60,30 +61,12 @@ class Note extends Component {
       return null;
     }
   }
-  toggleDelete() {
+  toggleDelete = () => {
     this.setState({ deleteShow: !this.state.deleteShow });
-  }
+  };
   renderDelete(deleteShow, id) {
     if (deleteShow && id === this.props.id) {
-      return (
-        <>
-          <p>
-            <strong>Are you sure?</strong>
-          </p>
-          <a
-            onClick={() => {
-              this.props.deleteNote(this.props.id, this.props.history);
-              this.toggleDelete();
-            }}
-            className="green-text click"
-          >
-            Yes
-          </a>
-          <a onClick={() => this.toggleDelete()} className="click">
-            No
-          </a>
-        </>
-      );
+      return <NoteDelete id={this.props.id} toggleDelete={this.toggleDelete} />;
     } else {
       return null;
     }
