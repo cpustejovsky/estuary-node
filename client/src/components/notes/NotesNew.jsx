@@ -13,9 +13,10 @@ class NotesNew extends Component {
       <div>
         <Formik
           initialValues={{ content: "" }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { setSubmitting, resetForm }) => {
             setTimeout(() => {
               this.submitValues(values);
+              resetForm();
               setSubmitting(false);
             }, 400);
           }}
