@@ -30,6 +30,12 @@ body {
       min-width: 50px;
     }
   }
+  &__about{
+    background-color: white;
+    max-width: 1040px;
+    padding-bottom: 25px;
+    margin-bottom: 0px;
+  }
   &__footer {
     padding: 5vh;
     display: flex;
@@ -46,8 +52,11 @@ textarea {
 .textarea {
   resize: both;
   &__notes {
-    height: 200px;
+    height: 100px;
     width: 400px;
+    border-radius: 10px;
+    padding: 5px;
+    outline: none;
   }
   &__freewrites {
     height: 400px;
