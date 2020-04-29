@@ -4,7 +4,7 @@ import _ from "lodash";
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
-import NotesNew from "./NotesNew";
+import NotesNew from "./NoteNew";
 
 class NotesShow extends Component {
   componentDidMount() {
@@ -12,7 +12,7 @@ class NotesShow extends Component {
   }
   renderNotes() {
     if (!_.isEmpty(this.props.notes)) {
-      return this.props.notes.map(({ content, _id, tags, destination }) => {
+      return this.props.notes.reverse().map(({ content, _id, tags, destination }) => {
         return (
           <Note
             key={_id}

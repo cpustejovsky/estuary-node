@@ -28,7 +28,15 @@ class NotesNew extends Component {
             handleSubmit,
             isSubmitting,
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form
+              onSubmit={handleSubmit}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit();
+                }
+              }}
+            >
               <div className="button button__notes">
                 <h5 className="button__text__left">Create New Note</h5>
                 <button
