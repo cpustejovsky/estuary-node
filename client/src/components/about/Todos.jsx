@@ -29,7 +29,6 @@ export default function Todos() {
         <Todo complete text="delete UI for notes" />
         <Todo complete text="create UI for notes" />
         <Todo complete text="edit UI for notes" />
-        <Todo text="tag UI for notes" />
         {/* <Todo text="Be able to add multiple notes at a time" /> */}
         <Todo text="Add Next Actions List (model, routes, front-end)" />
         <Todo text="destination UI for notes" />
@@ -42,6 +41,7 @@ export default function Todos() {
         <Todo text="Implement Waiting List" />
         <Todo text="Implement Reference List" />
         <Todo text="Implement Someday List" />
+        <Todo text="set up tag creation, edit, and display" />
         <Todo text="Add search and filter functionality" />
         <Todo text="Complete unit testing coverage" />
         <Todo text="Connect to Google Calendars via API" />

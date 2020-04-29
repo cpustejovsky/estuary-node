@@ -38,15 +38,15 @@ class Note extends Component {
       return null;
     }
   }
-  renderTags() {
-    return this.props.tags.map((tag, index) => {
-      if (index === 0) {
-        return <span>{tag}</span>;
-      } else {
-        return <span>, {tag}</span>;
-      }
-    });
-  }
+  // renderTags() {
+  //   return this.props.tags.map((tag, index) => {
+  //     if (index === 0) {
+  //       return <span>{tag}</span>;
+  //     } else {
+  //       return <span>, {tag}</span>;
+  //     }
+  //   });
+  // }
   render() {
     console.log(this.props);
     return (
@@ -58,9 +58,9 @@ class Note extends Component {
                 ? this.state.editedContent || this.props.content
                 : null}
             </p>
-            <hr />
+            {/* <hr />
             {this.props.tags.length > 0 ? <strong>tags:</strong> : null}{" "}
-            {this.renderTags()}
+            {this.renderTags()} */}
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">

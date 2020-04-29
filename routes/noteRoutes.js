@@ -13,7 +13,7 @@ module.exports = (app) => {
     const newNote = new Note({
       content: req.body.content,
       _user: req.user.id,
-      tags: req.body.tags,
+      // tags: req.body.tags,
     });
     const response = await newNote.save();
     res.send(response);
