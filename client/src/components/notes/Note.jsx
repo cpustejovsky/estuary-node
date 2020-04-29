@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NoteDelete from "./NoteDelete";
 import NoteEdit from "./NoteEdit";
+import NoteOrganize from "./NoteOrganize";
 import { connect } from "react-redux";
 import { categorizeNote } from "../../actions";
 class Note extends Component {
@@ -41,8 +42,12 @@ class Note extends Component {
     }
   }
   renderOrganize = () => {
-    <NoteOrganize/>
-  }
+    if (this.props.category === "inbox") {
+      return <NoteOrganize />;
+    } else {
+      return null;
+    }
+  };
   render() {
     console.log(this.props);
     return (

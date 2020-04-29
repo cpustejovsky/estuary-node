@@ -62,32 +62,32 @@ class NotesShow extends Component {
             >
               Next
             </button>
-            <button
+            {/* <button
               onClick={() => this.changeCategory("inbox")}
               className="btn-small orange darken-2"
             >
               Projects
-            </button>
+            </button> */}
             <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("waiting")}
               className="btn-small orange darken-2"
             >
               Waiting
             </button>
             <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("maybe")}
               className="btn-small orange darken-2"
             >
               Maybe
             </button>
             <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("done")}
               className="btn-small orange darken-2"
             >
               Done
             </button>
             <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("reference")}
               className="btn-small orange darken-2"
             >
               Reference
