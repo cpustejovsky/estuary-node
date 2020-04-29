@@ -27,7 +27,7 @@ class NotesShow extends Component {
       return (
         <div>
           <div className="button button__notes">
-            <h3 className="button__text__left">Your Notes</h3>
+            <h3 className="button__text__left">Your Notes ({this.props.notes.length})</h3>
           </div>
           <hr/>
           <NotesNew history={this.props.history}/>
