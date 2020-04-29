@@ -53,9 +53,7 @@ class Header extends Component {
                 <Link to="/free-writes">Free Writes</Link>
               </li>
               <li>
-                <Link to="/notes">
-                  Notes
-                </Link>
+                <Link to="/notes">Notes</Link>
               </li>
             </ul>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -75,7 +73,7 @@ class Header extends Component {
             <li>
               <Link to="/notes">Notes</Link>
             </li>
-            <hr/>
+            <hr />
             {this.renderAuth()}
           </ul>
         </ul>

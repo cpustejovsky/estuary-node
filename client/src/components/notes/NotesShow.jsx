@@ -5,6 +5,7 @@ import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
+import NoteHeader from "../partials/NoteHeader";
 
 class NotesShow extends Component {
   componentDidMount() {
@@ -12,18 +13,20 @@ class NotesShow extends Component {
   }
   renderNotes() {
     if (!_.isEmpty(this.props.notes)) {
-      return this.props.notes.reverse().map(({ content, _id, tags, destination }) => {
-        return (
-          <Note
-            key={_id}
-            history={this.props.history}
-            id={_id}
-            content={content}
-            tags={tags}
-            destination={destination}
-          />
-        );
-      });
+      return this.props.notes
+        .reverse()
+        .map(({ content, _id, tags, destination }) => {
+          return (
+            <Note
+              key={_id}
+              history={this.props.history}
+              id={_id}
+              content={content}
+              tags={tags}
+              destination={destination}
+            />
+          );
+        });
     }
   }
   render() {
@@ -31,15 +34,14 @@ class NotesShow extends Component {
     //TODO: what is a good way to deal with auth redirects?
     if (this.props.auth || this.props.user) {
       return (
-        <div>
-          <div className="button button__notes">
-            <h3 className="button__text__left">
-              Your Notes ({this.props.notes.length})
-            </h3>
+        <div className="center">
+          <NoteHeader />
+          <div>
+            <h3 className="">Inbox ({this.props.notes.length})</h3>
+            <hr />
+            <NotesNew history={this.props.history} />
+            <ul className="notes">{this.renderNotes()}</ul>
           </div>
-          <hr />
-          <NotesNew history={this.props.history} />
-          <ul className="notes">{this.renderNotes()}</ul>
         </div>
       );
     } else if (this.props.auth === null && this.props.user === null) {
