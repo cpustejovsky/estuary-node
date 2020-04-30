@@ -12,7 +12,6 @@ import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
-import FreeWritesNew from "./freewrites/FreeWritesNew";
 import Test from "./Test";
 
 class App extends Component {
@@ -22,27 +21,26 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <Header />
-        <div className="site">
-          <Switch>
-            <Route path="/" exact component={Landing} />
-            <Route path="/about" exact component={About} />
-            <Route path="/auth" exact component={Auth} />
-            <Route path="/free-writes" exact component={FreeWritesShow} />
-            <Route path="/free-writes/new" exact component={FreeWritesNew} />
-            <Route path="/notes" exact component={NotesShow} />
-            <Route path="/user" exact component={UserShow} />
-            <Route path="/user/edit" exact component={UserEdit} />
-            <Route path="/test" exact component={Test} />
-          </Switch>
-        </div>
-        <Footer />
+          {/* <Header /> */}
+          <div className="site">
+            <Switch>
+              <Route path="/" exact component={Landing} />
+              <Route path="/about" exact component={About} />
+              <Route path="/auth" exact component={Auth} />
+              <Route path="/free-writes" exact component={FreeWritesShow} />
+              <Route path="/notes" exact component={NotesShow} />
+              <Route path="/user" exact component={UserShow} />
+              <Route path="/user/edit" exact component={UserEdit} />
+              <Route path="/test" exact component={Test} />
+            </Switch>
+          </div>
+          {/* <Footer /> */}
       </Router>
     );
   }
 }
 
-const mapStateToProps = ({auth, user}) => {
+const mapStateToProps = ({ auth, user }) => {
   return { auth, user };
 };
 

@@ -8,7 +8,7 @@ class NoteDelete extends Component {
         <p>
           <strong>Are you sure?</strong>
         </p>
-        <a
+        <button
           onClick={() => {
             this.props.deleteNote(this.props.id);
             this.props.toggleDelete();
@@ -16,10 +16,10 @@ class NoteDelete extends Component {
           className="green-text click"
         >
           Yes
-        </a>
-        <a onClick={() => this.props.toggleDelete()} className="click">
+        </button>
+        <button onClick={() => this.props.toggleDelete()} className="click">
           No
-        </a>
+        </button>
       </>
     );
   }

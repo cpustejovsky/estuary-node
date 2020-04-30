@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import NoteDelete from "./NoteDelete";
 import NoteEdit from "./NoteEdit";
-import NoteOrganize from "./NoteOrganize";
 import { connect } from "react-redux";
 import { categorizeNote } from "../../actions";
 class Note extends Component {
@@ -41,13 +40,6 @@ class Note extends Component {
       return null;
     }
   }
-  renderOrganize = () => {
-    if (this.props.category === "inbox") {
-      return <NoteOrganize />;
-    } else {
-      return null;
-    }
-  };
   render() {
     console.log(this.props);
     return (
@@ -63,22 +55,13 @@ class Note extends Component {
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">
-            <a onClick={() => this.toggleEdit()} className="click">
+            <button onClick={() => this.toggleEdit()} className="click">
               Edit
-            </a>
-            <a onClick={() => this.toggleDelete()} className="red-text click">
+            </button>
+            <button onClick={() => this.toggleDelete()} className="red-text click">
               Delete
-            </a>
+            </button>
             {this.renderDelete(this.state.deleteShow, this.props.id)}
-            {/* <a
-              onClick={() =>
-                this.props.categorizeNote(this.props.id, "next")
-              }
-              className="green-text click"
-            >
-              Next Action
-            </a> */}
-            {this.renderOrganize()}
           </div>
         </div>
       </div>

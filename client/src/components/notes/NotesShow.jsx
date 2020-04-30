@@ -8,7 +8,7 @@ import NotesNew from "./NoteNew";
 
 class NotesShow extends Component {
   state = {
-    category: "inbox",
+    category: "in tray",
   };
   changeCategory = (newCategory) => {
     this.setState({ category: newCategory });
@@ -51,10 +51,10 @@ class NotesShow extends Component {
         <div>
           <div className="center">
             <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("in-tray")}
               className="btn-small orange darken-2"
             >
-              Inbox
+              In Tray
             </button>
             <button
               onClick={() => this.changeCategory("next")}
@@ -63,7 +63,7 @@ class NotesShow extends Component {
               Next
             </button>
             {/* <button
-              onClick={() => this.changeCategory("inbox")}
+              onClick={() => this.changeCategory("projects")}
               className="btn-small orange darken-2"
             >
               Projects
