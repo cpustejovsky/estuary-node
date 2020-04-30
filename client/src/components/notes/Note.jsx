@@ -48,7 +48,7 @@ class Note extends Component {
         </button>
       );
     } else {
-      return <button>Done</button>;
+      return <button onClick={()=>this.props.categorizeNote(this.props.id, "done")}>Done</button>;
     }
   }
   render() {
