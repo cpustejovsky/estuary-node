@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
-import "materialize-css/dist/css/materialize.min.css";
 import "./style.scss";
 import App from "./components/App";
 
