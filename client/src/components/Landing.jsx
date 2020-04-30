@@ -9,8 +9,8 @@ export default function Landing() {
       <strong>Where all your streams of thought converge.</strong>
       <p>
         <Button variant="contained">
-          <Link to="/about">
-            Learn More
+          <Link to="/notes">
+            Go to Notes
           </Link>
         </Button>
       </p>

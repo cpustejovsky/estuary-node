@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import M from "materialize-css/dist/js/materialize.min.js";
 class Header extends Component {
-  componentDidMount() {
-    let sidenav = document.querySelector("#mobile-nav");
-    M.Sidenav.init(sidenav, {});
-  }
+
   renderAuth() {
     switch (this.props.auth) {
       case null:
