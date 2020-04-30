@@ -41,7 +41,33 @@ class Note extends Component {
     }
   }
   renderButtons() {
-    if (
+    if (this.props.organize) {
+      return (
+        <>
+          {" "}
+          <button
+            onClick={() => this.props.categorizeNote(this.props.id, "next")}
+          >
+            next
+          </button>
+          <button
+            onClick={() => this.props.categorizeNote(this.props.id, "waiting")}
+          >
+            waiting
+          </button>
+          <button
+            onClick={() => this.props.categorizeNote(this.props.id, "maybe")}
+          >
+            maybe
+          </button>
+          <button
+            onClick={() => this.props.categorizeNote(this.props.id, "reference")}
+          >
+            reference
+          </button>
+        </>
+      );
+    } else if (
       this.props.category === "in-tray" ||
       this.props.category === "reference"
     ) {

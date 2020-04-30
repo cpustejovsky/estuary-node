@@ -11,6 +11,7 @@ import Landing from "./Landing";
 import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
+import NotesOrganize from "./notes/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import Test from "./Test";
 
@@ -29,6 +30,7 @@ class App extends Component {
               <Route path="/auth" exact component={Auth} />
               <Route path="/free-writes" exact component={FreeWritesShow} />
               <Route path="/notes" exact component={NotesShow} />
+              <Route path="/notes/organize" exact component={NotesOrganize} />
               <Route path="/user" exact component={UserShow} />
               <Route path="/user/edit" exact component={UserEdit} />
               <Route path="/test" exact component={Test} />
