@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { createNote } from "../../actions";
+import { TextareaAutosize } from "@material-ui/core";
+
 class NotesNew extends Component {
   submitValues(values) {
     let history = this.props.history;
@@ -37,24 +39,25 @@ class NotesNew extends Component {
                 }
               }}
             >
-              <div className="button button__notes">
+              {/* <div className="button button__notes">
                 <h5 className="button__text__left">Create New Note</h5>
-                <button
+                <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="btn btn-lg margin-top"
                 >
                   Save
-                </button>
-              </div>
+                </Button>
+              </div> */}
               <div className="input-field center">
-                <textarea
+                <TextareaAutosize
+                aria-label="minimum height" rowsMin={3} placeholder="press enter to save" 
                   className="textarea__notes"
                   name="content"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.content}
-                ></textarea>
+                ></TextareaAutosize>
               </div>
             </form>
           )}
