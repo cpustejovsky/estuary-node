@@ -1,10 +1,11 @@
 body {
   background-color: #dcdcdc;
+  font-family: Roboto;
 }
-
 .site {
   display: flex;
   flex-direction: column;
+  // padding-top: 100px;
   width: 100vw;
   min-height: 85vh;
   align-items: center;
@@ -51,9 +52,10 @@ textarea {
 }
 .textarea {
   resize: both;
+  margin: auto 0;
   &__notes {
     height: 100px;
-    width: 400px;
+    width: fill;
     max-width: 800px;
     max-height: 400px;
     border-radius: 10px;
