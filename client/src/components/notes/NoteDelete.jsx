@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteNote } from "../../actions";
+import { Button} from "@material-ui/core";
+
 class NoteDelete extends Component {
   render() {
     return (
@@ -8,7 +10,7 @@ class NoteDelete extends Component {
         <p>
           <strong>Are you sure?</strong>
         </p>
-        <button
+        <Button
           onClick={() => {
             this.props.deleteNote(this.props.id);
             this.props.toggleDelete();
@@ -16,10 +18,10 @@ class NoteDelete extends Component {
           className="green-text click"
         >
           Yes
-        </button>
-        <button onClick={() => this.props.toggleDelete()} className="click">
+        </Button>
+        <Button onClick={() => this.props.toggleDelete()} className="click">
           No
-        </button>
+        </Button>
       </>
     );
   }
