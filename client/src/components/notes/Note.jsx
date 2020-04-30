@@ -40,8 +40,19 @@ class Note extends Component {
       return null;
     }
   }
+  renderButtons() {
+    if (this.props.category === "in-tray") {
+      return (
+        <button onClick={() => this.toggleDelete()} className="red-text click">
+          Delete
+        </button>
+      );
+    } else {
+      return <button>Done</button>;
+    }
+  }
   render() {
-    console.log(this.props);
+    console.log(this.props.category);
     return (
       <div>
         <div key={this.props.id} className="card darken-1">
@@ -51,6 +62,9 @@ class Note extends Component {
                 ? this.state.editedContent || this.props.content
                 : null}
             </p>
+            <p>
+              <strong>{this.props.category}</strong>
+            </p>
 
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
@@ -58,9 +72,7 @@ class Note extends Component {
             <button onClick={() => this.toggleEdit()} className="click">
               Edit
             </button>
-            <button onClick={() => this.toggleDelete()} className="red-text click">
-              Delete
-            </button>
+            {this.renderButtons()}
             {this.renderDelete(this.state.deleteShow, this.props.id)}
           </div>
         </div>

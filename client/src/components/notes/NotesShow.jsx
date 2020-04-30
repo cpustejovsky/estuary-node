@@ -5,7 +5,7 @@ import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
-
+import { Link } from "react-router-dom";
 class NotesShow extends Component {
   state = {
     category: "in-tray",
@@ -98,6 +98,7 @@ class NotesShow extends Component {
               {this.state.category} (
               {this.renderNotesLength(this.state.category)})
             </h3>
+            {this.state.category === "in-tray" ? <Link to="/notes/organize">Organize</Link>: null}
             <hr />
             {this.state.category === "in-tray" ? (
               <NotesNew history={this.props.history} />
