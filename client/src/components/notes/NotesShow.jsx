@@ -8,7 +8,7 @@ import NotesNew from "./NoteNew";
 
 class NotesShow extends Component {
   state = {
-    category: "in tray",
+    category: "in-tray",
   };
   changeCategory = (newCategory) => {
     this.setState({ category: newCategory });
@@ -95,10 +95,13 @@ class NotesShow extends Component {
           </div>
           <div>
             <h3 className="center">
-              {this.state.category} ({this.renderNotesLength(this.state.category)})
+              {this.state.category} (
+              {this.renderNotesLength(this.state.category)})
             </h3>
             <hr />
-            <NotesNew history={this.props.history} />
+            {this.state.category === "in-tray" ? (
+              <NotesNew history={this.props.history} />
+            ) : null}
             <ul className="notes">{this.renderNotes(this.state.category)}</ul>
           </div>
         </div>
