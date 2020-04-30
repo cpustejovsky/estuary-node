@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-class Header extends Component {
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import AllInboxIcon from "@material-ui/icons/AllInbox";
+import "typeface-roboto";
 
+class Header extends Component {
   renderAuth() {
     switch (this.props.auth) {
       case null:
@@ -33,10 +36,15 @@ class Header extends Component {
   render() {
     return (
       <>
-        <nav>
-          <a href="#" data-target="mobile-nav" className="sidenav-trigger">
-            <i className="material-icons">menu</i>
-          </a>
+        <AppBar position="fixed" >
+          <Toolbar>
+            <AllInboxIcon />
+            <Typography variant="h5" color="inherit">
+              Estuary
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        {/* <nav>
           <div className="nav-wrapper light-blue accent-4">
             <Link className="brand-logo center" to="/">
               <i className="large material-icons">all_inbox</i> Estuary
@@ -56,23 +64,7 @@ class Header extends Component {
               {this.renderAuth()}
             </ul>
           </div>
-        </nav>
-        {/* TODO: figure out how to close sidebar on click while using Link tags */}
-        <ul className="sidenav" id="mobile-nav">
-          <ul id="nav-mobile" className="left">
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/free-writes">Free Writes</Link>
-            </li>
-            <li>
-              <Link to="/notes">Notes</Link>
-            </li>
-            <hr />
-            {this.renderAuth()}
-          </ul>
-        </ul>
+        </nav> */}
       </>
     );
   }
