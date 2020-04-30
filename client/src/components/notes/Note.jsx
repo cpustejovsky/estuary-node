@@ -41,14 +41,38 @@ class Note extends Component {
     }
   }
   renderButtons() {
-    if (this.props.category === "in-tray") {
+    if (
+      this.props.category === "in-tray" ||
+      this.props.category === "reference"
+    ) {
       return (
-        <button onClick={() => this.toggleDelete()} className="red-text click">
-          Delete
-        </button>
+        <>
+          <button onClick={() => this.toggleEdit()} className="click">
+            Edit
+          </button>
+          <button
+            onClick={() => this.toggleDelete()}
+            className="red-text click"
+          >
+            Delete
+          </button>
+        </>
       );
+    } else if (this.props.category === "done") {
+      return null;
     } else {
-      return <button onClick={()=>this.props.categorizeNote(this.props.id, "done")}>Done</button>;
+      return (
+        <>
+          <button onClick={() => this.toggleEdit()} className="click">
+            Edit
+          </button>
+          <button
+            onClick={() => this.props.categorizeNote(this.props.id, "done")}
+          >
+            Done
+          </button>
+        </>
+      );
     }
   }
   render() {
@@ -62,16 +86,9 @@ class Note extends Component {
                 ? this.state.editedContent || this.props.content
                 : null}
             </p>
-            <p>
-              <strong>{this.props.category}</strong>
-            </p>
-
             {this.renderEdit(this.state.editShow, this.props.id)}
           </div>
           <div className="card-action">
-            <button onClick={() => this.toggleEdit()} className="click">
-              Edit
-            </button>
             {this.renderButtons()}
             {this.renderDelete(this.state.deleteShow, this.props.id)}
           </div>
