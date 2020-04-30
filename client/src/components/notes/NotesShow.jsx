@@ -6,6 +6,8 @@ import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
 import { Link } from "react-router-dom";
+import { ButtonGroup, Button } from "@material-ui/core";
+
 class NotesShow extends Component {
   state = {
     category: "in-tray",
@@ -49,61 +51,62 @@ class NotesShow extends Component {
     if (this.props.auth || this.props.user) {
       return (
         <div>
-          <div className="center">
-            <button
+          <ButtonGroup className="center">
+            <Button
               onClick={() => this.changeCategory("in-tray")}
               className="btn-small orange darken-2"
             >
               In Tray
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => this.changeCategory("next")}
               className="btn-small orange darken-2"
             >
               Next
-            </button>
-            {/* <button
-              onClick={() => this.changeCategory("projects")}
-              className="btn-small orange darken-2"
-            >
-              Projects
-            </button> */}
-            <button
+            </Button>
+            <Button
               onClick={() => this.changeCategory("waiting")}
               className="btn-small orange darken-2"
             >
               Waiting
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => this.changeCategory("maybe")}
               className="btn-small orange darken-2"
             >
               Maybe
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => this.changeCategory("done")}
               className="btn-small orange darken-2"
             >
               Done
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => this.changeCategory("reference")}
               className="btn-small orange darken-2"
             >
               Reference
-            </button>
-          </div>
+            </Button>
+          </ButtonGroup>
           <div>
-            <h3 className="center">
-              {this.state.category} (
-              {this.renderNotesLength(this.state.category)})
-            </h3>
-            {this.state.category === "in-tray" ? <Link to="/notes/organize">Organize</Link>: null}
+            <div className="button">
+              {" "}
+              <h3 className="center">
+                {this.state.category} (
+                {this.renderNotesLength(this.state.category)})
+              </h3>
+              {this.state.category === "in-tray" ? (
+                <Button>
+                  <Link to="/notes/organize">Organize</Link>
+                </Button>
+              ) : null}
+            </div>
             <hr />
             {this.state.category === "in-tray" ? (
               <NotesNew history={this.props.history} />
             ) : null}
-            <ul className="notes">{this.renderNotes(this.state.category)}</ul>
+            {this.renderNotes(this.state.category)}
           </div>
         </div>
       );

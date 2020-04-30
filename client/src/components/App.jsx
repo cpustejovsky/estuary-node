@@ -22,21 +22,21 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-          {/* <Header /> */}
-          <div className="site">
-            <Switch>
-              <Route path="/" exact component={Landing} />
-              <Route path="/about" exact component={About} />
-              <Route path="/auth" exact component={Auth} />
-              <Route path="/free-writes" exact component={FreeWritesShow} />
-              <Route path="/notes" exact component={NotesShow} />
-              <Route path="/notes/organize" exact component={NotesOrganize} />
-              <Route path="/user" exact component={UserShow} />
-              <Route path="/user/edit" exact component={UserEdit} />
-              <Route path="/test" exact component={Test} />
-            </Switch>
-          </div>
-          {/* <Footer /> */}
+        <Header />
+        <div className="site">
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/about" exact component={About} />
+            <Route path="/auth" exact component={Auth} />
+            <Route path="/free-writes" exact component={FreeWritesShow} />
+            <Route path="/notes" exact component={NotesShow} />
+            <Route path="/notes/organize" exact component={NotesOrganize} />
+            <Route path="/user" exact component={UserShow} />
+            <Route path="/user/edit" exact component={UserEdit} />
+            <Route path="/test" exact component={Test} />
+          </Switch>
+        </div>
+        <Footer />
       </Router>
     );
   }

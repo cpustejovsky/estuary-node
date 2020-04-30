@@ -55,6 +55,8 @@ textarea {
 .textarea {
   resize: both;
   margin: auto 0;
+  font-family: inherit;
+  font-size: inherit;
   &__notes {
     height: 100px;
     width: fill;
