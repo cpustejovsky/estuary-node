@@ -52,37 +52,37 @@ class NotesShow extends Component {
       return (
         <div>
           <ButtonGroup className="center">
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("in-tray")}
               className="btn-small orange darken-2"
             >
               In Tray
             </Button>
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("next")}
               className="btn-small orange darken-2"
             >
               Next
             </Button>
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("waiting")}
               className="btn-small orange darken-2"
             >
               Waiting
             </Button>
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("maybe")}
               className="btn-small orange darken-2"
             >
               Maybe
             </Button>
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("done")}
               className="btn-small orange darken-2"
             >
               Done
             </Button>
-            <Button
+            <Button variant="contained" color="primary" disableElevation
               onClick={() => this.changeCategory("reference")}
               className="btn-small orange darken-2"
             >

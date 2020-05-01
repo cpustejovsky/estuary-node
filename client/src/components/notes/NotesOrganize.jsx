@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { fetchNotes } from "../../actions";
+import { Link } from "react-router-dom";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 class NotesOrganize extends Component {
-
   changeCategory = (newCategory) => {
     this.setState({ category: newCategory });
   };
@@ -46,9 +46,8 @@ class NotesOrganize extends Component {
       return (
         <div>
           <div>
-            <h3 className="center">
-              Organize Notes
-            </h3>
+            <h3 className="center">Organize Notes</h3>
+            <Link to="/notes">Return to Notes</Link>
             <hr />
             <ul className="notes">{this.renderNotes()}</ul>
           </div>
