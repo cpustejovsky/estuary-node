@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { createFreeWrite } from "../../actions";
+import {
+  FormControl,
+  Button,
+  TextField,
+  TextareaAutosize,
+  Typography,
+} from "@material-ui/core";
+
 class FreeWritesNew extends Component {
   submitValues(values) {
     let history = this.props.history;
@@ -32,7 +40,7 @@ class FreeWritesNew extends Component {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              console.log(values)
+              console.log(values);
               this.submitValues(values);
               setSubmitting(false);
             }, 400);
@@ -45,37 +53,42 @@ class FreeWritesNew extends Component {
             handleSubmit,
             isSubmitting,
           }) => (
-            <form onSubmit={handleSubmit}>
-              <div className="button button__freewrites">
-                <h4 className="button__text__left">Create New Free Write</h4>
-                <button
+            <FormControl fullWidth onSubmit={handleSubmit}>
+              <div className="button button__free-writes">
+                <Typography variant="h4" className="button__text__left">
+                  Create New Free Write
+                </Typography>
+                <Button
                   type="submit"
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="btn btn-lg"
                 >
                   Save
-                </button>
+                </Button>
               </div>
-              <div>
-                <label htmlFor="">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                />
-              </div>
-              <div className="input-field">
-                <textarea
-                  name="content"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.content}
-                  className="textarea textarea__freewrites"
-                ></textarea>
-              </div>
-            </form>
+              <TextField
+                fullWidth
+                label="Title"
+                type="text"
+                name="title"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <TextareaAutosize
+                fullWidth
+                aria-label="minimum height"
+                rowsMin={25}
+                className="textarea__freewrites"
+                name="content"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.content}
+              ></TextareaAutosize>
+            </FormControl>
           )}
         </Formik>
       </div>
