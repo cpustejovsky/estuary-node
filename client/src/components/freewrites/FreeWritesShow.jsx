@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchFreeWrites } from "../../actions";
 import Loader from "../partials/Loader";
+import { Button, Card, CardContent, Typography } from "@material-ui/core";
 
 class FreeWriteShow extends Component {
   componentDidMount() {
@@ -12,12 +13,16 @@ class FreeWriteShow extends Component {
     if (this.props.freeWrites.length > 0) {
       return this.props.freeWrites.map(({ content, _id, title }) => {
         return (
-          <div key={_id} className="card darken-1">
-            <div className="card-content">
-              <span className="card-title">{title}</span>
-              <p>{content}</p>
-            </div>
-          </div>
+          <Card key={_id} raised className="margin-top">
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {content}
+              </Typography>
+            </CardContent>
+          </Card>
         );
       });
     }
@@ -29,10 +34,18 @@ class FreeWriteShow extends Component {
       return (
         <div>
           <div className="button button__free-writes">
-            <h4 className="button__text__left">Your Free Writes</h4>
-            <Link to="free-writes/new" className="btn-large green">
+            <Typography variant="h4" className="button__text__left">
+              Your Free Writes
+            </Typography>
+            <Button
+              component={RouterLink}
+              to="/free-writes/new"
+              size="large"
+              variant="contained"
+              color="primary"
+            >
               New Free Write
-            </Link>
+            </Button>
           </div>
           {this.renderFreeWrites()}
         </div>

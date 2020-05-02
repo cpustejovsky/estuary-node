@@ -109,7 +109,7 @@ class Note extends Component {
     console.log(this.props.category);
     return (
       <Card raised key={this.props.id} className="margin-top">
-        <CardContent className="card-content">
+        <CardContent>
           <p>
             {!this.state.editShow
               ? this.state.editedContent || this.props.content
@@ -117,7 +117,7 @@ class Note extends Component {
           </p>
           {this.renderEdit(this.state.editShow, this.props.id)}
         </CardContent>
-        <CardActions className="card-action">
+        <CardActions>
           {this.renderButtons()}
           {this.renderDelete(this.state.deleteShow, this.props.id)}
         </CardActions>
