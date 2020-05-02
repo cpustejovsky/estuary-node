@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import _ from "lodash";
+import React from "react";
 import { Formik } from "formik";
 import { connect, useSelector } from "react-redux";
 import { updateUser } from "../../actions";
@@ -22,7 +21,14 @@ const UserEdit = (props) => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
 
-  const [checked, setChecked] = React.useState(true);
+  const emailUpdateDefault = () => {
+    if (auth) {
+      return auth.emailUpdates ? true : false;
+    } else if (user) {
+      return user.emailUpdates ? true : false;
+    }
+  };
+  const [checked, setChecked] = React.useState(emailUpdateDefault());
   const handleClick = (event) => {
     setChecked(event.target.checked);
   };
@@ -105,25 +111,12 @@ const UserEdit = (props) => {
                 />
               </div>
               <div>
-                {/* <label htmlFor="email-updates">
-                    <input
-                      type="checkbox"
-                      id="email-updates"
-                      name="emailUpdates"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.emailUpdates}
-                      checked={values.emailUpdates ? "checked" : ""}
-                    />
-                    <span>Daily Email Updates</span>
-                  </label> */}
-
                 <FormControlLabel
                   control={
                     <Checkbox
                       checked={checked}
-                      onChange={(handleChange)}
-                      onClick={(handleClick)}
+                      onChange={handleChange}
+                      onClick={handleClick}
                       color="primary"
                       id="email-updates"
                       name="emailUpdates"
