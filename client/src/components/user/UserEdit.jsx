@@ -8,35 +8,43 @@ import {
   Card,
   Checkbox,
   CardActions,
+  FormControlLabel,
   Typography,
   TextField,
 } from "@material-ui/core/";
 
 const UserEdit = (props) => {
-  const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
   const submitValues = (values) => {
     let history = props.history;
     props.updateUser(values, history);
   };
-  if (auth) {
-    let updatedData;
-    if (user) {
-      updatedData = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        emailAddress: user.email,
-        emailUpdates: user.emailUpdates,
-      };
-    } else {
-      updatedData = {
-        firstName: auth.firstName,
-        lastName: auth.lastName,
-        emailAddress: auth.email,
-        emailUpdates: auth.emailUpdates,
-      };
-    }
 
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+
+  const [checked, setChecked] = React.useState(true);
+  const handleClick = (event) => {
+    setChecked(event.target.checked);
+  };
+  let updatedData;
+  if (user) {
+    updatedData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      emailAddress: user.email,
+      emailUpdates: user.emailUpdates,
+    };
+  }
+  if (auth) {
+    updatedData = {
+      firstName: auth.firstName,
+      lastName: auth.lastName,
+      emailAddress: auth.email,
+      emailUpdates: auth.emailUpdates,
+    };
+  }
+
+  if (auth) {
     return (
       <Card raised style={{ padding: "20px", minWidth: "33%" }}>
         <Typography align="center" gutterBottom variant="h4" component="h2">
@@ -109,6 +117,22 @@ const UserEdit = (props) => {
                     />
                     <span>Daily Email Updates</span>
                   </label> */}
+
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={(handleChange)}
+                      onClick={(handleClick)}
+                      color="primary"
+                      id="email-updates"
+                      name="emailUpdates"
+                      onBlur={handleBlur}
+                      value={values.emailUpdates}
+                    />
+                  }
+                  label="Daily Email Updates"
+                />
               </div>
               <CardActions
                 className="margin-top"
