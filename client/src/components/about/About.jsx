@@ -29,7 +29,9 @@ export default function About() {
           portfolio.
         </p>
         <Todos />
-        <h4>Have any ideas for improvements?</h4>
+        <Typography variant="h5">
+        Have any ideas for improvements?
+        </Typography>
         <p>
           Here's the source code:{" "}
           <a href="https://github.com/cpustejovsky/estuary">
@@ -38,7 +40,9 @@ export default function About() {
           . Feel free to leave a comment or even make a pull request if you're
           so inclined (check my current list of to-dos first).
         </p>
-        <h5>Sign up to follow Estuary's progress</h5>
+        <Typography variant="h6">
+        Sign up to follow Estuary's progress
+        </Typography>
         <MailChimpForm />
       </Grid>
       <Grid item sm></Grid>
