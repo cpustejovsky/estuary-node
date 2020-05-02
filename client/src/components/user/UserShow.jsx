@@ -1,58 +1,64 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { fetchUser } from "../../actions";
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+} from "@material-ui/core";
 
-class User extends Component {
-  render() {
-    if (!this.props.auth && !this.props.user) {
-      return "Loading";
-    } else if (this.props.user) {
-      return (
-        <div>
-          <h3>
-            {this.props.user.displayName || this.props.user.firstName}{" "}
-            {this.props.user.lastName}
-          </h3>
+export default function User() {
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  if (!auth && !user) {
+    return "Loading";
+  } else if (user) {
+    return (
+      <Card raised>
+        <CardContent className="card-content">
+          <Typography gutterBottom variant="h4" component="h2">
+            {user.displayName || user.firstName} {user.lastName}
+          </Typography>
           <p>
             <strong>Email Address: </strong>
-            {this.props.user.email}
+            {user.email}
           </p>
           <p>
             <strong>Daily Email Updates: </strong>
-            {this.props.user.emailUpdates === true ? "On" : "Off"}
+            {user.emailUpdates === true ? "On" : "Off"}
           </p>
-          <Link className="btn" to="/user/edit">
+        </CardContent>
+        <CardActions className="card-action">
+          <Button component={RouterLink} to="/user/edit">
             Edit Profile
-          </Link>
-        </div>
-      );
-    } else if (this.props.auth) {
-      return (
-        <div>
-          <h3>
-            {this.props.auth.displayName || this.props.auth.firstName}{" "}
-            {this.props.auth.lastName}
-          </h3>
+          </Button>
+        </CardActions>
+      </Card>
+    );
+  } else if (auth) {
+    return (
+      <Card raised>
+        <CardContent className="card-content">
+          <Typography gutterBottom variant="h4" component="h2">
+            {auth.displayName || auth.firstName} {auth.lastName}
+          </Typography>
           <p>
             <strong>Email Address: </strong>
-            {this.props.auth.email}
+            {auth.email}
           </p>
           <p>
             <strong>Daily Email Updates: </strong>
-            {this.props.auth.emailUpdates === true ? "On" : "Off"}
+            {auth.emailUpdates === true ? "On" : "Off"}
           </p>
-          <Link className="btn" to="/user/edit">
+        </CardContent>
+        <CardActions className="card-action">
+          <Button component={RouterLink} to="/user/edit">
             Edit Profile
-          </Link>
-        </div>
-      );
-    }
+          </Button>
+        </CardActions>
+      </Card>
+    );
   }
 }
-
-const mapStateToProps = ({ auth, user }) => {
-  return { auth, user };
-};
-
-export default connect(mapStateToProps, { fetchUser })(User);
