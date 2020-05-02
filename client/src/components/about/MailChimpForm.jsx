@@ -1,17 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { Button, Input, TextField, FormControl } from "@material-ui/core";
 
-const url = process.env.REACT_APP_MC_URL;
-
+const url =
+  "https://cpustejovsky.us18.list-manage.com/subscribe/post?u=5255bcd054238b51c87af4a7b&amp;id=aaa9023f7d";
 const CustomForm = ({ status, message, onValidated, refs }) => {
   const [email, setEmail] = useState("");
   const submit = () => {
-    return email &&
+    return (
+      email &&
       email.indexOf("@") > -1 &&
       onValidated({
         EMAIL: email,
-      });
+      })
+    );
   };
   return (
     <>
@@ -27,6 +29,9 @@ const CustomForm = ({ status, message, onValidated, refs }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <Button variant="outlined" color="primary" onClick={submit}>
+          Submit<i className="material-icons right">email</i>
+        </Button>
         {status === "sending" && (
           <label htmlFor="email" style={{ color: "blue" }}>
             sending...
@@ -48,25 +53,23 @@ const CustomForm = ({ status, message, onValidated, refs }) => {
             dangerouslySetInnerHTML={{ __html: message }}
           />
         )}
-        <Button variant="outlined" color="primary" onClick={submit}>
-          Submit<i className="material-icons right">email</i>
-        </Button>
       </FormControl>
     </>
   );
 };
-
 const MailChimpForm = () => {
   return (
     <MailchimpSubscribe
-      url={process.env.REACT_APP_MC_URL}
-      render={({ subscribe, status, message }) => (
-        <CustomForm
-          status={status}
-          message={message}
-          onValidated={(formData) => subscribe(formData)}
-        />
-      )}
+      url={url}
+      render={({ subscribe, status, message }) => {
+        return (
+          <CustomForm
+            status={status}
+            message={message}
+            onValidated={(formData) => subscribe(formData)}
+          />
+        );
+      }}
     />
   );
 };
