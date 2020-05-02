@@ -1,85 +1,103 @@
 import React, { Component } from "react";
 // import _ from "lodash";
 import { Formik } from "formik";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { updateUser } from "../../actions";
-class UserEdit extends Component {
-  submitValues(values) {
-    let history = this.props.history;
-    this.props.updateUser(values, history);
-  }
-  render() {
-    if (this.props.auth) {
-      let updatedData;
-      if (this.props.user) {
-        updatedData = {
-          firstName: this.props.user.firstName,
-          lastName: this.props.user.lastName,
-          emailAddress: this.props.user.email,
-          emailUpdates: this.props.user.emailUpdates,
-        };
-      } else {
-        updatedData = {
-          firstName: this.props.auth.firstName,
-          lastName: this.props.auth.lastName,
-          emailAddress: this.props.auth.email,
-          emailUpdates: this.props.auth.emailUpdates,
-        };
-      }
+import {
+  Button,
+  Card,
+  Checkbox,
+  CardActions,
+  Typography,
+  TextField,
+} from "@material-ui/core/";
 
-      return (
-        <div>
-          <h3>Update User Profile</h3>
-          <Formik
-            initialValues={updatedData}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                this.submitValues(values);
-                setSubmitting(false);
-              }, 400);
-            }}
-          >
-            {({
-              values,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-              /* and other goodies */
-            }) => (
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label htmlFor="">First Name</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.firstName}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="">Last Name</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.lastName}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="">Email Address</label>
-                  <input
-                    type="text"
-                    name="emailAddress"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.emailAddress}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email-updates">
+const UserEdit = (props) => {
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const submitValues = (values) => {
+    let history = props.history;
+    props.updateUser(values, history);
+  };
+  if (auth) {
+    let updatedData;
+    if (user) {
+      updatedData = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        emailAddress: user.email,
+        emailUpdates: user.emailUpdates,
+      };
+    } else {
+      updatedData = {
+        firstName: auth.firstName,
+        lastName: auth.lastName,
+        emailAddress: auth.email,
+        emailUpdates: auth.emailUpdates,
+      };
+    }
+
+    return (
+      <Card raised style={{ padding: "20px", minWidth: "33%" }}>
+        <Typography align="center" gutterBottom variant="h4" component="h2">
+          Update User Profile
+        </Typography>
+        <Formik
+          initialValues={updatedData}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              submitValues(values);
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            /* and other goodies */
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <div>
+                <TextField
+                  name="firstName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.firstName}
+                  fullWidth
+                  label="First Name"
+                  variant="outlined"
+                />
+              </div>
+              <br />
+              <div>
+                <TextField
+                  name="lastName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.lastName}
+                  fullWidth
+                  label="Last Name"
+                  variant="outlined"
+                />
+              </div>
+              <br />
+              <div>
+                <TextField
+                  type="email"
+                  name="lastName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.emailAddress}
+                  fullWidth
+                  label="Email Address"
+                  variant="outlined"
+                />
+              </div>
+              <div>
+                {/* <label htmlFor="email-updates">
                     <input
                       type="checkbox"
                       id="email-updates"
@@ -90,30 +108,30 @@ class UserEdit extends Component {
                       checked={values.emailUpdates ? "checked" : ""}
                     />
                     <span>Daily Email Updates</span>
-                  </label>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn btn-lg margin-top"
-                  >
-                    Save
-                  </button>
-                </div>
-              </form>
-            )}
-          </Formik>
-        </div>
-      );
-    } else {
-      return "Loading...";
-    }
+                  </label> */}
+              </div>
+              <CardActions
+                className="margin-top"
+                style={{ justifyContent: "center" }}
+              >
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                >
+                  Save
+                </Button>
+              </CardActions>
+            </form>
+          )}
+        </Formik>
+      </Card>
+    );
+  } else {
+    return "Loading...";
   }
-}
-
-const mapStateToProps = ({ auth, user }) => {
-  return { auth, user };
 };
 
-export default connect(mapStateToProps, { updateUser })(UserEdit);
+export default connect(null, { updateUser })(UserEdit);
