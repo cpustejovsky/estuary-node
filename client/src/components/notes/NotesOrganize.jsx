@@ -5,6 +5,9 @@ import { fetchNotes } from "../../actions";
 import { Link } from "react-router-dom";
 import Loader from "../partials/Loader";
 import Note from "./Note";
+import { Link as RouterLink } from "react-router-dom";
+import { Button, Typography } from "@material-ui/core";
+
 class NotesOrganize extends Component {
   changeCategory = (newCategory) => {
     this.setState({ category: newCategory });
@@ -46,10 +49,11 @@ class NotesOrganize extends Component {
       return (
         <div>
           <div>
-            <h3 className="center">Organize Notes</h3>
-            <Link to="/notes">Return to Notes</Link>
+            <Typography align="center" variant="h4" className="button__text__left">
+            Organize Notes
+            </Typography>
             <hr />
-            <ul className="notes">{this.renderNotes()}</ul>
+            {this.renderNotes()}
           </div>
         </div>
       );

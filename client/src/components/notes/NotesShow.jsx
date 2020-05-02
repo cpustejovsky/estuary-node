@@ -5,8 +5,8 @@ import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
-import { Link } from "react-router-dom";
-import { ButtonGroup, Button } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import { ButtonGroup, Button, Typography } from "@material-ui/core";
 
 class NotesShow extends Component {
   state = {
@@ -52,37 +52,55 @@ class NotesShow extends Component {
       return (
         <div>
           <ButtonGroup className="center">
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("in-tray")}
               className="btn-small orange darken-2"
             >
               In Tray
             </Button>
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("next")}
               className="btn-small orange darken-2"
             >
               Next
             </Button>
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("waiting")}
               className="btn-small orange darken-2"
             >
               Waiting
             </Button>
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("maybe")}
               className="btn-small orange darken-2"
             >
               Maybe
             </Button>
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("done")}
               className="btn-small orange darken-2"
             >
               Done
             </Button>
-            <Button variant="contained" color="primary" disableElevation
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
               onClick={() => this.changeCategory("reference")}
               className="btn-small orange darken-2"
             >
@@ -91,14 +109,18 @@ class NotesShow extends Component {
           </ButtonGroup>
           <div>
             <div className="button">
-              {" "}
-              <h3 className="center">
-                {this.state.category} (
+              <Typography variant="h6" className="button__text__left">
+                {this.state.category.toUpperCase()} (
                 {this.renderNotesLength(this.state.category)})
-              </h3>
+              </Typography>
               {this.state.category === "in-tray" ? (
-                <Button>
-                  <Link to="/notes/organize">Organize</Link>
+                <Button
+                  component={RouterLink}
+                  to="/notes/organize"
+                  variant="contained"
+                  color="primary"
+                >
+                  Organize
                 </Button>
               ) : null}
             </div>

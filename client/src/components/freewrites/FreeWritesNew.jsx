@@ -18,7 +18,7 @@ class FreeWritesNew extends Component {
   render() {
     return (
       <div>
-        <h3>Free Write</h3>
+        <Typography variant="h3">Free Write</Typography>
         <p>Enter any text that comes to mind.</p>
         <p>
           If you want to save something as a note, press
