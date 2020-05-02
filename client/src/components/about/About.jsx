@@ -1,11 +1,16 @@
 import React from "react";
-import Todos from "./Todos"
+import Todos from "./Todos";
 import MailChimpForm from "./MailChimpForm";
+import { Grid, Typography } from "@material-ui/core";
+
 export default function About() {
   return (
-    <div className="row site__about">
-      <div className="col m8 offset-m2">
-        <h3 className="">What is Estuary?</h3>
+    <Grid container spacing={3} className="row site__about">
+      <Grid item sm></Grid>
+      <Grid item sm={8}>
+        <Typography variant="h4">
+          What is Estuary?
+        </Typography>
         <p>
           Thanksgiving weekend 2019, I started reading{" "}
           <a
@@ -23,7 +28,7 @@ export default function About() {
           and also building a robust app that I can proudly show off in my
           portfolio.
         </p>
-        <Todos/>
+        <Todos />
         <h4>Have any ideas for improvements?</h4>
         <p>
           Here's the source code:{" "}
@@ -35,7 +40,8 @@ export default function About() {
         </p>
         <h5>Sign up to follow Estuary's progress</h5>
         <MailChimpForm />
-      </div>
-    </div>
+      </Grid>
+      <Grid item sm></Grid>
+    </Grid>
   );
 }
