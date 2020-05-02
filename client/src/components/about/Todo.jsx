@@ -1,22 +1,25 @@
-import React from 'react'
+import React from "react";
+import ListItem from "@material-ui/core/ListItem";
+import { Check, CropSquare } from "@material-ui/icons";
+import { green, grey } from "@material-ui/core/colors";
+
 const Todo = ({ complete, text }) => {
   if (complete) {
     return (
-      <li className="valign-wrapper">
-        <i className="material-icons green-text" style={{ fontSize: "" }}>
-          check
-        </i>
+      <ListItem className="valign-wrapper">
+        <Check style={{ color: green[500] }} />
         {text}
-      </li>
+      </ListItem>
     );
   } else {
     return (
-      <li className="valign-wrapper">
-        <i className="material-icons grey-text" style={{ fontSize: "" }}>
+      <ListItem className="valign-wrapper">
+        {/* <i className="material-icons grey-text" style={{ fontSize: "" }}>
           crop_square
-        </i>
+        </i>{" "} */}
+        <CropSquare style={{ color: grey[500] }} />
         {text}
-      </li>
+      </ListItem>
     );
   }
 };
