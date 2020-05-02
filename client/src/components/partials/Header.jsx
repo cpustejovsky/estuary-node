@@ -11,7 +11,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
-import AllInboxIcon from "@material-ui/icons/AllInbox";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,7 +110,7 @@ export default function Header() {
   };
   return (
     <div className={classes.root}>
-      <AppBar position="absolute">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
@@ -121,8 +120,13 @@ export default function Header() {
           >
             {SimpleMenu()}
           </IconButton>
-          <AllInboxIcon />
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            component={RouterLink}
+            to="/"
+            style={{ color: "white", textDecoration: "none" }}
+            variant="h6"
+            className={classes.title}
+          >
             Estuary
           </Typography>
           {renderAuth()}

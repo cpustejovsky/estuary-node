@@ -5,7 +5,6 @@ body {
 .site {
   display: flex;
   flex-direction: column;
-  padding-top: 80px;
   width: 100vw;
   min-height: 85vh;
   align-items: center;
@@ -14,8 +13,13 @@ body {
     background-color: #ff9800;
     color: white;
     font-size: 15px;
-    padding: 10px;
+    padding: 20px;
+    padding-top: 80px;
     text-align: center;
+    margin: 0 auto;
+    width: 90vw;
+    border-radius: 20px;
+    margin-bottom: 25px;
   }
   &__landing {
     display: flex;
@@ -50,7 +54,7 @@ body {
 textarea {
   background-color: white;
   font-family: inherit;
-  font-size: inherit
+  font-size: inherit;
 }
 .textarea {
   resize: both;

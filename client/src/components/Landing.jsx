@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 export default function Landing() {
@@ -8,10 +8,8 @@ export default function Landing() {
       <h2>Estuary</h2>
       <strong>Where all your streams of thought converge.</strong>
       <p>
-        <Button variant="contained">
-          <Link to="/notes">
-            Go to Notes
-          </Link>
+        <Button component={RouterLink} to="/about" variant="contained" color="primary">
+          Learn More
         </Button>
       </p>
     </div>

@@ -13,6 +13,7 @@ import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
 import NotesOrganize from "./notes/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
+import Warning from "./partials/Warning";
 import Test from "./Test";
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <Header />
+        <Warning />
         <div className="site">
           <Switch>
             <Route path="/" exact component={Landing} />
