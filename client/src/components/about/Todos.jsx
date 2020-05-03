@@ -38,7 +38,7 @@ export default function Todos() {
         <Todo complete text="Implement Waiting List" />
         <Todo complete text="Implement Reference List" />
         <Todo complete text="Replace materialize-css with Material-UI" />
-        <Todo text="Replace Class Based Components with Functional Components and wire up to Redux" />
+        <Todo complete text="Replace Class Based Components with Functional Components and wire up to Redux" />
         <Todo text="Refactor next actions, etc. into individual models" />
         <Todo text="Implement Projects List (model, routes, front-end)" />
         <Todo text="Implement Deferred List (model, routes, front-end)" />
