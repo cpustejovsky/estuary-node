@@ -11,7 +11,9 @@ function Note(props) {
   const [editedContent, setEditedContent] = useState("");
 
   const toggleEdit = () => setEditShow(!editShow);
+  const updateContent = (newContent) => setEditedContent(newContent);
 
+  const closeEditView = () => setEditShow(false)
   const renderEdit = (editShow, id) => {
     if (editShow && id === id) {
       return (
@@ -19,8 +21,8 @@ function Note(props) {
           id={props.id}
           content={props.content}
           editedContent={editedContent}
-          setEditedContent={setEditedContent}
-          toggleEdit={toggleEdit}
+          updateContent={updateContent}
+          closeEditView={closeEditView}
         />
       );
     } else {
@@ -47,43 +49,27 @@ function Note(props) {
       return (
         <>
           {" "}
-          <Button
-            onClick={() => props.categorizeNote(props.id, "next")}
-          >
+          <Button onClick={() => props.categorizeNote(props.id, "next")}>
             next
           </Button>
-          <Button
-            onClick={() => props.categorizeNote(props.id, "waiting")}
-          >
+          <Button onClick={() => props.categorizeNote(props.id, "waiting")}>
             waiting
           </Button>
-          <Button
-            onClick={() => props.categorizeNote(props.id, "maybe")}
-          >
+          <Button onClick={() => props.categorizeNote(props.id, "maybe")}>
             maybe
           </Button>
-          <Button
-            onClick={() =>
-              props.categorizeNote(props.id, "reference")
-            }
-          >
+          <Button onClick={() => props.categorizeNote(props.id, "reference")}>
             reference
           </Button>
         </>
       );
-    } else if (
-      props.category === "in-tray" ||
-      props.category === "reference"
-    ) {
+    } else if (props.category === "in-tray" || props.category === "reference") {
       return (
         <>
           <Button onClick={() => toggleEdit()} className="click">
             Edit
           </Button>
-          <Button
-            onClick={() => toggleDelete()}
-            className="red-text click"
-          >
+          <Button onClick={() => toggleDelete()} className="red-text click">
             Delete
           </Button>
         </>
@@ -96,24 +82,18 @@ function Note(props) {
           <Button onClick={() => toggleEdit()} className="click">
             Edit
           </Button>
-          <Button
-            onClick={() => props.categorizeNote(props.id, "done")}
-          >
+          <Button onClick={() => props.categorizeNote(props.id, "done")}>
             Done
           </Button>
         </>
       );
     }
   };
-  console.log(props);
+  // console.log(props);
   return (
     <Card raised key={props.id} className="margin-top padding-horizontal">
       <CardContent>
-        <p>
-          {!editShow
-            ? editedContent || props.content
-            : null}
-        </p>
+        <p>{!editShow ? editedContent || props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
       <CardActions>{renderButtons()}</CardActions>
