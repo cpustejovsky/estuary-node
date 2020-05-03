@@ -5,7 +5,7 @@ import { fetchUser } from "../actions";
 import history from "../history";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
-import Auth from "./Auth";
+import Auth from "./Login";
 import About from "./about/About";
 import Landing from "./Landing";
 import UserShow from "./user/UserShow";
