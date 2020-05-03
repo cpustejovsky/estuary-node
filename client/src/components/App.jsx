@@ -30,7 +30,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/about" exact component={About} />
-            <Route path="/auth" exact component={Auth} />
+            <Route path="/login" exact component={Auth} />
             <Route path="/free-writes" exact component={FreeWritesShow} />
             <Route path="/free-writes/new" exact component={FreeWritesNew} />
             <Route path="/notes" exact component={NotesShow} />

@@ -80,7 +80,7 @@ export default function Header() {
         return;
       case false:
         return (
-          <Button style={{ color: "white" }} component={RouterLink} to="/auth">
+          <Button style={{ color: "white" }} component={RouterLink} to="/login">
             Log in
           </Button>
         );
