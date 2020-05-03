@@ -14,7 +14,7 @@ function Note(props) {
   const updateContent = (newContent) => setEditedContent(newContent);
 
   const closeEditView = () => setEditShow(false)
-  const renderEdit = (editShow, id) => {
+const renderEdit = (editShow, id) => {
     if (editShow && id === id) {
       return (
         <NoteEdit
