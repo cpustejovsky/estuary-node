@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
-import { Link as RouterLink } from "react-router-dom";
-import { Button, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 function NotesOrganize({ fetchNotes, history }) {
   const auth = useSelector((state) => state.auth);
