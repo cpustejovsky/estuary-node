@@ -14,6 +14,8 @@ export default class extends Component {
             href="/auth/google"
             variant="contained"
             color="primary"
+            size="large"
+
           >
             <i className="button__text__left fab fa-google"></i>Sign in with
             Google
@@ -26,6 +28,7 @@ export default class extends Component {
             href="/auth/github"
             variant="contained"
             color="primary"
+            size="large"
           >
             <i className="button__text__left fab fa-github"></i>Sign in with
             GitHub

@@ -29,8 +29,8 @@ const CustomForm = ({ status, message, onValidated, refs }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Button variant="outlined" color="primary" onClick={submit}>
-          Submit<i className="material-icons right">email</i>
+        <Button size="large" variant="contained" color="primary" onClick={submit}>
+          Submit{"    "}<i className="material-icons right">email</i>
         </Button>
         {status === "sending" && (
           <label htmlFor="email" style={{ color: "blue" }}>
