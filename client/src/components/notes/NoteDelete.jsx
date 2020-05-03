@@ -1,27 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteNote } from "../../actions";
-import { Button} from "@material-ui/core";
+import { Button, CardActions } from "@material-ui/core";
+import { green, red, grey } from "@material-ui/core/colors";
 
 class NoteDelete extends Component {
   render() {
     return (
       <>
-        <p>
-          <strong>Are you sure?</strong>
-        </p>
-        <Button
-          onClick={() => {
-            this.props.deleteNote(this.props.id);
-            this.props.toggleDelete();
-          }}
-          className="green-text click"
-        >
-          Yes
-        </Button>
-        <Button onClick={() => this.props.toggleDelete()} className="click">
-          No
-        </Button>
+        <CardActions>
+          <Button disabled style={{ color: grey[500] }}>
+            Are you sure?
+          </Button>
+        </CardActions>
+        <CardActions>
+          <Button
+            style={{ color: green[500] }}
+            onClick={() => {
+              this.props.deleteNote(this.props.id);
+              this.props.toggleDelete();
+            }}
+            className="click"
+          >
+            Yes
+          </Button>
+          <Button
+            style={{ color: red[500] }}
+            onClick={() => this.props.toggleDelete()}
+            className="click"
+          >
+            No
+          </Button>
+        </CardActions>
       </>
     );
   }

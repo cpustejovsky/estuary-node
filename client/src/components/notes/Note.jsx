@@ -37,7 +37,13 @@ class Note extends Component {
   };
   renderDelete(deleteShow, id) {
     if (deleteShow && id === this.props.id) {
-      return <NoteDelete id={this.props.id} toggleDelete={this.toggleDelete} />;
+      return (
+        <NoteDelete
+          style={{ marginRight: "20px" }}
+          id={this.props.id}
+          toggleDelete={this.toggleDelete}
+        />
+      );
     } else {
       return null;
     }
@@ -108,7 +114,7 @@ class Note extends Component {
   render() {
     console.log(this.props.category);
     return (
-      <Card raised key={this.props.id} className="margin-top">
+      <Card raised key={this.props.id} className="margin-top padding-horizontal">
         <CardContent>
           <p>
             {!this.state.editShow
@@ -119,8 +125,8 @@ class Note extends Component {
         </CardContent>
         <CardActions>
           {this.renderButtons()}
-          {this.renderDelete(this.state.deleteShow, this.props.id)}
         </CardActions>
+          {this.renderDelete(this.state.deleteShow, this.props.id)}
       </Card>
     );
   }
