@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { fetchNotes } from "../../actions";
 import Loader from "../partials/Loader";
@@ -8,140 +8,130 @@ import NotesNew from "./NoteNew";
 import { Link as RouterLink } from "react-router-dom";
 import { ButtonGroup, Button, Typography } from "@material-ui/core";
 
-class NotesShow extends Component {
-  state = {
-    category: "in-tray",
+function NotesShow({ fetchNotes, history }) {
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const notes = useSelector((state) => Object.values(state.notes));
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+  const [category, setCategory] = useState("in-tray");
+  const changeCategory = (newCategory) => {
+    setCategory(newCategory);
   };
-  changeCategory = (newCategory) => {
-    this.setState({ category: newCategory });
+
+  const renderNotes = (selectedCategory) => {
+    if (!_.isEmpty(notes)) {
+      return notes.reverse().map(({ content, _id, tags, category }) => {
+        if (category === selectedCategory) {
+          return (
+            <Note
+              key={_id}
+              history={history}
+              id={_id}
+              content={content}
+              tags={tags}
+              category={category}
+            />
+          );
+        } else {
+          return null;
+        }
+      });
+    }
   };
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
-  renderNotes(selectedCategory) {
-    if (!_.isEmpty(this.props.notes)) {
-      return this.props.notes
-        .reverse()
-        .map(({ content, _id, tags, category }) => {
-          if (category === selectedCategory) {
-            return (
-              <Note
-                key={_id}
-                history={this.props.history}
-                id={_id}
-                content={content}
-                tags={tags}
-                category={category}
-              />
-            );
-          } else {
-            return null;
-          }
-        });
+  const renderNotesLength = (selectedCategory) => {
+    if (!_.isEmpty(notes)) {
+      return notes.filter((e) => e.category === selectedCategory).length;
     }
-  }
-  renderNotesLength(selectedCategory) {
-    if (!_.isEmpty(this.props.notes)) {
-      return this.props.notes.filter((e) => e.category === selectedCategory)
-        .length;
-    }
-  }
-  render() {
-    //TODO: what is a good way to deal with auth redirects?
-    if (this.props.auth || this.props.user) {
-      return (
+  };
+  //TODO: what is a good way to deal with auth redirects?
+  if (auth || user) {
+    return (
+      <div>
+        <ButtonGroup className="center">
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("in-tray")}
+            className="btn-small orange darken-2"
+          >
+            In Tray
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("next")}
+            className="btn-small orange darken-2"
+          >
+            Next
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("waiting")}
+            className="btn-small orange darken-2"
+          >
+            Waiting
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("maybe")}
+            className="btn-small orange darken-2"
+          >
+            Maybe
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("done")}
+            className="btn-small orange darken-2"
+          >
+            Done
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => changeCategory("reference")}
+            className="btn-small orange darken-2"
+          >
+            Reference
+          </Button>
+        </ButtonGroup>
         <div>
-          <ButtonGroup className="center">
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("in-tray")}
-              className="btn-small orange darken-2"
-            >
-              In Tray
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("next")}
-              className="btn-small orange darken-2"
-            >
-              Next
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("waiting")}
-              className="btn-small orange darken-2"
-            >
-              Waiting
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("maybe")}
-              className="btn-small orange darken-2"
-            >
-              Maybe
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("done")}
-              className="btn-small orange darken-2"
-            >
-              Done
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={() => this.changeCategory("reference")}
-              className="btn-small orange darken-2"
-            >
-              Reference
-            </Button>
-          </ButtonGroup>
-          <div>
-            <div className="button">
-              <Typography variant="h6" className="button__text__left">
-                {this.state.category.toUpperCase()} (
-                {this.renderNotesLength(this.state.category)})
-              </Typography>
-              {this.state.category === "in-tray" ? (
-                <Button
-                  component={RouterLink}
-                  to="/notes/organize"
-                  variant="contained"
-                  color="primary"
-                >
-                  Organize
-                </Button>
-              ) : null}
-            </div>
-            <hr />
-            {this.state.category === "in-tray" ? (
-              <NotesNew history={this.props.history} />
+          <div className="button">
+            <Typography variant="h6" className="button__text__left">
+              {category.toUpperCase()} ({renderNotesLength(category)})
+            </Typography>
+            {category === "in-tray" ? (
+              <Button
+                component={RouterLink}
+                to="/notes/organize"
+                variant="contained"
+                color="primary"
+              >
+                Organize
+              </Button>
             ) : null}
-            {this.renderNotes(this.state.category)}
           </div>
+          <hr />
+          {category === "in-tray" ? <NotesNew history={history} /> : null}
+          {renderNotes(category)}
         </div>
-      );
-    } else if (this.props.auth === null && this.props.user === null) {
-      return <Loader />;
-    } else if (!this.props.auth && !this.props.auth) {
-      return <>{this.props.history.push("/login")}</>;
-    }
+      </div>
+    );
+  } else if (auth === null && user === null) {
+    return <Loader />;
+  } else if (!auth && !auth) {
+    return <>{history.push("/login")}</>;
   }
 }
 
-const mapStateToProps = ({ auth, user, notes }) => {
-  return { auth, user, notes: Object.values(notes) };
-};
-
-export default connect(mapStateToProps, { fetchNotes })(NotesShow);
+export default connect(null, { fetchNotes })(NotesShow);

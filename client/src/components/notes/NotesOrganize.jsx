@@ -12,7 +12,7 @@ function NotesOrganize({ fetchNotes, history }) {
   const notes = useSelector((state) => Object.values(state.notes));
   useEffect(() => {
     fetchNotes();
-  });
+  }, []);
   const renderNotes = () => {
     if (!_.isEmpty(notes)) {
       return notes.reverse().map(({ content, _id, tags, category }) => {
