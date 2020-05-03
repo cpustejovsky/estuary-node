@@ -53,7 +53,7 @@ class FreeWriteShow extends Component {
     } else if (this.props.auth === null && this.props.user === null) {
       return <Loader />;
     } else if (!this.props.auth && !this.props.auth) {
-      return <>{this.props.history.push("/auth")}</>;
+      return <>{this.props.history.push("/login")}</>;
     }
   }
 }
