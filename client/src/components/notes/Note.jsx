@@ -91,7 +91,7 @@ const renderEdit = (editShow, id) => {
   };
   // console.log(props);
   return (
-    <Card raised key={props.id} className="margin-top padding-horizontal">
+    <Card raised key={props.id} className="margin-top padding-horizontal notes">
       <CardContent>
         <p>{!editShow ? editedContent || props.content : null}</p>
         {renderEdit(editShow, props.id)}
