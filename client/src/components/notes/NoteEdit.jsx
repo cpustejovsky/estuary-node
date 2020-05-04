@@ -7,7 +7,6 @@ import { Button, TextareaAutosize } from "@material-ui/core";
 function NoteEdit(props) {
   const submitValues = (values) => {
     props.updateNote(props.id, values.content);
-    props.updateContent(values.content);
     props.closeEditView();
   };
 
@@ -30,7 +29,7 @@ function NoteEdit(props) {
               name="content"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={props.editedContent || values.content}
+              value={values.content}
             ></TextareaAutosize>
             <Button type="submit" disabled={isSubmitting}>
               Update

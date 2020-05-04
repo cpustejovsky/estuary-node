@@ -8,10 +8,8 @@ import { Button, Card, CardContent, CardActions } from "@material-ui/core";
 function Note(props) {
   const [deleteShow, setDeleteShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
-  const [editedContent, setEditedContent] = useState("");
 
   const toggleEdit = () => setEditShow(!editShow);
-  const updateContent = (newContent) => setEditedContent(newContent);
 
   const closeEditView = () => setEditShow(false);
   const renderEdit = (editShow, id) => {
@@ -20,8 +18,6 @@ function Note(props) {
         <NoteEdit
           id={props.id}
           content={props.content}
-          editedContent={editedContent}
-          updateContent={updateContent}
           closeEditView={closeEditView}
         />
       );
@@ -96,7 +92,7 @@ function Note(props) {
         <p>
           <strong>{props.category}</strong>
         </p>
-        <p>{!editShow ? editedContent || props.content : null}</p>
+        <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
       <CardActions>{renderButtons()}</CardActions>
