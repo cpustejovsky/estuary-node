@@ -53,7 +53,6 @@ export const fetchNotes = () => async (dispatch) => {
 
 export const createNote = (values) => async (dispatch) => {
   const response = await axios.post("/api/notes", values);
-  // console.log(response.data.content.split("\n"))
   dispatch({
     type: CREATE_NOTE,
     payload: response.data,
@@ -77,7 +76,10 @@ export const deleteNote = (noteId) => async (dispatch) => {
 };
 
 export const categorizeNote = (noteId, category) => async (dispatch) => {
+  console.log(noteId)
+  console.log(category)
   const response = await axios.patch(`/api/notes/${category}`, { noteId });
+  // console.log(response)
   dispatch({
     type: CATEGORIZE_NOTE,
     payload: response.data,

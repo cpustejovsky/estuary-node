@@ -22,18 +22,25 @@ module.exports = (app) => {
   app.patch("/api/notes", requireLogin, async (req, res) => {
     const updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
-      { content: req.body.content }
+      { content: req.body.content },
+      { new: true }
     );
     const response = await updatedNote.save();
     res.send(response);
   });
 
   app.patch("/api/notes/:category", requireLogin, async (req, res) => {
+    console.log(req.params.category.toLowerCase());
     const updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
-      { category: req.params.category.toLowerCase() }
+      {
+        category: req.params.category.toLowerCase(),
+        content: "Testing to see if this route is working?",
+      },
+      { new: true }
     );
     const response = await updatedNote.save();
+    console.log(response);
     res.send(response);
   });
 

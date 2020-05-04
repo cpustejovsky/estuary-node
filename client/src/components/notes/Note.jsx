@@ -13,8 +13,8 @@ function Note(props) {
   const toggleEdit = () => setEditShow(!editShow);
   const updateContent = (newContent) => setEditedContent(newContent);
 
-  const closeEditView = () => setEditShow(false)
-const renderEdit = (editShow, id) => {
+  const closeEditView = () => setEditShow(false);
+  const renderEdit = (editShow, id) => {
     if (editShow && id === id) {
       return (
         <NoteEdit
@@ -93,6 +93,9 @@ const renderEdit = (editShow, id) => {
   return (
     <Card raised key={props.id} className="margin-top padding-horizontal notes">
       <CardContent>
+        <p>
+          <strong>{props.category}</strong>
+        </p>
         <p>{!editShow ? editedContent || props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
