@@ -30,28 +30,29 @@ module.exports = (app) => {
   });
 
   app.patch("/api/notes/:category", requireLogin, async (req, res) => {
-    if (req.params.category.toLowerCase() === "done") {
-      const updatedNote = await Note.findOneAndUpdate(
-        { _user: req.user.id, _id: req.body.noteId },
-        {
-          category: req.params.category.toLowerCase(),
-          completed: new Date(),
-        },
-        { new: true }
-      );
-      const response = await updatedNote.save();
-      res.send(response);
-    } else {
-      const updatedNote = await Note.findOneAndUpdate(
-        { _user: req.user.id, _id: req.body.noteId },
-        {
-          category: req.params.category.toLowerCase(),
-        },
-        { new: true }
-      );
-      const response = await updatedNote.save();
-      res.send(response);
+    let category = req.params.category;
+    let updatedData = {
+      category: category.toLowerCase(),
+    };
+    let UpdatedNote;
+    let response;
+    switch (category.toLowerCase()) {
+      case "done":
+        updatedData.completed = new Date();
+        break;
+      case "waiting":
+        updatedData.dependsOn = req.body.dependsOn || null;
+        break;
+      default:
+        break;
     }
+    updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      updatedData,
+      { new: true }
+    );
+    response = await updatedNote.save();
+    res.send(response);
   });
 
   //await axios.delete("/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
