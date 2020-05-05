@@ -34,7 +34,6 @@ module.exports = (app) => {
     let updatedData = {
       category: category.toLowerCase(),
     };
-    let UpdatedNote;
     let response;
     switch (category.toLowerCase()) {
       case "done":
@@ -46,7 +45,7 @@ module.exports = (app) => {
       default:
         break;
     }
-    updatedNote = await Note.findOneAndUpdate(
+    let updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
       updatedData,
       { new: true }
