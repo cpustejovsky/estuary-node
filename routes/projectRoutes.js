@@ -8,6 +8,11 @@ module.exports = (app) => {
     res.send(userProjects);
   });
 
+  app.get("/api/projects/:id", requireLogin, async (req, res) => {
+    const userProject = await Project.find({ _user: req.user.id, _id: req.params.id });
+    res.send(userProject);
+  });
+
   app.post("/api/projects", requireLogin, async (req, res) => {
     const newNote = new Note({
       content: req.body.content,
