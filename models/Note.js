@@ -3,11 +3,12 @@ const DependentSchema = require("./Dependent");
 const { Schema } = mongoose;
 const NoteSchema = new Schema({
   content: String,
-  category: { type: String, default: "in-tray"},
+  category: { type: String, default: "in-tray" },
   tags: [String],
   dueDate: Date,
   remindDate: Date,
   dependsOn: [DependentSchema],
+  completed: { type: Date, default: null },
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

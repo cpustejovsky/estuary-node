@@ -8,6 +8,7 @@ const ProjectSchema = new Schema({
   dueDate: Date,
   remindDate: Date,
   nextActions: [NoteSchema],
+  completed: { type: Date, default: null },
   _user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
