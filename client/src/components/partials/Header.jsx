@@ -53,9 +53,9 @@ function MobileMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem component={RouterLink} to="/">
+        {/* <MenuItem component={RouterLink} to="/">
           <Typography variant="h6">Estuary</Typography>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
           About
         </MenuItem>
@@ -69,7 +69,11 @@ function MobileMenu() {
         <MenuItem component={RouterLink} to="/notes" onClick={handleClose}>
           Notes
         </MenuItem>
-        <MenuItem component={RouterLink} to="/projects/list" onClick={handleClose}>
+        <MenuItem
+          component={RouterLink}
+          to="/projects/list"
+          onClick={handleClose}
+        >
           Projects
         </MenuItem>
       </Menu>
@@ -118,9 +122,23 @@ export default function Header() {
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <Hidden mdUp>
+            <Typography
+              component={RouterLink}
+              to="/"
+              style={{ color: "white", textDecoration: "none" }}
+              variant="h6"
+            >
+              Estuary
+            </Typography>
             <IconButton
+              style={{ margin: "0" }}
               edge="start"
               className={classes.menuButton}
               color="inherit"
@@ -134,7 +152,12 @@ export default function Header() {
               <Typography
                 component={RouterLink}
                 to="/"
-                style={{ color: "white", textDecoration: "none", paddingRight: "20px" }}
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  paddingRight: "20px",
+                  justifySelf: "center",
+                }}
                 variant="h6"
               >
                 Estuary
