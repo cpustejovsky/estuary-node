@@ -16,6 +16,10 @@ import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
 import Warning from "./partials/Warning";
 import Test from "./Test";
+import ProjectShow from "./projects/ProjectShow";
+import ProjectsShow from "./projects/ProjectsShow";
+import ProjectNew from "./projects/ProjectNew";
+import ProjectEdit from "./projects/ProjectEdit";
 
 function App({ fetchUser }) {
   useEffect(() => {
@@ -36,7 +40,10 @@ function App({ fetchUser }) {
           <Route path="/notes/organize" exact component={NotesOrganize} />
           <Route path="/user" exact component={UserShow} />
           <Route path="/user/edit" exact component={UserEdit} />
-          <Route path="/test" exact component={Test} />
+          <Route path="/projects/list" exact component={ProjectsShow} />
+          <Route path="/projects/new" exact component={ProjectNew} />
+          <Route path="/projects/show" exact component={ProjectShow} />
+          <Route path="/projects/edit" exact component={ProjectEdit} />
         </Switch>
       </div>
       <Footer />
