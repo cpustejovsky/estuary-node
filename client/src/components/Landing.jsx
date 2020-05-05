@@ -8,7 +8,12 @@ export default function Landing() {
       <h2>Estuary</h2>
       <strong>Where all your streams of thought converge.</strong>
       <p>
-        <Button component={RouterLink} to="/about" variant="contained" color="primary">
+        <Button
+          component={RouterLink}
+          to="/about"
+          variant="contained"
+          color="primary"
+        >
           Learn More
         </Button>
       </p>

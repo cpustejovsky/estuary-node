@@ -2,14 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import {
+  Link,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Hidden,
+} from "@material-ui/core/";
+
 import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SimpleMenu() {
+function MobileMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -49,8 +53,8 @@ function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem component={RouterLink} to="/" onClick={handleClose}>
-          Home
+        <MenuItem component={RouterLink} to="/">
+          <Typography variant="h6">Estuary</Typography>
         </MenuItem>
         <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
           About
@@ -112,24 +116,70 @@ export default function Header() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            {SimpleMenu()}
-          </IconButton>
-          <Typography
-            component={RouterLink}
-            to="/"
-            style={{ color: "white", textDecoration: "none" }}
-            variant="h6"
-            className={classes.title}
-          >
-            Estuary
-          </Typography>
-          {renderAuth()}
+          <Hidden mdUp>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              {MobileMenu()}
+            </IconButton>
+          </Hidden>
+          <Hidden smDown>
+            <div className={classes.title}>
+              <Typography
+                component={RouterLink}
+                to="/"
+                style={{ color: "white", textDecoration: "none", paddingRight: "20px" }}
+                variant="h6"
+              >
+                Estuary
+              </Typography>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/about"
+              >
+                About
+              </Button>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/free-writes"
+              >
+                Free Writes
+              </Button>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/notes"
+              >
+                Notes
+              </Button>
+              {/* <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/about"
+              >
+                Next Actions
+              </Button> */}
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/projects/show"
+              >
+                Projects
+              </Button>
+            </div>
+
+            {renderAuth()}
+          </Hidden>
         </Toolbar>
       </AppBar>
     </div>
