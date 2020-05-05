@@ -8,11 +8,10 @@ import { Button, Card, CardContent, Typography } from "@material-ui/core";
 function FreeWriteShow({ fetchFreeWrites, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const notes = useSelector((state) => state.notes);
   const freeWrites = useSelector((state) => state.freeWrites);
   useEffect(() => {
     fetchFreeWrites();
-  });
+  }, []);
   const renderFreeWrites = () => {
     if (freeWrites.length > 0) {
       return freeWrites.map(({ content, _id, title }) => {
