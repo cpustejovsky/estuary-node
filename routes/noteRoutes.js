@@ -30,16 +30,28 @@ module.exports = (app) => {
   });
 
   app.patch("/api/notes/:category", requireLogin, async (req, res) => {
-    const updatedNote = await Note.findOneAndUpdate(
-      { _user: req.user.id, _id: req.body.noteId },
-      {
-        category: req.params.category.toLowerCase(),
-        content: "Testing to see if this route is working?",
-      },
-      { new: true }
-    );
-    const response = await updatedNote.save();
-    res.send(response);
+    if (req.params.category.toLowerCase() === "done") {
+      const updatedNote = await Note.findOneAndUpdate(
+        { _user: req.user.id, _id: req.body.noteId },
+        {
+          category: req.params.category.toLowerCase(),
+          completed: new Date(),
+        },
+        { new: true }
+      );
+      const response = await updatedNote.save();
+      res.send(response);
+    } else {
+      const updatedNote = await Note.findOneAndUpdate(
+        { _user: req.user.id, _id: req.body.noteId },
+        {
+          category: req.params.category.toLowerCase(),
+        },
+        { new: true }
+      );
+      const response = await updatedNote.save();
+      res.send(response);
+    }
   });
 
   //await axios.delete("/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})
