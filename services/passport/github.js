@@ -23,11 +23,9 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       const existingUser = await User.findOne({ githubId: profile.id });
-      console.log(existingUser);
       if (existingUser) {
         done(null, existingUser);
       } else {
-        console.log(profile);
         const newUser = await new User({
           githubId: profile.id,
           email: profile.emails[0].value,

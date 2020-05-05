@@ -15,8 +15,6 @@ module.exports = (app) => {
       console.log("OOPS!")
       console.log(error)
     }
-    console.log(req.body)
-
   });
 
   app.delete("/user", (req, res) => {

@@ -85,7 +85,6 @@ function Note(props) {
       );
     }
   };
-  // console.log(props);
   return (
     <Card raised key={props.id} className="margin-top padding-horizontal notes">
       <CardContent>

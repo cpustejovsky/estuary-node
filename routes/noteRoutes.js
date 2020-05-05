@@ -30,7 +30,6 @@ module.exports = (app) => {
   });
 
   app.patch("/api/notes/:category", requireLogin, async (req, res) => {
-    console.log(req.params.category.toLowerCase());
     const updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
       {
@@ -40,7 +39,6 @@ module.exports = (app) => {
       { new: true }
     );
     const response = await updatedNote.save();
-    console.log(response);
     res.send(response);
   });
 

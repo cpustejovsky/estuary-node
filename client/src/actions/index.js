@@ -76,10 +76,7 @@ export const deleteNote = (noteId) => async (dispatch) => {
 };
 
 export const categorizeNote = (noteId, category) => async (dispatch) => {
-  console.log(noteId)
-  console.log(category)
   const response = await axios.patch(`/api/notes/${category}`, { noteId });
-  // console.log(response)
   dispatch({
     type: CATEGORIZE_NOTE,
     payload: response.data,

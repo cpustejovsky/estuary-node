@@ -38,7 +38,6 @@ function FreeWritesNew({history, createFreeWrite}) {
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            console.log(values);
             submitValues(values);
             setSubmitting(false);
           }, 400);
