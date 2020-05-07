@@ -9,51 +9,58 @@ module.exports = (app) => {
   });
 
   app.get("/api/projects/:id", requireLogin, async (req, res) => {
-    const userProject = await Project.find({ _user: req.user.id, _id: req.params.id });
+    const userProject = await Project.find({
+      _user: req.user.id,
+      _id: req.params.id,
+    });
     res.send(userProject);
   });
 
   app.post("/api/projects", requireLogin, async (req, res) => {
-    const newNote = new Note({
-      content: req.body.content,
+    const newProject = new Project({
+      title: req.body.title,
+      description: req.body.description,
+      tags: req.body.tags,
+      dueDate: req.body.dueDate,
+      remindDate: req.body.remindDate,
       _user: req.user.id,
-      // tags: req.body.tags,
     });
-    const response = await newNote.save();
+    const response = await newProject.save();
     res.send(response);
   });
+
   //TODO: is this the most efficient way to do update and destroy?
   app.patch("/api/projects", requireLogin, async (req, res) => {
-    const updatedNote = await Note.findOneAndUpdate(
+    const updatedProject = await Project.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.projectId },
       {
         title: req.body.title,
-        descriptions: req.body.descriptions,
+        description: req.body.description,
         tags: req.body.tags,
         dueDate: req.body.dueDate,
         remindDate: req.body.remindDate,
       },
       { new: true }
     );
-    const response = await updatedNote.save();
+    const response = await updatedProject.save();
     res.send(response);
   });
 
   app.patch("/api/projects/done", requireLogin, async (req, res) => {
-    const updatedNote = await Note.findOneAndUpdate(
-      { _user: req.user.id, _id: req.body.projectId },
+    const updatedProject = await Project.updateOne(
+      { _user: req.user.id, _id: "5eb43ff6abefe5c800526116" },
       {
-        completed: new Date(),
         $set: { "nextActions.$.completed": new Date() },
+        completed: new Date(),
       },
       { new: true }
     );
-    const response = await updatedNote.save();
+    const response = await updatedProject.save();
     res.send(response);
   });
 
   app.delete("/api/projects", requireLogin, async (req, res) => {
-    await Note.findOneAndDelete({
+    await Project.findOneAndDelete({
       _user: req.user.id,
       _id: req.body.projectId,
     });
