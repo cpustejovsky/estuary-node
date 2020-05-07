@@ -32,6 +32,7 @@ function App({ fetchUser }) {
       <div className="site">
         <Switch>
           <Route path="/" exact component={Landing} />
+          <Route path="/test" exact component={Test} />
           <Route path="/about" exact component={About} />
           <Route path="/login" exact component={Auth} />
           <Route path="/free-writes" exact component={FreeWritesShow} />
