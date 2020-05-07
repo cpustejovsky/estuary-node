@@ -45,6 +45,7 @@ require("./routes/authRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/freeWriteRoutes")(app);
 require("./routes/noteRoutes")(app);
+require("./routes/projectRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   //serve up production assets
