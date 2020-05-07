@@ -10,6 +10,7 @@ const NoteSchema = new Schema({
   dependsOn: [DependentSchema],
   completed: { type: Date, default: null },
   _user: { type: Schema.Types.ObjectId, ref: "User" },
+  _project: { type: Schema.Types.ObjectId, ref: "Project" },
 });
 
 mongoose.model("notes", NoteSchema);
