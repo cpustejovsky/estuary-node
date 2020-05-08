@@ -29,9 +29,9 @@ export default function Todos() {
         <Todo complete text="Implement Projects model and routes" />
         <Todo text="Refactor Organization flow (full GTD process, yes or no)" />
         <Todo complete subtodo text="Simulate multi-step form" />
-        <Todo subtodo text='Set up "Is it actionable? No" flow' />
+        <Todo complete subtodo text='Set up "Is it actionable? No" flow' />
+        <Todo complete subtodo text='Set up "Can you do it in 2 minutes? Yes" flow' />
         <Todo subtodo text="Refactor Note component for waiting and done" />
-        <Todo subtodo text='Set up "Can you do it in 2 minutes? Yes" flow' />
         <Todo subtodo text='Set up "Is this a Project? Yes" flow' />
         <Todo subtodo text='Set up "...apart of current project? Yes" flow' />
         <Todo subtodo text="set up tag creation, edit, and display" />

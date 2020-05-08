@@ -1,9 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import _ from "lodash";
+import { fetchNotes } from "../../../actions";
+import Note from "../Note";
 import Actionable from "./Actionable";
 import NotActionable from "./NotActionable";
 import TwoMinutes from "./TwoMinutes"
 import Timer from "./Timer"
-export default function NotesOrganizeTest() {
+function NotesOrganize({fetchNotes, history}) {
+  const renderNote = () => {
+    if (!_.isEmpty(notes)) {
+      let inTray = notes.reverse().map(({ content, _id, tags, category }) => {
+        if (category === "in-tray") {
+          return (
+            <Note
+              key={_id}
+              history={history}
+              id={_id}
+              content={content}
+              tags={tags}
+              category={category}
+              organize={true}
+            />
+          );
+        } else {
+          return null;
+        }
+      });
+      return inTray[0]
+    }
+  };
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const notes = useSelector((state) => Object.values(state.notes));
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
@@ -14,9 +47,11 @@ export default function NotesOrganizeTest() {
   const showTwoMinutes = () => setTwoMinutesShow(true);
   const hideTwoMinutes = () => setTwoMinutesShow(false);
   const showTimer = () => setTimerShow(true);
+
   return (
     <div>
       <h1>Organize Notes</h1>
+      {renderNote()}
       <Actionable
         show={actionableShow}
         hideActionable={hideActionable}
@@ -29,3 +64,5 @@ export default function NotesOrganizeTest() {
     </div>
   );
 }
+
+export default connect(null, { fetchNotes })(NotesOrganize);

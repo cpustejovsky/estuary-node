@@ -42,23 +42,7 @@ function Note(props) {
   };
   const renderButtons = () => {
     if (props.organize) {
-      return (
-        <>
-          {" "}
-          <Button onClick={() => props.categorizeNote(props.id, "next")}>
-            next
-          </Button>
-          <Button onClick={() => props.categorizeNote(props.id, "waiting")}>
-            waiting
-          </Button>
-          <Button onClick={() => props.categorizeNote(props.id, "maybe")}>
-            maybe
-          </Button>
-          <Button onClick={() => props.categorizeNote(props.id, "reference")}>
-            reference
-          </Button>
-        </>
-      );
+      return null;
     } else if (props.category === "in-tray" || props.category === "reference") {
       return (
         <>
@@ -88,9 +72,9 @@ function Note(props) {
   return (
     <Card raised key={props.id} className="margin-top padding-horizontal notes">
       <CardContent>
-        <p>
+        {/* <p>
           <strong>{props.category}</strong>
-        </p>
+        </p> */}
         <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
