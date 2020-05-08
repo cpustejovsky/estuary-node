@@ -5,9 +5,34 @@ import { fetchNotes } from "../../../actions";
 import Note from "../Note";
 import Actionable from "./Actionable";
 import NotActionable from "./NotActionable";
-import TwoMinutes from "./TwoMinutes"
-import Timer from "./Timer"
-function NotesOrganize({fetchNotes, history}) {
+import TwoMinutes from "./TwoMinutes";
+import Timer from "./Timer";
+function NotesOrganize({ fetchNotes, history }) {
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const notes = useSelector((state) => Object.values(state.notes));
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+  const [actionableShow, setActionableShow] = useState(true);
+  const [notActionableShow, setNotActionableShow] = useState(false);
+  const [twoMinutesShow, setTwoMinutesShow] = useState(false);
+  const [timerShow, setTimerShow] = useState(false);
+
+  const hideActionable = () => setActionableShow(false);
+  const showNotActionable = () => setNotActionableShow(true);
+  const showTwoMinutes = () => setTwoMinutesShow(true);
+  const hideTwoMinutes = () => setTwoMinutesShow(false);
+  const showTimer = () => setTimerShow(true);
+  const noteId = () => {
+    if (!_.isEmpty(notes)) {
+      return notes
+        .reverse()
+        .map(({ _id, category }) =>
+          category === "in-tray" ? { id: _id } : null
+        )[0].id;
+    }
+  };
   const renderNote = () => {
     if (!_.isEmpty(notes)) {
       let inTray = notes.reverse().map(({ content, _id, tags, category }) => {
@@ -27,27 +52,10 @@ function NotesOrganize({fetchNotes, history}) {
           return null;
         }
       });
-      return inTray[0]
+      return inTray[0];
     }
   };
-  const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
-  const notes = useSelector((state) => Object.values(state.notes));
-  useEffect(() => {
-    fetchNotes();
-  }, []);
-
-  const [actionableShow, setActionableShow] = useState(true);
-  const [notActionableShow, setNotActionableShow] = useState(false);
-  const [twoMinutesShow, setTwoMinutesShow] = useState(false);
-  const [timerShow, setTimerShow] = useState(false);
-
-  const hideActionable = () => setActionableShow(false);
-  const showNotActionable = () => setNotActionableShow(true);
-  const showTwoMinutes = () => setTwoMinutesShow(true);
-  const hideTwoMinutes = () => setTwoMinutesShow(false);
-  const showTimer = () => setTimerShow(true);
-
+  console.log(noteId());
   return (
     <div>
       <h1>Organize Notes</h1>
@@ -59,7 +67,11 @@ function NotesOrganize({fetchNotes, history}) {
         showTwoMinutes={showTwoMinutes}
       />
       <NotActionable show={notActionableShow} />
-      <TwoMinutes show={twoMinutesShow} showTimer={showTimer} hideTwoMinutes={hideTwoMinutes} />
+      <TwoMinutes
+        show={twoMinutesShow}
+        showTimer={showTimer}
+        hideTwoMinutes={hideTwoMinutes}
+      />
       <Timer show={timerShow} />
     </div>
   );
