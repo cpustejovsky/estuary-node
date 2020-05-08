@@ -13,6 +13,7 @@ module.exports = (app) => {
       _user: req.user.id,
       _id: req.params.id,
     });
+    console.log(userProject.nextActions);
     res.send(userProject);
   });
 
@@ -47,12 +48,10 @@ module.exports = (app) => {
   });
 
   app.patch("/api/projects/done", requireLogin, async (req, res) => {
-    const updatedProject = await Project.updateOne(
-      { _user: req.user.id, _id: "5eb43ff6abefe5c800526116" },
-      {
-        $set: { "nextActions.$.completed": new Date() },
-        completed: new Date(),
-      },
+    //TODO: need to check and make sure that all next actions are have a completed value
+    const updatedProject = await Project.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.projectId },
+      { completed: new Date() },
       { new: true }
     );
     const response = await updatedProject.save();
