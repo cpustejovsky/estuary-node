@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-const Timer = ({show}) => {
+const Timer = ({ show, toggleTimer, toggleActionable }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -18,7 +18,7 @@ const Timer = ({show}) => {
       clearInterval(interval);
     } else if (isActive && seconds >= 120) {
       //TODO: change view after two minutes instead of alert
-      alert("two minutes has passed, you should mark this as done and move on")
+      alert("two minutes has passed, you should mark this as done and move on");
     }
     return () => clearInterval(interval);
   }, [isActive, seconds]);
@@ -44,6 +44,8 @@ const Timer = ({show}) => {
             className="button"
             onClick={() => {
               alert("you're finished!");
+              toggleTimer();
+              toggleActionable();
             }}
           >
             Done

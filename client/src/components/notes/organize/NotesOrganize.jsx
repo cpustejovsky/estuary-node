@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
-import { fetchNotes } from "../../../actions";
+import { fetchNotes, categorizeNote, deleteNote } from "../../../actions";
 import Note from "../Note";
 import Actionable from "./Actionable";
 import NotActionable from "./NotActionable";
 import TwoMinutes from "./TwoMinutes";
 import Timer from "./Timer";
-function NotesOrganize({ fetchNotes, history }) {
+function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
   useEffect(() => {
     fetchNotes();
   }, []);
-  const [actionableShow, setActionableShow] = useState(true);
-  const [notActionableShow, setNotActionableShow] = useState(false);
-  const [twoMinutesShow, setTwoMinutesShow] = useState(false);
-  const [timerShow, setTimerShow] = useState(false);
-
-  const hideActionable = () => setActionableShow(false);
-  const showNotActionable = () => setNotActionableShow(true);
-  const showTwoMinutes = () => setTwoMinutesShow(true);
-  const hideTwoMinutes = () => setTwoMinutesShow(false);
-  const showTimer = () => setTimerShow(true);
   const MapInTrayArray = () => {
     if (!_.isEmpty(notes)) {
       return notes.reverse().map(({ content, _id, tags, category }) => {
@@ -46,7 +36,7 @@ function NotesOrganize({ fetchNotes, history }) {
   const renderNote = () => {
     if (inTrayArray) {
       if (!_.isEmpty(notes)) {
-        let inTray = notes.reverse().map((note) => {
+        let inTray = notes.map((note) => {
           if (note.category === "in-tray") {
             return (
               <Note
@@ -67,26 +57,49 @@ function NotesOrganize({ fetchNotes, history }) {
       }
     }
   };
-  console.log(noteId);
+  const [actionableShow, setActionableShow] = useState(true);
+  const [notActionableShow, setNotActionableShow] = useState(false);
+  const [twoMinutesShow, setTwoMinutesShow] = useState(false);
+  const [timerShow, setTimerShow] = useState(false);
+
+  const toggleActionable = () => setActionableShow(!actionableShow);
+  const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
+  const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
+  const toggleTimer = () => setTimerShow(!timerShow);
+
+
   return (
     <div>
       <h1>Organize Notes</h1>
       {renderNote()}
       <Actionable
         show={actionableShow}
-        hideActionable={hideActionable}
-        showNotActionable={showNotActionable}
-        showTwoMinutes={showTwoMinutes}
+        toggleActionable={toggleActionable}
+        toggleNotActionable={toggleNotActionable}
+        toggleTwoMinutes={toggleTwoMinutes}
       />
-      <NotActionable show={notActionableShow} />
+      <NotActionable
+        show={notActionableShow}
+        categorizeNote={categorizeNote}
+        deleteNote={deleteNote}
+        noteId={noteId}
+        toggleActionable={toggleActionable}
+        toggleNotActionable={toggleNotActionable}
+      />
       <TwoMinutes
         show={twoMinutesShow}
-        showTimer={showTimer}
-        hideTwoMinutes={hideTwoMinutes}
+        toggleTimer={toggleTimer}
+        toggleTwoMinutes={toggleTwoMinutes}
       />
-      <Timer show={timerShow} />
+      <Timer
+        show={timerShow}
+        toggleTimer={toggleTimer}
+        toggleActionable={toggleActionable}
+      />
     </div>
   );
 }
 
-export default connect(null, { fetchNotes })(NotesOrganize);
+export default connect(null, { fetchNotes, deleteNote, categorizeNote })(
+  NotesOrganize
+);

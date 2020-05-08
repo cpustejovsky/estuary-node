@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 
-export default function NotActionable({ show }) {
+export default function NotActionable({ show, noteId, categorizeNote, deleteNote }) {
   if (show) {
     return (
       <>
@@ -11,7 +11,7 @@ export default function NotActionable({ show }) {
       TODO: send notes to reference when user clicks Reference
       */}
         <h2>Then what is it?</h2>
-        <Button>Trash</Button>
+        <Button onClick={()=>deleteNote(noteId)}>Trash</Button>
         <Button>Someday/Maybe</Button>
         <Button>Reference</Button>
       </>

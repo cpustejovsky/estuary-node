@@ -3,9 +3,9 @@ import { Button } from "@material-ui/core";
 
 export default function Actionable({
   show,
-  hideActionable,
-  showNotActionable,
-  showTwoMinutes,
+  toggleActionable,
+  toggleNotActionable,
+  toggleTwoMinutes,
 }) {
   if (show) {
     return (
@@ -13,16 +13,16 @@ export default function Actionable({
         <h2>Is it actionable?</h2>
         <Button
           onClick={() => {
-            hideActionable();
-            showTwoMinutes();
+            toggleActionable();
+            toggleTwoMinutes();
           }}
         >
           Yes
         </Button>
         <Button
           onClick={() => {
-            hideActionable();
-            showNotActionable();
+            toggleActionable();
+            toggleNotActionable();
           }}
         >
           No
