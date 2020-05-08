@@ -93,6 +93,8 @@ if (inTrayArray && inTrayArray[0] !== null) {
       />
       <Timer
         show={timerShow}
+        categorizeNote={categorizeNote}
+        noteId={noteId}
         toggleTimer={toggleTimer}
         toggleActionable={toggleActionable}
       />

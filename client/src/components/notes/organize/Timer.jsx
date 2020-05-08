@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-const Timer = ({ show, toggleTimer, toggleActionable }) => {
+const Timer = ({ show, toggleTimer, toggleActionable, categorizeNote, noteId }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -44,6 +44,7 @@ const Timer = ({ show, toggleTimer, toggleActionable }) => {
             className="button"
             onClick={() => {
               alert("you're finished!");
+              categorizeNote(noteId, "done");
               toggleTimer();
               toggleActionable();
             }}
