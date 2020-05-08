@@ -18,17 +18,39 @@ export default function NotActionable({
       TODO: send notes to reference when user clicks Reference
       */}
         <h2>Then what is it?</h2>
-        <Button
-          onClick={() => {
-            deleteNote(noteId);
-            toggleActionable();
-            toggleActionable();
-          }}
-        >
-          Trash
-        </Button>
-        <Button>Someday/Maybe</Button>
-        <Button>Reference</Button>
+        <div>
+          <Button
+            onClick={() => {
+              deleteNote(noteId);
+              toggleActionable();
+              toggleActionable();
+            }}
+          >
+            It's Trash
+          </Button>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              categorizeNote(noteId, "maybe");
+              toggleActionable();
+              toggleActionable();
+            }}
+          >
+            It's something I might want to look at later
+          </Button>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              categorizeNote(noteId, "reference");
+              toggleActionable();
+              toggleActionable();
+            }}
+          >
+            It's Reference Material
+          </Button>
+        </div>
       </>
     );
   } else {
