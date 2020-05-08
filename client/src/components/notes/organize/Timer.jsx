@@ -10,13 +10,14 @@ const Timer = ({show}) => {
 
   useEffect(() => {
     let interval = null;
-    if (isActive && seconds < 121) {
+    if (isActive && seconds < 120) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
       }, 1000);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
-    } else if (!isActive && seconds >= 121) {
+    } else if (isActive && seconds >= 120) {
+      //TODO: change view after two minutes instead of alert
       alert("two minutes has passed, you should mark this as done and move on")
     }
     return () => clearInterval(interval);
