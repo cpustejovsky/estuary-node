@@ -32,7 +32,7 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
     }
   };
   const inTrayArray = MapInTrayArray();
-  let noteId = inTrayArray ? inTrayArray[0].id : null;
+  let noteId = inTrayArray && inTrayArray[0] !== null ? inTrayArray[0].id : null;
   const renderNote = () => {
     if (inTrayArray) {
       if (!_.isEmpty(notes)) {
@@ -67,7 +67,7 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
   const toggleTimer = () => setTimerShow(!timerShow);
 
-
+if (inTrayArray && inTrayArray[0] !== null) {
   return (
     <div>
       <h1>Organize Notes</h1>
@@ -98,6 +98,15 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
       />
     </div>
   );
+} else {
+  return (
+    <div>
+      <h1>Congratulations!</h1>
+      <h2>You're done organizing</h2>
+    </div>
+  )
+}
+
 }
 
 export default connect(null, { fetchNotes, deleteNote, categorizeNote })(
