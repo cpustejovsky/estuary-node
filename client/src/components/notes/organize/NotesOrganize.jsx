@@ -24,38 +24,50 @@ function NotesOrganize({ fetchNotes, history }) {
   const showTwoMinutes = () => setTwoMinutesShow(true);
   const hideTwoMinutes = () => setTwoMinutesShow(false);
   const showTimer = () => setTimerShow(true);
-  const noteId = () => {
+  const MapInTrayArray = () => {
     if (!_.isEmpty(notes)) {
-      return notes
-        .reverse()
-        .map(({ _id, category }) =>
-          category === "in-tray" ? { id: _id } : null
-        )[0].id;
-    }
-  };
-  const renderNote = () => {
-    if (!_.isEmpty(notes)) {
-      let inTray = notes.reverse().map(({ content, _id, tags, category }) => {
+      return notes.reverse().map(({ content, _id, tags, category }) => {
         if (category === "in-tray") {
-          return (
-            <Note
-              key={_id}
-              history={history}
-              id={_id}
-              content={content}
-              tags={tags}
-              category={category}
-              organize={true}
-            />
-          );
+          return {
+            id: _id,
+            history,
+            content,
+            tags,
+            category,
+          };
         } else {
           return null;
         }
       });
-      return inTray[0];
     }
   };
-  console.log(noteId());
+  const inTrayArray = MapInTrayArray();
+  let noteId = inTrayArray ? inTrayArray[0].id : null;
+  const renderNote = () => {
+    if (inTrayArray) {
+      if (!_.isEmpty(notes)) {
+        let inTray = notes.reverse().map((note) => {
+          if (note.category === "in-tray") {
+            return (
+              <Note
+                key={note.id}
+                history={note.history}
+                id={note.id}
+                content={note.content}
+                tags={note.tags}
+                category={note.category}
+                organize={true}
+              />
+            );
+          } else {
+            return null;
+          }
+        });
+        return inTray[0];
+      }
+    }
+  };
+  console.log(noteId);
   return (
     <div>
       <h1>Organize Notes</h1>
