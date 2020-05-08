@@ -108,9 +108,9 @@ function NotesShow({ fetchNotes, history }) {
         <div>
           <div className="button">
             <Typography variant="h6" className="button__text__left">
-              {category.toUpperCase()} ({renderNotesLength(category)})
+              {category.toUpperCase()} ({renderNotesLength(category) || 0})
             </Typography>
-            {category === "in-tray" ? (
+            {category === "in-tray" && renderNotesLength("in-tray") > 0 ? (
               <Button
                 component={RouterLink}
                 to="/notes/organize"
