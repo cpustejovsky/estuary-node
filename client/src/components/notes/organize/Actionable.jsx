@@ -5,12 +5,20 @@ export default function Actionable({
   show,
   hideActionable,
   showNotActionable,
+  showTwoMinutes,
 }) {
   if (show) {
     return (
       <>
         <h2>Is it actionable?</h2>
-        <Button onClick={() => alert("Then go do it!")}>Yes</Button>
+        <Button
+          onClick={() => {
+            hideActionable();
+            showTwoMinutes();
+          }}
+        >
+          Yes
+        </Button>
         <Button
           onClick={() => {
             hideActionable();

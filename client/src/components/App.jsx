@@ -11,8 +11,7 @@ import Landing from "./Landing";
 import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
-import NotesOrganize from "./notes/NotesOrganize";
-import NotesOrganizeTest from "./notes/NotesOrganizeTest";
+import NotesOrganize from "./notes/organize/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
 import Warning from "./partials/Warning";
@@ -39,7 +38,7 @@ function App({ fetchUser }) {
           <Route path="/free-writes" exact component={FreeWritesShow} />
           <Route path="/free-writes/new" exact component={FreeWritesNew} />
           <Route path="/notes" exact component={NotesShow} />
-          <Route path="/notes/organize" exact component={NotesOrganizeTest} />
+          <Route path="/notes/organize" exact component={NotesOrganize} />
           <Route path="/user" exact component={UserShow} />
           <Route path="/user/edit" exact component={UserEdit} />
           <Route path="/projects/list" exact component={ProjectsShow} />
