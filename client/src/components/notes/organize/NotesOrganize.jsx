@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
+import { Button } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 import { fetchNotes, categorizeNote, deleteNote } from "../../../actions";
 import Note from "../Note";
 import Actionable from "./Actionable";
@@ -16,27 +18,31 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   }, []);
   const MapInTrayArray = () => {
     if (!_.isEmpty(notes)) {
-      return notes.reverse().map(({ content, _id, tags, category }) => {
-        if (category === "in-tray") {
-          return {
-            id: _id,
-            history,
-            content,
-            tags,
-            category,
-          };
-        } else {
-          return null;
-        }
-      });
+      return notes
+        .reverse()
+        .map(({ content, _id, tags, category }) => {
+          if (category === "in-tray") {
+            return {
+              id: _id,
+              history,
+              content,
+              tags,
+              category,
+            };
+          } else {
+            return null;
+          }
+        })
+        .filter((note) => note !== null);
     }
   };
   const inTrayArray = MapInTrayArray();
-  let noteId = inTrayArray && inTrayArray[0] !== null ? inTrayArray[0].id : null;
+  let noteId =
+    inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0].id : null;
   const renderNote = () => {
     if (inTrayArray) {
-      if (!_.isEmpty(notes)) {
-        let inTray = notes.map((note) => {
+      if (!_.isEmpty(inTrayArray)) {
+        let inTray = inTrayArray.map((note) => {
           if (note.category === "in-tray") {
             return (
               <Note
@@ -67,48 +73,48 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
   const toggleTimer = () => setTimerShow(!timerShow);
 
-if (inTrayArray && inTrayArray[0] !== null) {
-  return (
-    <div>
-      <h1>Organize Notes</h1>
-      {renderNote()}
-      <Actionable
-        show={actionableShow}
-        toggleActionable={toggleActionable}
-        toggleNotActionable={toggleNotActionable}
-        toggleTwoMinutes={toggleTwoMinutes}
-      />
-      <NotActionable
-        show={notActionableShow}
-        categorizeNote={categorizeNote}
-        deleteNote={deleteNote}
-        noteId={noteId}
-        toggleActionable={toggleActionable}
-        toggleNotActionable={toggleNotActionable}
-      />
-      <TwoMinutes
-        show={twoMinutesShow}
-        toggleTimer={toggleTimer}
-        toggleTwoMinutes={toggleTwoMinutes}
-      />
-      <Timer
-        show={timerShow}
-        categorizeNote={categorizeNote}
-        noteId={noteId}
-        toggleTimer={toggleTimer}
-        toggleActionable={toggleActionable}
-      />
-    </div>
-  );
-} else {
-  return (
-    <div>
-      <h1>Congratulations!</h1>
-      <h2>You're done organizing</h2>
-    </div>
-  )
-}
-
+  if (inTrayArray && inTrayArray[0] !== undefined) {
+    return (
+      <div>
+        <h1>Organize Notes</h1>
+        {renderNote()}
+        <Actionable
+          show={actionableShow}
+          toggleActionable={toggleActionable}
+          toggleNotActionable={toggleNotActionable}
+          toggleTwoMinutes={toggleTwoMinutes}
+        />
+        <NotActionable
+          show={notActionableShow}
+          categorizeNote={categorizeNote}
+          deleteNote={deleteNote}
+          noteId={noteId}
+          toggleActionable={toggleActionable}
+          toggleNotActionable={toggleNotActionable}
+        />
+        <TwoMinutes
+          show={twoMinutesShow}
+          toggleTimer={toggleTimer}
+          toggleTwoMinutes={toggleTwoMinutes}
+        />
+        <Timer
+          show={timerShow}
+          categorizeNote={categorizeNote}
+          noteId={noteId}
+          toggleTimer={toggleTimer}
+          toggleActionable={toggleActionable}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Congratulations!</h1>
+        <h2>You're done organizing</h2>
+        <Button component={RouterLink} to="/notes">Back to Notes</Button>
+      </div>
+    );
+  }
 }
 
 export default connect(null, { fetchNotes, deleteNote, categorizeNote })(
