@@ -64,11 +64,12 @@ function Project(props) {
     return (
       <>
         {" "}
-        <h2>Title Goes Here</h2>
-        <p>description goes here</p>
+        <h2>{props.title}</h2>
+        <p>{props.description}</p>
         <hr />
         <p>
-          <strong>Due Date:</strong> 04/20/2020
+          <strong>Due Date:</strong>{" "}
+          {new Date(props.dueDate).toLocaleDateString()}
         </p>
       </>
     );

@@ -45,7 +45,7 @@ function App({ fetchUser }) {
           <Route path="/user/edit" exact component={UserEdit} />
           <Route path="/projects/list" exact component={ProjectsShow} />
           <Route path="/projects/new" exact component={ProjectNew} />
-          <Route path="/projects/show" exact component={ProjectShow} />
+          <Route path="/projects/show/:id" exact component={ProjectShow} />
           <Route path="/projects/edit" exact component={ProjectEdit} />
         </Switch>
       </div>
