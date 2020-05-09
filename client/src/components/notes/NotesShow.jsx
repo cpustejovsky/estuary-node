@@ -48,64 +48,47 @@ function NotesShow({ fetchNotes, history }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div>
-        <ButtonGroup className="center">
+      <div className="site__notes">
+        <ButtonGroup variant="contained" color="primary">
           <Button
-            variant="contained"
-            color="primary"
-            disableElevation
             onClick={() => changeCategory("in-tray")}
             className="btn-small orange darken-2"
           >
             In Tray
           </Button>
           <Button
-            variant="contained"
-            color="primary"
-            disableElevation
             onClick={() => changeCategory("next")}
             className="btn-small orange darken-2"
           >
             Next
           </Button>
           {/* <Button
-            variant="contained"
-            color="primary"
-            disableElevation
+
             onClick={() => changeCategory("waiting")}
             className="btn-small orange darken-2"
           >
             Waiting
           </Button> */}
           <Button
-            variant="contained"
-            color="primary"
-            disableElevation
             onClick={() => changeCategory("maybe")}
             className="btn-small orange darken-2"
           >
             Maybe
           </Button>
           <Button
-            variant="contained"
-            color="primary"
-            disableElevation
             onClick={() => changeCategory("done")}
             className="btn-small orange darken-2"
           >
             Done
           </Button>
           <Button
-            variant="contained"
-            color="primary"
-            disableElevation
             onClick={() => changeCategory("reference")}
             className="btn-small orange darken-2"
           >
             Reference
           </Button>
         </ButtonGroup>
-        <div>
+
           <div className="button">
             <Typography variant="h6" className="button__text__left">
               {category.toUpperCase()} ({renderNotesLength(category) || 0})
@@ -124,7 +107,6 @@ function NotesShow({ fetchNotes, history }) {
           <hr />
           {category === "in-tray" ? <NotesNew history={history} /> : null}
           {renderNotes(category)}
-        </div>
       </div>
     );
   } else if (auth === null && user === null) {
