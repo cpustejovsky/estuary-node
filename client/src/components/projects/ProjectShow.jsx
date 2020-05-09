@@ -1,9 +1,10 @@
 import React from 'react'
-
+import Project from "./Project"
 export default function ProjectShow() {
   return (
     <div>
-      ProjectShow
+      <h1>Projects</h1>
+      <Project/>
     </div>
   )
 }

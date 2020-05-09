@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import NoteDelete from "./NoteDelete";
-import NoteEdit from "./NoteEdit";
+import ProjectDelete from "./ProjectDelete";
+import ProjectEdit from "./ProjectEdit";
 import { connect } from "react-redux";
-import { categorizeNote } from "../../actions";
+import Note from "../notes/Note";
+// import { categorizeNote } from "../../actions";
 import { Button, Card, CardContent, CardActions } from "@material-ui/core";
 
-function Note(props) {
+function Project(props) {
   const [deleteShow, setDeleteShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
 
@@ -15,7 +16,7 @@ function Note(props) {
   const renderEdit = (editShow, id) => {
     if (editShow && id === id) {
       return (
-        <NoteEdit
+        <ProjectEdit
           id={props.id}
           content={props.content}
           closeEditView={closeEditView}
@@ -30,7 +31,7 @@ function Note(props) {
   const renderDelete = (deleteShow, id) => {
     if (deleteShow && id === props.id) {
       return (
-        <NoteDelete
+        <ProjectDelete
           style={{ marginRight: "20px" }}
           id={props.id}
           toggleDelete={toggleDelete}
@@ -41,32 +42,16 @@ function Note(props) {
     }
   };
   const renderButtons = () => {
-    if (props.organize) {
-      return null;
-    } else if (props.project) {
-      return (
-        <Button onClick={() => props.categorizeNote(props.id, "done")}>
-          Done
-        </Button>
-      );
-    } else if (props.category === "in-tray" || props.category === "reference") {
-      return (
-        <>
-          <Button onClick={() => toggleEdit()} className="click">
-            Edit
-          </Button>
-          <Button onClick={() => toggleDelete()} className="red-text click">
-            Delete
-          </Button>
-        </>
-      );
-    } else if (props.category === "done") {
+    if (props.complete !== null && props.complete !== undefined) {
       return null;
     } else {
       return (
         <>
           <Button onClick={() => toggleEdit()} className="click">
             Edit
+          </Button>
+          <Button onClick={() => toggleDelete()} className="click">
+            Delete
           </Button>
           <Button onClick={() => props.categorizeNote(props.id, "done")}>
             Done
@@ -78,16 +63,29 @@ function Note(props) {
   return (
     <Card raised key={props.id} className="margin-top padding-horizontal notes">
       <CardContent>
-        {/* <p>
-          <strong>{props.category}</strong>
-        </p> */}
-        <p>{!editShow ? props.content : null}</p>
-        {renderEdit(editShow, props.id)}
+        <CardActions>{renderButtons()}</CardActions>
+        {renderDelete(deleteShow, props.id)}
+        <h2>Title Goes Here</h2>
+        <p>description goes here</p>
+        <hr />
+        <p>
+          <strong>Due Date:</strong> 04/20/2020
+        </p>
+        <hr />
+        <p>Attached notes go here:</p>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        <Note content={"Test content for project design"} project/>
+        {/* <p>{!editShow ? props.content : null}</p>
+        {renderEdit(editShow, props.id)} */}
       </CardContent>
-      <CardActions>{renderButtons()}</CardActions>
-      {renderDelete(deleteShow, props.id)}
     </Card>
   );
 }
 
-export default connect(null, { categorizeNote })(Note);
+export default connect(null, {})(Project);
