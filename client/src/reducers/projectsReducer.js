@@ -1,12 +1,15 @@
 import {
-  CREATE_PROJECT,
+  FETCH_PROJECT,
   FETCH_PROJECTS,
+  CREATE_PROJECT,
   DELETE_PROJECT,
   UPDATE_PROJECT,
 } from "../actions/types";
 import _ from "lodash";
 export default function (state = {}, action) {
   switch (action.type) {
+    case FETCH_PROJECT:
+      return { ...state, [action.payload._id]: action.payload };
     case FETCH_PROJECTS:
       return { ...state, ..._.mapKeys(action.payload, "_id") };
     case CREATE_PROJECT:

@@ -11,4 +11,4 @@ export {
   deleteNote,
   categorizeNote,
 } from "./notes";
-export {fetchProjects} from "./projects"
+export {fetchProjects, fetchProject} from "./projects"
