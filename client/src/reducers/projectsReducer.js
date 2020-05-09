@@ -3,7 +3,6 @@ import {
   FETCH_PROJECTS,
   DELETE_PROJECT,
   UPDATE_PROJECT,
-  CATEGORIZE_PROJECT,
 } from "../actions/types";
 import _ from "lodash";
 export default function (state = {}, action) {
@@ -13,8 +12,6 @@ export default function (state = {}, action) {
     case CREATE_PROJECT:
       return { ...state, [action.payload._id]: action.payload };
     case UPDATE_PROJECT:
-      return { ...state, [action.payload._id]: action.payload };
-    case CATEGORIZE_PROJECT:
       return { ...state, [action.payload._id]: action.payload };
     case DELETE_PROJECT:
       return _.omit(state, action.payload);
