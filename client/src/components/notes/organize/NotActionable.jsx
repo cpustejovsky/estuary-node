@@ -12,17 +12,12 @@ export default function NotActionable({
   if (show) {
     return (
       <>
-        {/* 
-      TODO: delete notes when user clicks Trash
-      TODO: send notes to maybe when user clicks Someday/Maybe
-      TODO: send notes to reference when user clicks Reference
-      */}
         <h2>Then what is it?</h2>
         <div>
           <Button
             onClick={() => {
               deleteNote(noteId);
-              toggleActionable();
+              toggleNotActionable();
               toggleActionable();
             }}
           >
@@ -33,7 +28,7 @@ export default function NotActionable({
           <Button
             onClick={() => {
               categorizeNote(noteId, "maybe");
-              toggleActionable();
+              toggleNotActionable();
               toggleActionable();
             }}
           >
@@ -44,7 +39,7 @@ export default function NotActionable({
           <Button
             onClick={() => {
               categorizeNote(noteId, "reference");
-              toggleActionable();
+              toggleNotActionable();
               toggleActionable();
             }}
           >
