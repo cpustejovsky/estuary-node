@@ -30,8 +30,8 @@ export default function Todos() {
         <Todo text="Refactor Organization flow (full GTD process, yes or no)" />
         <Todo complete subtodo text="Simulate multi-step form" />
         <Todo complete subtodo text='Set up "Is it actionable? No" flow' />
-        <Todo complete subtodo text='Set up "Can you do it in 2 minutes? Yes" flow' />
-        <Todo complete subtodo text='Set up "Can you do it in 2 minutes? No" flow' />
+        <Todo complete subtodo text='...2 minutes? Yes" flow' />
+        <Todo complete subtodo text='...2 minutes? No" flow' />
         <Todo subtodo text='Set up "Is this a Project? Yes" flow' />
         <Todo subtodo text='Set up "...apart of current project? Yes" flow' />
         <Todo subtodo text='Set up "...apart of current project? No" flow' />
@@ -45,6 +45,7 @@ export default function Todos() {
         <Todo text="add performance benchmarks, etc for MongoDB" />
         <Todo text="add performance benchmarks, etc for Node" />
         <Todo text="add performance benchmarks, etc for React" />
+        <Todo text="Make components re-usable (will need subtodos)" />
         <Todo text="Mocha unit testing" />
         <Todo text="Connect to Google Calendars via API" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />

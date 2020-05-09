@@ -53,7 +53,7 @@ function Project(props) {
           <Button onClick={() => toggleDelete()} className="click">
             Delete
           </Button>
-          <Button onClick={() => props.categorizeNote(props.id, "done")}>
+          <Button onClick={() => alert("needs a done action creator")}>
             Done
           </Button>
         </>

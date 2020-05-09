@@ -16,7 +16,7 @@ function NoteDelete(props) {
         <Button
           style={{ color: green[500] }}
           onClick={() => {
-            props.deleteNote(props.id);
+            alert("this needs a project delete action creator and reducer")
             props.toggleDelete();
           }}
           className="click"
