@@ -3,6 +3,8 @@ import { connect, useSelector } from "react-redux";
 import { fetchProjects } from "../../actions";
 import _ from "lodash";
 import Loader from "../partials/Loader";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@material-ui/core";
 
 function ProjectsShow({ fetchProjects, history }) {
   const auth = useSelector((state) => state.auth);
@@ -16,10 +18,18 @@ function ProjectsShow({ fetchProjects, history }) {
     if (!_.isEmpty(projects)) {
       return projects.map((project) => {
         return (
-          <div key={project.id}>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-          </div>
+          <Link to={`/projects/show/${project._id}`}>
+            <Card
+              raised
+              key={project._id}
+              className="margin-top padding-horizontal"
+            >
+              <CardContent>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </CardContent>
+            </Card>
+          </Link>
         );
       });
     }
