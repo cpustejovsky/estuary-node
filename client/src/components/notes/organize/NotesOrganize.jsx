@@ -96,6 +96,9 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
           show={twoMinutesShow}
           toggleTimer={toggleTimer}
           toggleTwoMinutes={toggleTwoMinutes}
+          toggleActionable={toggleActionable}
+          categorizeNote={categorizeNote}
+          noteId={noteId}
         />
         <Timer
           show={timerShow}

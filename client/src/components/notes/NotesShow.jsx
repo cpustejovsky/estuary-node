@@ -68,7 +68,7 @@ function NotesShow({ fetchNotes, history }) {
           >
             Next
           </Button>
-          <Button
+          {/* <Button
             variant="contained"
             color="primary"
             disableElevation
@@ -76,7 +76,7 @@ function NotesShow({ fetchNotes, history }) {
             className="btn-small orange darken-2"
           >
             Waiting
-          </Button>
+          </Button> */}
           <Button
             variant="contained"
             color="primary"

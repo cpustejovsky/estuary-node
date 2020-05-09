@@ -1,6 +1,13 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-export default function TwoMinutes({ show, toggleTimer, toggleTwoMinutes }) {
+export default function TwoMinutes({
+  show,
+  toggleTimer,
+  toggleTwoMinutes,
+  categorizeNote,
+  toggleActionable,
+  noteId,
+}) {
   if (show) {
     return (
       <>
@@ -15,7 +22,9 @@ export default function TwoMinutes({ show, toggleTimer, toggleTwoMinutes }) {
         </Button>
         <Button
           onClick={() => {
-            alert("then it's a project or needs to be delegated or deferred");
+            categorizeNote(noteId, "next");
+            toggleTwoMinutes();
+            toggleActionable();
           }}
         >
           No
