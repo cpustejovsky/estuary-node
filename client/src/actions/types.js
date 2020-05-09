@@ -1,11 +1,21 @@
-export const SIGN_IN = 'SIGN_IN';
-export const SIGN_OUT = 'SIGN_OUT';
-export const FETCH_USER = 'FETCH_USER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const FETCH_FREEWRITES = 'FETCH_FREEWRITES';
-export const CREATE_FREEWRITE = 'CREATE_FREEWRITE';
-export const FETCH_NOTES = 'FETCH_NOTES';
-export const CREATE_NOTE = 'CREATE_NOTE';
-export const UPDATE_NOTE = 'UPDATE_NOTE';
-export const DELETE_NOTE = 'DELETE_NOTE';
-export const CATEGORIZE_NOTE = 'CATEGORIZE_NOTE';
+//AUTH
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";
+//USER
+export const FETCH_USER = "FETCH_USER";
+export const UPDATE_USER = "UPDATE_USER";
+//FREE WRITES
+export const FETCH_FREEWRITES = "FETCH_FREEWRITES";
+export const CREATE_FREEWRITE = "CREATE_FREEWRITE";
+//NOTES
+export const FETCH_NOTES = "FETCH_NOTES";
+export const CREATE_NOTE = "CREATE_NOTE";
+export const UPDATE_NOTE = "UPDATE_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
+export const CATEGORIZE_NOTE = "CATEGORIZE_NOTE";
+//PROJECTS
+export const FETCH_PROJECTS = "FETCH_PROJECTS";
+export const FETCH_PROJECT = "FETCH_PROJECT";
+export const CREATE_PROJECT = "CREATE_PROJECT";
+export const UPDATE_PROJECT = "UPDATE_PROJECT";
+export const DELETE_PROJECT = "DELETE_PROJECT";

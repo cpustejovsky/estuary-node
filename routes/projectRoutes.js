@@ -8,7 +8,7 @@ module.exports = (app) => {
     res.send(userProjects);
   });
 
-  app.get("/api/projects/:id", requireLogin, async (req, res) => {
+  app.get("/api/projects/show/:id", requireLogin, async (req, res) => {
     const userProject = await Project.find({
       _user: req.user.id,
       _id: req.params.id,
