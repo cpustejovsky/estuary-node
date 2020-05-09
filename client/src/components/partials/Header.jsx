@@ -53,9 +53,6 @@ function MobileMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {/* <MenuItem component={RouterLink} to="/">
-          <Typography variant="h6">Estuary</Typography>
-        </MenuItem> */}
         <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
           About
         </MenuItem>
@@ -69,13 +66,13 @@ function MobileMenu() {
         <MenuItem component={RouterLink} to="/notes" onClick={handleClose}>
           Notes
         </MenuItem>
-        {/* <MenuItem
+        <MenuItem
           component={RouterLink}
           to="/projects/list"
           onClick={handleClose}
         >
           Projects
-        </MenuItem> */}
+        </MenuItem>
       </Menu>
     </div>
   );
@@ -186,22 +183,14 @@ export default function Header() {
               >
                 Notes
               </Button>
-              {/* <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/about"
-              >
-                Next Actions
-              </Button> */}
-              {/* <Button
+              <Button
                 component={RouterLink}
                 style={{ color: "white" }}
                 underline="none"
                 to="/projects/list"
               >
                 Projects
-              </Button> */}
+              </Button>
             </div>
 
             {renderAuth()}
