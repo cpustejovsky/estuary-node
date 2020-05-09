@@ -60,29 +60,37 @@ function Project(props) {
       );
     }
   };
-  return (
-    <Card raised key={props.id} className="margin-top padding-horizontal notes">
-      <CardContent>
-        <CardActions>{renderButtons()}</CardActions>
-        {renderDelete(deleteShow, props.id)}
+  const renderContent = () => {
+    return (
+      <>
+        {" "}
         <h2>Title Goes Here</h2>
         <p>description goes here</p>
         <hr />
         <p>
           <strong>Due Date:</strong> 04/20/2020
         </p>
+      </>
+    );
+  };
+  return (
+    <Card raised key={props.id} className="margin-top padding-horizontal notes">
+      <CardContent>
+        <CardActions>{renderButtons()}</CardActions>
+        {renderDelete(deleteShow, props.id)}
+        {!editShow ? renderContent() : null}
+        {renderEdit(editShow, props.id)}
+
         <hr />
         <p>Attached notes go here:</p>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        <Note content={"Test content for project design"} project/>
-        {/* <p>{!editShow ? props.content : null}</p>
-        {renderEdit(editShow, props.id)} */}
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
+        <Note content={"Test content for project design"} project />
       </CardContent>
     </Card>
   );
