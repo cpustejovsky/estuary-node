@@ -23,3 +23,11 @@ export const fetchProject = (id) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+export const createProject = (values) => async (dispatch) => {
+  const response = await axios.post("/api/projects", values);
+  dispatch({
+    type: CREATE_PROJECT,
+    payload: response.data,
+  });
+};

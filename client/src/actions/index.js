@@ -1,7 +1,7 @@
 import "./user";
 import "./freeWrites";
 import "./notes";
-import "./projects"
+import "./projects";
 export { fetchUser, updateUser } from "./user";
 export { fetchFreeWrites, createFreeWrite } from "./freeWrites";
 export {
@@ -11,4 +11,4 @@ export {
   deleteNote,
   categorizeNote,
 } from "./notes";
-export {fetchProjects, fetchProject} from "./projects"
+export { fetchProjects, fetchProject, createProject } from "./projects";
