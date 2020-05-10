@@ -1,17 +1,31 @@
 import React from "react";
 import { Formik, Field } from "formik";
 import { connect } from "react-redux";
-import { createProject } from "../../actions";
 import { Button, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-function NotesNew({ history, createProject }) {
+//TODO: potential memory leak here because I'm unmounting and not cleaning up. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+function NotesNew({
+  history,
+  createProject,
+  show,
+  note,
+  deleteNote,
+  toggleProjectNew,
+  toggleActionable,
+}) {
   const submitValues = (values) => {
-    // console.log(values);
-    createProject(values, history);
+    if (note) {
+      createProject(values, history);
+      deleteNote(note.id);
+      toggleProjectNew();
+      toggleActionable();
+    } else {
+      createProject(values, history);
+    }
   };
 
   const DatePickerField = ({ field, handleBlur, form, ...other }) => {
@@ -46,69 +60,82 @@ function NotesNew({ history, createProject }) {
       </MuiPickersUtilsProvider>
     );
   };
-
-  return (
-    <div>
-      <Formik
-        initialValues={{ title: "", description: "", dueDate: new Date() }}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            submitValues(values);
-            resetForm();
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <form
-            onSubmit={handleSubmit}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                handleSubmit();
-              }
-            }}
-          >
-            <div className="input-field center">
-              <h1>New Project</h1>
-              <div className="margin-top">
-                <TextField
-                  label="Title"
-                  variant="outlined"
-                  name="title"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.title}
-                />
-              </div>{" "}
-              <div className="margin-top">
-                <TextField
-                  label="Description"
-                  variant="outlined"
-                  name="description"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.description}
-                />
-              </div>{" "}
-              <div className="margin-top">
-                <Field name="date" component={DatePickerField} />
-              </div>{" "}
-              <div className="margin-top">
-                <Button
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                >
-                  Create Project
-                </Button>
+  if (show) {
+    return (
+      <div>
+        <Formik
+          initialValues={{
+            title: note.content || "",
+            description: "",
+            dueDate: new Date(),
+          }}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setTimeout(() => {
+              submitValues(values);
+              resetForm();
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <form
+              onSubmit={handleSubmit}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit();
+                }
+              }}
+            >
+              <div className="input-field center">
+                <h1>New Project</h1>
+                <div className="margin-top">
+                  <TextField
+                    label="Title"
+                    variant="outlined"
+                    name="title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.title}
+                  />
+                </div>{" "}
+                <div className="margin-top">
+                  <TextField
+                    label="Description"
+                    variant="outlined"
+                    name="description"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.description}
+                  />
+                </div>{" "}
+                <div className="margin-top">
+                  <Field name="date" component={DatePickerField} />
+                </div>{" "}
+                <div className="margin-top">
+                  <Button
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                  >
+                    Create Project
+                  </Button>
+                </div>
               </div>
-            </div>
-          </form>
-        )}
-      </Formik>
-    </div>
-  );
+            </form>
+          )}
+        </Formik>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
-export default connect(null, { createProject })(NotesNew);
+export default connect(null, {})(NotesNew);

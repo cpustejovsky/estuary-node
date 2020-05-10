@@ -3,13 +3,15 @@ import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { fetchNotes, categorizeNote, deleteNote } from "../../../actions";
+import { fetchNotes, categorizeNote, deleteNote, createProject } from "../../../actions";
+import Loader from "../../partials/Loader";
 import Note from "../Note";
 import Actionable from "./Actionable";
 import NotActionable from "./NotActionable";
 import TwoMinutes from "./TwoMinutes";
 import Timer from "./Timer";
-import Loader from "../../partials/Loader";
+import NextAction from "./NextAction";
+import ProjectNew from "../../projects/ProjectNew";
 
 function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const auth = useSelector((state) => state.auth);
@@ -39,8 +41,9 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
     }
   };
   const inTrayArray = MapInTrayArray();
-  let noteId =
-    inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0].id : null;
+  let note =
+    inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0] : null;
+  let noteId = note && note !== null ? note.id : null;
   const renderNote = () => {
     if (inTrayArray) {
       if (!_.isEmpty(inTrayArray)) {
@@ -69,11 +72,15 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
+  const [nextActionShow, setNextActionShow] = useState(false);
+  const [projectNewShow, setProjectNewShow] = useState(false);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
   const toggleTimer = () => setTimerShow(!timerShow);
+  const toggleNextAction = () => setNextActionShow(!nextActionShow);
+  const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
 
   if (auth || user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
@@ -101,6 +108,7 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
             toggleTwoMinutes={toggleTwoMinutes}
             toggleActionable={toggleActionable}
             categorizeNote={categorizeNote}
+            toggleNextAction={toggleNextAction}
             noteId={noteId}
           />
           <Timer
@@ -108,6 +116,22 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
             categorizeNote={categorizeNote}
             noteId={noteId}
             toggleTimer={toggleTimer}
+            toggleActionable={toggleActionable}
+          />
+          <NextAction
+            show={nextActionShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleNextAction={toggleNextAction}
+            toggleProjectNew={toggleProjectNew}
+            toggleActionable={toggleActionable}
+          />
+          <ProjectNew
+            show={projectNewShow}
+            deleteNote={deleteNote}
+            createProject={createProject}
+            note={note}
+            toggleProjectNew={toggleProjectNew}
             toggleActionable={toggleActionable}
           />
         </div>

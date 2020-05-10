@@ -4,9 +4,7 @@ export default function TwoMinutes({
   show,
   toggleTimer,
   toggleTwoMinutes,
-  categorizeNote,
-  toggleActionable,
-  noteId,
+  toggleNextAction,
 }) {
   if (show) {
     return (
@@ -22,9 +20,8 @@ export default function TwoMinutes({
         </Button>
         <Button
           onClick={() => {
-            categorizeNote(noteId, "next");
             toggleTwoMinutes();
-            toggleActionable();
+            toggleNextAction();
           }}
         >
           No

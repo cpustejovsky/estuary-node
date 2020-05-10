@@ -32,7 +32,7 @@ export default function Todos() {
         <Todo complete subtodo text='Set up "Is it actionable? No" flow' />
         <Todo complete subtodo text='...2 minutes? Yes" flow' />
         <Todo complete subtodo text='...2 minutes? No" flow' />
-        <Todo subtodo text='Set up "Is this a Project? Yes" flow' />
+        <Todo complete subtodo text='Set up "Is this a Project? Yes" flow' />
         <Todo subtodo text='Set up "...apart of current project? Yes" flow' />
         <Todo subtodo text='Set up "...apart of current project? No" flow' />
         <Todo subtodo text="Set priority for next actions" />
