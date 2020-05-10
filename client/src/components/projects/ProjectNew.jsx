@@ -78,7 +78,7 @@ function NotesNew({ history, createProject }) {
                   name="title"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.content}
+                  value={values.title}
                 />
               </div>{" "}
               <div className="margin-top">
