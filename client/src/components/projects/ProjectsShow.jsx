@@ -10,6 +10,7 @@ function ProjectsShow({ fetchProjects, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const projects = useSelector((state) => Object.values(state.projects));
+  console.log("hit this route")
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -22,7 +23,7 @@ function ProjectsShow({ fetchProjects, history }) {
             <Card
               raised
               key={project._id}
-              className="margin-top padding-horizontal"
+              className="margin-top padding-horizontal notes"
             >
               <CardContent>
                 <h3>{project.title}</h3>
