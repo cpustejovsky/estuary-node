@@ -3,14 +3,14 @@ import { connect, useSelector } from "react-redux";
 import { fetchProjects } from "../../actions";
 import _ from "lodash";
 import Loader from "../partials/Loader";
-import { Link } from "react-router-dom";
-import { Card, CardContent } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+import { Button, Card, CardContent } from "@material-ui/core";
 
 function ProjectsShow({ fetchProjects, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const projects = useSelector((state) => Object.values(state.projects));
-  console.log("hit this route")
+  console.log("hit this route");
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -19,7 +19,7 @@ function ProjectsShow({ fetchProjects, history }) {
     if (!_.isEmpty(projects)) {
       return projects.map((project) => {
         return (
-          <Link to={`/projects/show/${project._id}`}>
+          <RouterLink to={`/projects/show/${project._id}`}>
             <Card
               raised
               key={project._id}
@@ -30,7 +30,7 @@ function ProjectsShow({ fetchProjects, history }) {
                 <p>{project.description}</p>
               </CardContent>
             </Card>
-          </Link>
+          </RouterLink>
         );
       });
     }
@@ -38,7 +38,12 @@ function ProjectsShow({ fetchProjects, history }) {
   if (auth || user) {
     return (
       <div>
-        <h1>Projects</h1>
+        <div className="button">
+          <h1>Projects</h1>
+          <Button component={RouterLink} to="/projects/new">
+            New Project
+          </Button>
+        </div>
         {renderProjects()}
       </div>
     );

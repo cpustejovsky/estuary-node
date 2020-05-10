@@ -3,6 +3,7 @@ import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { Button, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
+import {createProject} from "../../actions"
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -17,6 +18,7 @@ function NotesNew({
   toggleProjectNew,
   toggleActionable,
 }) {
+  console.log(history)
   const submitValues = (values) => {
     if (note) {
       createProject(values, history);
@@ -25,6 +27,7 @@ function NotesNew({
       toggleActionable();
     } else {
       createProject(values, history);
+      history.push("/projects/list")
     }
   };
 
@@ -65,7 +68,7 @@ function NotesNew({
       <div>
         <Formik
           initialValues={{
-            title: note.content || "",
+            title: note ? note.content : "",
             description: "",
             dueDate: new Date(),
           }}
@@ -86,12 +89,6 @@ function NotesNew({
           }) => (
             <form
               onSubmit={handleSubmit}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  handleSubmit();
-                }
-              }}
             >
               <div className="input-field center">
                 <h1>New Project</h1>
@@ -138,4 +135,4 @@ function NotesNew({
   }
 }
 
-export default connect(null, {})(NotesNew);
+export default connect(null, { createProject})(NotesNew);

@@ -3,7 +3,7 @@ import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { fetchNotes, categorizeNote, deleteNote, createProject } from "../../../actions";
+import { fetchNotes, categorizeNote, deleteNote } from "../../../actions";
 import Loader from "../../partials/Loader";
 import Note from "../Note";
 import Actionable from "./Actionable";
@@ -129,7 +129,6 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
           <ProjectNew
             show={projectNewShow}
             deleteNote={deleteNote}
-            createProject={createProject}
             note={note}
             toggleProjectNew={toggleProjectNew}
             toggleActionable={toggleActionable}
