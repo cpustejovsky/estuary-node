@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Note = mongoose.model("notes");
-
+const Project = mongoose.model("projects")
 module.exports = (app) => {
   app.get("/api/notes", requireLogin, async (req, res) => {
     const userNotes = await Note.find({ _user: req.user.id });
@@ -52,6 +52,26 @@ module.exports = (app) => {
     );
     response = await updatedNote.save();
     res.send(response);
+  });
+
+  app.patch("/api/notes/project", requireLogin, async (req, res) => {
+    //find note by user id and id
+
+    //check if note has a _project ref already; if it does, return an error message;
+
+    //if !(_project) then proceed. Find the project by its id and user id
+
+    //set note._project as project._id
+
+    //that should be it...
+
+    // const updatedNote = await Note.findOneAndUpdate(
+    //   { _user: req.user.id, _id: req.body.noteId },
+    //   { content: req.body.content },
+    //   { new: true }
+    // );
+    // const response = await updatedNote.save();
+    // res.send(response);
   });
 
   //await axios.delete("/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})

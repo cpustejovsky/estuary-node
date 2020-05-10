@@ -18,7 +18,6 @@ function NotesNew({
   toggleProjectNew,
   toggleActionable,
 }) {
-  console.log(history)
   const submitValues = (values) => {
     if (note) {
       createProject(values, history);
