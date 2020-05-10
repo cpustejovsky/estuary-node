@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, Form, Field } from "formik";
 import { connect } from "react-redux";
 import { createProject } from "../../actions";
 import { Button, TextField } from "@material-ui/core";
@@ -14,11 +14,39 @@ function NotesNew({ history, createProject }) {
     // createProject(values, history);
   };
 
-  // const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const DatePickerField = ({ field, handleBlur, form, ...other }) => {
+    const currentError = form.errors[field.name];
 
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
+    return (
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          clearable
+          disablePast
+          name={field.name}
+          value={field.value}
+          format="MM/dd/yyyy"
+          helperText={currentError}
+          error={Boolean(currentError)}
+          onError={(error) => {
+            // handle as a side effect
+            if (error !== currentError) {
+              form.setFieldError(field.name, error);
+            }
+          }}
+          // if you are using custom validation schema you probably want to pass `true` as third argument
+          onChange={(date) => form.setFieldValue(field.name, date, false)}
+          {...other}
+          KeyboardButtonProps={{
+            "aria-label": "change date",
+          }}
+          onBlur={handleBlur}
+          label="Due Date"
+          margin="normal"
+        />
+      </MuiPickersUtilsProvider>
+    );
+  };
+
   return (
     <div>
       <Formik
@@ -43,7 +71,7 @@ function NotesNew({ history, createProject }) {
           >
             <div className="input-field center">
               <h1>New Project</h1>
-              <div>
+              <div className="margin-top">
                 <TextField
                   label="Title"
                   variant="outlined"
@@ -53,7 +81,7 @@ function NotesNew({ history, createProject }) {
                   value={values.content}
                 />
               </div>{" "}
-              <div>
+              <div className="margin-top">
                 <TextField
                   label="Description"
                   variant="outlined"
@@ -63,31 +91,18 @@ function NotesNew({ history, createProject }) {
                   value={values.description}
                 />
               </div>{" "}
-              <div>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    margin="normal"
-                    id="date-picker-dialog"
-                    label="Due Date"
-                    format="MM/dd/yyyy"
-                    // value={selectedDate}
-                    onChange={handleChange}
-                    name="dueDate"
-                    onBlur={handleBlur}
-                    value={values.dueDate}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date",
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
+              <div className="margin-top">
+                <Field name="date" component={DatePickerField} />
               </div>{" "}
-              <Button
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                Create Project
-              </Button>
+              <div className="margin-top">
+                <Button
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
+                  Create Project
+                </Button>
+              </div>
             </div>
           </form>
         )}
