@@ -84,7 +84,7 @@ function Project(props) {
 
         <hr />
         <p>Attached notes go here:</p>
-        {/* <Note content={"Test content for project design"} project /> */}
+        <Note content={"Test content for project design"} project />
       </CardContent>
     </Card>
   );

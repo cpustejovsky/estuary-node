@@ -1,9 +1,5 @@
 import axios from "axios";
 import {
-  FETCH_USER,
-  UPDATE_USER,
-  FETCH_FREEWRITES,
-  CREATE_FREEWRITE,
   FETCH_NOTES,
   CREATE_NOTE,
   DELETE_NOTE,

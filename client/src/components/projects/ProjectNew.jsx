@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { createProject } from "../../actions";
 import { Button, TextField } from "@material-ui/core";
@@ -10,8 +10,8 @@ import {
 } from "@material-ui/pickers";
 function NotesNew({ history, createProject }) {
   const submitValues = (values) => {
-    console.log(values);
-    // createProject(values, history);
+    // console.log(values);
+    createProject(values, history);
   };
 
   const DatePickerField = ({ field, handleBlur, form, ...other }) => {

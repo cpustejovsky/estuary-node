@@ -9,6 +9,8 @@ import Actionable from "./Actionable";
 import NotActionable from "./NotActionable";
 import TwoMinutes from "./TwoMinutes";
 import Timer from "./Timer";
+import Loader from "../../partials/Loader";
+
 function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
@@ -73,50 +75,58 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
   const toggleTimer = () => setTimerShow(!timerShow);
 
-  if (inTrayArray && inTrayArray[0] !== undefined) {
-    return (
-      <div>
-        <h1>Organize Notes</h1>
-        {renderNote()}
-        <Actionable
-          show={actionableShow}
-          toggleActionable={toggleActionable}
-          toggleNotActionable={toggleNotActionable}
-          toggleTwoMinutes={toggleTwoMinutes}
-        />
-        <NotActionable
-          show={notActionableShow}
-          categorizeNote={categorizeNote}
-          deleteNote={deleteNote}
-          noteId={noteId}
-          toggleActionable={toggleActionable}
-          toggleNotActionable={toggleNotActionable}
-        />
-        <TwoMinutes
-          show={twoMinutesShow}
-          toggleTimer={toggleTimer}
-          toggleTwoMinutes={toggleTwoMinutes}
-          toggleActionable={toggleActionable}
-          categorizeNote={categorizeNote}
-          noteId={noteId}
-        />
-        <Timer
-          show={timerShow}
-          categorizeNote={categorizeNote}
-          noteId={noteId}
-          toggleTimer={toggleTimer}
-          toggleActionable={toggleActionable}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h1>Congratulations!</h1>
-        <h2>You're done organizing</h2>
-        <Button component={RouterLink} to="/notes">Back to Notes</Button>
-      </div>
-    );
+  if (auth || user) {
+    if (inTrayArray && inTrayArray[0] !== undefined) {
+      return (
+        <div>
+          <h1>Organize Notes</h1>
+          {renderNote()}
+          <Actionable
+            show={actionableShow}
+            toggleActionable={toggleActionable}
+            toggleNotActionable={toggleNotActionable}
+            toggleTwoMinutes={toggleTwoMinutes}
+          />
+          <NotActionable
+            show={notActionableShow}
+            categorizeNote={categorizeNote}
+            deleteNote={deleteNote}
+            noteId={noteId}
+            toggleActionable={toggleActionable}
+            toggleNotActionable={toggleNotActionable}
+          />
+          <TwoMinutes
+            show={twoMinutesShow}
+            toggleTimer={toggleTimer}
+            toggleTwoMinutes={toggleTwoMinutes}
+            toggleActionable={toggleActionable}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+          />
+          <Timer
+            show={timerShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleTimer={toggleTimer}
+            toggleActionable={toggleActionable}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Congratulations!</h1>
+          <h2>You're done organizing</h2>
+          <Button component={RouterLink} to="/notes">
+            Back to Notes
+          </Button>
+        </div>
+      );
+    }
+  } else if (auth === null && user === null) {
+    return <Loader />;
+  } else if (!auth && !auth) {
+    return <>{history.push("/login")}</>;
   }
 }
 

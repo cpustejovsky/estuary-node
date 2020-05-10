@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import { Button, Input, TextField, FormControl } from "@material-ui/core";
+import { Button, TextField, FormControl } from "@material-ui/core";
 
 const url =
   "https://cpustejovsky.us18.list-manage.com/subscribe/post?u=5255bcd054238b51c87af4a7b&amp;id=aaa9023f7d";

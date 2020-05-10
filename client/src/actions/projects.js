@@ -31,3 +31,19 @@ export const createProject = (values) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+export const updateProject = (values) => async (dispatch) => {
+  const response = await axios.post("/api/projects", values);
+  dispatch({
+    type: UPDATE_PROJECT,
+    payload: response.data,
+  });
+};
+
+export const deleteProject = (values) => async (dispatch) => {
+  const response = await axios.post("/api/projects", values);
+  dispatch({
+    type: DELETE_PROJECT,
+    payload: response.data,
+  });
+};
