@@ -4,7 +4,7 @@ import Project from "./Project";
 import Loader from "../partials/Loader";
 import { fetchProject } from "../../actions";
 function ProjectShow({ history, fetchProject, match }) {
-  const project = useSelector((state) => state.projects);
+  const project = useSelector((state) => state.projects[match.params.id]);
   console.log(project)
   useEffect(() => {
     fetchProject(match.params.id);
