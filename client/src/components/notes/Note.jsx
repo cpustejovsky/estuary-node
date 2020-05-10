@@ -13,7 +13,7 @@ function Note(props) {
 
   const closeEditView = () => setEditShow(false);
   const renderEdit = (editShow, id) => {
-    if (editShow && id === id) {
+    if (editShow && id === props.id) {
       return (
         <NoteEdit
           id={props.id}
