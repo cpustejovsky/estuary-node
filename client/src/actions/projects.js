@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
   FETCH_PROJECTS,
-  FETCH_PROJECT,
   CREATE_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
@@ -19,7 +18,7 @@ export const fetchProjects = () => async (dispatch) => {
 export const fetchProject = (id) => async (dispatch) => {
   const response = await axios.get(`/api/projects/show/${id}`);
   dispatch({
-    type: FETCH_PROJECT,
+    type: FETCH_PROJECTS,
     payload: response.data,
   });
 };

@@ -8,6 +8,14 @@ module.exports = (app) => {
     res.send(userNotes);
   });
 
+  app.get("/api/notes/:project", requireLogin, async (req, res) => {
+    const userProjectNotes = await Note.find({
+      _user: req.user.id,
+      _project: req.params.project,
+    });
+    res.send(userProjectNotes);
+  });
+
   app.post("/api/notes", requireLogin, async (req, res) => {
     const newNote = new Note({
       content: req.body.content,
@@ -32,8 +40,7 @@ module.exports = (app) => {
   app.patch("/api/notes/project", requireLogin, async (req, res) => {
     let updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
-      { _project: req.body.projectId,
-        category: "project" },
+      { _project: req.body.projectId, category: "project" },
       { new: true }
     );
     response = await updatedNote.save();

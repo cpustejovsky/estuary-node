@@ -9,8 +9,6 @@ import _ from "lodash";
 export default function (state = {}, action) {
   switch (action.type) {
     //TODO: is this the best way to deal with projects? Maybe a case where hooks would be better?
-    case FETCH_PROJECT:
-      return { ...state, ..._.mapKeys(action.payload, "_id") };
     case FETCH_PROJECTS:
       return { ...state, ..._.mapKeys(action.payload, "_id") };
     case CREATE_PROJECT:

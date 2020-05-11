@@ -14,6 +14,14 @@ export const fetchNotes = () => async (dispatch) => {
   });
 };
 
+export const fetchProjectNotes = (project) => async (dispatch) => {
+  const response = await axios.get(`/api/notes/${project}`);
+  dispatch({
+    type: FETCH_NOTES,
+    payload: response.data,
+  });
+};
+
 export const createNote = (values) => async (dispatch) => {
   const response = await axios.post("/api/notes", values);
   dispatch({
