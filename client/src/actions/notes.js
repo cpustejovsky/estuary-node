@@ -4,7 +4,6 @@ import {
   CREATE_NOTE,
   DELETE_NOTE,
   UPDATE_NOTE,
-  CATEGORIZE_NOTE,
 } from "./types";
 
 export const fetchNotes = () => async (dispatch) => {
@@ -42,7 +41,17 @@ export const deleteNote = (noteId) => async (dispatch) => {
 export const categorizeNote = (noteId, category) => async (dispatch) => {
   const response = await axios.patch(`/api/notes/${category}`, { noteId });
   dispatch({
-    type: CATEGORIZE_NOTE,
+    type: UPDATE_NOTE,
+    payload: response.data,
+  });
+};
+
+export const linkNoteToProject = (noteId, projectId) => async (dispatch) => {
+  console.log("hit!")
+  const response = await axios.patch("/api/notes/project", { noteId, projectId });
+  console.log(response)
+  dispatch({
+    type: UPDATE_NOTE,
     payload: response.data,
   });
 };

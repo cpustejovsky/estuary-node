@@ -3,7 +3,6 @@ import {
   FETCH_NOTES,
   DELETE_NOTE,
   UPDATE_NOTE,
-  CATEGORIZE_NOTE,
 } from "../actions/types";
 import _ from "lodash";
 export default function (state = {}, action) {
@@ -13,8 +12,6 @@ export default function (state = {}, action) {
     case CREATE_NOTE:
       return { ...state, [action.payload._id]: action.payload };
     case UPDATE_NOTE:
-      return { ...state, [action.payload._id]: action.payload };
-    case CATEGORIZE_NOTE:
       return { ...state, [action.payload._id]: action.payload };
     case DELETE_NOTE:
       return _.omit(state, action.payload);
