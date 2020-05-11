@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Note = mongoose.model("notes");
-const Project = mongoose.model("projects")
+const Project = mongoose.model("projects");
 module.exports = (app) => {
   app.get("/api/notes", requireLogin, async (req, res) => {
     const userNotes = await Note.find({ _user: req.user.id });
@@ -55,22 +55,15 @@ module.exports = (app) => {
   });
 
   app.patch("/api/notes/project", requireLogin, async (req, res) => {
-    //find note by user id and id
-
-    //check if note has a _project ref already; if it does, return an error message;
-
-    //if !(_project) then proceed. Find the project by its id and user id
-
-    //set note._project as project._id
-
-    //that should be it...
-
-    // const updatedNote = await Note.findOneAndUpdate(
+    console.log(req.body.noteId)
+    console.log(req.body.projectId)
+    console.log(req.user.id)
+    // let updatedNote = await Note.findOneAndUpdate(
     //   { _user: req.user.id, _id: req.body.noteId },
-    //   { content: req.body.content },
+    //   { _project: req.body.projectId },
     //   { new: true }
     // );
-    // const response = await updatedNote.save();
+    // response = await updatedNote.save();
     // res.send(response);
   });
 
