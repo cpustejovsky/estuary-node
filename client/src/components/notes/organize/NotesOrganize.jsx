@@ -12,6 +12,7 @@ import TwoMinutes from "./TwoMinutes";
 import Timer from "./Timer";
 import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
+import NoteForProject from "./NoteForProject";
 
 function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const auth = useSelector((state) => state.auth);
@@ -68,12 +69,13 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(true);
+  const [actionableShow, setActionableShow] = useState(false);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
   const [projectNewShow, setProjectNewShow] = useState(false);
+  const [noteForProjectShow, setNoteForProjectShow] = useState(true);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
@@ -81,6 +83,7 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   const toggleTimer = () => setTimerShow(!timerShow);
   const toggleNextAction = () => setNextActionShow(!nextActionShow);
   const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
+  const toggleNoteForProject = () => setNoteForProjectShow(!noteForProjectShow);
 
   if (auth || user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
@@ -120,11 +123,9 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
           />
           <NextAction
             show={nextActionShow}
-            categorizeNote={categorizeNote}
-            noteId={noteId}
             toggleNextAction={toggleNextAction}
             toggleProjectNew={toggleProjectNew}
-            toggleActionable={toggleActionable}
+            toggleNoteForProject={toggleNoteForProject}
           />
           <ProjectNew
             show={projectNewShow}
@@ -133,6 +134,14 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
             toggleProjectNew={toggleProjectNew}
             toggleActionable={toggleActionable}
           />
+          <NoteForProject 
+            show={noteForProjectShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleNoteForProject={toggleNoteForProject}
+            toggleActionable={toggleActionable}
+          />
+
         </div>
       );
     } else {

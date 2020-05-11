@@ -4,9 +4,7 @@ export default function NextAction({
   show,
   toggleNextAction,
   toggleProjectNew,
-  categorizeNote,
-  toggleActionable,
-  noteId,
+  toggleNoteForProject,
 }) {
   if (show) {
     return (
@@ -14,10 +12,8 @@ export default function NextAction({
         <h2>Is this a next physical action or something larger (a project)?</h2>
         <Button
           onClick={() => {
-            alert("so it's a next action, cool!")
-            categorizeNote(noteId, "next");
             toggleNextAction()
-            toggleActionable();
+            toggleNoteForProject();
           }}
         >
           Next Action
