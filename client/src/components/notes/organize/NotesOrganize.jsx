@@ -3,7 +3,7 @@ import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { fetchNotes, categorizeNote, deleteNote } from "../../../actions";
+import { fetchNotes, categorizeNote, deleteNote, fetchProjects } from "../../../actions";
 import Loader from "../../partials/Loader";
 import Note from "../Note";
 import Actionable from "./Actionable";
@@ -14,12 +14,14 @@ import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
 import NoteForProject from "./NoteForProject";
 
-function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
+function NotesOrganize({ fetchNotes, fetchProjects, deleteNote, categorizeNote, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
+  const projects = useSelector((state) => Object.values(state.projects));
   useEffect(() => {
     fetchNotes();
+    fetchProjects();
   }, []);
   const MapInTrayArray = () => {
     if (!_.isEmpty(notes)) {
@@ -135,6 +137,7 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
             toggleActionable={toggleActionable}
           />
           <NoteForProject 
+          projects={projects}
             show={noteForProjectShow}
             categorizeNote={categorizeNote}
             noteId={noteId}
@@ -162,6 +165,6 @@ function NotesOrganize({ fetchNotes, deleteNote, categorizeNote, history }) {
   }
 }
 
-export default connect(null, { fetchNotes, deleteNote, categorizeNote })(
+export default connect(null, { fetchNotes, deleteNote, categorizeNote, fetchProjects })(
   NotesOrganize
 );

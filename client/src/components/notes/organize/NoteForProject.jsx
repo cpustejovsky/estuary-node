@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { connect, useSelector } from "react-redux";
-import { fetchProjects } from "../../../actions";
+import React from "react";
 import _ from "lodash";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Card, CardContent } from "@material-ui/core";
-function NextAction({
+export default function NextAction({
   show,
   toggleNoteForProject,
   categorizeNote,
   toggleActionable,
   noteId,
+  projects
 }) {
-  const projects = useSelector((state) => Object.values(state.projects));
-  useEffect(() => {
-    fetchProjects();
-  }, []);
   console.log(projects)
   const renderProjects = () => {
     if (!_.isEmpty(projects)) {
@@ -59,5 +54,3 @@ function NextAction({
     return null;
   }
 }
-
-export default connect(null, { fetchProjects })(NextAction);
