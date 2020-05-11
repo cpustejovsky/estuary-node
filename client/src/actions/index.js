@@ -10,5 +10,6 @@ export {
   updateNote,
   deleteNote,
   categorizeNote,
+  linkNoteToProject
 } from "./notes";
 export { fetchProjects, fetchProject, createProject } from "./projects";

@@ -29,6 +29,17 @@ module.exports = (app) => {
     res.send(response);
   });
 
+  app.patch("/api/notes/project", requireLogin, async (req, res) => {
+    let updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      { _project: req.body.projectId,
+        category: "project" },
+      { new: true }
+    );
+    response = await updatedNote.save();
+    res.send(response);
+  });
+
   app.patch("/api/notes/:category", requireLogin, async (req, res) => {
     let category = req.params.category;
     let updatedData = {
@@ -52,19 +63,6 @@ module.exports = (app) => {
     );
     response = await updatedNote.save();
     res.send(response);
-  });
-
-  app.patch("/api/notes/project", requireLogin, async (req, res) => {
-    console.log(req.body.noteId)
-    console.log(req.body.projectId)
-    console.log(req.user.id)
-    // let updatedNote = await Note.findOneAndUpdate(
-    //   { _user: req.user.id, _id: req.body.noteId },
-    //   { _project: req.body.projectId },
-    //   { new: true }
-    // );
-    // response = await updatedNote.save();
-    // res.send(response);
   });
 
   //await axios.delete("/api/notes", {data: {noteId: "5ea6ef50cd05a4c7d4a5e3f8"}})

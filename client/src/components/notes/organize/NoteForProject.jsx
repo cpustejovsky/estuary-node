@@ -1,32 +1,38 @@
 import React from "react";
 import _ from "lodash";
-import { Link as RouterLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { linkNoteToProject } from "../../../actions";
 import { Button, Card, CardContent } from "@material-ui/core";
-export default function NextAction({
+function NoteForProject({
   show,
   toggleNoteForProject,
   categorizeNote,
   toggleActionable,
   noteId,
-  projects
+  projects,
+  linkNoteToProject,
 }) {
-  console.log(projects)
+  const selectProjectforNote = (noteId, projectId) => {
+    linkNoteToProject(noteId, projectId);
+    toggleNoteForProject();
+    toggleActionable();
+  };
+  console.log(projects);
   const renderProjects = () => {
     if (!_.isEmpty(projects)) {
       return projects.map((project) => {
         return (
-          <RouterLink to={`/projects/show/${project._id}`}>
-            <Card
-              raised
-              key={project._id}
-              className="margin-top padding-horizontal notes"
-            >
-              <CardContent>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </CardContent>
-            </Card>
-          </RouterLink>
+          <Card
+            onClick={() => selectProjectforNote(noteId, project._id)}
+            raised
+            key={project._id}
+            className="margin-top padding-horizontal notes click"
+          >
+            <CardContent>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </CardContent>
+          </Card>
         );
       });
     }
@@ -54,3 +60,4 @@ export default function NextAction({
     return null;
   }
 }
+export default connect(null, { linkNoteToProject })(NoteForProject);
