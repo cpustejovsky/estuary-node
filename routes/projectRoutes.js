@@ -13,7 +13,6 @@ module.exports = (app) => {
       _user: req.user.id,
       _id: req.params.id,
     });
-    console.log(userProject.nextActions);
     res.send(userProject);
   });
 
