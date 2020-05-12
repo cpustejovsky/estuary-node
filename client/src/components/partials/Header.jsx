@@ -63,7 +63,11 @@ function MobileMenu() {
         >
           Free Writes
         </MenuItem>
-        <MenuItem component={RouterLink} to="/notes" onClick={handleClose}>
+        <MenuItem
+          component={RouterLink}
+          to="/notes/in-tray"
+          onClick={handleClose}
+        >
           Notes
         </MenuItem>
         <MenuItem
@@ -179,7 +183,7 @@ export default function Header() {
                 component={RouterLink}
                 style={{ color: "white" }}
                 underline="none"
-                to="/notes"
+                to="/notes/in-tray"
               >
                 Notes
               </Button>
