@@ -62,7 +62,14 @@ function Project(props) {
   };
   const renderNotes = () => {
     return props.notes.map((note) => {
-      return <Note content={note.content} project />;
+      return (
+        <Note
+          category={note.category}
+          content={note.content}
+          noteId={note._id}
+          project
+        />
+      );
     });
   };
   const renderContent = () => {
@@ -88,7 +95,7 @@ function Project(props) {
         {renderEdit(editShow, props.id)}
 
         <hr />
-        <p>Attached notes go here:</p>
+        <h4>Notes</h4>
         {renderNotes()}
       </CardContent>
     </Card>

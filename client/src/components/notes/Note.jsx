@@ -45,7 +45,11 @@ function Note(props) {
       return null;
     } else if (props.project) {
       return (
-        <Button onClick={() => props.categorizeNote(props.id, "done")}>
+        <Button
+          onClick={() => {
+            props.categorizeNote(props.noteId, "done");
+          }}
+        >
           Done
         </Button>
       );
@@ -76,11 +80,19 @@ function Note(props) {
     }
   };
   return (
-    <Card raised key={props.id} className={props.project ? "margin-top padding-horizontal" : "margin-top padding-horizontal notes"}>
+    <Card
+      raised
+      key={props.id}
+      className={
+        props.project
+          ? "margin-top padding-horizontal"
+          : "margin-top padding-horizontal notes"
+      }
+    >
       <CardContent>
-        {/* <p>
+        <p>
           <strong>{props.category}</strong>
-        </p> */}
+        </p>
         <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
