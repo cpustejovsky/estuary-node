@@ -39,8 +39,8 @@ function App({ fetchUser }) {
           <Route path="/login" exact component={Auth} />
           <Route path="/free-writes" exact component={FreeWritesShow} />
           <Route path="/free-writes/new" exact component={FreeWritesNew} />
-          <Route path="/notes/:name" exact component={NotesShow} />
           <Route path="/notes/organize" exact component={NotesOrganize} />
+          <Route path="/notes/:name" exact component={NotesShow} />
           <Route path="/user" exact component={UserShow} />
           <Route path="/user/edit" exact component={UserEdit} />
           <Route path="/projects/list" exact component={ProjectsShow} />
