@@ -7,6 +7,7 @@ export { fetchFreeWrites, createFreeWrite } from "./freeWrites";
 export {
   fetchNotes,
   fetchProjectNotes,
+  fetchNotesByCategory,
   createNote,
   updateNote,
   deleteNote,

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
-import { fetchNotes } from "../../actions";
+import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
 import { Link as RouterLink } from "react-router-dom";
 import { ButtonGroup, Button, Typography } from "@material-ui/core";
 
-function NotesShow({ fetchNotes, history }) {
+function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
   useEffect(() => {
-    fetchNotes();
+    fetchNotesByCategory();
   }, []);
+  console.log(match.params.name)
+  console.log(notes)
   const [category, setCategory] = useState("in-tray");
   const changeCategory = (newCategory) => {
     setCategory(newCategory);
@@ -116,4 +118,4 @@ function NotesShow({ fetchNotes, history }) {
   }
 }
 
-export default connect(null, { fetchNotes })(NotesShow);
+export default connect(null, { fetchNotesByCategory })(NotesShow);

@@ -62,10 +62,11 @@ export default function Todos() {
         <Todo subtodo text="add performance benchmarks, etc for Node" />
         <Todo subtodo text="add performance benchmarks, etc for React" />
         <Todo text="Make components re-usable (will need subtodos)" />
-        <Todo text="Styling" />
+        <Todo text="Styling and Content" />
         <Todo subtodo text="decide on colors" />
         <Todo subtodo text="clean up SCSS" />
         <Todo subtodo text="Style multi-step form" />
+        <Todo subtodo text="create an informative and engaging landing page" />
         <Todo text="Mocha unit testing" />
         <Todo text="Connect to Google Calendars via API" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />

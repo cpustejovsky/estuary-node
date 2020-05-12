@@ -20,7 +20,7 @@ import ProjectShow from "./projects/ProjectShow";
 import ProjectsShow from "./projects/ProjectsShow";
 import ProjectNew from "./projects/ProjectNew";
 import ProjectEdit from "./projects/ProjectEdit";
-import Timer from "./notes/organize/Timer"
+import Timer from "./notes/organize/Timer";
 
 function App({ fetchUser }) {
   useEffect(() => {
@@ -39,12 +39,16 @@ function App({ fetchUser }) {
           <Route path="/login" exact component={Auth} />
           <Route path="/free-writes" exact component={FreeWritesShow} />
           <Route path="/free-writes/new" exact component={FreeWritesNew} />
-          <Route path="/notes" exact component={NotesShow} />
+          <Route path="/notes/:name" exact component={NotesShow} />
           <Route path="/notes/organize" exact component={NotesOrganize} />
           <Route path="/user" exact component={UserShow} />
           <Route path="/user/edit" exact component={UserEdit} />
           <Route path="/projects/list" exact component={ProjectsShow} />
-          <Route path="/projects/new" exact render={() => <ProjectNew show={true} history={history} />} />
+          <Route
+            path="/projects/new"
+            exact
+            render={() => <ProjectNew show={true} history={history} />}
+          />
           <Route path="/projects/show/:id" exact component={ProjectShow} />
           <Route path="/projects/edit" exact component={ProjectEdit} />
         </Switch>
