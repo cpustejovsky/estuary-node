@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   FETCH_NOTES,
+  FETCH_NOTES_CATEGORY,
   CREATE_NOTE,
   DELETE_NOTE,
   UPDATE_NOTE,
@@ -23,7 +24,7 @@ export const fetchProjectNotes = (projectId) => async (dispatch) => {
 export const fetchNotesByCategory = (categoryName) => async (dispatch) => {
   const response = await axios.get(`/api/notes/category/${categoryName}`);
   dispatch({
-    type: FETCH_NOTES,
+    type: FETCH_NOTES_CATEGORY,
     payload: response.data,
   });
 };

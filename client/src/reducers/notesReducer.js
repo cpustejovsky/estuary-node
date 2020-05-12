@@ -3,12 +3,15 @@ import {
   FETCH_NOTES,
   DELETE_NOTE,
   UPDATE_NOTE,
+  FETCH_NOTES_CATEGORY,
 } from "../actions/types";
 import _ from "lodash";
 export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_NOTES:
       return { ...state, ..._.mapKeys(action.payload, "_id") };
+    case FETCH_NOTES_CATEGORY:
+      return _.mapKeys(action.payload, "_id");
     case CREATE_NOTE:
       return { ...state, [action.payload._id]: action.payload };
     case UPDATE_NOTE:
