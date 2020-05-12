@@ -90,9 +90,9 @@ function Note(props) {
       }
     >
       <CardContent>
-        <p>
+        {/* <p>
           <strong>{props.category}</strong>
-        </p>
+        </p> */}
         <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>

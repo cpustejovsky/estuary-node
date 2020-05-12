@@ -3,7 +3,12 @@ import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { fetchNotes, categorizeNote, deleteNote, fetchProjects } from "../../../actions";
+import {
+  fetchNotes,
+  categorizeNote,
+  deleteNote,
+  fetchProjects,
+} from "../../../actions";
 import Loader from "../../partials/Loader";
 import Note from "../Note";
 import Actionable from "./Actionable";
@@ -13,8 +18,15 @@ import Timer from "./Timer";
 import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
 import NoteForProject from "./NoteForProject";
+import { Grid, Typography } from "@material-ui/core";
 
-function NotesOrganize({ fetchNotes, fetchProjects, deleteNote, categorizeNote, history }) {
+function NotesOrganize({
+  fetchNotes,
+  fetchProjects,
+  deleteNote,
+  categorizeNote,
+  history,
+}) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
@@ -71,13 +83,13 @@ function NotesOrganize({ fetchNotes, fetchProjects, deleteNote, categorizeNote, 
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(false);
+  const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
   const [projectNewShow, setProjectNewShow] = useState(false);
-  const [noteForProjectShow, setNoteForProjectShow] = useState(true);
+  const [noteForProjectShow, setNoteForProjectShow] = useState(false);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
@@ -90,62 +102,81 @@ function NotesOrganize({ fetchNotes, fetchProjects, deleteNote, categorizeNote, 
   if (auth || user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
       return (
-        <div>
-          <h1>Organize Notes</h1>
-          {renderNote()}
-          <Actionable
-            show={actionableShow}
-            toggleActionable={toggleActionable}
-            toggleNotActionable={toggleNotActionable}
-            toggleTwoMinutes={toggleTwoMinutes}
-          />
-          <NotActionable
-            show={notActionableShow}
-            categorizeNote={categorizeNote}
-            deleteNote={deleteNote}
-            noteId={noteId}
-            toggleActionable={toggleActionable}
-            toggleNotActionable={toggleNotActionable}
-          />
-          <TwoMinutes
-            show={twoMinutesShow}
-            toggleTimer={toggleTimer}
-            toggleTwoMinutes={toggleTwoMinutes}
-            toggleActionable={toggleActionable}
-            categorizeNote={categorizeNote}
-            toggleNextAction={toggleNextAction}
-            noteId={noteId}
-          />
-          <Timer
-            show={timerShow}
-            categorizeNote={categorizeNote}
-            noteId={noteId}
-            toggleTimer={toggleTimer}
-            toggleActionable={toggleActionable}
-          />
-          <NextAction
-            show={nextActionShow}
-            toggleNextAction={toggleNextAction}
-            toggleProjectNew={toggleProjectNew}
-            toggleNoteForProject={toggleNoteForProject}
-          />
-          <ProjectNew
-            show={projectNewShow}
-            deleteNote={deleteNote}
-            note={note}
-            toggleProjectNew={toggleProjectNew}
-            toggleActionable={toggleActionable}
-          />
-          <NoteForProject 
-          projects={projects}
-            show={noteForProjectShow}
-            categorizeNote={categorizeNote}
-            noteId={noteId}
-            toggleNoteForProject={toggleNoteForProject}
-            toggleActionable={toggleActionable}
-          />
-
-        </div>
+        <Grid container spacing={3}>
+          <Grid item xs></Grid>
+          <Grid
+            item
+            xs={6}
+            style={{
+              backgroundColor: "white",
+              borderRadius: "10px",
+              margin: "20px",
+              minHeight: "100vh",
+            }}
+          >
+            {" "}
+            <Typography variant="h4" align="center">
+              Organize Notes
+            </Typography>{" "}
+            <Grid container justify="center">
+              {renderNote()}
+            </Grid>
+            <Grid justify="center" align="center">
+              <Actionable
+                show={actionableShow}
+                toggleActionable={toggleActionable}
+                toggleNotActionable={toggleNotActionable}
+                toggleTwoMinutes={toggleTwoMinutes}
+              />
+              <NotActionable
+                show={notActionableShow}
+                categorizeNote={categorizeNote}
+                deleteNote={deleteNote}
+                noteId={noteId}
+                toggleActionable={toggleActionable}
+                toggleNotActionable={toggleNotActionable}
+              />
+              <TwoMinutes
+                show={twoMinutesShow}
+                toggleTimer={toggleTimer}
+                toggleTwoMinutes={toggleTwoMinutes}
+                toggleActionable={toggleActionable}
+                categorizeNote={categorizeNote}
+                toggleNextAction={toggleNextAction}
+                noteId={noteId}
+              />
+              <Timer
+                show={timerShow}
+                categorizeNote={categorizeNote}
+                noteId={noteId}
+                toggleTimer={toggleTimer}
+                toggleActionable={toggleActionable}
+              />
+              <NextAction
+                show={nextActionShow}
+                toggleNextAction={toggleNextAction}
+                toggleProjectNew={toggleProjectNew}
+                toggleNoteForProject={toggleNoteForProject}
+              />
+              <ProjectNew
+                show={projectNewShow}
+                deleteNote={deleteNote}
+                note={note}
+                toggleProjectNew={toggleProjectNew}
+                toggleActionable={toggleActionable}
+              />
+              <NoteForProject
+                projects={projects}
+                show={noteForProjectShow}
+                categorizeNote={categorizeNote}
+                noteId={noteId}
+                toggleNoteForProject={toggleNoteForProject}
+                toggleActionable={toggleActionable}
+              />
+            </Grid>
+          </Grid>
+          <Grid item xs></Grid>
+        </Grid>
       );
     } else {
       return (
@@ -165,6 +196,9 @@ function NotesOrganize({ fetchNotes, fetchProjects, deleteNote, categorizeNote, 
   }
 }
 
-export default connect(null, { fetchNotes, deleteNote, categorizeNote, fetchProjects })(
-  NotesOrganize
-);
+export default connect(null, {
+  fetchNotes,
+  deleteNote,
+  categorizeNote,
+  fetchProjects,
+})(NotesOrganize);
