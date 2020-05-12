@@ -8,10 +8,19 @@ module.exports = (app) => {
     res.send(userNotes);
   });
 
-  app.get("/api/notes/project/:projectId", requireLogin, async (req, res) => {
+  app.get("/api/notes/category/:name", requireLogin, async (req, res) => {
     const userProjectNotes = await Note.find({
       _user: req.user.id,
-      _project: req.params.projectId,
+      category: req.params.name,
+    });
+    res.send(userProjectNotes);
+  });
+
+
+  app.get("/api/notes/project/:id", requireLogin, async (req, res) => {
+    const userProjectNotes = await Note.find({
+      _user: req.user.id,
+      _project: req.params.id,
     });
     res.send(userProjectNotes);
   });

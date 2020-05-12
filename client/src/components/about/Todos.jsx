@@ -33,10 +33,19 @@ export default function Todos() {
         />
         <Todo complete subtodo text="Simulate multi-step form" />
         <Todo complete subtodo text='Set up "Is it actionable? No" flow' />
-        <Todo complete subtodo text='...2 minutes? Yes" flow' />
-        <Todo complete subtodo text='...2 minutes? No" flow' />
+        <Todo complete subtodo text='Will it take 2 minutes? Yes" flow' />
+        <Todo complete subtodo text='Will it take 2 minutes? No" flow' />
         <Todo complete subtodo text='Set up "Is this a Project? Yes" flow' />
-        <Todo complete subtodo text='Set up "apart of current project?" flow' />
+        <Todo
+          complete
+          subtodo
+          text='Set up "apart of current project? Yes" flow'
+        />
+        <Todo
+          complete
+          subtodo
+          text='Set up "apart of current project? No" flow'
+        />
         <Todo text="create routes, actions, reducers for categories" />
         <Todo text="refactor view for categories" />
         <Todo text="set up routes, actions, reducers for done prop" />
