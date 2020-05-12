@@ -12,13 +12,14 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
+  const category = match.params.name
+  console.log(category)
   useEffect(() => {
     fetchNotesByCategory(match.params.name);
-  }, []);
-  console.log(match.params.name);
+  }, [category]);
   console.log(notes);
 
-  const renderNotes = (selectedCategory) => {
+  const renderNotes = () => {
     if (!_.isEmpty(notes)) {
       return notes.reverse().map(({ content, _id, tags, category }) => {
         return (
