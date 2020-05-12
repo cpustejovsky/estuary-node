@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProjectDelete from "./ProjectDelete";
-import ProjectEdit from "./ProjectEdit";
+import ProjectNew from "./ProjectNew";
 import { connect } from "react-redux";
 import Note from "../notes/Note";
 // import { categorizeNote } from "../../actions";
@@ -10,23 +10,36 @@ function Project(props) {
   const [deleteShow, setDeleteShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
 
-  const toggleEdit = () => setEditShow(!editShow);
+  const toggleEdit = () => {
+    setEditShow(!editShow);
+    closeDeleteView();
+  };
 
   const closeEditView = () => setEditShow(false);
+  const closeDeleteView = () => setDeleteShow(false);
   const renderEdit = (editShow, id) => {
-    if (editShow && id === id) {
+    if (editShow) {
+      const project = {
+        title: props.title,
+        description: props.description,
+        dueDate: props.dueDate
+      }
       return (
-        <ProjectEdit
+        <ProjectNew
+          show
+          project={project}
           id={props.id}
-          content={props.content}
-          closeEditView={closeEditView}
+          toggleEdit={toggleEdit}
         />
       );
     } else {
       return null;
     }
   };
-  const toggleDelete = () => setDeleteShow(!deleteShow);
+  const toggleDelete = () => {
+    setDeleteShow(!deleteShow);
+    closeEditView();
+  };
 
   const renderDelete = (deleteShow, id) => {
     if (deleteShow && id === props.id) {

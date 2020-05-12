@@ -3,22 +3,29 @@ import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { Button, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
-import {createProject} from "../../actions"
+import { createProject } from "../../actions";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 //TODO: potential memory leak here because I'm unmounting and not cleaning up. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function
 function NotesNew({
-  history,
-  createProject,
   show,
   note,
+  project,
   deleteNote,
+  history,
+  createProject,
   toggleProjectNew,
   toggleActionable,
 }) {
+  console.log(project)
   const submitValues = (values) => {
+    if (project) {
+      console.log(values);
+      console.log("reusing components is tight!");
+      return;
+    }
     if (note) {
       createProject(values, history);
       deleteNote(note.id);
@@ -26,7 +33,7 @@ function NotesNew({
       toggleActionable();
     } else {
       createProject(values, history);
-      history.push("/projects/list")
+      history.push("/projects/list");
     }
   };
 
@@ -62,14 +69,24 @@ function NotesNew({
       </MuiPickersUtilsProvider>
     );
   };
+  const title = () => {
+    if (note) {
+      return note.content;
+    } else if (project) {
+      return project.title;
+    } else {
+      return "";
+    }
+  };
   if (show) {
+    console.log(project.dueDate)
     return (
       <div>
         <Formik
           initialValues={{
-            title: note ? note.content : "",
-            description: "",
-            dueDate: new Date(),
+            title: title(),
+            description: project ? project.description : "",
+            dueDate: project ? new Date(project.dueDate) : new Date(),
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setTimeout(() => {
@@ -86,11 +103,9 @@ function NotesNew({
             handleSubmit,
             isSubmitting,
           }) => (
-            <form
-              onSubmit={handleSubmit}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="input-field center">
-                <h1>New Project</h1>
+                {project ? "" : <h1>New Project</h1>}
                 <div className="margin-top">
                   <TextField
                     label="Title"
@@ -120,7 +135,7 @@ function NotesNew({
                       handleSubmit();
                     }}
                   >
-                    Create Project
+                    {project ? "Update Project" : "Create Project"}
                   </Button>
                 </div>
               </div>
@@ -134,4 +149,4 @@ function NotesNew({
   }
 }
 
-export default connect(null, { createProject})(NotesNew);
+export default connect(null, { createProject })(NotesNew);

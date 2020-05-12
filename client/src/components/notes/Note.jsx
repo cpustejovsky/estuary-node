@@ -44,15 +44,20 @@ function Note(props) {
     if (props.organize) {
       return null;
     } else if (props.project) {
-      return (
-        <Button
-          onClick={() => {
-            props.categorizeNote(props.noteId, "done");
-          }}
-        >
-          Done
-        </Button>
-      );
+      if (props.category === "done") {
+        //TODO: style this better
+        return <h4>COMPLETE</h4>;
+      } else {
+        return (
+          <Button
+            onClick={() => {
+              props.categorizeNote(props.noteId, "done");
+            }}
+          >
+            Done
+          </Button>
+        );
+      }
     } else if (props.category === "in-tray" || props.category === "reference") {
       return (
         <>

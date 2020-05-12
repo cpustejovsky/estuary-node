@@ -83,12 +83,12 @@ function NotesOrganize({
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(true);
+  const [actionableShow, setActionableShow] = useState(false);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
-  const [projectNewShow, setProjectNewShow] = useState(false);
+  const [projectNewShow, setProjectNewShow] = useState(true);
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
@@ -183,7 +183,7 @@ function NotesOrganize({
         <div>
           <h1>Congratulations!</h1>
           <h2>You're done organizing</h2>
-          <Button component={RouterLink} to="/notes">
+          <Button component={RouterLink} to="/notes/in-tray">
             Back to Notes
           </Button>
         </div>
