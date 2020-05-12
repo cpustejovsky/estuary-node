@@ -8,15 +8,12 @@ module.exports = (app) => {
     res.send(userNotes);
   });
 
-  app.get("/api/notes/project/", requireLogin, async (req, res) => {
-    console.log("route hit!")
-    console.log(req.params.project)
-    // const userProjectNotes = await Note.find({
-    //   _user: req.user.id,
-    //   _project: req.params.project,
-    // });
-    // res.send(userProjectNotes);
-    res.send("route hit!")
+  app.get("/api/notes/project/:projectId", requireLogin, async (req, res) => {
+    const userProjectNotes = await Note.find({
+      _user: req.user.id,
+      _project: req.params.projectId,
+    });
+    res.send(userProjectNotes);
   });
 
   app.post("/api/notes", requireLogin, async (req, res) => {

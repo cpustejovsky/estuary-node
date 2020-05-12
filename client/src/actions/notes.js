@@ -13,10 +13,8 @@ export const fetchNotes = () => async (dispatch) => {
     payload: response.data,
   });
 };
-//TODO: PROBLEM IS ENTIRELY HERE, NOT WITH THE ERN PART OF APP
-export const fetchProjectNotes = (project) => async (dispatch) => {
-  console.log("action creator hit!")
-  const response = await axios.get(`/api/notes/project/`);
+export const fetchProjectNotes = (projectId) => async (dispatch) => {
+  const response = await axios.get(`/api/notes/project/${projectId}`);
   dispatch({
     type: FETCH_NOTES,
     payload: response.data,
