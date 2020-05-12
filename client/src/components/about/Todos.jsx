@@ -46,8 +46,8 @@ export default function Todos() {
           subtodo
           text='Set up "apart of current project? No" flow'
         />
-        <Todo text="create routes, actions, reducers for categories" />
-        <Todo text="refactor view for categories" />
+        <Todo complete text="create routes, actions, reducers for categories" />
+        <Todo complete text="refactor view for categories" />
         <Todo text="set up routes, actions, reducers for done prop" />
         <Todo text="refactor view for done" />
         <Todo text="Add search and filter functionality" />

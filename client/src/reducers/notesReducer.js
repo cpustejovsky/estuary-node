@@ -10,6 +10,7 @@ export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_NOTES:
       return { ...state, ..._.mapKeys(action.payload, "_id") };
+    //TODO: see if there's a better way to deal with note categories
     case FETCH_NOTES_CATEGORY:
       return _.mapKeys(action.payload, "_id");
     case CREATE_NOTE:
