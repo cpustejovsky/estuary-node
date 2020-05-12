@@ -84,9 +84,8 @@ textarea {
 }
 .notes {
   justify-self: center;
-  min-width: 400px;
-  max-width: 500px;
-  // margin: 0 auto;
+  min-width: fit-content;
+  width: 386px;
 }
 .margin-top {
   margin-top: 5%;

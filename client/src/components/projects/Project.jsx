@@ -60,6 +60,11 @@ function Project(props) {
       );
     }
   };
+  const renderNotes = () => {
+    return props.notes.map((note) => {
+      return <Note content={note.content} project />;
+    });
+  };
   const renderContent = () => {
     return (
       <>
@@ -84,7 +89,7 @@ function Project(props) {
 
         <hr />
         <p>Attached notes go here:</p>
-        <Note content={"Test content for project design"} project />
+        {renderNotes()}
       </CardContent>
     </Card>
   );

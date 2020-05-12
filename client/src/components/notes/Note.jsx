@@ -76,7 +76,7 @@ function Note(props) {
     }
   };
   return (
-    <Card raised key={props.id} className="margin-top padding-horizontal notes">
+    <Card raised key={props.id} className={props.project ? "margin-top padding-horizontal" : "margin-top padding-horizontal notes"}>
       <CardContent>
         {/* <p>
           <strong>{props.category}</strong>

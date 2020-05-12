@@ -24,7 +24,7 @@ function ProjectShow({ fetchProject, fetchProjectNotes, match }) {
             Back to Projects
           </Button>
         </div>
-        <Project description={project.description} dueDate={project.dueDate} />
+        <Project description={project.description} dueDate={project.dueDate} notes={notes} />
       </div>
     );
   } else {
