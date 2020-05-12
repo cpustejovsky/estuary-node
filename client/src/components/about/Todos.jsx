@@ -27,25 +27,36 @@ export default function Todos() {
         <Todo complete text="write up functional components to Redux" />
         <Todo complete text="Refactor note model for different categories" />
         <Todo complete text="Implement Projects model and routes" />
-        <Todo text="Refactor Organization flow (full GTD process, yes or no)" />
+        <Todo
+          complete
+          text="Refactor Organization flow (full GTD process, yes or no)"
+        />
         <Todo complete subtodo text="Simulate multi-step form" />
         <Todo complete subtodo text='Set up "Is it actionable? No" flow' />
         <Todo complete subtodo text='...2 minutes? Yes" flow' />
         <Todo complete subtodo text='...2 minutes? No" flow' />
         <Todo complete subtodo text='Set up "Is this a Project? Yes" flow' />
-        <Todo complete subtodo text='Set up "...apart of current project? Yes" flow' />
-        <Todo complete subtodo text='Set up "...apart of current project? No" flow' />
-        <Todo subtodo text="Style multi-step form" />
+        <Todo complete subtodo text='Set up "apart of current project?" flow' />
+        <Todo text="create routes, actions, reducers for categories" />
+        <Todo text="refactor view for categories" />
+        <Todo text="set up routes, actions, reducers for done prop" />
+        <Todo text="refactor view for done" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
         <Todo subtodo text="set up tag creation, edit, and display" />
         <Todo subtodo text="Set search up for tags" />
         <Todo subtodo text="Set search up for content/title" />
-        <Todo text="add performance benchmarks, etc for MongoDB" />
-        <Todo text="add performance benchmarks, etc for Node" />
-        <Todo text="add performance benchmarks, etc for React" />
+        <Todo text="Performance" />
+        <Todo subtodo text="add performance benchmarks, etc for MongoDB" />
+        <Todo subtodo text="clean up models and queries" />
+        <Todo subtodo text="add performance benchmarks, etc for Node" />
+        <Todo subtodo text="add performance benchmarks, etc for React" />
         <Todo text="Make components re-usable (will need subtodos)" />
+        <Todo text="Styling" />
+        <Todo subtodo text="decide on colors" />
+        <Todo subtodo text="clean up SCSS" />
+        <Todo subtodo text="Style multi-step form" />
         <Todo text="Mocha unit testing" />
         <Todo text="Connect to Google Calendars via API" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
