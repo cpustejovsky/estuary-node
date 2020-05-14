@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Project = mongoose.model("projects");
+const Note = mongoose.model("notes");
 
 module.exports = (app) => {
   app.get("/api/projects", requireLogin, async (req, res) => {
@@ -58,14 +59,20 @@ module.exports = (app) => {
   });
 
   app.patch("/api/projects/done", requireLogin, async (req, res) => {
-    //TODO: need to check and make sure that all next actions are have a completed value
-    const updatedProject = await Project.findOneAndUpdate(
-      { _user: req.user.id, _id: req.body.projectId },
-      { completed: new Date() },
-      { new: true }
+    const uncompletedNotes = await Note.update(
+      { _user: req.user.id, _project: req.body.projectId, completed: false },
     );
-    const response = await updatedProject.save();
-    res.send(response);
+    console.log(uncompletedNotes)
+    res.send(uncompletedNotes)
+    // if(uncompletedNotes)
+    // const updatedProject = await Project.findOneAndUpdate(
+    //   { _user: req.user.id, _id: req.body.projectId },
+    //   { completed: new Date() },
+    //   { new: true }
+    // );
+
+    // const response = await updatedProject.save();
+    // res.send(response);
   });
 
   app.delete("/api/projects", requireLogin, async (req, res) => {

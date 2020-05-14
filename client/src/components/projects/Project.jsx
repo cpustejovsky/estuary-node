@@ -22,13 +22,15 @@ function Project(props) {
       const project = {
         title: props.title,
         description: props.description,
-        dueDate: props.dueDate
+        dueDate: props.dueDate,
+        id: id
       }
       return (
         <ProjectNew
           show
+          edit={true}
           project={project}
-          id={props.id}
+          id={id}
           toggleEdit={toggleEdit}
         />
       );

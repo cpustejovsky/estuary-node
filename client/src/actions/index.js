@@ -19,4 +19,5 @@ export {
   fetchCompleteProjects,
   fetchProject,
   createProject,
+  updateProject
 } from "./projects";

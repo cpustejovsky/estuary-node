@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Note = mongoose.model("notes");
-const Project = mongoose.model("projects");
 module.exports = (app) => {
   app.get("/api/notes/category/:name", requireLogin, async (req, res) => {
     const userProjectNotes = await Note.find({

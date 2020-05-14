@@ -3,26 +3,32 @@ import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { Button, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
-import { createProject } from "../../actions";
+import { createProject, updateProject } from "../../actions";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 //TODO: potential memory leak here because I'm unmounting and not cleaning up. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function
 function NotesNew({
+  id,
   show,
   note,
   project,
+  edit,
   deleteNote,
   history,
   createProject,
   toggleProjectNew,
   toggleActionable,
+  updateProject,
+  toggleEdit
 }) {
+  console.log(project);
   const submitValues = (values) => {
-    if (project) {
-      console.log(values);
-      console.log("reusing components is tight!");
+    if (edit) {
+      values.projectId = id;
+      updateProject(values);
+      toggleEdit()
       return;
     }
     if (note) {
@@ -30,6 +36,7 @@ function NotesNew({
       deleteNote(note.id);
       toggleProjectNew();
       toggleActionable();
+      return;
     } else {
       createProject(values, history);
       history.push("/projects/list");
@@ -147,4 +154,4 @@ function NotesNew({
   }
 }
 
-export default connect(null, { createProject })(NotesNew);
+export default connect(null, { createProject, updateProject })(NotesNew);

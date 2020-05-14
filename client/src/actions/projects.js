@@ -1,10 +1,11 @@
 import axios from "axios";
 import {
+  FETCH_COMPLETED_PROJECTS,
   FETCH_PROJECTS,
   CREATE_PROJECT,
   UPDATE_PROJECT,
+  COMPLETE_PROJECT,
   DELETE_PROJECT,
-  FETCH_COMPLETED_PROJECTS
 } from "./types";
 
 export const fetchProjects = () => async (dispatch) => {
@@ -46,6 +47,14 @@ export const createProject = (values) => async (dispatch) => {
 };
 
 export const updateProject = (values) => async (dispatch) => {
+  const response = await axios.patch("/api/projects", values);
+  dispatch({
+    type: UPDATE_PROJECT,
+    payload: response.data,
+  });
+};
+
+export const completeProject = (values) => async (dispatch) => {
   const response = await axios.post("/api/projects", values);
   dispatch({
     type: UPDATE_PROJECT,

@@ -8,10 +8,7 @@ import { Button } from "@material-ui/core";
 function ProjectShow({ fetchProject, fetchProjectNotes, match }) {
   const project = useSelector((state) => state.projects[match.params.id]);
   const notes = useSelector((state) => Object.values(state.notes));
-  console.log(project);
-  console.log(notes)
   useEffect(() => {
-    console.log("this runs?")
     fetchProject(match.params.id);
     fetchProjectNotes(match.params.id);
   }, []);
@@ -24,7 +21,7 @@ function ProjectShow({ fetchProject, fetchProjectNotes, match }) {
             Back to Projects
           </Button>
         </div>
-        <Project title={project.title} description={project.description} dueDate={project.dueDate} notes={notes} />
+        <Project title={project.title} description={project.description} dueDate={project.dueDate} notes={notes} id={project._id}/>
       </div>
     );
   } else {
