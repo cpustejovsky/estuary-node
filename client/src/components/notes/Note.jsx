@@ -70,7 +70,9 @@ function Note(props) {
         </>
       );
     } else if (props.category === "done") {
-      return null;
+      return (
+        <p>Completed on: {props.completedDate ? new Date(props.completedDate).toLocaleString(): "N/A"}</p>
+      );
     } else {
       return (
         <>

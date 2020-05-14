@@ -83,12 +83,12 @@ function NotesOrganize({
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(false);
+  const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
-  const [projectNewShow, setProjectNewShow] = useState(true);
+  const [projectNewShow, setProjectNewShow] = useState(false);
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
 
   const toggleActionable = () => setActionableShow(!actionableShow);

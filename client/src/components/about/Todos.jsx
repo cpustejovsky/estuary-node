@@ -52,9 +52,9 @@ export default function Todos() {
           text="set up routes, actions, reducers for project completed property"
         />
         <Todo complete text="refactor view for project done" />
+        <Todo complete text="set up routes, actions, reducers for note completed property" />
+        <Todo complete text="refactor view for note done" />
         {/* TODO: WHERE THE NEW TODOS ARE! */}
-        <Todo text="set up routes, actions, reducers for note completed property" />
-        <Todo text="refactor view for note done" />
         <Todo text="Connect to Google Calendars via API" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />

@@ -18,7 +18,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   //TODO: create blur or loading effect while it's loading the other category
   const renderNotes = () => {
     if (!_.isEmpty(notes)) {
-      return notes.reverse().map(({ content, _id, tags, category }) => {
+      return notes.reverse().map(({ content, _id, tags, category, completedDate }) => {
         return (
           <Note
             key={_id}
@@ -27,6 +27,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
             content={content}
             tags={tags}
             category={category}
+            completedDate={completedDate}
           />
         );
       });
