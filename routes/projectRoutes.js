@@ -59,20 +59,25 @@ module.exports = (app) => {
   });
 
   app.patch("/api/projects/done", requireLogin, async (req, res) => {
-    const uncompletedNotes = await Note.update(
-      { _user: req.user.id, _project: req.body.projectId, completed: false },
-    );
-    console.log(uncompletedNotes)
-    res.send(uncompletedNotes)
-    // if(uncompletedNotes)
-    // const updatedProject = await Project.findOneAndUpdate(
-    //   { _user: req.user.id, _id: req.body.projectId },
-    //   { completed: new Date() },
-    //   { new: true }
-    // );
+    console.log("hit correct route!");
+    const uncompletedNotes = await Note.find({
+      _user: req.user.id,
+      _project: req.body.projectId,
+      completed: false,
+    });
+    console.log(uncompletedNotes.length);
+    if (uncompletedNotes.length === 0) {
+      const updatedProject = await Project.findOneAndUpdate(
+        { _user: req.user.id, _id: req.body.projectId },
+        { completedDate: new Date(), completed: true },
+        { new: true }
+      );
 
-    // const response = await updatedProject.save();
-    // res.send(response);
+      const response = await updatedProject.save();
+      res.send(response);
+    } else {
+      res.send("Error! There are notes that still need to be completed!");
+    }
   });
 
   app.delete("/api/projects/:id", requireLogin, async (req, res) => {

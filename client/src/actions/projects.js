@@ -52,11 +52,11 @@ export const updateProject = (values) => async (dispatch) => {
   });
 };
 
-export const completeProject = (values) => async (dispatch) => {
-  const response = await axios.post("/api/projects", values);
+export const completeProject = (id) => async (dispatch) => {
+  const response = await axios.patch("/api/projects/done", {projectId: id});
   dispatch({
-    type: UPDATE_PROJECT,
-    payload: response.data,
+    type: DELETE_PROJECT,
+    payload: response.data._id,
   });
 };
 
