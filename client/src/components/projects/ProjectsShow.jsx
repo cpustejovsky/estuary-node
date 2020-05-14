@@ -4,7 +4,7 @@ import { fetchProjects, fetchCompleteProjects } from "../../actions";
 import _ from "lodash";
 import Loader from "../partials/Loader";
 import { Link as RouterLink } from "react-router-dom";
-import { Button, Card, CardContent } from "@material-ui/core";
+import { Link, Button, Card, CardContent } from "@material-ui/core";
 
 
 function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, match }) {
@@ -51,7 +51,7 @@ function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, mat
         {renderProjects()}
         <div align="center">
           {done ? (
-            <Button component={RouterLink} to="/projects/list">
+            <Button component={Link} href="/projects/list" underlined="none">
               Back to Projects
             </Button>
           ) : (
