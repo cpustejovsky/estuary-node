@@ -19,7 +19,6 @@ function NotesNew({
   toggleProjectNew,
   toggleActionable,
 }) {
-  console.log(project)
   const submitValues = (values) => {
     if (project) {
       console.log(values);
@@ -79,7 +78,6 @@ function NotesNew({
     }
   };
   if (show) {
-    console.log(project.dueDate)
     return (
       <div>
         <Formik
