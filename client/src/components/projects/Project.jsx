@@ -73,7 +73,7 @@ function Project(props) {
           </Button>
           <Button onClick={() => {
             props.completeProject(props.id)
-            props.history.push("/projects/list")
+            props.history.push("/projects/list/done")
           }}>
             Done
           </Button>
