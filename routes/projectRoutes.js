@@ -6,17 +6,16 @@ module.exports = (app) => {
   app.get("/api/projects", requireLogin, async (req, res) => {
     const userProjects = await Project.find({
       _user: req.user.id,
-      completed: {$exists: true}
-
+      completed: false,
     });
     res.send(userProjects);
   });
   app.get("/api/projects/done", requireLogin, async (req, res) => {
     const userProjects = await Project.find({
       _user: req.user.id,
-      //TODO: fix issue here!
-      completed: {$exists: false}
+      completed: true,
     });
+    console.log(userProjects);
     res.send(userProjects);
   });
 
