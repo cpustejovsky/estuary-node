@@ -11,13 +11,14 @@ function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, mat
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const projects = useSelector((state) => Object.values(state.projects));
+  console.log(done)
   useEffect(() => {
     if (done) {
       fetchCompleteProjects();
     } else {
       fetchProjects();
     }
-  }, [match.path]);
+  }, [match.path, done]);
   const renderProjects = () => {
     if (!_.isEmpty(projects)) {
       return projects.map((project) => {

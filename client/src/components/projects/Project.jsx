@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProjectDelete from "./ProjectDelete";
 import ProjectNew from "./ProjectNew";
 import { connect } from "react-redux";
+import { completeProject } from "../../actions"
 import Note from "../notes/Note";
 // import { categorizeNote } from "../../actions";
 import { Button, Card, CardContent, CardActions } from "@material-ui/core";
@@ -70,7 +71,10 @@ function Project(props) {
           <Button onClick={() => toggleDelete()} className="click">
             Delete
           </Button>
-          <Button onClick={() => alert("needs a done action creator")}>
+          <Button onClick={() => {
+            props.completeProject(props.id)
+            props.history.push("/projects/list")
+          }}>
             Done
           </Button>
         </>
@@ -93,7 +97,7 @@ function Project(props) {
     return (
       <>
         {" "}
-        <h2>{props.title}</h2>
+        {/* <h2>{props.title}</h2> */}
         <p>{props.description}</p>
         <hr />
         <p>
@@ -119,4 +123,4 @@ function Project(props) {
   );
 }
 
-export default connect(null, {})(Project);
+export default connect(null, { completeProject})(Project);
