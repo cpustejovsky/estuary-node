@@ -51,6 +51,7 @@ function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, mat
         {renderProjects()}
         <div align="center">
           {done ? (
+            // TODO: FIX THIS AND MAKE USEEFFECT WORK
             <Button component={Link} href="/projects/list" underlined="none">
               Back to Projects
             </Button>
