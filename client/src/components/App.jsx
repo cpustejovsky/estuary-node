@@ -43,11 +43,15 @@ function App({ fetchUser }) {
           <Route path="/notes/:name" exact component={NotesShow} />
           <Route path="/user" exact component={UserShow} />
           <Route path="/user/edit" exact component={UserEdit} />
-          <Route path="/projects/list" exact component={ProjectsShow} />
+          <Route
+            path="/projects/list/"
+            exact
+            render={({match}) => <ProjectsShow done={false} history={history} match={match}/>}
+          />
           <Route
             path="/projects/list/done"
             exact
-            render={() => <ProjectsShow done={true} history={history}/>}
+            render={({match}) => <ProjectsShow done={true} history={history} match={match}/>}
           />
           <Route
             path="/projects/new"
