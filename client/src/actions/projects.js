@@ -4,6 +4,7 @@ import {
   CREATE_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
+  FETCH_COMPLETED_PROJECTS
 } from "./types";
 
 export const fetchProjects = () => async (dispatch) => {
@@ -20,7 +21,7 @@ export const fetchCompleteProjects = () => async (dispatch) => {
     const response = await axios.get("/api/projects/done");
     console.log(response);
     dispatch({
-      type: FETCH_PROJECTS,
+      type: FETCH_COMPLETED_PROJECTS,
       payload: response.data,
     });
   } catch (error) {
