@@ -5,7 +5,7 @@ import Loader from "../partials/Loader";
 import { fetchProject, fetchProjectNotes } from "../../actions";
 import { Link as RouterLink } from "react-router-dom";
 import { Button } from "@material-ui/core";
-function ProjectShow({ fetchProject, fetchProjectNotes, match }) {
+function ProjectShow({ fetchProject, fetchProjectNotes, match, history }) {
   const project = useSelector((state) => state.projects[match.params.id]);
   const notes = useSelector((state) => Object.values(state.notes));
   useEffect(() => {
@@ -21,7 +21,14 @@ function ProjectShow({ fetchProject, fetchProjectNotes, match }) {
             Back to Projects
           </Button>
         </div>
-        <Project title={project.title} description={project.description} dueDate={project.dueDate} notes={notes} id={project._id}/>
+        <Project
+          title={project.title}
+          description={project.description}
+          dueDate={project.dueDate}
+          id={project._id}
+          notes={notes}
+          history={history}
+        />
       </div>
     );
   } else {

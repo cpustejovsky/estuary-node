@@ -62,8 +62,8 @@ export const completeProject = (values) => async (dispatch) => {
   });
 };
 
-export const deleteProject = (values) => async (dispatch) => {
-  const response = await axios.post("/api/projects", values);
+export const deleteProject = (projectId) => async (dispatch) => {
+  const response = await axios.delete(`/api/projects/${projectId}`);
   dispatch({
     type: DELETE_PROJECT,
     payload: response.data,

@@ -23,8 +23,8 @@ function Project(props) {
         title: props.title,
         description: props.description,
         dueDate: props.dueDate,
-        id: id
-      }
+        id: id,
+      };
       return (
         <ProjectNew
           show
@@ -45,8 +45,10 @@ function Project(props) {
 
   const renderDelete = (deleteShow, id) => {
     if (deleteShow && id === props.id) {
+      console.log(props.history)
       return (
         <ProjectDelete
+          history={props.history}
           style={{ marginRight: "20px" }}
           id={props.id}
           toggleDelete={toggleDelete}

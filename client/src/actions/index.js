@@ -19,5 +19,6 @@ export {
   fetchCompleteProjects,
   fetchProject,
   createProject,
-  updateProject
+  updateProject,
+  deleteProject
 } from "./projects";

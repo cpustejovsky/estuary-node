@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteNote } from "../../actions";
+import { deleteProject } from "../../actions";
 import { Button, CardActions } from "@material-ui/core";
 import { green, red, grey } from "@material-ui/core/colors";
 
-function NoteDelete(props) {
+function ProjectDelete(props) {
   return (
     <>
       <CardActions>
@@ -16,8 +16,8 @@ function NoteDelete(props) {
         <Button
           style={{ color: green[500] }}
           onClick={() => {
-            alert("this needs a project delete action creator and reducer")
-            props.toggleDelete();
+            props.deleteProject(props.id)
+            props.history.push("/projects/list");
           }}
           className="click"
         >
@@ -35,4 +35,4 @@ function NoteDelete(props) {
   );
 }
 
-export default connect(null, { deleteNote })(NoteDelete);
+export default connect(null, { deleteProject })(ProjectDelete);

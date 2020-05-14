@@ -75,10 +75,10 @@ module.exports = (app) => {
     // res.send(response);
   });
 
-  app.delete("/api/projects", requireLogin, async (req, res) => {
+  app.delete("/api/projects/:id", requireLogin, async (req, res) => {
     await Project.findOneAndDelete({
       _user: req.user.id,
-      _id: req.body.projectId,
+      _id: req.params.id,
     });
     res.send({});
   });
