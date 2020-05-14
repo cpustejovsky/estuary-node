@@ -28,7 +28,7 @@ export default function About() {
           and also building a robust app that I can proudly show off in my
           portfolio.
         </p>
-        <Todos />
+        <hr/>
         <Typography variant="h5">
         Have any ideas for improvements?
         </Typography>
@@ -44,6 +44,7 @@ export default function About() {
         Sign up to follow Estuary's progress
         </Typography>
         <MailChimpForm />
+        <Todos />
       </Grid>
       <Grid item sm></Grid>
     </Grid>

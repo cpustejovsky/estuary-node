@@ -4,8 +4,7 @@ import { List, Typography } from "@material-ui/core";
 export default function Todos() {
   return (
     <>
-      <hr />
-      <Typography variant="h5">To-Dos</Typography>
+      <Typography variant="h5" style={{marginTop: "5%"}}>To-Dos</Typography>
       <List>
         <Todo complete text="CRUD functionality for User" />
         <Todo complete text="Replace EJS with React on Front-End" />
@@ -114,7 +113,6 @@ export default function Todos() {
         <Todo text="Refactor in TypeScript" />
         <Todo text="Migrate database to PostgreSQL" />
       </List>
-      <hr />
     </>
   );
 }
