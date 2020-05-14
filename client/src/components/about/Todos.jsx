@@ -48,9 +48,15 @@ export default function Todos() {
         />
         <Todo complete text="create routes, actions, reducers for categories" />
         <Todo complete text="refactor view for categories" />
+        <Todo
+          complete
+          text="set up routes, actions, reducers for project completed property"
+        />
+        <Todo complete text="refactor view for project done" />
         {/* TODO: WHERE THE NEW TODOS ARE! */}
-        <Todo text="set up routes, actions, reducers for done prop" />
-        <Todo text="refactor view for done" />
+        <Todo text="set up routes, actions, reducers for note completed property" />
+        <Todo text="refactor view for note done" />
+        <Todo text="Connect to Google Calendars via API" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
@@ -62,14 +68,41 @@ export default function Todos() {
         <Todo subtodo text="clean up models and queries" />
         <Todo subtodo text="add performance benchmarks, etc for Node" />
         <Todo subtodo text="add performance benchmarks, etc for React" />
-        <Todo text="Make components re-usable (will need subtodos)" />
+        <Todo text="Make components re-usable" />
+        <Todo subtodo text="notes/" />
+        <Todo subtodo text="notes/organize" />
+        <Todo subtodo text="partials/" />
+        <Todo subtodo text="freewrites/" />
+        <Todo subtodo text="projects/" />
+        <Todo subtodo text="user/" />
+        <Todo subtodo text="components/" />
         <Todo text="Styling and Content" />
         <Todo subtodo text="decide on colors" />
-        <Todo subtodo text="clean up SCSS" />
-        <Todo subtodo text="Style multi-step form" />
+        <Todo
+          subtodo
+          text={
+            <>
+              <a
+                href="https://cssguidelin.es/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                follow CSS Guidelines
+              </a>
+            </>
+          }
+        />
+        <Todo subtodo text="Enforce BEM methodology" />
+        <Todo subtodo text="Consistently apply styling across app" />{" "}
+        <Todo subsubtodo text="notes/" />
+        <Todo subsubtodo text="notes/organize" />
+        <Todo subsubtodo text="partials/" />
+        <Todo subsubtodo text="freewrites/" />
+        <Todo subsubtodo text="projects/" />
+        <Todo subsubtodo text="user/" />
+        <Todo subsubtodo text="components/" />
         <Todo subtodo text="create an informative and engaging landing page" />
         <Todo text="Mocha unit testing" />
-        <Todo text="Connect to Google Calendars via API" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
         <Todo text="Add functionality to email notes from app with MailGun" />
         <Todo text="Create Chrome Extension for capturing notes" />

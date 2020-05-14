@@ -3,11 +3,17 @@ import ListItem from "@material-ui/core/ListItem";
 import { Check, CropSquare } from "@material-ui/icons";
 import { green, grey } from "@material-ui/core/colors";
 
-const Todo = ({ complete, text, subtodo }) => {
+const Todo = ({ complete, text, subtodo, subsubtodo }) => {
   if (complete) {
     return (
       <ListItem
-        className={subtodo ? "valign-wrapper subtodo" : "valign-wrapper"}
+        className={
+          subtodo
+            ? "valign-wrapper subtodo"
+            : subsubtodo
+            ? "valign-wrapper subsubtodo"
+            : "valign-wrapper"
+        }
       >
         <Check style={{ color: green[500] }} />
         {text}
@@ -16,7 +22,13 @@ const Todo = ({ complete, text, subtodo }) => {
   } else {
     return (
       <ListItem
-        className={subtodo ? "valign-wrapper subtodo" : "valign-wrapper"}
+        className={
+          subtodo
+            ? "valign-wrapper subtodo"
+            : subsubtodo
+            ? "valign-wrapper subsubtodo"
+            : "valign-wrapper"
+        }
       >
         <CropSquare style={{ color: grey[500] }} />
         {text}
