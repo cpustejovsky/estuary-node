@@ -15,6 +15,14 @@ export const fetchProjects = () => async (dispatch) => {
   });
 };
 
+export const fetchCompleteProjects = () => async (dispatch) => {
+  const response = await axios.get("/api/projects/done");
+  console.log(response);
+  dispatch({
+    type: FETCH_PROJECTS,
+    payload: response.data,
+  });
+};
 export const fetchProject = (id) => async (dispatch) => {
   const response = await axios.get(`/api/projects/show/${id}`);
   dispatch({

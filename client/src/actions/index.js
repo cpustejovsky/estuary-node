@@ -14,4 +14,9 @@ export {
   categorizeNote,
   linkNoteToProject,
 } from "./notes";
-export { fetchProjects, fetchProject, createProject } from "./projects";
+export {
+  fetchProjects,
+  fetchCompleteProjects,
+  fetchProject,
+  createProject,
+} from "./projects";
