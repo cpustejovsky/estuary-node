@@ -48,6 +48,7 @@ export default function Todos() {
         />
         <Todo complete text="create routes, actions, reducers for categories" />
         <Todo complete text="refactor view for categories" />
+        {/* TODO: WHERE THE NEW TODOS ARE! */}
         <Todo text="set up routes, actions, reducers for done prop" />
         <Todo text="refactor view for done" />
         <Todo text="Add search and filter functionality" />

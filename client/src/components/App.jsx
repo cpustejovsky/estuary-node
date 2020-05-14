@@ -45,6 +45,11 @@ function App({ fetchUser }) {
           <Route path="/user/edit" exact component={UserEdit} />
           <Route path="/projects/list" exact component={ProjectsShow} />
           <Route
+            path="/projects/list/done"
+            exact
+            render={() => <ProjectsShow done={true} history={history}/>}
+          />
+          <Route
             path="/projects/new"
             exact
             render={() => <ProjectNew show={true} history={history} />}
