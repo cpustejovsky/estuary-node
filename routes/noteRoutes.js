@@ -3,11 +3,6 @@ const requireLogin = require("../middleware/requireLogin");
 const Note = mongoose.model("notes");
 const Project = mongoose.model("projects");
 module.exports = (app) => {
-  app.get("/api/notes", requireLogin, async (req, res) => {
-    const userNotes = await Note.find({ _user: req.user.id });
-    res.send(userNotes);
-  });
-
   app.get("/api/notes/category/:name", requireLogin, async (req, res) => {
     const userProjectNotes = await Note.find({
       _user: req.user.id,
@@ -15,7 +10,6 @@ module.exports = (app) => {
     });
     res.send(userProjectNotes);
   });
-
 
   app.get("/api/notes/project/:id", requireLogin, async (req, res) => {
     const userProjectNotes = await Note.find({
@@ -64,7 +58,8 @@ module.exports = (app) => {
     let response;
     switch (category.toLowerCase()) {
       case "done":
-        updatedData.completed = new Date();
+        updatedData.completed = true;
+        updatedData.completedDate = new Date();
         break;
       case "waiting":
         updatedData.dependsOn = req.body.dependsOn || null;

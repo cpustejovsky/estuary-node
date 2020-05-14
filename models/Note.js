@@ -8,7 +8,8 @@ const NoteSchema = new Schema({
   dueDate: Date,
   remindDate: Date,
   dependsOn: [DependentSchema],
-  completed: { type: Date, default: null },
+  completed: { type: Boolean, default: false },
+  completedDate: Date,
   _user: { type: Schema.Types.ObjectId, ref: "User" },
   _project: { type: Schema.Types.ObjectId, ref: "Project" },
 });
