@@ -4,7 +4,6 @@ import {
   FETCH_PROJECTS,
   CREATE_PROJECT,
   UPDATE_PROJECT,
-  COMPLETE_PROJECT,
   DELETE_PROJECT,
 } from "./types";
 
