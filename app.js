@@ -4,7 +4,6 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
-const methodOverride = require("method-override");
 const dynoWaker = require("cpustejovsky-dyno-waker");
 const keys = require("./config/keys");
 require("./models/User");
@@ -27,7 +26,6 @@ mongoose
 const app = express();
 
 app.use(bodyParser.json());
-app.use(methodOverride("_method"));
 app.use(flash());
 // PASSPORT CONFIG
 app.use(
@@ -58,5 +56,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
   console.log(`Estuary listening on localhost:${PORT}`);
-  dynoWaker("life-together-calculator", "bears-and-bear-markets");
+  process.env.NODE_ENV === "production"
+    ? dynoWaker("life-together-calculator", "bears-and-bear-markets")
+    : console.log("running in dev mode");
 });
