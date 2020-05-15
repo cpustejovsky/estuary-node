@@ -23,7 +23,6 @@ function NotesNew({
   updateProject,
   toggleEdit
 }) {
-  console.log(project);
   const submitValues = (values) => {
     if (edit) {
       values.projectId = id;

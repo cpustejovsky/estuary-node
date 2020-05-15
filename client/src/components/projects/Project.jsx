@@ -46,7 +46,6 @@ function Project(props) {
 
   const renderDelete = (deleteShow, id) => {
     if (deleteShow && id === props.id) {
-      console.log(props.history)
       return (
         <ProjectDelete
           history={props.history}

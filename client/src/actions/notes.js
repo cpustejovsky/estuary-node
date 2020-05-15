@@ -62,9 +62,7 @@ export const categorizeNote = (noteId, category) => async (dispatch) => {
 };
 
 export const linkNoteToProject = (noteId, projectId) => async (dispatch) => {
-  console.log("hit!")
   const response = await axios.patch("/api/notes/project", { noteId, projectId });
-  console.log(response)
   dispatch({
     type: UPDATE_NOTE,
     payload: response.data,
