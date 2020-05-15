@@ -6,11 +6,12 @@ const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const schedule = require("node-schedule");
+const dynoWaker = require("cpustejovsky-dyno-waker");
 const emailUpdate = require("./cron/emailNoteUpdate.js");
 const keys = require("./config/keys");
 require("./models/User");
-require("./services/passport/google")
-require("./services/passport/github")
+require("./services/passport/google");
+require("./services/passport/github");
 const PORT = process.env.PORT || 5000;
 
 mongoose
@@ -25,7 +26,7 @@ mongoose
     process.exit(1);
   });
 
-  const app = express();
+const app = express();
 
 app.use(bodyParser.json());
 app.use(methodOverride("_method"));
@@ -57,4 +58,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => console.log(`Estuary listening on localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Estuary listening on localhost:${PORT}`);
+  dynoWaker("life-together-calculator", "bears-and-bear-markets");
+});
