@@ -8,6 +8,8 @@ const ProjectSchema = require("./Project");
 //set up a Schema
 const UserSchema = new Schema({
   googleId: String,
+  accessToken: String,
+  refreshToken: String,
   githubId: String,
   email: String,
   firstName: String,
