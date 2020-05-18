@@ -4,7 +4,9 @@ import { List, Typography } from "@material-ui/core";
 export default function Todos() {
   return (
     <>
-      <Typography variant="h5" style={{marginTop: "5%"}}>To-Dos</Typography>
+      <Typography variant="h5" style={{ marginTop: "5%" }}>
+        To-Dos
+      </Typography>
       <List>
         <Todo complete text="CRUD functionality for User" />
         <Todo complete text="Replace EJS with React on Front-End" />
@@ -52,10 +54,24 @@ export default function Todos() {
           text="set up routes, actions, reducers for project completed property"
         />
         <Todo complete text="refactor view for project done" />
-        <Todo complete text="set up routes, actions, reducers for note completed property" />
+        <Todo
+          complete
+          text="set up routes, actions, reducers for note completed property"
+        />
         <Todo complete text="refactor view for note done" />
-        {/* TODO: WHERE THE NEW TODOS ARE! */}
         <Todo text="Connect to Google Calendars via API" />
+        <Todo complete subtodo text="Hook up app to Google Calendar API" />
+        {/* TODO: WHERE THE NEW TODOS ARE! */}
+        <Todo subtodo text="Set up event creation route" />
+        <Todo subsubtodo text="Check if event already exists there" />
+        <Todo
+          subsubtodo
+          text="If event, send back preexisting event in error message"
+        />
+        <Todo subsubtodo text="If !event, create new event" />
+        <Todo subtodo text="create action creator and reducer for calendar" />
+        <Todo subtodo text="create view for event creation" />
+        <Todo text="Add functionality to email notes from app with MailGun" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
@@ -103,7 +119,6 @@ export default function Todos() {
         <Todo subtodo text="create an informative and engaging landing page" />
         <Todo text="Mocha unit testing" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
-        <Todo text="Add functionality to email notes from app with MailGun" />
         <Todo text="Create Chrome Extension for capturing notes" />
         <Todo text="Create Estuary as Desktop App with Electron" />
         <Todo text="Create Estuary as Mobile App with Electron" />
