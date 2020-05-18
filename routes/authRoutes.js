@@ -48,7 +48,7 @@ module.exports = (app) => {
     (req, res) => {
       console.log("hit?")
       const calendar = google.calendar({
-        version: "v3",
+        version: "v3", auth
       });
       calendar.events.list(
         {
