@@ -38,6 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);
+require("./routes/calendarRoutes")(app);
 require("./routes/userRoutes")(app);
 require("./routes/freeWriteRoutes")(app);
 require("./routes/noteRoutes")(app);
