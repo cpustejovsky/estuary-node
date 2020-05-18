@@ -23,8 +23,8 @@ export const fetchCompleteProjects = () => async (dispatch) => {
       payload: response.data,
     });
   } catch (error) {
-    console.error("OOPS\n\n")
-    console.error(error)
+    console.error("OOPS\n\n");
+    console.error(error);
   }
 };
 export const fetchProject = (id) => async (dispatch) => {
@@ -52,7 +52,7 @@ export const updateProject = (values) => async (dispatch) => {
 };
 
 export const completeProject = (id) => async (dispatch) => {
-  const response = await axios.patch("/api/projects/done", {projectId: id});
+  const response = await axios.patch("/api/projects/done", { projectId: id });
   dispatch({
     type: DELETE_PROJECT,
     payload: response.data._id,
