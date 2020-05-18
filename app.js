@@ -8,7 +8,6 @@ const dynoWaker = require("cpustejovsky-dyno-waker");
 const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport/google");
-require("./services/passport/github");
 const PORT = process.env.PORT || 5000;
 
 mongoose
