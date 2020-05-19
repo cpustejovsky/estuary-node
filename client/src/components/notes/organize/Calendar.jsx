@@ -20,7 +20,7 @@ function Calendar({
 }) {
   const submitValues = async (values) => {
     const response = await axios.post("/api/calendar", values);
-    console.l;
+    console.log(response);
     // deleteNote(note.id);
     // toggleCalendar();
     // toggleActionable();
@@ -64,8 +64,9 @@ function Calendar({
         <Formik
           initialValues={{
             title: note.content,
-            description: project ? project.description : "",
-            dueDate: project ? new Date(project.dueDate) : new Date(),
+            description: "",
+            startDate: new Date(),
+            endDate: new Date(),
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setTimeout(() => {

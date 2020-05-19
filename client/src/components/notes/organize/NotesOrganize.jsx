@@ -18,6 +18,7 @@ import Timer from "./Timer";
 import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
 import NoteForProject from "./NoteForProject";
+import Calendar from "./Calendar";
 import { Grid, Typography } from "@material-ui/core";
 
 function NotesOrganize({
@@ -83,13 +84,14 @@ function NotesOrganize({
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(true);
+  const [actionableShow, setActionableShow] = useState(false);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
   const [projectNewShow, setProjectNewShow] = useState(false);
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
+  const [calendarShow, setCalendarShow] = useState(true);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
@@ -98,6 +100,7 @@ function NotesOrganize({
   const toggleNextAction = () => setNextActionShow(!nextActionShow);
   const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
   const toggleNoteForProject = () => setNoteForProjectShow(!noteForProjectShow);
+  const toggleCalendar = () => setCalendarShow(!calendarShow);
 
   if (auth || user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
@@ -135,6 +138,14 @@ function NotesOrganize({
                 noteId={noteId}
                 toggleActionable={toggleActionable}
                 toggleNotActionable={toggleNotActionable}
+              />
+              <Calendar
+                show={calendarShow}
+                categorizeNote={categorizeNote}
+                noteId={noteId}
+                note={note}
+                toggleNoteForProject={toggleNoteForProject}
+                toggleActionable={toggleActionable}
               />
               <TwoMinutes
                 show={twoMinutesShow}
