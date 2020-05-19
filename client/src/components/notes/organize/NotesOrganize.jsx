@@ -144,7 +144,8 @@ function NotesOrganize({
                 categorizeNote={categorizeNote}
                 noteId={noteId}
                 note={note}
-                toggleNoteForProject={toggleNoteForProject}
+                deleteNote={deleteNote}
+                toggleCalendar={toggleCalendar}
                 toggleActionable={toggleActionable}
               />
               <TwoMinutes
