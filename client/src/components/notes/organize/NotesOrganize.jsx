@@ -84,14 +84,14 @@ function NotesOrganize({
       }
     }
   };
-  const [actionableShow, setActionableShow] = useState(false);
+  const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
   const [timerShow, setTimerShow] = useState(false);
   const [nextActionShow, setNextActionShow] = useState(false);
   const [projectNewShow, setProjectNewShow] = useState(false);
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
-  const [calendarShow, setCalendarShow] = useState(true);
+  const [calendarShow, setCalendarShow] = useState(false);
 
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
@@ -138,6 +138,7 @@ function NotesOrganize({
                 noteId={noteId}
                 toggleActionable={toggleActionable}
                 toggleNotActionable={toggleNotActionable}
+                toggleCalendar={toggleCalendar}
               />
               <Calendar
                 show={calendarShow}

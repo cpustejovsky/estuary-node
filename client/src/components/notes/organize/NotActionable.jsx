@@ -8,6 +8,7 @@ export default function NotActionable({
   deleteNote,
   toggleActionable,
   toggleNotActionable,
+  toggleCalendar
 }) {
   if (show) {
     return (
@@ -16,12 +17,11 @@ export default function NotActionable({
         <div>
           <Button
             onClick={() => {
-              deleteNote(noteId);
               toggleNotActionable();
-              toggleActionable();
+              toggleCalendar();
             }}
           >
-            It's Trash
+            It's something I need to schedule
           </Button>
         </div>
         <div>
@@ -44,6 +44,17 @@ export default function NotActionable({
             }}
           >
             It's Reference Material
+          </Button>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              deleteNote(noteId);
+              toggleNotActionable();
+              toggleActionable();
+            }}
+          >
+            It's Trash
           </Button>
         </div>
       </>

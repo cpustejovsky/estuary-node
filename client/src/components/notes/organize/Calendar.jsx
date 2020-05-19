@@ -81,7 +81,7 @@ function Calendar({
           onChange={(date) => form.setFieldValue(field.name, date, false)}
           {...other}
           KeyboardButtonProps={{
-            'aria-label': 'change time',
+            "aria-label": "change time",
           }}
           onBlur={handleBlur}
           label={other.label}
@@ -119,6 +119,12 @@ function Calendar({
             <form onSubmit={handleSubmit}>
               <div className="input-field center">
                 <h1>Add Event To Calendar</h1>
+                <p>
+                  <strong>
+                    If you encounter an error, please email me at
+                    charles@cpustejovsky.com.
+                  </strong>
+                </p>
                 <div className="margin-top">
                   <TextField
                     label="Title"
@@ -140,10 +146,7 @@ function Calendar({
                   />
                 </div>{" "}
                 <div className="margin-top">
-                  <Field
-                    name="date"
-                    component={DatePickerField}
-                  />
+                  <Field name="date" component={DatePickerField} />
                 </div>{" "}
                 <div className="margin-top">
                   <Field
