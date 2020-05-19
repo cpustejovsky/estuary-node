@@ -9,7 +9,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 //TODO: potential memory leak here because I'm unmounting and not cleaning up. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function
-function NotesNew({
+function ProjectNew({
   id,
   show,
   note,
@@ -153,4 +153,4 @@ function NotesNew({
   }
 }
 
-export default connect(null, { createProject, updateProject })(NotesNew);
+export default connect(null, { createProject, updateProject })(ProjectNew);
