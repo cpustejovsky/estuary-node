@@ -63,12 +63,17 @@ export default function Todos() {
         <Todo complete subtodo text="Hook up app to Google Calendar API" />
         {/* TODO: WHERE THE NEW TODOS ARE! */}
         <Todo subtodo text="Set up event creation route" />
-        <Todo subsubtodo text="Check if event already exists there" />
+        <Todo complete subsubtodo text="Check if event already exists there" />
         <Todo
+          complete
           subsubtodo
-          text="If event, send back preexisting event in error message"
+          text="If event, send back preexisting event in error message along with new event"
         />
-        <Todo subsubtodo text="If !event, create new event" />
+        <Todo
+          complete
+          subsubtodo
+          text="If !event, create new event without attaching event"
+        />
         <Todo subtodo text="create action creator and reducer for calendar" />
         <Todo subtodo text="create view for event creation" />
         <Todo text="Add functionality to email notes from app with MailGun" />
