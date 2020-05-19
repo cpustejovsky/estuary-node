@@ -7,6 +7,7 @@ import axios from "axios";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
+  KeyboardTimePicker,
 } from "@material-ui/pickers";
 //TODO: potential memory leak here because I'm unmounting and not cleaning up. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function
 function Calendar({
@@ -20,10 +21,10 @@ function Calendar({
 }) {
   const submitValues = async (values) => {
     const response = await axios.post("/api/calendar", values);
-    console.log(response);
-    // deleteNote(note.id);
-    // toggleCalendar();
-    // toggleActionable();
+    console.log(response.data);
+    deleteNote(note.id);
+    toggleCalendar();
+    toggleActionable();
   };
 
   const DatePickerField = ({ field, handleBlur, form, ...other }) => {
@@ -52,6 +53,37 @@ function Calendar({
             "aria-label": "change date",
           }}
           onBlur={handleBlur}
+          label="Date"
+          margin="normal"
+        />
+      </MuiPickersUtilsProvider>
+    );
+  };
+  const TimePickerField = ({ field, handleBlur, form, ...other }) => {
+    const currentError = form.errors[field.name];
+
+    return (
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardTimePicker
+          clearable
+          disablePast
+          name={field.name}
+          value={field.value}
+          helperText={currentError}
+          error={Boolean(currentError)}
+          onError={(error) => {
+            // handle as a side effect
+            if (error !== currentError) {
+              form.setFieldError(field.name, error);
+            }
+          }}
+          // if you are using custom validation schema you probably want to pass `true` as third argument
+          onChange={(date) => form.setFieldValue(field.name, date, false)}
+          {...other}
+          KeyboardButtonProps={{
+            'aria-label': 'change time',
+          }}
+          onBlur={handleBlur}
           label={other.label}
           margin="normal"
         />
@@ -65,8 +97,9 @@ function Calendar({
           initialValues={{
             title: note.content,
             description: "",
-            startDate: new Date(),
-            endDate: new Date(),
+            date: new Date(),
+            startTime: new Date(),
+            endTime: new Date(),
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             setTimeout(() => {
@@ -108,16 +141,22 @@ function Calendar({
                 </div>{" "}
                 <div className="margin-top">
                   <Field
-                    name="startDate"
-                    label={"Start Date"}
+                    name="date"
                     component={DatePickerField}
                   />
                 </div>{" "}
                 <div className="margin-top">
                   <Field
-                    name="endDate"
-                    label={"End Date"}
-                    component={DatePickerField}
+                    name="startTime"
+                    label={"Start Time"}
+                    component={TimePickerField}
+                  />
+                </div>{" "}
+                <div className="margin-top">
+                  <Field
+                    name="endTime"
+                    label={"End Time"}
+                    component={TimePickerField}
                   />
                 </div>{" "}
                 <div className="margin-top">

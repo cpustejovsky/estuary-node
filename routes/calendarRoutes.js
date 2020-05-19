@@ -2,7 +2,13 @@ const { google } = require("googleapis");
 const keys = require("../config/keys");
 
 module.exports = (app) => {
-  app.get("/api/calendar", async (req, res) => {
+  app.post("/api/calendar", async (req, res)=>{
+    const data = {
+      title: req.body.title,
+      description: req.body.description,
+      startTime: `${req.body.date.split("T")[0]}T${req.body.startTime.split("T")[1]}`,
+      endTime: `${req.body.date.split("T")[0]}T${req.body.endTime.split("T")[1]}`,
+    }
     const auth = new google.auth.OAuth2(
       keys.GOOGLE_CLIENT_ID,
       keys.GOOGLE_CLIENT_SECRET,
@@ -14,15 +20,14 @@ module.exports = (app) => {
       auth,
     });
     var event = {
-      summary: req.body.title || "Title Goes Here",
-      location: req.body.location,
-      description: req.body.description || "Description Goes Here",
+      summary: data.title,
+      description: data.description,
       start: {
-        dateTime: req.body.startDate || "2020-05-19T10:00:00-0500",
+        dateTime: data.startTime,
         timeZone: "America/New_York",
       },
       end: {
-        dateTime: req.body.endDate || "2020-05-19T16:00:00-0500",
+        dateTime: data.endTime,
         timeZone: "America/New_York",
       },
     };
@@ -60,5 +65,5 @@ module.exports = (app) => {
       );
       res.send(error);
     }
-  });
+  })
 };
