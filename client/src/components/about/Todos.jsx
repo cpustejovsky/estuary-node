@@ -62,7 +62,7 @@ export default function Todos() {
         <Todo text="Connect to Google Calendars via API" />
         <Todo complete subtodo text="Hook up app to Google Calendar API" />
         {/* TODO: WHERE THE NEW TODOS ARE! */}
-        <Todo subtodo text="Set up event creation route" />
+        <Todo complete subtodo text="Set up event creation route" />
         <Todo complete subsubtodo text="Check if event already exists there" />
         <Todo
           complete
