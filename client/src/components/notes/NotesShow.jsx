@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
+import { createSelector } from "reselect";
 import _ from "lodash";
 import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
@@ -7,30 +8,37 @@ import Note from "./Note";
 import NotesNew from "./NoteNew";
 import { Link as RouterLink } from "react-router-dom";
 import { ButtonGroup, Button, Typography } from "@material-ui/core";
-
 function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
+  const notesLength = (notes) => {
+    return notes.length > 0
+      ? notes.filter((note) => note.category === match.params.name).length
+      : 0;
+  };
+  console.log(notesLength(notes));
   useEffect(() => {
     fetchNotesByCategory(match.params.name);
-  }, [match.params.name]);
+  }, [match.params.name, notesLength(notes)]);
   //TODO: create blur or loading effect while it's loading the other category
   const renderNotes = () => {
     if (!_.isEmpty(notes)) {
-      return notes.reverse().map(({ content, _id, tags, category, completedDate }) => {
-        return (
-          <Note
-            key={_id}
-            history={history}
-            id={_id}
-            content={content}
-            tags={tags}
-            category={category}
-            completedDate={completedDate}
-          />
-        );
-      });
+      return notes
+        .reverse()
+        .map(({ content, _id, tags, category, completedDate }) => {
+          return (
+            <Note
+              key={_id}
+              history={history}
+              id={_id}
+              content={content}
+              tags={tags}
+              category={category}
+              completedDate={completedDate}
+            />
+          );
+        });
     }
   };
   const renderNotesLength = () => {

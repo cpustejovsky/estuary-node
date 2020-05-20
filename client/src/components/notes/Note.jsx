@@ -8,7 +8,6 @@ import { Button, Card, CardContent, CardActions } from "@material-ui/core";
 function Note(props) {
   const [deleteShow, setDeleteShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
-
   const toggleEdit = () => setEditShow(!editShow);
 
   const closeEditView = () => setEditShow(false);
@@ -58,9 +57,17 @@ function Note(props) {
           </Button>
         );
       }
-    } else if (props.category === "in-tray" || props.category === "reference") {
+    } else if (props.category === "maybe" || props.category === "reference") {
       return (
         <>
+          <Button
+            onClick={() => {
+              props.categorizeNote(props.id, "in-tray");
+            }}
+            className="click"
+          >
+            Move to In-Tray
+          </Button>
           <Button onClick={() => toggleEdit()} className="click">
             Edit
           </Button>
@@ -71,7 +78,12 @@ function Note(props) {
       );
     } else if (props.category === "done") {
       return (
-        <p>Completed on: {props.completedDate ? new Date(props.completedDate).toLocaleString(): "N/A"}</p>
+        <p>
+          Completed on:{" "}
+          {props.completedDate
+            ? new Date(props.completedDate).toLocaleString()
+            : "N/A"}
+        </p>
       );
     } else {
       return (
