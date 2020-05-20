@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { createSelector } from "reselect";
 import _ from "lodash";
 import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
