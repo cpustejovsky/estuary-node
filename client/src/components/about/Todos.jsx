@@ -59,9 +59,8 @@ export default function Todos() {
           text="set up routes, actions, reducers for note completed property"
         />
         <Todo complete text="refactor view for note done" />
-        <Todo text="Connect to Google Calendars via API" />
+        <Todo complete text="Connect to Google Calendars via API" />
         <Todo complete subtodo text="Hook up app to Google Calendar API" />
-        {/* TODO: WHERE THE NEW TODOS ARE! */}
         <Todo complete subtodo text="Set up event creation route" />
         <Todo complete subsubtodo text="Check if event already exists there" />
         <Todo
@@ -74,15 +73,16 @@ export default function Todos() {
           subsubtodo
           text="If !event, create new event without attaching event"
         />
-        <Todo subtodo text="create action creator and reducer for calendar" />
-        <Todo subtodo text="create view for event creation" />
-        <Todo text="Add functionality to email notes from app with MailGun" />
+        <Todo complete subtodo text="create view for event creation" />
+        {/* TODO: WHERE THE NEW TODOS ARE! */}
+        <Todo text="Mocha unit testing" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
         <Todo subtodo text="set up tag creation, edit, and display" />
         <Todo subtodo text="Set search up for tags" />
         <Todo subtodo text="Set search up for content/title" />
+        <Todo text="Add functionality to email notes from app with MailGun" />
         <Todo text="Performance" />
         <Todo subtodo text="add performance benchmarks, etc for MongoDB" />
         <Todo subtodo text="clean up models and queries" />
@@ -122,7 +122,6 @@ export default function Todos() {
         <Todo subsubtodo text="user/" />
         <Todo subsubtodo text="components/" />
         <Todo subtodo text="create an informative and engaging landing page" />
-        <Todo text="Mocha unit testing" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
         <Todo text="Create Chrome Extension for capturing notes" />
         <Todo text="Create Estuary as Desktop App with Electron" />
