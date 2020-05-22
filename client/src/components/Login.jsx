@@ -12,6 +12,7 @@ export default function Login() {
           component={Link}
           href="/auth/google"
           variant="contained"
+          style={{color: "white"}}
           color="primary"
           size="large"
         >
