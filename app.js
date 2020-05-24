@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 if(process.env.NODE_ENV !== "test"){
   try {
-    await mongoose.connect(keys.MONGODB_URL, {
+    mongoose.connect(keys.MONGODB_URL, {
       useNewUrlParser: true,
       useFindAndModify: false,
       useUnifiedTopology: true,
@@ -53,6 +53,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Estuary listening on localhost:${PORT}`);
-});
+module.exports = app;
