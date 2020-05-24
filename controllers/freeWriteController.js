@@ -28,23 +28,12 @@ module.exports = {
       console.log("Please provide correct Id");
     }
   },
-  //TODO: refactor and add delete back in to view
-  // async deleteFreeWrite(req, res) {
-  //   console.log("hit the delete route!");
-  //   console.log(req.params.id);
-    
-  //   for (let i = 0; i < req.user.freeWrites.length; i++) {
-  //     let freeWriteId = req.user.freeWrites[i]._id.toString();
-  //     if (req.params.id.toString() === freeWriteId) {
-  //       console.log("YES match!");
-  //       User.findById(req.user._id).then((user) => {
-  //         user.freeWrites[i].remove();
-  //         user.save();
-  //       });
-  //       res.redirect("/free-writes");
-  //     } else {
-  //       console.log(`NO match!`);
-  //     }
-  //   }
-  // },
+  //TODO:add delete back in to view
+  async deleteFreeWrite(req, res) {
+    await FreeWrite.findOneAndDelete({
+      _user: req.user.id,
+      _id: req.body.freeWriteId,
+    });
+    res.send({});
+  },
 };
