@@ -11,7 +11,7 @@ require("./models/User");
 require("./services/passport/google");
 const PORT = process.env.PORT || 5000;
 
-if(process.env.NODE_ENV !== "test"){
+if (process.env.NODE_ENV !== "test") {
   try {
     mongoose.connect(keys.MONGODB_URL, {
       useNewUrlParser: true,
@@ -27,6 +27,7 @@ if(process.env.NODE_ENV !== "test"){
 
 app.use(bodyParser.json());
 app.use(flash());
+
 // PASSPORT CONFIG
 app.use(
   cookieSession({
@@ -34,7 +35,6 @@ app.use(
     keys: [keys.COOKIE_KEY],
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -46,11 +46,17 @@ require("./routes/noteRoutes")(app);
 require("./routes/projectRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  dynoWaker("life-together-calculator", "bears-and-bear-markets")
+  dynoWaker("life-together-calculator", "bears-and-bear-markets");
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.sendFile(require("path").resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(
+      require("path").resolve(__dirname, "client", "build", "index.html")
+    );
   });
 }
+
+app.listen(PORT, () => {
+  console.log(`Estuary listening on localhost:${PORT}`);
+});
 
 module.exports = app;
