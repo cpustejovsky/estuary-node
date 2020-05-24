@@ -117,9 +117,17 @@ export default function Todos() {
           />
           <Todo complete subtodo text="create view for event creation" />
         </Collapse>
+        <Todo text="Add email functionality" />
+        <Todo subtodo complete text="Connect MailGun to domain" />
+        <Todo subtodo text="Connect MailGun to app" />
+        <Todo subtodo text="Refactor email routes" />
+        <Todo subtodo text="Add additional email settings for user" />
+        <Todo subtodo text="Reflect settings in email routes" />
+        <Todo subtodo text="Style emails" />
         <Todo text="Mocha unit testing" />
         <Todo complete subtodo text="Splitting out routes and controllers" />
-        <Todo subtodo text="set up dummy data and tests" />
+        <Todo subtodo text="mock passport-google-oauth20 authentication" />
+        <Todo subtodo text="set up tests" />
         <Todo subsubtodo text="user" />
         <Todo subsubtodo text="projects" />
         <Todo subsubtodo text="notes" />
@@ -130,7 +138,6 @@ export default function Todos() {
         <Todo subtodo text="set up tag creation, edit, and display" />
         <Todo subtodo text="Set search up for tags" />
         <Todo subtodo text="Set search up for content/title" />
-        <Todo text="Add functionality to email notes from app with MailGun" />
         <Todo text="Performance" />
         <Todo subtodo text="add performance benchmarks, etc for MongoDB" />
         <Todo subtodo text="clean up models and queries" />
