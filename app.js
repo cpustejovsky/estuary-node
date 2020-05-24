@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const mongoose = require("mongoose");
@@ -10,19 +11,17 @@ require("./models/User");
 require("./services/passport/google");
 const PORT = process.env.PORT || 5000;
 
-mongoose
-  .connect(keys.MONGODB_URL, {
+try {
+  mongoose.connect(keys.MONGODB_URL, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-  })
-  .then(() => console.log("connected to database"))
-  .catch((err) => {
-    console.log(err);
-    process.exit(1);
   });
-
-const app = express();
+  console.log("connected to database");
+} catch (err) {
+  console.log(err);
+  process.exit(1);
+}
 
 app.use(bodyParser.json());
 app.use(flash());
@@ -45,18 +44,13 @@ require("./routes/noteRoutes")(app);
 require("./routes/projectRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  //serve up production assets
+  dynoWaker("life-together-calculator", "bears-and-bear-markets")
   app.use(express.static("client/build"));
-  //serve up html routes if it doesn't recognize route
-  const path = require("path");
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(require("path").resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
 app.listen(PORT, () => {
   console.log(`Estuary listening on localhost:${PORT}`);
-  process.env.NODE_ENV === "production"
-    ? dynoWaker("life-together-calculator", "bears-and-bear-markets")
-    : console.log("running in dev mode");
 });
