@@ -19,7 +19,6 @@ import Test from "./Test";
 import ProjectShow from "./projects/ProjectShow";
 import ProjectsShow from "./projects/ProjectsShow";
 import ProjectNew from "./projects/ProjectNew";
-import ProjectEdit from "./projects/ProjectEdit";
 import Timer from "./notes/organize/Timer";
 
 function App({ fetchUser }) {
@@ -59,7 +58,6 @@ function App({ fetchUser }) {
             render={() => <ProjectNew show={true} history={history} />}
           />
           <Route path="/projects/show/:id" exact component={ProjectShow} />
-          <Route path="/projects/edit" exact component={ProjectEdit} />
         </Switch>
       </div>
       <Footer />
