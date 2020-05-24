@@ -11,15 +11,16 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
-  const notesLength = (notes) => {
+  const getNotesLength = (notes) => {
     return notes.length > 0
       ? notes.filter((note) => note.category === match.params.name).length
       : 0;
   };
+  const notesLength = getNotesLength(notes);
   console.log(notesLength(notes));
   useEffect(() => {
     fetchNotesByCategory(match.params.name);
-  }, [match.params.name, notesLength(notes)]);
+  }, [match.params.name, notesLength]);
   //TODO: create blur or loading effect while it's loading the other category
   const renderNotes = () => {
     if (!_.isEmpty(notes)) {
