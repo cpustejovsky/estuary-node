@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
 import { fetchNotesByCategory } from "../../actions";
