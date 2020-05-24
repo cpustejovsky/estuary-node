@@ -11,16 +11,18 @@ require("./models/User");
 require("./services/passport/google");
 const PORT = process.env.PORT || 5000;
 
-try {
-  mongoose.connect(keys.MONGODB_URL, {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  });
-  console.log("connected to database");
-} catch (err) {
-  console.log(err);
-  process.exit(1);
+if(process.env.NODE_ENV !== "test"){
+  try {
+    await mongoose.connect(keys.MONGODB_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    });
+    console.log("connected to database");
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
 }
 
 app.use(bodyParser.json());

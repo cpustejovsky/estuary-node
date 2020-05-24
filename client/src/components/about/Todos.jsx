@@ -117,7 +117,6 @@ export default function Todos() {
           />
           <Todo complete subtodo text="create view for event creation" />
         </Collapse>
-        {/* TODO: WHERE THE NEW TODOS ARE! */}
         <Todo text="Mocha unit testing" />
         <Todo complete subtodo text="Splitting out routes and controllers" />
         <Todo subtodo text="set up dummy data and tests" />
