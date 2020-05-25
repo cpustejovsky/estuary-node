@@ -2,12 +2,16 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 module.exports = {
   async updateUser(req, res) {
-    let updatedUser = {};
-    updatedUser.firstName = req.body.firstName;
-    updatedUser.lastName = req.body.lastName;
-    updatedUser.emailUpdates = req.body.emailUpdates;
     try {
-      await User.findByIdAndUpdate(req.user.id, updatedUser, { new: true });
+      let updatedUser = await User.findByIdAndUpdate(
+        req.user.id,
+        {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          emailUpdates: req.body.emailUpdates,
+        },
+        { new: true }
+      );
       res.send(updatedUser);
     } catch (error) {
       console.log("OOPS!");

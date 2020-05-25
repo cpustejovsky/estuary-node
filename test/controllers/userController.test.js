@@ -32,7 +32,6 @@ describe("User controller", () => {
         .end(() => {
           User.findOne({ email: "charles@cpustejovsky.com" })
             .then((foundUser) => {
-              console.log(foundUser);
               assert(
                 foundUser.firstName !== user.firstName &&
                   foundUser.lastName !== user.lastName &&
