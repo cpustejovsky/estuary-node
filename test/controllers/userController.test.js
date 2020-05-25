@@ -44,3 +44,29 @@ describe("User controller", () => {
     });
   });
 });
+
+describe("User controller", () => {
+  it("PUTS to /api/user and updates the user", (done) => {
+    let user = new User({
+      firstName: "Charles",
+      lastName: "Pustejovsky",
+      email: "charles@cpustejovsky.com",
+      emailUpdates: true,
+    });
+    user.save().then((user) => {
+      passportStub.login(user);
+      chai
+        .request(app)
+        .delete("/api/user")
+        .end(() => {
+          User.findOne({ email: "charles@cpustejovsky.com" })
+            .then((user) => {
+              console.log(user)
+              assert(user === null);
+              done();
+            })
+            .catch((err) => console.log(err));
+        });
+    });
+  });
+});
