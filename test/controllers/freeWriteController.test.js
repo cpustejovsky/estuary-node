@@ -16,15 +16,18 @@ const newUser = {
   email: "charles@cpustejovsky.com",
   emailUpdates: true,
 };
+const newFreeWrite = (id) => {
+  return {
+    title: "Test Free Write",
+    content: "Free write content",
+    date: new Date(),
+    _user: id,
+  }
+}
 describe("Free Write controller", () => {
   it("GETs /api/free-writes and reads the free-writes", async () => {
     let savedUser = await new User(newUser).save();
-    let freeWrite = new FreeWrite({
-      title: "Test Free Write",
-      content: "Free write content",
-      date: new Date(),
-      _user: savedUser._id,
-    });
+    let freeWrite = new FreeWrite(newFreeWrite(savedUser._id));
     let savedFreeWrite = await freeWrite.save();
     passportStub.login(savedUser);
     let response = await chai.request(app).get("/api/free-writes");
@@ -32,12 +35,7 @@ describe("Free Write controller", () => {
   });
   it("POSTs to /api/free-writes and creates the free-write", async () => {
     let savedUser = await new User(newUser).save();
-    let freeWrite = new FreeWrite({
-      title: "Test Free Write",
-      content: "Free write content",
-      date: new Date(),
-      _user: savedUser._id,
-    });
+    let freeWrite = new FreeWrite(newFreeWrite(savedUser._id));
     let savedFreeWrite = await freeWrite.save();
     passportStub.login(savedUser);
     await chai.request(app).post("/api/free-writes").send({
