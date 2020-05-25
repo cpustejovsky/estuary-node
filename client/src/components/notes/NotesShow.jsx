@@ -17,7 +17,6 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
       : 0;
   };
   const notesLength = getNotesLength(notes);
-  console.log(notesLength(notes));
   useEffect(() => {
     fetchNotesByCategory(match.params.name);
   }, [match.params.name, notesLength]);
