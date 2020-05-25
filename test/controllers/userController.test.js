@@ -57,11 +57,10 @@ describe("User controller", () => {
       passportStub.login(user);
       chai
         .request(app)
-        .delete("/api/user")
+        .delete(`/api/user/${user._id}`)
         .end(() => {
           User.findOne({ email: "charles@cpustejovsky.com" })
             .then((user) => {
-              console.log(user)
               assert(user === null);
               done();
             })

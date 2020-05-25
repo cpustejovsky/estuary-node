@@ -19,8 +19,9 @@ module.exports = {
     }
   },
   async deleteUser(req, res) {
-    await User.findByIdAndDelete(req.user.id);
-    req.flash("success", "User deleted");
-    res.redirect("/");
+    await User.findByIdAndDelete({_id: req.params.id});
+    //TODO: replace flash with something in React
+    // req.flash("success", "User deleted");
+    res.send({});
   },
 };
