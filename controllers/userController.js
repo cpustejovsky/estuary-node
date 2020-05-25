@@ -5,7 +5,6 @@ module.exports = {
     let updatedUser = {};
     updatedUser.firstName = req.body.firstName;
     updatedUser.lastName = req.body.lastName;
-    updatedUser.email = req.body.emailAddress;
     updatedUser.emailUpdates = req.body.emailUpdates;
     try {
       await User.findByIdAndUpdate(req.user.id, updatedUser, { new: true });

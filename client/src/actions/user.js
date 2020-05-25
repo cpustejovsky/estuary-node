@@ -12,7 +12,7 @@ export const fetchUser = () => async (dispatch) => {
   });
 };
 export const updateUser = (values, history) => async (dispatch) => {
-  const response = await axios.put("/api/user", values);
+  const response = await axios.patch("/api/user", values);
   history.push("/user");
   dispatch({
     type: UPDATE_USER,

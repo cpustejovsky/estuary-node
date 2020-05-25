@@ -23,16 +23,16 @@ describe("User controller", () => {
       passportStub.login(user);
       chai
         .request(app)
-        .put("/api/user")
+        .patch("/api/user")
         .send({
           firstName: "Charles2",
           lastName: "Pustejovsky2",
-          email: "charles@cpustejovsky.com",
           emailUpdates: false,
         })
-        .end((err, res) => {
-          User.find()
+        .end(() => {
+          User.findOne({ email: "charles@cpustejovsky.com" })
             .then((foundUser) => {
+              console.log(foundUser);
               assert(
                 foundUser.firstName !== user.firstName &&
                   foundUser.lastName !== user.lastName &&
