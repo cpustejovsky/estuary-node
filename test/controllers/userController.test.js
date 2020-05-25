@@ -8,15 +8,15 @@ const User = mongoose.model("users");
 chai.use(chaiHttp);
 chai.should();
 passportStub.install(app);
-
+const newUser = {
+  firstName: "Charles",
+  lastName: "Pustejovsky",
+  email: "charles@cpustejovsky.com",
+  emailUpdates: true,
+}
 describe("User controller", () => {
   it("GETS /api/user and reads the user", (done) => {
-    let user = new User({
-      firstName: "Charles",
-      lastName: "Pustejovsky",
-      email: "charles@cpustejovsky.com",
-      emailUpdates: true,
-    });
+    let user = new User(newUser);
     user.save().then((user) => {
       passportStub.login(user);
       chai
@@ -29,12 +29,7 @@ describe("User controller", () => {
     });
   });
   it("PUTS to /api/user and updates the user", (done) => {
-    let user = new User({
-      firstName: "Charles",
-      lastName: "Pustejovsky",
-      email: "charles@cpustejovsky.com",
-      emailUpdates: true,
-    });
+    let user = new User(newUser);
     user.save().then((user) => {
       passportStub.login(user);
       chai
@@ -61,12 +56,7 @@ describe("User controller", () => {
   });
 
   it("DELETES to /api/user and destroys the user", (done) => {
-    let user = new User({
-      firstName: "Charles",
-      lastName: "Pustejovsky",
-      email: "charles@cpustejovsky.com",
-      emailUpdates: true,
-    });
+    let user = new User(newUser);
     user.save().then((user) => {
       passportStub.login(user);
       chai
