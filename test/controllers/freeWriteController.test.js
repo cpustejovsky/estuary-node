@@ -27,12 +27,8 @@ describe("Free Write controller", () => {
     });
     let savedFreeWrite = await freeWrite.save();
     passportStub.login(savedUser);
-    chai
-      .request(app)
-      .get("/api/free-writes")
-      .end((err, res) => {
-        assert(res.body[0]._id.toString() === savedFreeWrite._id.toString());
-      });
+    let response = await chai.request(app).get("/api/free-writes");
+    assert(response.body[0]._id.toString() === savedFreeWrite._id.toString());
   });
   it("POSTs to /api/free-writes and creates the free-write", async () => {
     let savedUser = await new User(newUser).save();
@@ -44,23 +40,14 @@ describe("Free Write controller", () => {
     });
     let savedFreeWrite = await freeWrite.save();
     passportStub.login(savedUser);
-    chai
-      .request(app)
-      .post("/api/free-writes")
-      .send({
-        title: "Test Free Write #2",
-        content: "Free write content #2",
-        date: new Date(),
-        _user: savedUser._id,
-      })
-      .end(async () => {
-        try {
-          let freeWrites = await FreeWrite.find({ _user: savedUser._id });
-          assert(freeWrites.length > 1);
-        } catch (error) {
-          console.warn(error);
-        }
-      });
+    await chai.request(app).post("/api/free-writes").send({
+      title: "Test Free Write #2",
+      content: "Free write content #2",
+      date: new Date(),
+      _user: savedUser._id,
+    });
+    let freeWrites = await FreeWrite.find({ _user: savedUser._id });
+    assert(freeWrites.length > 1);
   });
   // it("DELETES to /api/free-write and destroys the free-write", (done) => {
   //   let user = new User(newUser);

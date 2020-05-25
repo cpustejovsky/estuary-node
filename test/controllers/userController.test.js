@@ -13,63 +13,39 @@ const newUser = {
   lastName: "Pustejovsky",
   email: "charles@cpustejovsky.com",
   emailUpdates: true,
-}
+};
 describe("User controller", () => {
-  it("GETs /api/user and reads the user", (done) => {
-    let user = new User(newUser);
-    user.save().then((user) => {
-      passportStub.login(user);
-      chai
-        .request(app)
-        .get("/api/user")
-        .end((err, res) => {
-          assert(res.body._id.toString() === user._id.toString());
-          done();
-        });
-    });
-  });
-  it("PUTS to /api/user and updates the user", (done) => {
-    let user = new User(newUser);
-    user.save().then((user) => {
-      passportStub.login(user);
-      chai
-        .request(app)
-        .patch("/api/user")
-        .send({
-          firstName: "Charles2",
-          lastName: "Pustejovsky2",
-          emailUpdates: false,
-        })
-        .end(() => {
-          User.findOne({ email: "charles@cpustejovsky.com" })
-            .then((foundUser) => {
-              assert(
-                foundUser.firstName !== user.firstName &&
-                  foundUser.lastName !== user.lastName &&
-                  foundUser.emailUpdates !== user.emailUpdates
-              );
-              done();
-            })
-            .catch((err) => console.log(err));
-        });
-    });
+  it("GETs /api/user and reads the user", async () => {
+    let savedUser = await new User(newUser).save();
+    passportStub.login(savedUser);
+    let response = await chai.request(app).get("/api/user");
+    assert(response.body._id.toString() === savedUser._id.toString());
   });
 
-  it("DELETEs to /api/user and destroys the user", (done) => {
-    let user = new User(newUser);
-    user.save().then((user) => {
-      passportStub.login(user);
-      chai
-        .request(app)
-        .delete(`/api/user/${user._id}`)
-        .end(() => {
-          User.findOne({ email: "charles@cpustejovsky.com" })
-            .then((user) => {
-              assert(user === null);
-              done();
-            })
-            .catch((err) => console.log(err));
-        });
+  it("PUTS to /api/user and updates the user", async () => {
+    let savedUser = await new User(newUser).save();
+    passportStub.login(savedUser);
+    await chai.request(app).patch("/api/user").send({
+      firstName: "Charles2",
+      lastName: "Pustejovsky2",
+      emailUpdates: false,
     });
+    let foundUser = await User.findOne({
+      email: "charles@cpustejovsky.com",
+    });
+
+    assert(
+      foundUser.firstName !== savedUser.firstName &&
+        foundUser.lastName !== savedUser.lastName &&
+        foundUser.emailUpdates !== savedUser.emailUpdates
+    );
+  });
+
+  it("DELETEs to /api/user and destroys the user", async () => {
+    let savedUser = await new User(newUser).save();
+    passportStub.login(savedUser);
+    await chai.request(app).delete(`/api/user/${savedUser._id}`);
+    let foundUser = await User.findOne({ email: "charles@cpustejovsky.com" });
+    assert(foundUser === null);
   });
 });
