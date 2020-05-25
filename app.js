@@ -9,7 +9,7 @@ const dynoWaker = require("cpustejovsky-dyno-waker");
 const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport/google");
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.NODE_ENV === "test" ? 4000 : process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== "test") {
   try {
