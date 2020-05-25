@@ -15,7 +15,7 @@ const newUser = {
   emailUpdates: true,
 }
 describe("User controller", () => {
-  it("GETS /api/user and reads the user", (done) => {
+  it("GETs /api/user and reads the user", (done) => {
     let user = new User(newUser);
     user.save().then((user) => {
       passportStub.login(user);
@@ -55,7 +55,7 @@ describe("User controller", () => {
     });
   });
 
-  it("DELETES to /api/user and destroys the user", (done) => {
+  it("DELETEs to /api/user and destroys the user", (done) => {
     let user = new User(newUser);
     user.save().then((user) => {
       passportStub.login(user);
