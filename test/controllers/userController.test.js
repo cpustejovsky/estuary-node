@@ -33,7 +33,11 @@ describe("User controller", () => {
         .end((err, res) => {
           User.find()
             .then((foundUser) => {
-              assert(user.firstName !== foundUser.firstName);
+              assert(
+                foundUser.firstName !== user.firstName &&
+                  foundUser.lastName !== user.lastName &&
+                  foundUser.emailUpdates !== user.emailUpdates
+              );
               done();
             })
             .catch((err) => console.log(err));
