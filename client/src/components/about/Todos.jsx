@@ -46,23 +46,21 @@ export default function Todos() {
           <Todo complete text="Refactor notes and freewrites as subdocs" />
           <Todo complete text="CRUD functionality for notes" />
           <Todo complete text="Add customizable destinations for notes" />
-          <Todo complete text="Delete UI for notes" />
-          <Todo complete text="Create UI for notes" />
-          <Todo complete text="Edit UI for notes" />
-          <Todo complete text="Add notes by pressing Enter" />
-          <Todo complete text="Implement Next Actions List" />{" "}
-          <Todo complete text="Implement Immediate To-Dos List" />
-          <Todo complete text="Implement Someday List" />
-          <Todo complete text="Implement Waiting List" />
-          <Todo complete text="Implement Reference List" />
+          <Todo complete text="CRUD UI for notes" />
+          <Todo complete text="Implement Lists for:" />
+          <Todo subtodo complete text="Next Actions" />
+          <Todo subtodo complete text="Immediate To-Dos" />
+          <Todo subtodo complete text="Someday" />
+          <Todo subtodo complete text="Waiting" />
+          <Todo subtodo complete text="Reference" />
           <Todo complete text="Replace materialize-css with Material-UI" />
           <Todo
             complete
             text="replace class-based with functional components"
           />
-          <Todo complete text="write up functional components to Redux" />
+          <Todo complete text="Wire up functional components to Redux" />
           <Todo complete text="Refactor note model for different categories" />
-          <Todo complete text="Implement Projects model and routes" />
+          <Todo complete text="Implement projects model and routes" />
           <Todo
             complete
             text="Refactor Organization flow (full GTD process, yes or no)"
@@ -132,8 +130,8 @@ export default function Todos() {
         <Todo subtodo complete text="Connect MailGun to domain" />
         <Todo subtodo text="Connect MailGun to app" />
         <Todo subtodo text="Refactor email routes" />
-        <Todo subtodo text="Add additional email settings for user" />
         <Todo subtodo text="Update user tests" />
+        <Todo subtodo text="Add additional email settings for user" />
         <Todo subtodo text="Reflect settings in email routes" />
         <Todo subtodo text="email route and controller tests" />
         <Todo subtodo text="Style emails" />

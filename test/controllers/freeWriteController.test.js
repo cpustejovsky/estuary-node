@@ -6,7 +6,6 @@ const app = require("../../app");
 const passportStub = require("passport-stub");
 const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
-const Note = mongoose.model("notes");
 chai.use(chaiHttp);
 chai.should();
 passportStub.install(app);
