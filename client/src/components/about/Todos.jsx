@@ -121,7 +121,7 @@ export default function Todos() {
         <Todo complete subtodo text="Separate routes and controllers" />
         <Todo complete subtodo text="Mock authentication" />
         <Todo subtodo text="set up tests" />
-        <Todo subsubtodo text="user" />
+        <Todo complete subsubtodo text="user" />
         <Todo subsubtodo text="projects" />
         <Todo subsubtodo text="notes" />
         <Todo subsubtodo text="free writes" />

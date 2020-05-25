@@ -18,13 +18,10 @@ const UserEdit = (props) => {
     props.updateUser(values, history);
   };
 
-  const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-
+  console.log(user);
   const emailUpdateDefault = () => {
-    if (auth) {
-      return auth.emailUpdates ? true : false;
-    } else if (user) {
+    if (user) {
       return user.emailUpdates ? true : false;
     }
   };
@@ -41,16 +38,8 @@ const UserEdit = (props) => {
       emailUpdates: user.emailUpdates,
     };
   }
-  if (auth) {
-    updatedData = {
-      firstName: auth.firstName,
-      lastName: auth.lastName,
-      emailAddress: auth.email,
-      emailUpdates: auth.emailUpdates,
-    };
-  }
 
-  if (auth) {
+  if (user) {
     return (
       <Card raised style={{ padding: "20px", minWidth: "33%" }}>
         <Typography align="center" gutterBottom variant="h4" component="h2">

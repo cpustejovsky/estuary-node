@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useSelector } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
@@ -22,9 +22,10 @@ import ProjectNew from "./projects/ProjectNew";
 import Timer from "./notes/organize/Timer";
 
 function App({ fetchUser }) {
+  // const user = useSelector((state) => state.user);
   useEffect(() => {
     fetchUser();
-  });
+  }, []);
   return (
     <Router history={history}>
       <Header />
