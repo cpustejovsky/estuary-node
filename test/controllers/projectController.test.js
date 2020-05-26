@@ -125,17 +125,15 @@ describe("Project controller", () => {
     assert(project.completed === false);
   });
 
-  // it("DELETES to /api/projects and destroys the project", async () => {
-  //   let savedUser = await new User(newUser).save();
-  //   let savedProject = await new Project(newProject(savedUser._id)).save();
-  //   passportStub.login(savedUser);
-  //   await chai.request(app).delete("/api/projects").send({
-  //     projectId: savedProject._id,
-  //   });
-  //   let project = await Project.findOne({
-  //     _user: savedUser._id,
-  //     _id: savedProject._id,
-  //   });
-  //   assert(project === null);
-  // });
+  it("DELETES to /api/projects and destroys the project", async () => {
+    let savedUser = await new User(newUser).save();
+    let savedProject = await new Project(newProject(savedUser._id)).save();
+    passportStub.login(savedUser);
+    await chai.request(app).delete(`/api/projects/${savedProject._id}`);
+    let project = await Project.findOne({
+      _user: savedUser._id,
+      _id: savedProject._id,
+    });
+    assert(project === null);
+  });
 });
