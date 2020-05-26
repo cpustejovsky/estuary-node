@@ -106,7 +106,6 @@ describe("Note controller", () => {
       _id: savedNote._id,
       _project: savedProject._id
     });
-    console.log(note);
     assert(note.content === "note content");
   });
 

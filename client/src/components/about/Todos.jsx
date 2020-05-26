@@ -115,14 +115,14 @@ export default function Todos() {
           />
           <Todo complete subtodo text="create view for event creation" />
         </Collapse>
-        <Todo text="Mocha unit testing" />
+        <Todo text="Add testing" />
         <Todo complete subtodo text="Separate routes and controllers" />
-        <Todo complete subtodo text="Mock authentication" />
-        <Todo subtodo text="controller tests" />
+        <Todo complete subtodo text="Stub passport authentication" />
+        <Todo complete subtodo text="Create controller unit tests for:" />
         <Todo complete subsubtodo text="user" />
         <Todo complete subsubtodo text="free writes" />
-        <Todo subsubtodo text="projects" />
-        <Todo subsubtodo text="notes" />
+        <Todo complete subsubtodo text="projects" />
+        <Todo complete subsubtodo text="notes" />
         <Todo subtodo text="passport strategy test" />
         <Todo subtodo text="calendar test" />
         <Todo subtodo text="freeWriteChecker test" />
