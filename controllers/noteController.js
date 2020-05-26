@@ -36,15 +36,6 @@ module.exports = {
     res.send(response);
   },
   async updateNoteCategory(req, res) {
-    let updatedNote = await Note.findOneAndUpdate(
-      { _user: req.user.id, _id: req.body.noteId },
-      { _project: req.body.projectId, category: req.params.category},
-      { new: true }
-    );
-    response = await updatedNote.save();
-    res.send(response);
-  },
-  async attachNoteToProject(req, res) {
     let category = req.params.category;
     let updatedData = {
       category: category.toLowerCase(),
@@ -64,6 +55,15 @@ module.exports = {
     let updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
       updatedData,
+      { new: true }
+    );
+    response = await updatedNote.save();
+    res.send(response);
+  },
+  async attachNoteToProject(req, res) {
+    let updatedNote = await Note.findOneAndUpdate(
+      { _user: req.user.id, _id: req.body.noteId },
+      { _project: req.body.projectId },
       { new: true }
     );
     response = await updatedNote.save();
