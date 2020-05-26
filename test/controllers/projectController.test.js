@@ -6,6 +6,7 @@ const app = require("../../app");
 const passportStub = require("passport-stub");
 const User = mongoose.model("users");
 const Project = mongoose.model("projects");
+const Note = mongoose.model("notes");
 chai.use(chaiHttp);
 chai.should();
 passportStub.install(app);
@@ -23,8 +24,15 @@ const newProject = (id) => {
     _user: id,
   };
 };
+const newNote = (id) => {
+  return {
+    content: "note content",
+    category: "in-tray",
+    _user: id,
+  };
+};
 describe("Project controller", () => {
-  it("POSTs to /api/projects and creates the note", async () => {
+  it("POSTs to /api/projects and creates the project", async () => {
     let savedUser = await new User(newUser).save();
     await new Project(newProject(savedUser._id)).save();
     passportStub.login(savedUser);
@@ -61,50 +69,73 @@ describe("Project controller", () => {
     let savedUser = await new User(newUser).save();
     let savedProject = await new Project(newProject(savedUser._id)).save();
     passportStub.login(savedUser);
-    let response = await chai.request(app).get(`/api/projects/show/${savedProject._id}`);
+    let response = await chai
+      .request(app)
+      .get(`/api/projects/show/${savedProject._id}`);
     assert(response.body._id.toString() === savedProject._id.toString());
   });
-  // it("PATCHs to /api/projects and updates the note", async () => {
-  //   let savedUser = await new User(newUser).save();
-  //   let savedProject = await new Project(newProject(savedUser._id)).save();
-  //   passportStub.login(savedUser);
-  //   await chai.request(app).patch("/api/projects").send({
-  //     content: "Project content #2",
-  //     noteId: savedProject._id,
-  //   });
-  //   let note = await Project.findOne({
-  //     _user: savedUser._id,
-  //     _id: savedProject._id,
-  //   });
-  //   assert(note.content === "Project content #2");
-  // });
+  it("PATCHs to /api/projects and updates the project", async () => {
+    let savedUser = await new User(newUser).save();
+    let savedProject = await new Project(newProject(savedUser._id)).save();
+    passportStub.login(savedUser);
+    await chai.request(app).patch("/api/projects").send({
+      description: "Project description #2",
+      projectId: savedProject._id,
+    });
+    let project = await Project.findOne({
+      _user: savedUser._id,
+      _id: savedProject._id,
+    });
+    assert(project.description === "Project description #2");
+  });
 
-  // it("PATCHs to /api/projects/:category and updates the note's category", async () => {
-  //   let savedUser = await new User(newUser).save();
-  //   let savedProject = await new Project(newProject(savedUser._id)).save();
-  //   passportStub.login(savedUser);
-  //   await chai.request(app).patch("/api/projects/waiting").send({
-  //     noteId: savedProject._id,
-  //   });
-  //   let note = await Project.findOne({
-  //     _user: savedUser._id,
-  //     _id: savedProject._id,
-  //     category: "waiting",
-  //   });
-  //   assert(note.category === "waiting");
-  // });
+  it("PATCHs to /api/projects/done and marks the project as complete", async () => {
+    let savedUser = await new User(newUser).save();
+    let savedProject = await new Project(newProject(savedUser._id)).save();
+    passportStub.login(savedUser);
+    await chai.request(app).patch("/api/projects/done").send({
+      projectId: savedProject._id,
+    });
+    let project = await Project.findOne({
+      _user: savedUser._id,
+      _id: savedProject._id,
+    });
+    assert(project.completed === true);
+  });
 
-  // it("DELETES to /api/projects and destroys the note", async () => {
+  it("PATCHs to /api/projects/done and returns error if project has uncompleted notes", async () => {
+    let savedUser = await new User(newUser).save();
+    let savedProject = await new Project(newProject(savedUser._id)).save();
+    let savedNote = await new Note(newNote(savedUser._id)).save();
+    passportStub.login(savedUser);
+    await chai
+      .request(app)
+      .patch("/api/notes/project")
+      .send({ noteId: savedNote._id, projectId: savedProject._id });
+    let res = await chai.request(app).patch("/api/projects/done").send({
+      projectId: savedProject._id,
+    });
+    let project = await Project.findOne({
+      _user: savedUser._id,
+      _id: savedProject._id,
+    });
+    assert(
+      res.text === "Error! There are notes that still need to be completed!"
+    );
+    assert(project.completed === false);
+  });
+
+  // it("DELETES to /api/projects and destroys the project", async () => {
   //   let savedUser = await new User(newUser).save();
   //   let savedProject = await new Project(newProject(savedUser._id)).save();
   //   passportStub.login(savedUser);
   //   await chai.request(app).delete("/api/projects").send({
-  //     noteId: savedProject._id,
+  //     projectId: savedProject._id,
   //   });
-  //   let note = await Project.findOne({
+  //   let project = await Project.findOne({
   //     _user: savedUser._id,
   //     _id: savedProject._id,
   //   });
-  //   assert(note === null);
+  //   assert(project === null);
   // });
 });
