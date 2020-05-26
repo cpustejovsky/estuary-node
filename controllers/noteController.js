@@ -38,7 +38,7 @@ module.exports = {
   async updateNoteCategory(req, res) {
     let updatedNote = await Note.findOneAndUpdate(
       { _user: req.user.id, _id: req.body.noteId },
-      { _project: req.body.projectId, category: "project" },
+      { _project: req.body.projectId, category: req.params.category},
       { new: true }
     );
     response = await updatedNote.save();
