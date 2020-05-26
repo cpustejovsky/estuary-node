@@ -22,7 +22,7 @@ describe("User controller", () => {
     assert(response.body._id.toString() === savedUser._id.toString());
   });
 
-  it("PUTS to /api/user and updates the user", async () => {
+  it("PATCHs to /api/user and updates the user", async () => {
     let savedUser = await new User(newUser).save();
     passportStub.login(savedUser);
     await chai.request(app).patch("/api/user").send({
