@@ -18,7 +18,7 @@ module.exports = {
     res.send(userProjects);
   },
   async getProject(req, res) {
-    const userProject = await Project.find({
+    const userProject = await Project.findOne({
       _user: req.user.id,
       _id: req.params.id,
     });
