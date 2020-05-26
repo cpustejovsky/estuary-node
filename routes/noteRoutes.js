@@ -12,7 +12,7 @@ module.exports = (app) => {
     noteController.findNotesByProject
   );
   app.post("/api/notes", requireLogin, noteController.createNote);
-  app.patch("/api/notes", requireLogin, noteController.updateNoteCategory);
+  app.patch("/api/notes", requireLogin, noteController.updateNote);
   app.patch(
     "/api/notes/project",
     requireLogin,
