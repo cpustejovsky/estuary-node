@@ -63,21 +63,8 @@ describe("Note controller", () => {
     let response = await chai
       .request(app)
       .get(`/api/notes/project/${savedProject._id}`);
-    console.log(response.body);
     assert(response.body[0]._id.toString() === savedNote._id.toString());
   });
-  //TODO: set up test after setting up CRUD tests for project
-  // it("PATCHs to /api/notes/project and updates the note", async () => {
-  //   let savedUser = await new User(newUser).save();
-  //   let savedNote = await new Note(newNote(savedUser._id)).save();
-  //   passportStub.login(savedUser);
-  //   await chai.request(app).patch("/api/notes").send({
-  //     content: "Note content #2",
-  //     noteId: savedNote._id,
-  //   });
-  //   let note = await Note.findOne({ _user: savedUser._id, _id: savedNote._id });
-  //   assert(note.content === "Note content #2");
-  // });
   it("PATCHs to /api/notes and updates the note", async () => {
     let savedUser = await new User(newUser).save();
     let savedNote = await new Note(newNote(savedUser._id)).save();
@@ -103,6 +90,24 @@ describe("Note controller", () => {
       category: "waiting",
     });
     assert(note.category === "waiting");
+  });
+
+  it("PATCHs to /api/notes/project and connects the note to the project", async () => {
+    let savedUser = await new User(newUser).save();
+    let savedNote = await new Note(newNote(savedUser._id)).save();
+    let savedProject = await new Project(newProject(savedUser._id)).save();
+    passportStub.login(savedUser);
+    await chai.request(app).patch("/api/notes/project").send({
+      noteId: savedNote._id,
+      projectId: savedProject._id,
+    });
+    let note = await Note.findOne({
+      _user: savedUser._id,
+      _id: savedNote._id,
+      _project: savedProject._id
+    });
+    console.log(note);
+    assert(note.content === "note content");
   });
 
   it("DELETES to /api/notes and destroys the note", async () => {
