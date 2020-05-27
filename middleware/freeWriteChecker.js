@@ -12,15 +12,13 @@ const freeWriteCheckerObject = {
       );
   },
   noteRemover(freeWrite) {
-    let stringArrNL = freeWrite.split("\n");
-    stringArrNL.forEach((element) => {
-      if (element[0] === "#" && element[1].toString().toUpperCase() === "N") {
-        let noteElem = stringArrNL.indexOf(element);
-        stringArrNL.splice(noteElem, 1);
-      }
-    });
-    let cleanFreeWrite = stringArrNL.join("\n");
-    return cleanFreeWrite;
+    return freeWrite
+      .split("\n")
+      .filter(
+        (element) =>
+          element[0] !== "#" && element[1].toString().toUpperCase() !== "N"
+      )
+      .join("\n");
   },
   noteChecker(string) {
     notes = [];
