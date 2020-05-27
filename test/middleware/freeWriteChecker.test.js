@@ -20,6 +20,12 @@ describe("Free Write Checker", () => {
   });
   it("removes notes from a string", async () => {
     const testFreeWrite = await readFile("./test.txt");
-    expect(freeWriteChecker.noteRemover(testFreeWrite).split(/\s/).length).to.equal(46);
+    expect(
+      freeWriteChecker.noteRemover(testFreeWrite).split(/\s/).length
+    ).to.equal(46);
+  });
+  it("creates an array of notes from a string", async () => {
+    const testFreeWrite = await readFile("./test.txt");
+    expect(freeWriteChecker.noteChecker(testFreeWrite).length).to.equal(2);
   });
 });
