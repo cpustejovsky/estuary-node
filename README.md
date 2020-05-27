@@ -20,6 +20,8 @@ Visit Estuary's [about page](https://cpustejovsky-estuary.herokuapp.com/about) f
 
 ## Acknowledgments 
 
+* Tony Alicea's works on JavaScript and NodeJS provide an invaluable baseline for understanding the technologies I'm using.
 * Colt Steele's [Web Development Bootcamp](https://www.udemy.com/the-web-developer-bootcamp/) was my launching off point for this application.
-* Stephen Grider's [Complete Developer's Guide to MongoDB](https://www.udemy.com/the-complete-developers-guide-to-mongodb/) has also been extremely helpful in structuring the server logic of the app.
-* Finally, Tony Alicea's works on JavaScript and NodeJS provide an invaluable baseline for understanding the technologies I'm using.
+* Stephen Grider's [Complete Developer's Guide to MongoDB](https://www.udemy.com/the-complete-developers-guide-to-mongodb/) has been extremely helpful in structuring the server logic of the app along with setting up Mocha testing.
+* Grider's [Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531438#overview) helped me set up the React front-end for this app.
+* Grider's [Node with React: Fullstack Web Development](https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7604946#overview) helped me connect my backend and frontend.
