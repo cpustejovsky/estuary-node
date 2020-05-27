@@ -1,4 +1,3 @@
-const assert = require("assert");
 const expect = require("chai").expect;
 const freeWriteChecker = require("../../middleware/freeWriteChecker");
 const fs = require("fs").promises;
@@ -18,5 +17,9 @@ describe("Free Write Checker", () => {
   it("counts the number of words in a string", async () => {
     const testFreeWrite = await readFile("./test.txt");
     expect(freeWriteChecker.wordCount(testFreeWrite)).to.equal(54);
+  });
+  it("removes notes from a string", async () => {
+    const testFreeWrite = await readFile("./test.txt");
+    expect(freeWriteChecker.noteRemover(testFreeWrite).split(/\s/).length).to.equal(46);
   });
 });
