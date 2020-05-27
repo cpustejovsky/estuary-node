@@ -1,0 +1,6 @@
+This is a test. I want to see how many words it records.
+Especially with newline characters thrown in.
+#N this is a note
+I want to make sure it extracts notes when they look like this:
+#n this is a note
+I want to make sure it continues writing. It should not count the "#n"s
