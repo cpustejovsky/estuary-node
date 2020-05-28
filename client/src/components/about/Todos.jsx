@@ -123,9 +123,9 @@ export default function Todos() {
         <Todo complete subsubtodo text="free writes" />
         <Todo complete subsubtodo text="projects" />
         <Todo complete subsubtodo text="notes" />
+        <Todo complete subtodo text="freeWriteChecker test" />
         <Todo subtodo text="passport strategy test" />
         <Todo subtodo text="calendar test" />
-        <Todo subtodo text="freeWriteChecker test" />
         <Todo text="Add email functionality" />
         <Todo subtodo complete text="Connect MailGun to domain" />
         <Todo subtodo text="Connect MailGun to app" />
