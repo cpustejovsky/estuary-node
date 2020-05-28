@@ -32,14 +32,14 @@ const newNote = (id) => {
 };
 describe("Note controller", () => {
   let savedUser;
-
+  let savedNote;
   beforeEach(async () => {
     savedUser = await new User(newUser).save();
+    savedNote = await new Note(newNote(savedUser._id)).save();
     passportStub.login(savedUser);
   });
 
   it("POSTs to /api/notes and creates the note", async () => {
-    await new Note(newNote(savedUser._id)).save();
     await chai.request(app).post("/api/notes").send({
       content: "Note content #2",
       category: "in-tray",
@@ -50,13 +50,12 @@ describe("Note controller", () => {
     ).length.to.be.gt(1);
   });
   it("GETs /api/notes/category/:name and reads the notes belonging to that category", async () => {
-    let savedNote = await new Note(newNote(savedUser._id)).save();
     let response = await chai.request(app).get("/api/notes/category/in-tray");
     expect(response.body[0]._id.toString()).to.equal(savedNote._id.toString());
   });
   it("GETs /api/notes/project/:id and reads the notes belonging to that project", async () => {
     let savedProject = await new Project(newProject(savedUser._id)).save();
-    let savedNote = await new Note(newNote(savedUser._id)).save();
+
     await chai
       .request(app)
       .patch("/api/notes/project")
@@ -67,7 +66,6 @@ describe("Note controller", () => {
     expect(response.body[0]._id.toString()).to.equal(savedNote._id.toString());
   });
   it("PATCHs to /api/notes and updates the note", async () => {
-    let savedNote = await new Note(newNote(savedUser._id)).save();
     await chai.request(app).patch("/api/notes").send({
       content: "Note content #2",
       noteId: savedNote._id,
@@ -77,7 +75,6 @@ describe("Note controller", () => {
   });
 
   it("PATCHs to /api/notes/:category and updates the note's category", async () => {
-    let savedNote = await new Note(newNote(savedUser._id)).save();
     await chai.request(app).patch("/api/notes/waiting").send({
       noteId: savedNote._id,
     });
@@ -90,7 +87,6 @@ describe("Note controller", () => {
   });
 
   it("PATCHs to /api/notes/project and connects the note to the project", async () => {
-    let savedNote = await new Note(newNote(savedUser._id)).save();
     let savedProject = await new Project(newProject(savedUser._id)).save();
     await chai.request(app).patch("/api/notes/project").send({
       noteId: savedNote._id,
@@ -102,11 +98,9 @@ describe("Note controller", () => {
       _project: savedProject._id,
     });
     expect(note.content).to.equal("note content");
-
   });
 
   it("DELETES to /api/notes and destroys the note", async () => {
-    let savedNote = await new Note(newNote(savedUser._id)).save();
     await chai.request(app).delete("/api/notes").send({
       noteId: savedNote._id,
     });
