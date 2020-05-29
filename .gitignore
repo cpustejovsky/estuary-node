@@ -3,3 +3,5 @@ node_modules
 .vscode
 config/dev.js
 scratch.js
+coverage/
+.nyc_output/

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test nodemon --exec 'mocha test --recursive'",
+    "coverage": "nyc npm run test",
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
@@ -44,5 +45,8 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-stub": "^1.1.1",
     "sinon": "^9.0.2"
+  },
+  "devDependencies": {
+    "nyc": "^15.0.1"
   }
 }
