@@ -146,6 +146,20 @@ export default function Todos() {
         <Todo subtodo text="clean up models and queries" />
         <Todo subtodo text="add performance benchmarks, etc for Node" />
         <Todo subtodo text="add performance benchmarks, etc for React" />
+        <Todo
+          subtodo
+          text={
+            <>
+              <a
+                href="https://www.codementor.io/blog/react-optimization-5wiwjnf9hj"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Follow this advice as starting place
+              </a>
+            </>
+          }
+        />
         <Todo text="Make components re-usable" />
         <Todo subtodo text="notes/" />
         <Todo subtodo text="notes/organize" />
