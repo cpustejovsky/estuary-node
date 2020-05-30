@@ -28,12 +28,16 @@ module.exports = {
       console.log("Please provide correct Id");
     }
   },
-  //TODO:add delete back in to view
   async deleteFreeWrite(req, res) {
-    await FreeWrite.findOneAndDelete({
-      _user: req.user.id,
-      _id: req.body.freeWriteId,
-    });
-    res.send({});
+    try {
+      await FreeWrite.findOneAndDelete({
+        _user: req.user.id,
+        _id: req.params.id,
+      });
+      res.send(req.param.id);
+    } catch (error) {
+      res.send(error)
+    }
+
   },
 };

@@ -11,5 +11,9 @@ module.exports = (app) => {
     requireLogin,
     freeWriteController.createFreeWrite
   );
-  // app.delete("/:id", requireLogin, freeWriteController.deleteFreeWrite);
+  app.delete(
+    "/api/free-writes/:id",
+    requireLogin,
+    freeWriteController.deleteFreeWrite
+  );
 };

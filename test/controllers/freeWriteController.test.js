@@ -45,23 +45,16 @@ describe("Free Write controller", () => {
       _user: savedUser._id,
     });
     let freeWrites = await FreeWrite.find({ _user: savedUser._id });
-    expect(freeWrites.length).to.be.gt(1)
+    expect(freeWrites.length).to.be.gt(1);
   });
-  // it("DELETES to /api/free-write and destroys the free-write", (done) => {
-  //   let user = new User(newUser);
-  //   user.save().then((user) => {
-  //     passportStub.login(user);
-  //     chai
-  //       .request(app)
-  //       .delete(`/api/user/${user._id}`)
-  //       .end(() => {
-  //         User.findOne({ email: "charles@cpustejovsky.com" })
-  //           .then((user) => {
-  //             assert(user === null);
-  //             done();
-  //           })
-  //           .catch((err) => console.log(err));
-  //       });
-  //   });
-  // });
+  it("DELETES to /api/free-write and destroys the free-write", async () => {
+    let res = await chai
+      .request(app)
+      .delete(`/api/free-writes/${savedFreeWrite._id}`);
+    let foundFreeWrite = await FreeWrite.findOne({
+      _user: savedUser._id,
+      _id: savedFreeWrite._id,
+    });
+    expect(foundFreeWrite).to.equal(null);
+  });
 });
