@@ -1,16 +1,14 @@
 const mongoose = require("mongoose");
 const FreeWriteChecker = require("../middleware/freeWriteChecker.js");
-const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
 const Note = mongoose.model("notes");
 
 module.exports = {
   async fetchFreeWrites(req, res) {
-    const userFreeWrites = await FreeWrite.find({ _user: req.user.id });
-    res.send(userFreeWrites);
+    res.send(await FreeWrite.find({ _user: req.user.id }));
   },
   async createFreeWrite(req, res) {
-    if (mongoose.Types.ObjectId.isValid(req.user.id)) {
+    try {
       const newFreeWrite = new FreeWrite({
         title: req.body.title,
         content: FreeWriteChecker.noteRemover(req.body.content),
@@ -22,10 +20,14 @@ module.exports = {
       for (let i = 0; i < newNotes.length; i++) {
         await new Note({ content: newNotes[i], _user: req.user.id }).save();
       }
-      const response = await newFreeWrite.save();
-      res.send(response);
-    } else {
-      console.log("Please provide correct Id");
+      try {
+        const response = await newFreeWrite.save();
+        res.send(response);
+      } catch (error) {
+        res.send(error);
+      }
+    } catch (error) {
+      res.send(error);
     }
   },
   async deleteFreeWrite(req, res) {
@@ -36,8 +38,7 @@ module.exports = {
       });
       res.send(req.param.id);
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
-
   },
 };

@@ -6,6 +6,7 @@ export default function (state = [], action) {
       return action.payload || false;
     case CREATE_FREEWRITE:
       return action.payload || false;
+    //TODO: when you add in delete, make sure to check if value !== "CastError"
     default:
       return state;
   }
