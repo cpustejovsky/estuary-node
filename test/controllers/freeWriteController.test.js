@@ -6,8 +6,19 @@ const app = require("../../app");
 const passportStub = require("passport-stub");
 const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
+const Note = mongoose.model("notes");
 chai.use(chaiHttp);
 passportStub.install(app);
+
+const fs = require("fs").promises;
+const path = require("path");
+const readFile = async (file) => {
+  try {
+    return await fs.readFile(path.resolve(__dirname, file), "utf8");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const newUser = {
   firstName: "Charles",
@@ -56,5 +67,18 @@ describe("Free Write controller", () => {
       _id: savedFreeWrite._id,
     });
     expect(foundFreeWrite).to.equal(null);
+  });
+  it("saves notes from free write", async () => {
+    const testFreeWrite = await readFile("../middleware/test.txt");
+    let foundNotes = await Note.find({})
+    expect(foundNotes.length).to.equal(0)
+    await chai.request(app).post("/api/free-writes").send({
+      title: "Test Free Write #2",
+      content: testFreeWrite,
+      date: new Date(),
+      _user: savedUser._id,
+    });
+    foundNotes = await Note.find({})
+    expect(foundNotes.length).to.equal(2)
   });
 });
