@@ -2,16 +2,13 @@ const mongoose = require("mongoose");
 //assignment operator for ES6 Promises
 mongoose.Promise = global.Promise;
 
-before((done) => {
+before(async() => {
   mongoose.connect("mongodb://localhost:27017/estuary", {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
   });
-  mongoose.connection
-    .once("open", () => {
-      done();
-    })
+  await mongoose.connection
     .on("error", (error) => {
       console.warn("Warning", error);
     });
