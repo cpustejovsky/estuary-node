@@ -5,3 +5,4 @@ config/dev.js
 scratch.js
 coverage/
 .nyc_output/
+test.png
