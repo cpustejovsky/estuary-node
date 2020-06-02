@@ -58,6 +58,15 @@ describe("Free Write controller", () => {
     let freeWrites = await FreeWrite.find({ _user: savedUser._id });
     expect(freeWrites.length).to.be.gt(1);
   });
+  it("returns error when it fails to POST to /api/free-writes", async () => {
+    let res = await chai.request(app).post("/api/free-writes").send({
+      foo: "bar",
+      hello: "world"
+    });
+    console.log(res.body)
+    let freeWrites = await FreeWrite.find({ _user: savedUser._id });
+    expect(freeWrites.length).to.be.gt(1);
+  });
   it("DELETES to /api/free-write and destroys the free-write", async () => {
     let res = await chai
       .request(app)
@@ -67,6 +76,12 @@ describe("Free Write controller", () => {
       _id: savedFreeWrite._id,
     });
     expect(foundFreeWrite).to.equal(null);
+  });
+  it("Receive CastError when wrong value is sent as id param", async () => {
+    let res = await chai
+      .request(app)
+      .delete(`/api/free-writes/wrongvalue`);
+    expect(res.body.name).to.equal("CastError");
   });
   it("saves notes from free write", async () => {
     const testFreeWrite = await readFile("../middleware/test.txt");
