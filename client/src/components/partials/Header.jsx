@@ -87,9 +87,14 @@ export default function Header() {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const renderAuth = () => {
-    switch (auth) {
+    console.log(user)
+    switch (user) {
       case null:
-        return;
+        return (
+          <Button style={{ color: "white" }} component={RouterLink} to="/login">
+            Log in
+          </Button>
+        );
       case false:
         return (
           <Button style={{ color: "white" }} component={RouterLink} to="/login">
