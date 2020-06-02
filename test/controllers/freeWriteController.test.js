@@ -7,7 +7,6 @@ const passportStub = require("passport-stub");
 const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
 const Note = mongoose.model("notes");
-const _ = require("lodash")
 chai.use(chaiHttp);
 passportStub.install(app);
 
@@ -64,10 +63,7 @@ describe("Free Write controller", () => {
       foo: "bar",
       hello: "world"
     });
-    expect(typeof(res.body)).to.equal("object")
-    expect(_.isEmpty(res.body)).to.equal(true)
-    let freeWrites = await FreeWrite.find({ _user: savedUser._id });
-    expect(freeWrites.length).to.equal(1);
+    expect((res.body)).to.be.an("object").that.is.empty
   });
   it("DELETES to /api/free-write and destroys the free-write", async () => {
     let res = await chai
