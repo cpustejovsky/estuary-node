@@ -19,7 +19,7 @@ module.exports = async function googleLogin() {
       '#password input[type="password"]',
       keys.TEST_GOOGLE_PSSWRD
     );
-    await page.click("#passwordNext", { delay: 100 })
+    await page.click("#passwordNext")
     await page.close()
     await browser.close()
     return true;
