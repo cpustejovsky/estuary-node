@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
-const mailgun = require("../services/mailgun")
+const mailgun = require("../services/email/mailgun")
 module.exports = {
   async sendEmail(req, res) {
     let user = await User.findById(req.user._id)

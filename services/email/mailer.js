@@ -1,14 +1,30 @@
 //import user, notes, projects
-//fetch all users with email updates as true
+const mongoose = require("mongoose");
+const User = mongoose.model("users");
+const mailgun = require("../mailgun");
 
-//email intray (daily)
+module.exports = {
+  //fetch all users with email updates as true
+  async fetchEmailUsers(){
 
-//email next action items (daily)
+  },
+  //email intray (daily)
+  //for each user, find the notes with category intray, display them in "text", and send them off
+  async emailInTrayNotes(){
 
-//email ongoing projects (weekly)
+  },
+  //email next action items (daily)
+  //for each user, find the notes with category intray, display them in "text", and send them off
+  async emailNextActions(){
 
-//email completed items within a time period (weekly)
+  },
+  //email ongoing projects (weekly)
+  //for each user, find uncompleted projects. display them in text, and send them off
+  async emailProjects(){
 
-//email updates to the platform
+  },
+  //email completed items within a time period (weekly)
+  async emailCompletedItems(){
 
-module.exports = {}
+  },
+};

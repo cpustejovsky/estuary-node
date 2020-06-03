@@ -3,7 +3,7 @@ const chai = require("chai");
 const expect = require("chai").expect;
 const chaiHttp = require("chai-http");
 const passportStub = require("passport-stub");
-const mailgun = require("../../services/mailgun");
+const mailgun = require("../../services/email/mailgun");
 const app = require("../../app");
 const User = mongoose.model("users");
 chai.use(chaiHttp);
@@ -24,7 +24,7 @@ describe("Email controller", () => {
 
   it("POSTs to /api/email and sends the email", async () => {
     const data = {
-      subject: "Howdy! (Test #3)",
+      subject: "Unit Test",
       text: "What hath God wrought?",
     };
     let response = await await chai.request(app).post("/api/email").send(data) 
