@@ -114,27 +114,29 @@ export default function Todos() {
             text="If !event, create new event without attaching event"
           />
           <Todo complete subtodo text="create view for event creation" />
+
+          <Todo text="Add unit testing" />
+          <Todo complete subtodo text="Separate routes and controllers" />
+          <Todo complete subtodo text="Stub passport authentication" />
+          <Todo complete subtodo text="Create controller unit tests for:" />
+          <Todo complete subsubtodo text="user" />
+          <Todo complete subsubtodo text="free writes" />
+          <Todo complete subsubtodo text="projects" />
+          <Todo complete subsubtodo text="notes" />
+          <Todo complete subtodo text="freeWriteChecker test" />
         </Collapse>
-        <Todo text="Add testing" />
-        <Todo complete subtodo text="Separate routes and controllers" />
-        <Todo complete subtodo text="Stub passport authentication" />
-        <Todo complete subtodo text="Create controller unit tests for:" />
-        <Todo complete subsubtodo text="user" />
-        <Todo complete subsubtodo text="free writes" />
-        <Todo complete subsubtodo text="projects" />
-        <Todo complete subsubtodo text="notes" />
-        <Todo complete subtodo text="freeWriteChecker test" />
-        <Todo subtodo text="passport strategy test" />
-        <Todo subtodo text="calendar test" />
         <Todo text="Add email functionality" />
         <Todo subtodo complete text="Connect MailGun to domain" />
         <Todo subtodo text="Connect MailGun to app" />
         <Todo subtodo text="Refactor email routes" />
-        <Todo subtodo text="Update user tests" />
+        <Todo subtodo text="Update user controller tests" />
         <Todo subtodo text="Add additional email settings for user" />
         <Todo subtodo text="Reflect settings in email routes" />
-        <Todo subtodo text="email route and controller tests" />
         <Todo subtodo text="Style emails" />
+        <Todo text="add testing for API connections" />
+        <Todo subtodo text="passport strategy test" />
+        <Todo subtodo text="calendar test" />
+        <Todo subtodo text="email route and controller tests" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
