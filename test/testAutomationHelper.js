@@ -3,6 +3,7 @@ const keys = require("../config/keys");
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
 module.exports = async function googleLogin() {
+  //TODO: figure out how to make this automation work with the fullstack (front-end and back-end)
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
