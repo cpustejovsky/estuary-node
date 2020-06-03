@@ -15,6 +15,6 @@ module.exports = async function(data) {
   try {
     return await mailgun.messages().send(data)
   } catch (error) {
-    console.log(error)
+    return error
   }
 }
