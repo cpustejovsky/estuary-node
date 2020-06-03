@@ -127,7 +127,7 @@ export default function Todos() {
         </Collapse>
         <Todo text="Add email functionality" />
         <Todo subtodo complete text="Connect MailGun to domain" />
-        <Todo subtodo text="Connect MailGun to app" />
+        <Todo subtodo complete text="Connect MailGun to app" />
         <Todo subtodo text="Refactor email routes" />
         <Todo subtodo text="Update user controller tests" />
         <Todo subtodo text="Add additional email settings for user" />
