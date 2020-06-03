@@ -26,8 +26,11 @@ beforeEach(async () => {
   await new User(user3).save();
 });
 describe("Email Methods", async () => {
-  it("fetches users", async () => {
+  it("fetches all users with email updates as true", async () => {
     let allUsers = await User.find();
     expect(allUsers.length).to.equal(3);
+    let emailUsers = await mailer.fetchEmailUsers()
+    expect(emailUsers.length).to.equal(2);
+
   });
 });
