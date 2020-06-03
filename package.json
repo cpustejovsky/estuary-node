@@ -8,7 +8,7 @@
     "npm": "6.13.4"
   },
   "scripts": {
-    "test": "NODE_ENV=test nodemon --exec 'nyc mocha test --recursive'",
+    "unit": "NODE_ENV=test nodemon --exec 'nyc mocha test/unit --recursive'",
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",

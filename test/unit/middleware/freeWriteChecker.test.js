@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const freeWriteChecker = require("../../middleware/freeWriteChecker");
+const freeWriteChecker = require("../../../middleware/freeWriteChecker");
 const fs = require("fs").promises;
 const path = require("path");
 const readFile = async (file) => {
