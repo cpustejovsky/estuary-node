@@ -11,10 +11,9 @@ const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 //   text: "What hath God wrought?",
 // };
 
-module.exports = async function() {
+module.exports = async function(data) {
   try {
-    let body = await mailgun.messages().send(data)
-    console.log(body)
+    return await mailgun.messages().send(data)
   } catch (error) {
     console.log(error)
   }
