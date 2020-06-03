@@ -44,6 +44,7 @@ require("./routes/userRoutes")(app);
 require("./routes/freeWriteRoutes")(app);
 require("./routes/noteRoutes")(app);
 require("./routes/projectRoutes")(app);
+require("./routes/emailRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   dynoWaker("life-together-calculator", "bears-and-bear-markets");
