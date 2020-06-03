@@ -5,11 +5,11 @@ const mongoose = require("mongoose");
 const chai = require("chai");
 const expect = require("chai").expect;
 const chaiHttp = require("chai-http");
-const app = require("../app");
+const app = require("../../app");
 const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
 const Note = mongoose.model("notes");
-const googleLogin = require("../testAutomationHelper");
+const googleLogin = require("./testAutomationHelper");
 chai.use(chaiHttp);
 
 // describe("Calendar Controller", async function () {

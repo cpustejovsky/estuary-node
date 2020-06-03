@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer-extra");
-const keys = require("../config/keys");
+const keys = require("../../config/keys");
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
 module.exports = async function googleLogin() {
