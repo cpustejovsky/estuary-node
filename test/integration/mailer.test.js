@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const expect = require("chai").expect;
 const User = mongoose.model("users");
-chai.use(chaiHttp);
-passportStub.install(app);
+const mailer = require("../../services/email/mailer")
 const user1 = {
   firstName: "Charles",
   lastName: "Pustejovsky",
@@ -21,11 +20,14 @@ const user3 = {
   email: "estuaryapptest@gmail.com",
   emailUpdates: false,
 };
-before(async()=>{
+beforeEach(async () => {
   await new User(user1).save();
   await new User(user2).save();
   await new User(user3).save();
-})
-describe("Email Methods", () => {
-
+});
+describe("Email Methods", async () => {
+  it("fetches users", async () => {
+    let allUsers = await User.find();
+    expect(allUsers.length).to.equal(3);
+  });
 });

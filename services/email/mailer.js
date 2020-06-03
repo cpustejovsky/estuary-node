@@ -1,7 +1,7 @@
 //import user, notes, projects
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
-const mailgun = require("../mailgun");
+const mailgun = require("./mailgun");
 
 module.exports = {
   //fetch all users with email updates as true
