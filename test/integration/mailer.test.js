@@ -38,6 +38,9 @@ describe("Email Methods", async () => {
   it("for each user, finds the in-tray notes", async () => {
     let foundNotes = await Note.find();
     expect(foundNotes.length).to.equal(8);
-    await mailer.emailInTrayNotes()
+    let response = await mailer.emailInTrayNotes()
+    response.forEach((message)=>{
+      expect(message).to.equal("Queued. Thank you.")
+    })
   });
 });

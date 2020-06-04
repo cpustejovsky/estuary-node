@@ -12,7 +12,7 @@ module.exports = {
   //email intray (daily)
   //for each user, find the notes with category intray, display them in "text", and send them off
   async emailInTrayNotes() {
-    let emailUsers = []
+    let responseMessages = []
     let fetchedUsers = await this.fetchEmailUsers();
     for (const user of fetchedUsers) {
       let userInTrayNotes = await Note.find({
@@ -26,8 +26,9 @@ module.exports = {
         text: userInTrayNotes.map((note) => note.content)
       }
       let response = await mailgun(modifiedNotes)
-      console.log(response)
+      responseMessages.push(response.message)
     }
+    return responseMessages
   },
   //email next action items (daily)
   //for each user, find the notes with category intray, display them in "text", and send them off
