@@ -9,7 +9,7 @@ const app = require("../../app");
 const User = mongoose.model("users");
 const FreeWrite = mongoose.model("free-writes");
 const Note = mongoose.model("notes");
-const googleLogin = require("./testAutomationHelper");
+const googleLogin = require("./puppeteerLoginAutomation");
 chai.use(chaiHttp);
 
 // describe("Calendar Controller", async function () {
