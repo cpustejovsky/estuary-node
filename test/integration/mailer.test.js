@@ -6,7 +6,7 @@ const mailer = require("../../services/email/mailer");
 
 const newInTrayNote = (id) => {
   return {
-    content: "note content",
+    content: "needs to be organized",
     category: "in-tray",
     _user: id,
   };
@@ -14,7 +14,7 @@ const newInTrayNote = (id) => {
 
 const newNextAction = (id) => {
   return {
-    content: "note content",
+    content: "next physical action",
     category: "next",
     _user: id,
   };
@@ -39,6 +39,16 @@ describe("Email Methods", async () => {
     let foundNotes = await Note.find();
     expect(foundNotes.length).to.equal(8);
     let response = await mailer.emailInTrayNotes()
+    expect(response.length).to.equal(2)
+    response.forEach((message)=>{
+      expect(message).to.equal("Queued. Thank you.")
+    })
+  });
+  it("for each user, finds the in-tray notes", async () => {
+    let foundNotes = await Note.find();
+    expect(foundNotes.length).to.equal(8);
+    let response = await mailer.emailNextActions()
+    expect(response.length).to.equal(2)
     response.forEach((message)=>{
       expect(message).to.equal("Queued. Thank you.")
     })
