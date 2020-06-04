@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const mailgun = require("./mailgun");
+const Note = mongoose.model("notes");
 
 module.exports = {
   //fetch all users with email updates as true
@@ -10,7 +11,24 @@ module.exports = {
   },
   //email intray (daily)
   //for each user, find the notes with category intray, display them in "text", and send them off
-  async emailInTrayNotes() {},
+  async emailInTrayNotes() {
+    let emailUsers = []
+    let fetchedUsers = await this.fetchEmailUsers();
+    for (const user of fetchedUsers) {
+      let userInTrayNotes = await Note.find({
+        category: "in-tray",
+        _user: user._id,
+      });
+      let modifiedNotes = {
+        from: "Estuary <no-reply@estuaryapp.com>",
+        to: user.email,
+        subject: "You Have Notes to Organize",
+        text: userInTrayNotes.map((note) => note.content)
+      }
+      let response = await mailgun(modifiedNotes)
+      console.log(response)
+    }
+  },
   //email next action items (daily)
   //for each user, find the notes with category intray, display them in "text", and send them off
   async emailNextActions() {},
