@@ -24,22 +24,6 @@ const users = [
   },
 ];
 
-const newInTrayNote = (id) => {
-  return {
-    content: "note content",
-    category: "in-tray",
-    _user: id,
-  };
-};
-
-const newNextAction = (id) => {
-  return {
-    content: "note content",
-    category: "next",
-    _user: id,
-  };
-};
-
 before(async () => {
   mongoose.connect("mongodb://localhost:27017/estuary", {
     useNewUrlParser: true,
