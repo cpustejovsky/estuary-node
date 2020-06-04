@@ -15,9 +15,10 @@ module.exports = {
       let userInTrayNotes = await Note.find({
         category: "in-tray",
         _user: user._id,
+        completed: false
       });
       let modifiedNotes = {
-        from: "Estuary <no-reply@estuaryapp.com>",
+        from: "Estuary In-Tray Test<estuaryintraytest@estuaryapp.com>",
         to: user.email,
         subject: "You Have Notes to Organize",
         text: userInTrayNotes.map((note) => note.content),
@@ -27,8 +28,6 @@ module.exports = {
     }
     return responseMessages;
   },
-  //email next action items (daily)
-  //for each user, find the notes with category intray, display them in "text", and send them off
   async emailNextActions() {
     let responseMessages = [];
     let fetchedUsers = await this.fetchEmailUsers();
@@ -36,9 +35,10 @@ module.exports = {
       let userInTrayNotes = await Note.find({
         category: "next",
         _user: user._id,
+        completed: false
       });
       let modifiedNotes = {
-        from: "Estuary <no-reply@estuaryapp.com>",
+        from: "Estuary Next Action Test<estuarynextactiontesty@estuaryapp.com>",
         to: user.email,
         subject: "You Have Next Actions to Complete",
         text: userInTrayNotes.map((note) => note.content),
