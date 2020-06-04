@@ -128,15 +128,9 @@ export default function Todos() {
         <Todo text="Add email functionality" />
         <Todo subtodo complete text="Connect MailGun to domain" />
         <Todo subtodo complete text="Connect MailGun to app" />
-        <Todo subtodo text="Refactor email routes" />
-        <Todo subtodo text="Update user controller tests" />
-        <Todo subtodo text="Add additional email settings for user" />
-        <Todo subtodo text="Reflect settings in email routes" />
+        <Todo subtodo text="Set up email functions" />
+        <Todo subtodo text="Add cron jobs ties to different email function" />
         <Todo subtodo text="Style emails" />
-        <Todo text="add testing for API connections" />
-        <Todo subtodo text="passport strategy test" />
-        <Todo subtodo text="calendar test" />
-        <Todo subtodo text="email route and controller tests" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />
@@ -144,12 +138,9 @@ export default function Todos() {
         <Todo subtodo text="Set search up for tags" />
         <Todo subtodo text="Set search up for content/title" />
         <Todo text="Performance" />
-        <Todo subtodo text="add performance benchmarks, etc for MongoDB" />
-        <Todo subtodo text="clean up models and queries" />
-        <Todo subtodo text="add performance benchmarks, etc for Node" />
         <Todo subtodo text="add performance benchmarks, etc for React" />
         <Todo
-          subtodo
+          subsubtodo
           text={
             <>
               <a
@@ -162,6 +153,13 @@ export default function Todos() {
             </>
           }
         />
+        <Todo subtodo text="add performance benchmarks, etc for MongoDB" />
+        <Todo subsubtodo text="clean up models and queries" />
+        <Todo subtodo text="add performance benchmarks, etc for Node" />
+        <Todo text="add testing for API connections" />
+        <Todo subtodo text="passport strategy test" />
+        <Todo subtodo text="calendar test" />
+        <Todo subtodo text="email route and controller tests" />
         <Todo text="Make components re-usable" />
         <Todo subtodo text="notes/" />
         <Todo subtodo text="notes/organize" />
@@ -196,6 +194,8 @@ export default function Todos() {
         <Todo subsubtodo text="user/" />
         <Todo subsubtodo text="components/" />
         <Todo subtodo text="create an informative and engaging landing page" />
+        <Todo text="Things to come back to after refactor" />
+        <Todo subtodo text="Add additional email settings for user" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
         <Todo text="Create Chrome Extension for capturing notes" />
         <Todo text="Create Estuary as Desktop App with Electron" />
