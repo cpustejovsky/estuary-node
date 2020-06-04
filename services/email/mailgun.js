@@ -1,6 +1,9 @@
-const keys = require("../../config/keys")
+const keys = require("../../config/keys");
 const api_key = keys.MAILGUN_API_KEY;
-const domain = "mail.estuaryapp.com";
+const domain =
+  process.env.NODE_ENV === "test"
+    ? "https://api.mailgun.net/v3/sandbox7d3e4535da884a8cbfdf12d162a34c92.mailgun.org"
+    : "mail.estuaryapp.com";
 const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
 //SAMPLE DATA
@@ -11,10 +14,10 @@ const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 //   text: "What hath God wrought?",
 // };
 
-module.exports = async function(data) {
+module.exports = async function (data) {
   try {
-    return await mailgun.messages().send(data)
+    return await mailgun.messages().send(data);
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
