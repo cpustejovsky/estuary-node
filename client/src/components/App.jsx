@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 import history from "../history";
 import Header from "./partials/Header";
-import Footer from "./partials/Footer";
 import Auth from "./Login";
 import About from "./about/About";
 import Landing from "./Landing";
@@ -59,7 +58,6 @@ function App({ fetchUser }) {
           <Route path="/projects/show/:id" exact component={ProjectShow} />
         </Switch>
       </div>
-      <Footer />
     </Router>
   );
 }
