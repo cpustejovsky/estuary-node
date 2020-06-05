@@ -14,7 +14,6 @@ import NotesShow from "./notes/NotesShow";
 import NotesOrganize from "./notes/organize/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
-// import Warning from "./partials/Warning";
 import Test from "./Test";
 import ProjectShow from "./projects/ProjectShow";
 import ProjectsShow from "./projects/ProjectsShow";
@@ -28,9 +27,8 @@ function App({ fetchUser }) {
   }, []);
   return (
     <Router history={history}>
-      <Header />
-      {/* <Warning /> */}
       <div className="site">
+      <Header />
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/test" exact component={Test} />
