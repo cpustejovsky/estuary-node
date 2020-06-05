@@ -6,22 +6,9 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  min-height: 85vh;
   padding-top: 80px;
   align-items: center;
   justify-content: space-between;
-  &__warning {
-    background-color: #ff9800;
-    color: white;
-    font-size: 15px;
-    padding: 20px;
-    padding-top: 80px;
-    text-align: center;
-    margin: 0 auto;
-    width: 90vw;
-    border-radius: 20px;
-    margin-bottom: 15px;
-  }
   &__landing {
     display: flex;
     flex-flow: column nowrap;
