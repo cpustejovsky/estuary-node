@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Link,
   AppBar,
@@ -17,18 +16,12 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 export default function Header() {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  }));
-  const classes = useStyles();
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    let headerHeight = document.getElementById("header").clientHeight;
+    console.log(headerHeight);
+    setHeight(headerHeight);
+  }, [height]);
   const user = useSelector((state) => state.user);
   const MobileMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -103,7 +96,7 @@ export default function Header() {
         </Menu>
       </div>
     );
-  }
+  };
   const renderAuth = () => {
     if (user) {
       return (
@@ -129,9 +122,10 @@ export default function Header() {
       );
     }
   };
+
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed">
+    <div style={{ marginBottom: `${height}px`}}>
+      <AppBar id="header" style={{ width: "100%" }}>
         <Toolbar
           style={{
             display: "flex",
@@ -150,7 +144,6 @@ export default function Header() {
             <IconButton
               style={{ margin: "0" }}
               edge="start"
-              className={classes.menuButton}
               color="inherit"
               aria-label="menu"
             >
@@ -158,7 +151,7 @@ export default function Header() {
             </IconButton>
           </Hidden>
           <Hidden smDown>
-            <div className={classes.title}>
+            <div style={{ flexGrow: 1 }}>
               <Typography
                 component={RouterLink}
                 to="/"
