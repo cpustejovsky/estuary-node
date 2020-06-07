@@ -11,6 +11,7 @@ textarea {
   background-color: white;
   font-family: inherit;
   font-size: inherit;
+  width: inherit;
 }
 .site {
   display: flex;
@@ -23,9 +24,10 @@ textarea {
     padding-bottom: 25px;
   }
   &__note {
-    justify-self: center;
-    min-width: fit-content;
-    width: 386px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
   }
 }
 .textarea {
@@ -36,6 +38,10 @@ textarea {
   &__notes {
     justify-self: center;
     height: 100px;
+    min-width: 400px;
+    @media screen and (max-width: 450px) {
+      min-width: 80vw;
+    }
     width: stretch;
     max-width: 800px;
     max-height: 400px;
@@ -52,6 +58,7 @@ textarea {
   justify-self: center;
   min-width: fit-content;
   width: 386px;
+  max-width: 400px;
 }
 .margin-top {
   margin-top: 5%;
@@ -60,7 +67,8 @@ textarea {
   padding: 0 5%;
 }
 .button {
-  width: 100%;
+  min-width: 300px;
+  // width: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

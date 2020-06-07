@@ -51,26 +51,28 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
     return (
       <div className="site">
         <NotesSubNav />
-        <div className="button">
-          <Typography variant="h6" className="button__text__left">
-            {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
-          </Typography>
-          {match.params.name === "in-tray" && renderNotesLength() > 0 ? (
-            <Button
-              component={RouterLink}
-              to="/notes/organize"
-              variant="contained"
-              color="primary"
-            >
-              Organize
-            </Button>
+        <div className="site__note">
+          <div className="button button__notes">
+            <Typography variant="h6" className="button__text__left">
+              {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
+            </Typography>
+            {match.params.name === "in-tray" && renderNotesLength() > 0 ? (
+              <Button
+                component={RouterLink}
+                to="/notes/organize"
+                variant="contained"
+                color="primary"
+              >
+                Organize
+              </Button>
+            ) : null}
+          </div>
+          <hr />
+          {match.params.name === "in-tray" ? (
+            <NotesNew history={history} />
           ) : null}
+          {renderNotes()}
         </div>
-        <hr />
-        {match.params.name === "in-tray" ? (
-          <NotesNew history={history} />
-        ) : null}
-        {renderNotes()}
       </div>
     );
   } else if (auth === null && user === null) {
