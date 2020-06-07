@@ -5,8 +5,9 @@ import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
+import NotesSubNav from "./NotesSubNav";
 import { Link as RouterLink } from "react-router-dom";
-import { ButtonGroup, Button, Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
@@ -48,28 +49,8 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div>
-        <ButtonGroup variant="contained" color="primary">
-          <Button component={RouterLink} to="/notes/in-tray">
-            In Tray
-          </Button>
-          <Button component={RouterLink} to="/notes/next">
-            Next
-          </Button>
-          {/* <Button component={RouterLink} to="/notes/new">
-            Waiting
-          </Button> */}
-          <Button component={RouterLink} to="/notes/maybe">
-            Maybe
-          </Button>
-          <Button component={RouterLink} to="/notes/done">
-            Done
-          </Button>
-          <Button component={RouterLink} to="/notes/reference">
-            Reference
-          </Button>
-        </ButtonGroup>
-
+      <div className="site">
+        <NotesSubNav />
         <div className="button">
           <Typography variant="h6" className="button__text__left">
             {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
