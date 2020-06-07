@@ -19,7 +19,6 @@ export default function Header() {
   const [height, setHeight] = useState(0);
   useEffect(() => {
     let headerHeight = document.getElementById("header").clientHeight;
-    console.log(headerHeight);
     setHeight(headerHeight);
   }, [height]);
   const user = useSelector((state) => state.user);
