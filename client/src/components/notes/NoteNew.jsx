@@ -6,7 +6,9 @@ import { TextareaAutosize, Button } from "@material-ui/core";
 
 function NotesNew({ history, createNote }) {
   const submitValues = (values) => {
-    createNote(values, history);
+    if (values.content.length > 0) {
+      createNote(values, history);
+    }
   };
   return (
     <div>
