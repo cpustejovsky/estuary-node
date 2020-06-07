@@ -24,8 +24,8 @@ function Note(props) {
       return null;
     }
   };
-  const toggleDelete = () => setDeleteShow(!deleteShow);
 
+  const toggleDelete = () => setDeleteShow(!deleteShow);
   const renderDelete = (deleteShow, id) => {
     if (deleteShow && id === props.id) {
       return (
@@ -40,62 +40,52 @@ function Note(props) {
     }
   };
   const renderButtons = () => {
-    if (props.organize) {
-      return null;
-    } else if (props.project) {
-      if (props.category === "done") {
-        //TODO: style this better
-        return <h4>COMPLETE</h4>;
-      } else {
+    if (props.organize) return null;
+    switch (props.category) {
+      case "maybe" || "referense":
         return (
-          <Button
-            onClick={() => {
-              props.categorizeNote(props.noteId, "done");
-            }}
-          >
-            Done
-          </Button>
+          <>
+            <Button
+              onClick={() => {
+                props.categorizeNote(props.id, "in-tray");
+              }}
+              className="click"
+            >
+              Move to In-Tray
+            </Button>
+            <Button onClick={() => toggleEdit()} className="click">
+              Edit
+            </Button>
+            <Button onClick={() => toggleDelete()} className="red-text click">
+              Delete
+            </Button>
+          </>
         );
-      }
-    } else if (props.category === "maybe" || props.category === "reference") {
-      return (
-        <>
-          <Button
-            onClick={() => {
-              props.categorizeNote(props.id, "in-tray");
-            }}
-            className="click"
-          >
-            Move to In-Tray
-          </Button>
-          <Button onClick={() => toggleEdit()} className="click">
-            Edit
-          </Button>
-          <Button onClick={() => toggleDelete()} className="red-text click">
-            Delete
-          </Button>
-        </>
-      );
-    } else if (props.category === "done") {
-      return (
-        <p>
-          Completed on:{" "}
-          {props.completedDate
-            ? new Date(props.completedDate).toLocaleString()
-            : "N/A"}
-        </p>
-      );
-    } else {
-      return (
-        <>
-          <Button onClick={() => toggleEdit()} className="click">
-            Edit
-          </Button>
-          <Button onClick={() => props.categorizeNote(props.id, "done")}>
-            Done
-          </Button>
-        </>
-      );
+      case "done":
+        return (
+          <p>
+            Completed on:{" "}
+            {props.completedDate
+              ? new Date(props.completedDate).toLocaleString()
+              : "N/A"}
+          </p>
+        );
+      default:
+        return (
+          <>
+            <Button
+              onClick={() => {
+                props.categorizeNote(props.noteId, "done");
+              }}
+            >
+              Complete
+            </Button>
+            <Button onClick={() => toggleEdit()} className="click">
+              Edit
+            </Button>
+            <Button onClick={() => toggleDelete()}>Delete</Button>
+          </>
+        );
     }
   };
   return (
@@ -109,9 +99,6 @@ function Note(props) {
       }
     >
       <CardContent>
-        {/* <p>
-          <strong>{props.category}</strong>
-        </p> */}
         <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
       </CardContent>
