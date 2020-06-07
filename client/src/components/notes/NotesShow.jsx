@@ -45,7 +45,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
     if (renderNotesLength() > 0) {
       return (
         <div className="button button__notes">
-          <Typography variant="h6" className="button__text__left">
+          <Typography variant="h4" className="button__text__left">
             {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
           </Typography>
           <Button

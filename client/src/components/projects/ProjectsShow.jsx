@@ -4,10 +4,15 @@ import { fetchProjects, fetchCompleteProjects } from "../../actions";
 import _ from "lodash";
 import Loader from "../partials/Loader";
 import { Link as RouterLink } from "react-router-dom";
-import { Link, Button, Card, CardContent } from "@material-ui/core";
+import { Link, Button, Card, CardContent, Typography } from "@material-ui/core";
 
-
-function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, match }) {
+function ProjectsShow({
+  fetchProjects,
+  fetchCompleteProjects,
+  history,
+  done,
+  match,
+}) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const projects = useSelector((state) => Object.values(state.projects));
@@ -42,10 +47,17 @@ function ProjectsShow({ fetchProjects, fetchCompleteProjects, history, done, mat
     return (
       <div>
         <div className="button">
-          <h1>{done ? "Completed " : null}Projects</h1>
-          <Button component={RouterLink} to="/projects/new">
-              New Project
-            </Button>
+          <Typography variant="h4" className="button__text__left">
+            {done ? "Completed " : null}Projects
+          </Typography>
+          <Button
+            component={RouterLink}
+            variant="contained"
+            color="primary"
+            to="/projects/new"
+          >
+            New Project
+          </Button>
         </div>
         {renderProjects()}
         <div align="center">
