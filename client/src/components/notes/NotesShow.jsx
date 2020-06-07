@@ -41,6 +41,28 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
         });
     }
   };
+  const renderSubHeader = () => {
+    if (renderNotesLength() > 0) {
+      return (
+        <div className="button button__notes">
+          <Typography variant="h6" className="button__text__left">
+            {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
+          </Typography>
+          <Button
+            component={RouterLink}
+            to="/notes/organize"
+            variant="contained"
+            color="primary"
+          >
+            Organize
+          </Button>
+          
+        </div>
+      );
+    } else {
+      return <h3>No notes in {match.params.name} category</h3>
+    }
+  };
   const renderNotesLength = () => {
     if (!_.isEmpty(notes)) {
       return notes.length;
@@ -52,21 +74,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
       <div className="site">
         <NotesSubNav />
         <div className="site__note">
-          <div className="button button__notes">
-            <Typography variant="h6" className="button__text__left">
-              {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
-            </Typography>
-            {match.params.name === "in-tray" && renderNotesLength() > 0 ? (
-              <Button
-                component={RouterLink}
-                to="/notes/organize"
-                variant="contained"
-                color="primary"
-              >
-                Organize
-              </Button>
-            ) : null}
-          </div>
+          {renderSubHeader()}
           <hr />
           {match.params.name === "in-tray" ? (
             <NotesNew history={history} />
