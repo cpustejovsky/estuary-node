@@ -1,32 +1,27 @@
 body {
   background-color: #dcdcdc;
   font-family: Roboto;
+  @media screen and (max-width: 450px) {
+    overflow-x: hidden;
+  }
+  display: flex;
+  justify-content: center;
 }
 .site {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  align-self: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   &__landing {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
   }
-  &__auth {
-    min-width: 40vw;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    &__wave {
-      min-width: 50px;
-    }
-  }
   &__about {
     background-color: white;
     max-width: 1040px;
     padding-bottom: 25px;
-    margin-bottom: 0px;
   }
   &__notes {
     display: flex;

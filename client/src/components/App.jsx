@@ -26,8 +26,8 @@ function App({ fetchUser }) {
   }, []);
   return (
     <Router history={history}>
-      <div className="site">
-      <Header />
+      {/* <div className="site"> */}
+        <Header />
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/test" exact component={Test} />
@@ -43,12 +43,16 @@ function App({ fetchUser }) {
           <Route
             path="/projects/list/"
             exact
-            render={({match}) => <ProjectsShow done={false} history={history} match={match}/>}
+            render={({ match }) => (
+              <ProjectsShow done={false} history={history} match={match} />
+            )}
           />
           <Route
             path="/projects/list/done"
             exact
-            render={({match}) => <ProjectsShow done={true} history={history} match={match}/>}
+            render={({ match }) => (
+              <ProjectsShow done={true} history={history} match={match} />
+            )}
           />
           <Route
             path="/projects/new"
@@ -57,7 +61,7 @@ function App({ fetchUser }) {
           />
           <Route path="/projects/show/:id" exact component={ProjectShow} />
         </Switch>
-      </div>
+      {/* </div> */}
     </Router>
   );
 }

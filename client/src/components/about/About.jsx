@@ -5,7 +5,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 export default function About() {
   return (
-    <Grid container spacing={3} className="row site__about">
+    <Grid container spacing={3} className="site site__about">
       <Grid item sm></Grid>
       <Grid item sm={8}>
         <Typography variant="h4">
