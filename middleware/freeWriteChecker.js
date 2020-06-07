@@ -13,18 +13,25 @@ module.exports = {
   noteRemover(freeWrite) {
     return freeWrite
       .split("\n")
-      .filter(
-        (element) =>
-          element[0] !== "#" && element[1].toString().toUpperCase() !== "N"
-      )
+      .filter((element) => {
+        if (element) {
+          return (
+            element[0] !== "#" && element[1].toString().toUpperCase() !== "N"
+          );
+        }
+      })
       .join("\n");
   },
   noteChecker(string) {
     return string
       .split("\n")
-      .filter(
-        (element) =>
-          element[0] === "#" && element[1].toString().toUpperCase() === "N"
-      );
+      .filter((element) => {
+        if (element) {
+          return (
+            element[0] === "#" && element[1].toString().toUpperCase() === "N"
+          );
+        }
+      })
+      .map((el) => el.substring(2));
   },
 };
