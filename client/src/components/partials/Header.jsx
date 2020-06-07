@@ -37,10 +37,15 @@ export default function Header() {
       if (user) {
         return (
           <>
-            <MenuItem component={RouterLink} to="/user">
+            <MenuItem component={RouterLink} onClick={handleClose} to="/user">
               {user.firstName}
             </MenuItem>
-            <MenuItem component={Link} underline="none" onClick={handleClose} href="/logout">
+            <MenuItem
+              component={Link}
+              underline="none"
+              onClick={handleClose}
+              href="/logout"
+            >
               Log Out
             </MenuItem>
           </>
@@ -124,7 +129,7 @@ export default function Header() {
   };
 
   return (
-    <div style={{ marginBottom: `${height}px`}}>
+    <div style={{ marginBottom: `${height}px` }}>
       <AppBar id="header" style={{ width: "100%" }}>
         <Toolbar
           style={{
