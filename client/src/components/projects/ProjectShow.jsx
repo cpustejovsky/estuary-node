@@ -16,7 +16,6 @@ function ProjectShow({ fetchProject, fetchProjectNotes, match, history }) {
     return (
       <div>
         <div className="button">
-          <h1>{project.title}</h1>
           <Button component={RouterLink} to="/projects/list">
             Back to Projects
           </Button>
