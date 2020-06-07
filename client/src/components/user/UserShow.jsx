@@ -18,7 +18,7 @@ export default function User() {
     return (
       <Card raised>
         <CardContent className="card-content">
-          <Typography gutterBottom variant="h4" component="h2">
+          <Typography gutterBottom variant="h4">
             {user.displayName || user.firstName} {user.lastName}
           </Typography>
           <p>

@@ -5,7 +5,7 @@ import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
-import NotesSubNav from "./NotesSubNav";
+import NoteHeader from "../partials/NoteHeader";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 function NotesShow({ fetchNotesByCategory, history, match }) {
@@ -56,11 +56,14 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
           >
             Organize
           </Button>
-          
         </div>
       );
     } else {
-      return <h3>No notes in {match.params.name} category</h3>
+      return (
+        <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
+          {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
+        </Typography>
+      );
     }
   };
   const renderNotesLength = () => {
@@ -72,7 +75,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   if (auth || user) {
     return (
       <div className="site">
-        <NotesSubNav />
+        <NoteHeader />
         <div className="site__note">
           {renderSubHeader()}
           <hr />
