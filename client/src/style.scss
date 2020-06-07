@@ -10,23 +10,11 @@ body {
 .site {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
-  justify-content: center;
-  &__landing {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-  }
   &__about {
     background-color: white;
     max-width: 1040px;
     padding-bottom: 25px;
-  }
-  &__notes {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
   }
 }
 textarea {
