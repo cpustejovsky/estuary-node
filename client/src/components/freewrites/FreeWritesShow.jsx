@@ -38,7 +38,7 @@ function FreeWriteShow({ fetchFreeWrites, history }) {
       <div className="site site__freewrites">
         <div className="button button__free-writes">
           <Typography variant="h4" className="button__text__left">
-            Your Free Writes
+            Free Writes
           </Typography>
           <Button
             component={RouterLink}
