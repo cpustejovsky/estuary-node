@@ -17,7 +17,7 @@ function FreeWriteShow({ fetchFreeWrites, history }) {
     if (!_.isEmpty(freeWrites)) {
       return freeWrites.map(({ content, _id, title }) => {
         return (
-          <Card key={_id} raised className="margin-top">
+          <Card key={_id} raised className="margin-top freewrites">
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {title}
@@ -35,7 +35,7 @@ function FreeWriteShow({ fetchFreeWrites, history }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div>
+      <div className="site site__freewrites">
         <div className="button button__free-writes">
           <Typography variant="h4" className="button__text__left">
             Your Free Writes
