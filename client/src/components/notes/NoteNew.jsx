@@ -2,9 +2,9 @@ import React from "react";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { createNote } from "../../actions";
-import { TextareaAutosize } from "@material-ui/core";
+import { TextareaAutosize, Button } from "@material-ui/core";
 
-function NotesNew({history, createNote}) {
+function NotesNew({ history, createNote }) {
   const submitValues = (values) => {
     createNote(values, history);
   };
@@ -42,6 +42,17 @@ function NotesNew({history, createNote}) {
                 value={values.content}
               ></TextareaAutosize>
             </div>
+            <Button
+              fullWidth
+              size="small"
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              New Note
+            </Button>
           </form>
         )}
       </Formik>
