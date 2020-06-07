@@ -4,16 +4,17 @@ import { connect, useSelector } from "react-redux";
 import { fetchFreeWrites } from "../../actions";
 import Loader from "../partials/Loader";
 import { Button, Card, CardContent, Typography } from "@material-ui/core";
+import _ from "lodash";
 
 function FreeWriteShow({ fetchFreeWrites, history }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const freeWrites = useSelector((state) => state.freeWrites);
+  const freeWrites = useSelector((state) => Object.values(state.freeWrites));
   useEffect(() => {
     fetchFreeWrites();
   }, []);
   const renderFreeWrites = () => {
-    if (freeWrites.length > 0) {
+    if (!_.isEmpty(freeWrites)) {
       return freeWrites.map(({ content, _id, title }) => {
         return (
           <Card key={_id} raised className="margin-top">
