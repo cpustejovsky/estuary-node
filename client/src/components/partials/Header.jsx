@@ -40,14 +40,14 @@ export default function Header() {
             <MenuItem component={RouterLink} to="/user">
               {user.firstName}
             </MenuItem>
-            <MenuItem component={Link} underline="none" href="/logout">
+            <MenuItem component={Link} underline="none" onClick={handleClose} href="/logout">
               Log Out
             </MenuItem>
           </>
         );
       } else {
         return (
-          <MenuItem component={RouterLink} to="/login">
+          <MenuItem component={RouterLink} onClick={handleClose} to="/login">
             Log in
           </MenuItem>
         );
