@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProjectDelete from "./ProjectDelete";
 import ProjectNew from "./ProjectNew";
 import { connect } from "react-redux";
-import { completeProject } from "../../actions"
+import { completeProject } from "../../actions";
 import Note from "../notes/Note";
 // import { categorizeNote } from "../../actions";
 import { Button, Card, CardContent, CardActions } from "@material-ui/core";
@@ -70,10 +70,12 @@ function Project(props) {
           <Button onClick={() => toggleDelete()} className="click">
             Delete
           </Button>
-          <Button onClick={() => {
-            props.completeProject(props.id)
-            props.history.push("/projects/list/done")
-          }}>
+          <Button
+            onClick={() => {
+              props.completeProject(props.id);
+              props.history.push("/projects/list/done");
+            }}
+          >
             Done
           </Button>
         </>
@@ -107,13 +109,12 @@ function Project(props) {
     );
   };
   return (
-    <Card raised key={props.id} className="margin-top padding-horizontal notes">
+    <Card raised key={props.id} className="margin-top padding-horizontal">
       <CardContent>
         <CardActions>{renderButtons()}</CardActions>
         {renderDelete(deleteShow, props.id)}
         {!editShow ? renderContent() : null}
         {renderEdit(editShow, props.id)}
-
         <hr />
         <h4>Notes</h4>
         {renderNotes()}
@@ -122,4 +123,4 @@ function Project(props) {
   );
 }
 
-export default connect(null, { completeProject})(Project);
+export default connect(null, { completeProject })(Project);
