@@ -92,7 +92,7 @@ function Note(props) {
     <Card
       raised
       key={props.id}
-      className="margin-top padding-horizontal notes"
+      className="margin-top notes"
     >
       <CardContent>
         <p>{!editShow ? props.content : null}</p>

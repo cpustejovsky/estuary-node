@@ -32,12 +32,12 @@ function NotesNew({ history, createNote }) {
               }
             }}
           >
-            <div className="input-field center">
+            <div className="input-field center" style={{ display: "flex", minWidth: "400px" }}>
               <TextareaAutosize
                 aria-label="minimum height"
                 rowsMin={3}
                 placeholder="press enter to save"
-                className="textarea__notes"
+                className="textarea textarea__notes"
                 name="content"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -49,6 +49,7 @@ function NotesNew({ history, createNote }) {
               size="small"
               variant="contained"
               color="primary"
+              style={{borderRadius: "0px 0px 10px 10px"}}
               onClick={() => {
                 handleSubmit();
               }}

@@ -75,7 +75,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   if (auth || user) {
     return (
       <div className="site">
-        <NoteHeader />
+        {/* <NoteHeader /> */}
         <div className="site__note">
           {renderSubHeader()}
           <hr />

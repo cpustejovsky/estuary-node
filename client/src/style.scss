@@ -44,14 +44,13 @@ textarea {
   &__notes {
     justify-self: center;
     height: 100px;
-    min-width: 400px;
     @media screen and (max-width: 450px) {
       min-width: 90vw;
     }
     width: stretch;
     max-width: 800px;
     max-height: 400px;
-    border-radius: 10px 10px;
+    border-radius: 10px 10px 0px 0px;
     padding: 10px;
     outline: none;
   }
@@ -63,6 +62,7 @@ textarea {
 .notes {
   justify-self: center;
   width: 400px;
+  padding: 0px;
   @media screen and (max-width: 450px) {
     min-width: 90vw;
   }
