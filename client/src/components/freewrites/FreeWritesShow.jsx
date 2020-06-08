@@ -35,7 +35,7 @@ function FreeWriteShow({ fetchFreeWrites, history }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div className="site">
+      <div >
         <div className="button button__free-writes">
           <Typography variant="h4" className="button__text__left">
             Free Writes

@@ -45,7 +45,7 @@ function ProjectsShow({
   };
   if (auth || user) {
     return (
-      <div className="site">
+      <div >
         <div className="button">
           <Typography variant="h4" className="button__text__left">
             {done ? "Completed " : null}Projects

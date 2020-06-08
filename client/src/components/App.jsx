@@ -26,8 +26,9 @@ function App({ fetchUser }) {
   }, []);
   return (
     <Router history={history}>
-        <Header />
-        <Switch>
+      <Header />
+      <Switch>
+        <div className="site">
           <Route path="/" exact component={Landing} />
           <Route path="/test" exact component={Test} />
           <Route path="/timer" exact component={Timer} />
@@ -59,7 +60,8 @@ function App({ fetchUser }) {
             render={() => <ProjectNew show={true} history={history} />}
           />
           <Route path="/projects/show/:id" exact component={ProjectShow} />
-        </Switch>
+        </div>
+      </Switch>
     </Router>
   );
 }

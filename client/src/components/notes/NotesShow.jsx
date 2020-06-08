@@ -74,7 +74,7 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div className="site">
+      <div >
         {/* <NoteHeader /> */}
         <div className="site__note">
           {renderSubHeader()}

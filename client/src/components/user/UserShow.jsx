@@ -16,7 +16,7 @@ export default function User() {
     return "Loading";
   } else if (user) {
     return (
-      <div className="site">
+      <div >
         <Card raised>
           <CardContent className="card-content">
             <Typography gutterBottom variant="h4">

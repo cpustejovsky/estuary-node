@@ -41,7 +41,7 @@ const UserEdit = (props) => {
 
   if (user) {
     return (
-      <div className="site">
+      <div >
         <Card raised style={{ padding: "20px", minWidth: "33%" }}>
           <Typography align="center" gutterBottom variant="h4" component="h2">
             Update User Profile
