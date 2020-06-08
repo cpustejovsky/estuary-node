@@ -21,8 +21,14 @@ textarea {
   max-width: 100vw;
   &__about {
     background-color: white;
+    justify-self: center;
     max-width: 1040px;
-    padding-bottom: 25px;
+    padding: 25px;
+    padding-top: 50px;
+    margin: 0 auto;
+    @media screen and (max-width: 450px) {
+      padding: 10px;
+    }
   }
   &__note {
     display: flex;
