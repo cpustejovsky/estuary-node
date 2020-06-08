@@ -12,14 +12,14 @@ export default function NoteHeader() {
   };
 
   return (
-    <AppBar position="static" color="default">
+    // <AppBar position="static" color="default" style={{ alignItems: "center" }}>
       <Tabs
         value={value}
         onChange={handleChange}
         variant="scrollable"
         scrollButtons="on"
-        indicatorColor="primary"
-        textColor="primary"
+        indicatorColor="secondary"
+        textColor="default"
         aria-label="scrollable force tabs example"
       >
         <Tab label="In-Tray" component={RouterLink} to="/notes/in-tray" />
@@ -29,6 +29,6 @@ export default function NoteHeader() {
         <Tab label="Done" component={RouterLink} to="/notes/done" />
         <Tab label="Reference" component={RouterLink} to="/notes/reference" />
       </Tabs>
-    </AppBar>
+    // </AppBar>
   );
 }

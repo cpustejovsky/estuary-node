@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
   Link,
   AppBar,
@@ -16,6 +16,8 @@ import NoteHeader from "./NoteHeader";
 import MenuIcon from "@material-ui/icons/Menu";
 
 export default function Header() {
+  let loc = useLocation().pathname;
+  let notesPage = loc.includes("notes") && !loc.includes("organize");
   const [height, setHeight] = useState(0);
   useEffect(() => {
     let headerHeight = document.getElementById("header").clientHeight;
@@ -128,85 +130,86 @@ export default function Header() {
   };
 
   return (
-    // <div style={{ marginBottom: `${height}px` }}>
-    <AppBar position="sticky" id="header" style={{ width: "100vw" }}>
-      <Toolbar
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Hidden mdUp>
-          <Typography
-            component={RouterLink}
-            to="/"
-            style={{ color: "white", textDecoration: "none" }}
-            variant="h6"
-          >
-            Estuary
-          </Typography>
-          <IconButton
-            style={{ margin: "0" }}
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-          >
-            {MobileMenu()}
-          </IconButton>
-        </Hidden>
-        <Hidden smDown>
-          <div style={{ flexGrow: 1 }}>
+    <>
+      <AppBar position="sticky" id="header" style={{ width: "100vw" }}>
+        <Toolbar
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Hidden mdUp>
             <Typography
               component={RouterLink}
               to="/"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                paddingRight: "20px",
-                justifySelf: "center",
-              }}
+              style={{ color: "white", textDecoration: "none" }}
               variant="h6"
             >
               Estuary
             </Typography>
-            <Button
-              component={RouterLink}
-              style={{ color: "white" }}
-              underline="none"
-              to="/about"
+            <IconButton
+              style={{ margin: "0" }}
+              edge="start"
+              color="inherit"
+              aria-label="menu"
             >
-              About
-            </Button>
-            <Button
-              component={RouterLink}
-              style={{ color: "white" }}
-              underline="none"
-              to="/free-writes"
-            >
-              Free Writes
-            </Button>
-            <Button
-              component={RouterLink}
-              style={{ color: "white" }}
-              underline="none"
-              to="/notes/in-tray"
-            >
-              Notes
-            </Button>
-            <Button
-              component={RouterLink}
-              style={{ color: "white" }}
-              underline="none"
-              to="/projects/list"
-            >
-              Projects
-            </Button>
-          </div>
+              {MobileMenu()}
+            </IconButton>
+          </Hidden>
+          <Hidden smDown>
+            <div style={{ flexGrow: 1 }}>
+              <Typography
+                component={RouterLink}
+                to="/"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  paddingRight: "20px",
+                  justifySelf: "center",
+                }}
+                variant="h6"
+              >
+                Estuary
+              </Typography>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/about"
+              >
+                About
+              </Button>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/free-writes"
+              >
+                Free Writes
+              </Button>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/notes/in-tray"
+              >
+                Notes
+              </Button>
+              <Button
+                component={RouterLink}
+                style={{ color: "white" }}
+                underline="none"
+                to="/projects/list"
+              >
+                Projects
+              </Button>
+            </div>
 
-          {renderAuth()}
-        </Hidden>
-      </Toolbar>
-    </AppBar>
-    // </div>
+            {renderAuth()}
+          </Hidden>
+        </Toolbar>
+        {notesPage ? <NoteHeader /> : null}
+      </AppBar>
+    </>
   );
 }
