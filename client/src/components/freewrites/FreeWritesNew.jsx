@@ -15,7 +15,7 @@ function FreeWritesNew({history, createFreeWrite}) {
     createFreeWrite(values, history);
   };
   return (
-    <div>
+    <div className="site freewrites">
       <Typography variant="h3">Free Write</Typography>
       <p>Enter any text that comes to mind.</p>
       <p>
@@ -68,6 +68,7 @@ function FreeWritesNew({history, createFreeWrite}) {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.title}
+              className="form"
             />
             <TextareaAutosize
               fullWidth
