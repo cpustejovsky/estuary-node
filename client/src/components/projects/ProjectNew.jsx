@@ -85,7 +85,7 @@ function ProjectNew({
   };
   if (show) {
     return (
-      <div>
+      <div className="site">
         <Formik
           initialValues={{
             title: title(),
