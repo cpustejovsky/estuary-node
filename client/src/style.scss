@@ -6,12 +6,13 @@ body {
   }
   display: flex;
   justify-content: center;
+  margin: 0;
 }
+
 textarea {
   background-color: white;
   font-family: inherit;
   font-size: inherit;
-  width: inherit;
 }
 .site {
   display: flex;
@@ -30,7 +31,7 @@ textarea {
     max-width: 400px;
   }
 }
-.freewrites{
+.freewrites {
   // min-width: 1040px;
   max-width: 100%;
   width: 800px;
@@ -45,12 +46,12 @@ textarea {
     height: 100px;
     min-width: 400px;
     @media screen and (max-width: 450px) {
-      min-width: 80vw;
+      min-width: 90vw;
     }
     width: stretch;
     max-width: 800px;
     max-height: 400px;
-    border-radius: 10px;
+    border-radius: 10px 10px;
     padding: 10px;
     outline: none;
   }
@@ -64,6 +65,9 @@ textarea {
   min-width: fit-content;
   width: 386px;
   max-width: 400px;
+  @media screen and (max-width: 450px) {
+    min-width: 90vw;
+  }
 }
 .margin-top {
   margin-top: 5%;

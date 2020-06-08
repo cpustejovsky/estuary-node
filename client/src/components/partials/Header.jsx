@@ -12,7 +12,7 @@ import {
   MenuItem,
   Hidden,
 } from "@material-ui/core/";
-
+import NoteHeader from "./NoteHeader";
 import MenuIcon from "@material-ui/icons/Menu";
 
 export default function Header() {
@@ -128,85 +128,85 @@ export default function Header() {
   };
 
   return (
-    <div style={{ marginBottom: `${height}px` }}>
-      <AppBar id="header" style={{ width: "100%" }}>
-        <Toolbar
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Hidden mdUp>
+    // <div style={{ marginBottom: `${height}px` }}>
+    <AppBar position="sticky" id="header" style={{ width: "100vw" }}>
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Hidden mdUp>
+          <Typography
+            component={RouterLink}
+            to="/"
+            style={{ color: "white", textDecoration: "none" }}
+            variant="h6"
+          >
+            Estuary
+          </Typography>
+          <IconButton
+            style={{ margin: "0" }}
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            {MobileMenu()}
+          </IconButton>
+        </Hidden>
+        <Hidden smDown>
+          <div style={{ flexGrow: 1 }}>
             <Typography
               component={RouterLink}
               to="/"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                paddingRight: "20px",
+                justifySelf: "center",
+              }}
               variant="h6"
             >
               Estuary
             </Typography>
-            <IconButton
-              style={{ margin: "0" }}
-              edge="start"
-              color="inherit"
-              aria-label="menu"
+            <Button
+              component={RouterLink}
+              style={{ color: "white" }}
+              underline="none"
+              to="/about"
             >
-              {MobileMenu()}
-            </IconButton>
-          </Hidden>
-          <Hidden smDown>
-            <div style={{ flexGrow: 1 }}>
-              <Typography
-                component={RouterLink}
-                to="/"
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  paddingRight: "20px",
-                  justifySelf: "center",
-                }}
-                variant="h6"
-              >
-                Estuary
-              </Typography>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/about"
-              >
-                About
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/free-writes"
-              >
-                Free Writes
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/notes/in-tray"
-              >
-                Notes
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/projects/list"
-              >
-                Projects
-              </Button>
-            </div>
+              About
+            </Button>
+            <Button
+              component={RouterLink}
+              style={{ color: "white" }}
+              underline="none"
+              to="/free-writes"
+            >
+              Free Writes
+            </Button>
+            <Button
+              component={RouterLink}
+              style={{ color: "white" }}
+              underline="none"
+              to="/notes/in-tray"
+            >
+              Notes
+            </Button>
+            <Button
+              component={RouterLink}
+              style={{ color: "white" }}
+              underline="none"
+              to="/projects/list"
+            >
+              Projects
+            </Button>
+          </div>
 
-            {renderAuth()}
-          </Hidden>
-        </Toolbar>
-      </AppBar>
-    </div>
+          {renderAuth()}
+        </Hidden>
+      </Toolbar>
+    </AppBar>
+    // </div>
   );
 }

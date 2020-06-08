@@ -26,7 +26,6 @@ function App({ fetchUser }) {
   }, []);
   return (
     <Router history={history}>
-      {/* <div className="site"> */}
         <Header />
         <Switch>
           <Route path="/" exact component={Landing} />
@@ -61,7 +60,6 @@ function App({ fetchUser }) {
           />
           <Route path="/projects/show/:id" exact component={ProjectShow} />
         </Switch>
-      {/* </div> */}
     </Router>
   );
 }
