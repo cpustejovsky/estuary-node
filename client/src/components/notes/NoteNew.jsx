@@ -31,8 +31,9 @@ function NotesNew({ history, createNote }) {
                 handleSubmit();
               }
             }}
+            className="notes"
           >
-            <div className="input-field center" style={{ display: "flex", minWidth: "400px" }}>
+            <div className="input-field center" style={{ display: "flex"}}>
               <TextareaAutosize
                 aria-label="minimum height"
                 rowsMin={3}
