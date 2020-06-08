@@ -16,26 +16,28 @@ export default function User() {
     return "Loading";
   } else if (user) {
     return (
-      <Card raised>
-        <CardContent className="card-content">
-          <Typography gutterBottom variant="h4">
-            {user.displayName || user.firstName} {user.lastName}
-          </Typography>
-          <p>
-            <strong>Email Address: </strong>
-            {user.email}
-          </p>
-          <p>
-            <strong>Daily Email Updates: </strong>
-            {user.emailUpdates === true ? "On" : "Off"}
-          </p>
-        </CardContent>
-        <CardActions className="card-action">
-          <Button component={RouterLink} to="/user/edit">
-            Edit Profile
-          </Button>
-        </CardActions>
-      </Card>
+      <div className="site">
+        <Card raised>
+          <CardContent className="card-content">
+            <Typography gutterBottom variant="h4">
+              {user.displayName || user.firstName} {user.lastName}
+            </Typography>
+            <p>
+              <strong>Email Address: </strong>
+              {user.email}
+            </p>
+            <p>
+              <strong>Daily Email Updates: </strong>
+              {user.emailUpdates === true ? "On" : "Off"}
+            </p>
+          </CardContent>
+          <CardActions className="card-action">
+            <Button component={RouterLink} to="/user/edit">
+              Edit Profile
+            </Button>
+          </CardActions>
+        </Card>
+      </div>
     );
   } else if (auth) {
     return (
