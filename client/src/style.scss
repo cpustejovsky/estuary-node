@@ -62,9 +62,7 @@ textarea {
 }
 .notes {
   justify-self: center;
-  min-width: fit-content;
-  width: 386px;
-  max-width: 400px;
+  width: 400px;
   @media screen and (max-width: 450px) {
     min-width: 90vw;
   }
