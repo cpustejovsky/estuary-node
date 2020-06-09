@@ -31,24 +31,27 @@ function ProjectsShow({
       fetchProjects();
     }
   }, [match.path, done]);
+  console.log(projects);
   const renderProjects = () => {
     if (!_.isEmpty(projects)) {
-      return projects.map((project) => {
-        return (
-          <RouterLink to={`/projects/show/${project._id}`}>
-            <Card
-              raised
-              key={project._id}
-              className="margin-top padding-horizontal notes"
-            >
-              <CardContent>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </CardContent>
-            </Card>
-          </RouterLink>
-        );
-      });
+      return projects
+        .filter((project) => project !== 0)
+        .map((project) => {
+          return (
+            <RouterLink to={`/projects/show/${project._id}`}>
+              <Card
+                raised
+                key={project._id}
+                className="margin-top padding-horizontal notes"
+              >
+                <CardContent>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </CardContent>
+              </Card>
+            </RouterLink>
+          );
+        });
     }
   };
   if (auth || user) {
