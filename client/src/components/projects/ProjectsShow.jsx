@@ -4,7 +4,15 @@ import { fetchProjects, fetchCompleteProjects } from "../../actions";
 import _ from "lodash";
 import Loader from "../partials/Loader";
 import { Link as RouterLink } from "react-router-dom";
-import { Link, Button, Card, CardContent, Typography } from "@material-ui/core";
+import {
+  Link,
+  Button,
+  Card,
+  CardContent,
+  Typography,
+  Fab,
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 function ProjectsShow({
   fetchProjects,
@@ -45,19 +53,21 @@ function ProjectsShow({
   };
   if (auth || user) {
     return (
-      <div >
+      <div>
         <div className="button">
           <Typography variant="h4" className="button__text__left">
             {done ? "Completed " : null}Projects
           </Typography>
-          <Button
-            component={RouterLink}
-            variant="contained"
-            color="primary"
-            to="/projects/new"
-          >
-            New Project
-          </Button>
+          {done ? null : (
+            <Fab
+              component={RouterLink}
+              to="/projects/new"
+              color="primary"
+              size="medium"
+            >
+              <AddIcon />
+            </Fab>
+          )}
         </div>
         {renderProjects()}
         <div align="center">

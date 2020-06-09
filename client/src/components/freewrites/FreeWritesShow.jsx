@@ -3,7 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { fetchFreeWrites } from "../../actions";
 import Loader from "../partials/Loader";
-import { Button, Card, CardContent, Typography } from "@material-ui/core";
+import { Fab, Card, CardContent, Typography } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import _ from "lodash";
 
 function FreeWriteShow({ fetchFreeWrites, history }) {
@@ -35,20 +36,19 @@ function FreeWriteShow({ fetchFreeWrites, history }) {
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div >
+      <div>
         <div className="button button__free-writes">
           <Typography variant="h4" className="button__text__left">
             Free Writes
           </Typography>
-          <Button
+          <Fab
             component={RouterLink}
             to="/free-writes/new"
-            size="large"
-            variant="contained"
             color="primary"
+            size="medium"
           >
-            New Free Write
-          </Button>
+            <AddIcon />
+          </Fab>
         </div>
         {renderFreeWrites()}
       </div>
