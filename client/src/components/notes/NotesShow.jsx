@@ -5,7 +5,6 @@ import { fetchNotesByCategory } from "../../actions";
 import Loader from "../partials/Loader";
 import Note from "./Note";
 import NotesNew from "./NoteNew";
-import NoteHeader from "../partials/NoteHeader";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 function NotesShow({ fetchNotesByCategory, history, match }) {
