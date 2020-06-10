@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import axios from "axios";
 import {
   Button,
   Card,
@@ -9,14 +10,23 @@ import {
   Typography,
 } from "@material-ui/core";
 
-export default function User() {
+function User() {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
+  const [stats, setStats] = useState(null);
+  const fetchNotestatistics = async () => {
+    let response = await axios.get("/api/notes/stats");
+    setStats(response.data);
+  };
+  useEffect(() => {
+    fetchNotestatistics();
+  }, []);
+  console.log(stats);
   if (!auth && !user) {
     return "Loading";
   } else if (user) {
     return (
-      <div >
+      <div>
         <Card raised>
           <CardContent className="card-content">
             <Typography gutterBottom variant="h4">
@@ -30,6 +40,11 @@ export default function User() {
               <strong>Daily Email Updates: </strong>
               {user.emailUpdates === true ? "On" : "Off"}
             </p>
+            <hr />
+            <Typography gutterBottom variant="h5">
+              Note Statistics
+            </Typography>
+            <ul>render</ul>
           </CardContent>
           <CardActions className="card-action">
             <Button component={RouterLink} to="/user/edit">
@@ -39,28 +54,6 @@ export default function User() {
         </Card>
       </div>
     );
-  } else if (auth) {
-    return (
-      <Card raised>
-        <CardContent className="card-content">
-          <Typography gutterBottom variant="h4" component="h2">
-            {auth.displayName || auth.firstName} {auth.lastName}
-          </Typography>
-          <p>
-            <strong>Email Address: </strong>
-            {auth.email}
-          </p>
-          <p>
-            <strong>Daily Email Updates: </strong>
-            {auth.emailUpdates === true ? "On" : "Off"}
-          </p>
-        </CardContent>
-        <CardActions className="card-action">
-          <Button component={RouterLink} to="/user/edit">
-            Edit Profile
-          </Button>
-        </CardActions>
-      </Card>
-    );
   }
 }
+export default connect(null, {})(User);
