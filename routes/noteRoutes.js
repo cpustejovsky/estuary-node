@@ -11,6 +11,7 @@ module.exports = (app) => {
     requireLogin,
     noteController.findNotesByProject
   );
+  app.get("/api/notes/stats", requireLogin, noteController.fetchNoteStatistics);
   app.post("/api/notes", requireLogin, noteController.createNote);
   app.patch("/api/notes", requireLogin, noteController.updateNote);
   app.patch(

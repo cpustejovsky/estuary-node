@@ -73,8 +73,8 @@ module.exports = {
     await Note.findOneAndDelete({ _user: req.user.id, _id: req.body.noteId });
     res.send({});
   },
-  //TODO: test!
   async fetchNoteStatistics(req, res) {
+    console.log("hit controller!");
     let foundNotes = await Note.find({ _user: req.user._id });
     let stats = {
       inTray: 0,
@@ -84,20 +84,26 @@ module.exports = {
       reference: 0,
     };
     let noteStats = foundNotes.reduce((accumulator, note) => {
-      switch (category) {
+      switch (note.category) {
         case "in-tray":
           ++accumulator.inTray;
+          break;
         case "next":
           ++accumulator.next;
+          break;
         case "maybe":
           ++accumulator.maybe;
+          break;
         case "done":
           ++accumulator.done;
+          break;
         case "reference":
-          ++accumulator.refenence;
+          ++accumulator.reference;
+          break;
       }
       return accumulator;
     }, stats);
+    console.log(noteStats);
     res.send(noteStats);
   },
 };
