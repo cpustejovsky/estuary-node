@@ -13,7 +13,7 @@ import {
 function User() {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({});
   const fetchNotestatistics = async () => {
     let response = await axios.get("/api/notes/stats");
     setStats(response.data);
@@ -21,7 +21,14 @@ function User() {
   useEffect(() => {
     fetchNotestatistics();
   }, []);
-  console.log(stats);
+  const renderStatistics = (stats) =>
+    Object.keys(stats).map((key) => (
+      <li>
+        {key.toUpperCase()}: {stats[key]}
+      </li>
+    ));
+
+  renderStatistics(stats);
   if (!auth && !user) {
     return "Loading";
   } else if (user) {
@@ -44,7 +51,7 @@ function User() {
             <Typography gutterBottom variant="h5">
               Note Statistics
             </Typography>
-            <ul>render</ul>
+            <ul>{renderStatistics(stats)}</ul>
           </CardContent>
           <CardActions className="card-action">
             <Button component={RouterLink} to="/user/edit">
