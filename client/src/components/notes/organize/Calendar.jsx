@@ -21,7 +21,6 @@ function Calendar({
 }) {
   const submitValues = async (values) => {
     const response = await axios.post("/api/calendar", values);
-    console.log(response.data);
     deleteNote(note.id);
     toggleCalendar();
     toggleActionable();

@@ -19,7 +19,6 @@ const UserEdit = (props) => {
   };
 
   const user = useSelector((state) => state.user);
-  console.log(user);
   const emailUpdateDefault = () => {
     if (user) {
       return user.emailUpdates ? true : false;

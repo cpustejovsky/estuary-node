@@ -42,7 +42,6 @@ function NoteForProject({
         <h2>Is this a part of a project that already exists?</h2>
         <Button
           onClick={() => {
-            alert("so it's a next action, cool!");
             categorizeNote(noteId, "next");
             toggleNoteForProject();
             toggleActionable();

@@ -43,7 +43,6 @@ const Timer = ({ show, toggleTimer, toggleActionable, categorizeNote, noteId }) 
           <Button
             className="button"
             onClick={() => {
-              alert("you're finished!");
               categorizeNote(noteId, "done");
               toggleTimer();
               toggleActionable();
