@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import {
-  fetchNotes,
+  fetchNotesByCategory,
   categorizeNote,
   deleteNote,
   fetchProjects,
@@ -22,7 +22,7 @@ import Calendar from "./Calendar";
 import { Grid, Typography } from "@material-ui/core";
 
 function NotesOrganize({
-  fetchNotes,
+  fetchNotesByCategory,
   fetchProjects,
   deleteNote,
   categorizeNote,
@@ -33,7 +33,7 @@ function NotesOrganize({
   const notes = useSelector((state) => Object.values(state.notes));
   const projects = useSelector((state) => Object.values(state.projects));
   useEffect(() => {
-    fetchNotes();
+    fetchNotesByCategory("in-tray");
     fetchProjects();
   }, []);
   const MapInTrayArray = () => {
@@ -210,7 +210,7 @@ function NotesOrganize({
 }
 
 export default connect(null, {
-  fetchNotes,
+  fetchNotesByCategory,
   deleteNote,
   categorizeNote,
   fetchProjects,
