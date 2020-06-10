@@ -89,11 +89,7 @@ function Note(props) {
     }
   };
   return (
-    <Card
-      raised
-      key={props.id}
-      className="margin-top notes"
-    >
+    <Card raised key={props.id} className="margin-top notes">
       <CardContent>
         <p>{!editShow ? props.content : null}</p>
         {renderEdit(editShow, props.id)}
