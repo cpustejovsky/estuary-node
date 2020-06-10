@@ -75,7 +75,7 @@ function Note(props) {
           <>
             <Button
               onClick={() => {
-                props.categorizeNote(props.noteId, "done");
+                props.categorizeNote(props.id, "done");
               }}
             >
               Complete
