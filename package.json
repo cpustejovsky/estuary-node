@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test nodemon --exec 'nyc mocha test --recursive'",
-    "unit": "NODE_ENV=test nodemon --exec 'nyc mocha test/unit --recursive'",
-    "integration": "NODE_ENV=test nodemon --exec 'nyc mocha test/integration --recursive'",
+    "unit": "NODE_ENV=test nodemon --exec 'mocha test/unit --recursive'",
+    "integration": "NODE_ENV=test nodemon --exec 'mocha test/integration --recursive'",
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
