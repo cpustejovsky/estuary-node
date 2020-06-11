@@ -3,7 +3,7 @@ var CronJob = require("cron").CronJob;
 module.exports = {
   testCron(func) {
     return new CronJob(
-      "* * * * * *",
+      "0 */1 * * * *",
       func,
       null,
       true,
