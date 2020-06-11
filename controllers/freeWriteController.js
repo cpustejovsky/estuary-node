@@ -5,11 +5,9 @@ const Note = mongoose.model("notes");
 
 module.exports = {
   async fetchFreeWrites(req, res) {
-    console.log("fetch controller called!")
     res.send(await FreeWrite.find({ _user: req.user.id }));
   },
   async createFreeWrite(req, res) {
-    console.log("hit controller!")
     try {
       const newFreeWrite = new FreeWrite({
         title: req.body.title,
