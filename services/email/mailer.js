@@ -19,7 +19,7 @@ module.exports = {
         completed: false,
       });
       let modifiedNotes = {
-        from: "Estuary In-Tray Test<estuaryintraytest@estuaryapp.com>",
+        from: "Estuary <no-reply@estuaryapp.com>",
         to: user.email,
         subject: "You Have Notes to Organize",
         text: userInTrayNotes.map((note) => note.content),
@@ -39,7 +39,7 @@ module.exports = {
         completed: false,
       });
       let modifiedNotes = {
-        from: "Estuary Next Action Test<estuarynextactiontesty@estuaryapp.com>",
+        from: "Estuary <no-reply@estuaryapp.com>",
         to: user.email,
         subject: "You Have Next Actions to Complete",
         text: userInTrayNotes.map((note) => note.content),
@@ -60,7 +60,7 @@ module.exports = {
         completed: false,
       });
       let modifiedProjects = {
-        from: "Estuary Project Test<estuarynextactiontesty@estuaryapp.com>",
+        from: "Estuary <no-reply@estuaryapp.com>",
         to: user.email,
         subject: `Your Project${incompleteProjects.length > 1 ? "s" : ""}`,
         text: incompleteProjects.map(
@@ -73,5 +73,39 @@ module.exports = {
     return responseMessages;
   },
   //email completed items within a time period (weekly)
-  async emailCompletedItems() {},
+  async emailCompletedItems() {
+    let responseMessages = [];
+    let fetchedUsers = await this.fetchEmailUsers();
+    for (const user of fetchedUsers) {
+      let completedProjects = await Project.find({
+        _user: user._id,
+        completed: true,
+      });
+      let completedNotes = await Note.find({
+        _user: user._id,
+        completed: true,
+      });
+      let projectContent = completedProjects
+        .filter(
+          (project) =>
+            (new Date() - project.completedDate) / 86400000 /*24hrs*/ < 8
+        )
+        .map((project) => `${project.title} | ${project.description}`);
+      let noteContent = completedNotes
+        .filter(
+          (note) => (new Date() - note.completedDate) / 86400000 /*24hrs*/ < 8
+        )
+        .map((note) => `${note.content}`);
+
+      let completedItemsEmail = {
+        from: "Estuary <no-reply@estuaryapp.com>",
+        to: user.email,
+        subject: "Your Accomplishments This Week",
+        text: `Projects\n${projectContent}\nNotes\n${noteContent}`,
+      };
+      let response = await mailgun(completedItemsEmail);
+      responseMessages.push(response.message);
+    }
+    return responseMessages;
+  },
 };
