@@ -128,7 +128,8 @@ export default function Todos() {
         <Todo text="Add email functionality" />
         <Todo subtodo complete text="Connect MailGun to domain" />
         <Todo subtodo complete text="Connect MailGun to app" />
-        <Todo subtodo text="Set up email functions" />
+        <Todo subtodo complete text="Set up email functions" />
+        <Todo subtodo complete text="Set up email tests" />
         <Todo subtodo text="Add cron jobs ties to different email function" />
         <Todo subtodo text="Style emails" />
         <Todo text="Add search and filter functionality" />

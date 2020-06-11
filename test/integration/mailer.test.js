@@ -10,7 +10,8 @@ const newInTrayNote = (id, complete) => {
     content: "needs to be organized",
     category: "in-tray",
     _user: id,
-    complete: complete ? true : false,
+    completed: complete ? true : false,
+    completedDate: complete ? new Date() : null,
   };
 };
 
@@ -19,7 +20,8 @@ const newNextAction = (id, complete) => {
     content: "next physical action",
     category: "next",
     _user: id,
-    complete: complete ? true : false,
+    completed: complete ? true : false,
+    completedDate: complete ? new Date() : null,
   };
 };
 
@@ -30,6 +32,28 @@ const newProject = (id, complete) => {
     dueDate: new Date(),
     _user: id,
     completed: complete ? true : false,
+    completedDate: complete ? new Date() : null,
+  };
+};
+
+const oldCompleteNote = (id) => {
+  return {
+    content: "old completed note",
+    category: "done",
+    _user: id,
+    completed: true,
+    completedDate: new Date("12/18/1992"),
+  };
+};
+
+const oldCompleteProject = (id) => {
+  return {
+    title: "old completed project",
+    description: "old description",
+    dueDate: new Date(),
+    _user: id,
+    completed: true,
+    completedDate: new Date("12/18/1992"),
   };
 };
 
@@ -43,10 +67,12 @@ before(async () => {
     await new Note(newNextAction(user._id)).save();
     await new Note(newNextAction(user._id)).save();
     await new Note(newNextAction(user._id, true)).save();
+    await new Note(oldCompleteNote(user._id)).save()
 
     await new Project(newProject(user._id)).save();
     await new Project(newProject(user._id, true)).save();
     await new Project(newProject(user._id, true)).save();
+    await new Project(oldCompleteProject(user._id)).save();
   }
 });
 describe("Email Methods", async function () {
@@ -56,9 +82,9 @@ describe("Email Methods", async function () {
     expect(allUsers.length).to.equal(3);
     expect(emailUsers.length).to.equal(2);
   });
-  it("for each user, finds the in-tray notes", async () => {
+  it("for each user, sends the in-tray notes", async () => {
     let foundNotes = await Note.find();
-    expect(foundNotes.length).to.equal(12);
+    expect(foundNotes.length).to.equal(14);
     let inTrayNotes = await Note.find({ category: "in-tray" });
     expect(inTrayNotes.length).to.equal(6);
     let response = await mailer.emailInTrayNotes();
@@ -67,9 +93,9 @@ describe("Email Methods", async function () {
       expect(message).to.equal("Queued. Thank you.");
     });
   });
-  it("for each user, finds the next-actions notes", async () => {
+  it("for each user, sends the next-actions notes", async () => {
     let foundNotes = await Note.find();
-    expect(foundNotes.length).to.equal(12);
+    expect(foundNotes.length).to.equal(14);
     let nextNotes = await Note.find({ category: "next" });
     expect(nextNotes.length).to.equal(6);
     let response = await mailer.emailNextActions();
@@ -78,12 +104,25 @@ describe("Email Methods", async function () {
       expect(message).to.equal("Queued. Thank you.");
     });
   });
-  it("for each users, finds the uncompleted Projects", async () => {
+  it("for each users, sends the uncompleted Projects", async () => {
     let foundProjects = await Project.find();
-    expect(foundProjects.length).to.equal(6);
+    expect(foundProjects.length).to.equal(8);
     let uncompletedProjects = await Project.find({ completed: false });
     expect(uncompletedProjects.length).to.equal(2);
     let response = await mailer.emailProjects();
+    expect(response.length).to.equal(2);
+    response.forEach((message) => {
+      expect(message).to.equal("Queued. Thank you.");
+    });
+  });
+  it("for each users, sends the completed Projects and Notes", async () => {
+    let foundNotes = await Note.find();
+    expect(foundNotes.length).to.equal(14);
+    let foundProjects = await Project.find();
+    expect(foundProjects.length).to.equal(8);
+    let completedProject = await Project.find({ completed: true });
+    expect(completedProject.length).to.equal(6);
+    let response = await mailer.emailCompletedItems();
     expect(response.length).to.equal(2);
     response.forEach((message) => {
       expect(message).to.equal("Queued. Thank you.");
