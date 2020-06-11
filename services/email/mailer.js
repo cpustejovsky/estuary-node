@@ -68,10 +68,8 @@ module.exports = {
         ),
       };
       let response = await mailgun(modifiedProjects);
-
       responseMessages.push(response.message);
     }
-    console.log(responseMessages);
     return responseMessages;
   },
   //email completed items within a time period (weekly)

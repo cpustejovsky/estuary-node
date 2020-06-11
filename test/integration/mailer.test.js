@@ -49,7 +49,8 @@ before(async () => {
     await new Project(newProject(user._id, true)).save();
   }
 });
-describe("Email Methods", async () => {
+describe("Email Methods", async function () {
+  this.timeout(4000);
   it("fetches all users with email updates as true", async () => {
     let allUsers = await User.find();
     expect(allUsers.length).to.equal(3);
