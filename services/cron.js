@@ -1,25 +1,39 @@
 var CronJob = require("cron").CronJob;
 console.log("Before job instantiation");
 
-const daily = new CronJob(
-  "*/1 * * * * *",
-  function () {
-    console.log("Every 1s");
+const logger = () => {
+  console.log("testing with outside function")
+}
+
+const logger2 = () => {
+  console.log("#2 testing with outside function")
+}
+
+const cronJobs = {
+  dailyCron(func) {
+    let job = new CronJob(
+      "*/1 * * * * *",
+      func,
+      null,
+      true,
+      "America/Los_Angeles"
+    );
+    return job
   },
-  null,
-  true,
-  "America/Los_Angeles"
-);
-const weekly = new CronJob(
-  "*/5 * * * * *",
-  function () {
-    console.log("Every 5s");
+  weeklyCron(func) {
+    let job = new CronJob(
+      "*/2 * * * * *",
+      func,
+      null,
+      true,
+      "America/Los_Angeles"
+    );
+    return job
   },
-  null,
-  true,
-  "America/Los_Angeles"
-);
+};
+
 console.log("After job instantiation");
 
-daily.start();
-weekly.start();
+cronJobs.dailyCron(logger).start()
+cronJobs.weeklyCron(logger2).start()
+
