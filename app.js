@@ -6,12 +6,11 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
 const dynoWaker = require("cpustejovsky-dyno-waker");
-const keys = require("./config/keys");
+const cronJobs = require("./services/cron")
 require("./models/User");
 require("./services/passport/google");
-const cronJobs = require("./services/cron")
 const mailer = require("./services/email/mailer");
-
+const keys = require("./config/keys");
 const PORT = process.env.NODE_ENV === "test" ? 4000 : process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== "test") {
@@ -57,12 +56,9 @@ if (process.env.NODE_ENV === "production") {
       require("path").resolve(__dirname, "client", "build", "index.html")
     );
   });
-  cronJobs.dailyCron(mailer.emailInTrayNotes).start()
-  cronJobs.dailyCron(mailer.emailNextActions).start()
-  cronJobs.dailyCron(mailer.emailNextActions).start()
-  cronJobs.weeklyCron(mailer.emailInTrayNotes).start()
+  cronJobs.dailyCron(mailer.dailyEmailUpdate).start()
+  // cronJobs.weeklyCron(mailer.weeklyEmailUpdate).start()
 }
-
 app.listen(PORT, () => {
   console.log(`Estuary listening on localhost:${PORT}`);
 });
