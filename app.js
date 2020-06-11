@@ -9,6 +9,7 @@ const dynoWaker = require("cpustejovsky-dyno-waker");
 const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport/google");
+const cronJobs = require("./services/cron")
 const PORT = process.env.NODE_ENV === "test" ? 4000 : process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== "test") {
@@ -54,7 +55,9 @@ if (process.env.NODE_ENV === "production") {
       require("path").resolve(__dirname, "client", "build", "index.html")
     );
   });
+  // cronJobs.weeklyCron().start()
 }
+cronJobs.testCron(()=>{console.log("testing cron job!!")}).start()
 
 app.listen(PORT, () => {
   console.log(`Estuary listening on localhost:${PORT}`);
