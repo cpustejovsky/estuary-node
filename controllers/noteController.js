@@ -103,7 +103,6 @@ module.exports = {
       }
       return accumulator;
     }, stats);
-    console.log(noteStats);
     res.send(noteStats);
   },
 };
