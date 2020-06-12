@@ -6,13 +6,13 @@ const Note = mongoose.model("notes");
 const Project = mongoose.model("projects");
 const dailyEmailTemplate = require("./templates/dailyEmail.js");
 const weeklyEmailTemplate = require("./templates/weeklyEmail.js");
+
+const fetchEmailUsers = async () => await User.find({ emailUpdates: true });
+
 module.exports = {
-  async fetchEmailUsers() {
-    return await User.find({ emailUpdates: true });
-  },
   async dailyEmailUpdate() {
     let responseMessages = [];
-    let fetchedUsers = await this.fetchEmailUsers();
+    let fetchedUsers = await fetchEmailUsers();
     for (const user of fetchedUsers) {
       let inTrayNotes = await Note.find({
         category: "in-tray",
@@ -41,7 +41,7 @@ module.exports = {
   },
   async weeklyEmailUpdate() {
     let responseMessages = [];
-    let fetchedUsers = await this.fetchEmailUsers();
+    let fetchedUsers = await fetchEmailUsers();
     for (const user of fetchedUsers) {
       let completedProjects = await Project.find({
         _user: user._id,
