@@ -5,6 +5,7 @@ const mailgun = require("./mailgun");
 const Note = mongoose.model("notes");
 const Project = mongoose.model("projects");
 const dailyEmailTemplate = require("./templates/dailyEmail.js");
+const weeklyEmailTemplate = require("./templates/weeklyEmail.js");
 module.exports = {
   async fetchEmailUsers() {
     return await User.find({ emailUpdates: true });
@@ -50,23 +51,18 @@ module.exports = {
         _user: user._id,
         completed: true,
       });
-      let projectContent = completedProjects
-        .filter(
-          (project) =>
-            (new Date() - project.completedDate) / 86400000 /*24hrs*/ < 8
-        )
-        .map((project) => `${project.title} | ${project.description}`);
-      let noteContent = completedNotes
-        .filter(
-          (note) => (new Date() - note.completedDate) / 86400000 /*24hrs*/ < 8
-        )
-        .map((note) => `${note.content}`);
-
+      let projects = completedProjects.filter(
+        (project) =>
+          (new Date() - project.completedDate) / 86400000 /*24hrs*/ < 8
+      );
+      let notes = completedNotes.filter(
+        (note) => (new Date() - note.completedDate) / 86400000 /*24hrs*/ < 8
+      );
       let completedItemsEmail = {
         from: "Estuary <no-reply@estuaryapp.com>",
         to: user.email,
         subject: "Your Accomplishments This Week",
-        text: `Projects\n${projectContent}\nNotes\n${noteContent}`,
+        html: weeklyEmailTemplate(notes, projects),
       };
       let response = await mailgun(completedItemsEmail);
       responseMessages.push(response.message);

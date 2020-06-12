@@ -124,14 +124,20 @@ export default function Todos() {
           <Todo complete subsubtodo text="projects" />
           <Todo complete subsubtodo text="notes" />
           <Todo complete subtodo text="freeWriteChecker test" />
+          <Todo text="Add email functionality" />
+          <Todo subtodo complete text="Connect MailGun to domain" />
+          <Todo subtodo complete text="Connect MailGun to app" />
+          <Todo subtodo complete text="Set up email functions" />
+          <Todo subtodo complete text="Set up email tests" />
+          <Todo
+            subtodo
+            complete
+            text="Add cron jobs ties to different email function"
+          />
+          <Todo subtodo complete text="Style emails" />
+          <Todo subsubtodo complete text="daily emails" />
+          <Todo subsubtodo complete text="weekly emails" />
         </Collapse>
-        <Todo text="Add email functionality" />
-        <Todo subtodo complete text="Connect MailGun to domain" />
-        <Todo subtodo complete text="Connect MailGun to app" />
-        <Todo subtodo complete text="Set up email functions" />
-        <Todo subtodo complete text="Set up email tests" />
-        <Todo subtodo text="Add cron jobs ties to different email function" />
-        <Todo subtodo text="Style emails" />
         <Todo text="Add search and filter functionality" />
         <Todo subtodo text="Set priority for next actions" />
         <Todo subtodo text="Drag and drop next actions to show priority" />

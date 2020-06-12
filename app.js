@@ -57,7 +57,7 @@ if (process.env.NODE_ENV === "production") {
     );
   });
   cronJobs.dailyCron(mailer.dailyEmailUpdate).start()
-  // cronJobs.weeklyCron(mailer.weeklyEmailUpdate).start()
+  cronJobs.weeklyCron(mailer.weeklyEmailUpdate).start()
 }
 app.listen(PORT, () => {
   console.log(`Estuary listening on localhost:${PORT}`);
