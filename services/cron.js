@@ -12,7 +12,7 @@ module.exports = {
   },
   dailyCron(func) {
     return new CronJob(
-      "00 30 06 */1 * *",
+      "00 45 11 */1 * *",
       func,
       null,
       true,
