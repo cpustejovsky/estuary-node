@@ -2,6 +2,7 @@ var CronJob = require("cron").CronJob;
 
 module.exports = {
   testCron(func) {
+    console.log("hit!")
     return new CronJob(
       "0 */1 * * * *",
       func,
@@ -12,7 +13,7 @@ module.exports = {
   },
   dailyCron(func) {
     return new CronJob(
-      "00 00 12 * * *",
+      "00 30 06 * * *",
       func,
       null,
       true,
