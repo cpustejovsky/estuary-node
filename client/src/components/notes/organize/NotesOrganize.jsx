@@ -38,8 +38,6 @@ function NotesOrganize({
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
   const projects = useSelector((state) => Object.values(state.projects));
-  console.log(user);
-  console.log(notes)
   useEffect(() => {
     fetchNotesByCategory("in-tray");
     fetchProjects();
@@ -92,7 +90,7 @@ function NotesOrganize({
       }
     }
   };
-  const [advanced, setAdvanced] = useState(false);
+  const [advanced, setAdvanced] = useState(user.emailUpdates);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
