@@ -110,90 +110,68 @@ function NotesOrganize({
       return <h1>Advanced Flow Goes Here</h1>;
     } else {
       return (
-        <Grid container spacing={3}>
-          <Grid item xs></Grid>
-          <Grid
-            item
-            xs={6}
-            style={{
-              backgroundColor: "white",
-              borderRadius: "10px",
-              margin: "20px",
-              minHeight: "100vh",
-            }}
-          >
-            {" "}
-            <Typography variant="h4" align="center">
-              Organize Notes
-            </Typography>{" "}
-            <Grid container justify="center">
-              {renderNote()}
-            </Grid>
-            <Grid justify="center" align="center">
-              <Actionable
-                show={actionableShow}
-                toggleActionable={toggleActionable}
-                toggleNotActionable={toggleNotActionable}
-                toggleTwoMinutes={toggleTwoMinutes}
-              />
-              <NotActionable
-                show={notActionableShow}
-                categorizeNote={categorizeNote}
-                deleteNote={deleteNote}
-                noteId={noteId}
-                toggleActionable={toggleActionable}
-                toggleNotActionable={toggleNotActionable}
-                toggleCalendar={toggleCalendar}
-              />
-              <Calendar
-                show={calendarShow}
-                categorizeNote={categorizeNote}
-                noteId={noteId}
-                note={note}
-                deleteNote={deleteNote}
-                toggleCalendar={toggleCalendar}
-                toggleActionable={toggleActionable}
-              />
-              <TwoMinutes
-                show={twoMinutesShow}
-                toggleTimer={toggleTimer}
-                toggleTwoMinutes={toggleTwoMinutes}
-                toggleActionable={toggleActionable}
-                categorizeNote={categorizeNote}
-                toggleNextAction={toggleNextAction}
-                noteId={noteId}
-              />
-              <Timer
-                show={timerShow}
-                categorizeNote={categorizeNote}
-                noteId={noteId}
-                toggleTimer={toggleTimer}
-                toggleActionable={toggleActionable}
-              />
-              <NextAction
-                show={nextActionShow}
-                toggleNextAction={toggleNextAction}
-                toggleProjectNew={toggleProjectNew}
-                toggleNoteForProject={toggleNoteForProject}
-              />
-              <ProjectNew
-                show={projectNewShow}
-                deleteNote={deleteNote}
-                note={note}
-                toggleProjectNew={toggleProjectNew}
-                toggleActionable={toggleActionable}
-              />
-              <NoteForProject
-                projects={projects}
-                show={noteForProjectShow}
-                categorizeNote={categorizeNote}
-                noteId={noteId}
-                toggleNoteForProject={toggleNoteForProject}
-                toggleActionable={toggleActionable}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs></Grid>
+        <Grid justify="center" align="center">
+          <Actionable
+            show={actionableShow}
+            toggleActionable={toggleActionable}
+            toggleNotActionable={toggleNotActionable}
+            toggleTwoMinutes={toggleTwoMinutes}
+          />
+          <NotActionable
+            show={notActionableShow}
+            categorizeNote={categorizeNote}
+            deleteNote={deleteNote}
+            noteId={noteId}
+            toggleActionable={toggleActionable}
+            toggleNotActionable={toggleNotActionable}
+            toggleCalendar={toggleCalendar}
+          />
+          <Calendar
+            show={calendarShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            note={note}
+            deleteNote={deleteNote}
+            toggleCalendar={toggleCalendar}
+            toggleActionable={toggleActionable}
+          />
+          <TwoMinutes
+            show={twoMinutesShow}
+            toggleTimer={toggleTimer}
+            toggleTwoMinutes={toggleTwoMinutes}
+            toggleActionable={toggleActionable}
+            categorizeNote={categorizeNote}
+            toggleNextAction={toggleNextAction}
+            noteId={noteId}
+          />
+          <Timer
+            show={timerShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleTimer={toggleTimer}
+            toggleActionable={toggleActionable}
+          />
+          <NextAction
+            show={nextActionShow}
+            toggleNextAction={toggleNextAction}
+            toggleProjectNew={toggleProjectNew}
+            toggleNoteForProject={toggleNoteForProject}
+          />
+          <ProjectNew
+            show={projectNewShow}
+            deleteNote={deleteNote}
+            note={note}
+            toggleProjectNew={toggleProjectNew}
+            toggleActionable={toggleActionable}
+          />
+          <NoteForProject
+            projects={projects}
+            show={noteForProjectShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleNoteForProject={toggleNoteForProject}
+            toggleActionable={toggleActionable}
+          />
         </Grid>
       );
     }
@@ -201,24 +179,37 @@ function NotesOrganize({
   if (auth || user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
       return (
-        <>
-          <Grid item>
-            {" "}
-            <FormControlLabel
-              control={
-                <Switch
-                  color="primary"
-                  checked={advanced}
-                  onChange={() => {
-                    toggleAdvanced();
-                  }}
-                />
-              }
-              label={"Advanced View"}
-            />
+        <Grid
+          justify="center"
+          style={{
+            backgroundColor: "white",
+            borderRadius: "10px",
+            margin: "20px",
+            minHeight: "100vh",
+            minWidth: "50vw",
+          }}
+        >
+          <Typography variant="h4" align="center">
+            Organize Notes
+          </Typography>{" "}
+          
+          <FormControlLabel
+            control={
+              <Switch
+                color="primary"
+                checked={advanced}
+                onChange={() => {
+                  toggleAdvanced();
+                }}
+              />
+            }
+            label={"Advanced View"}
+          />
+          <Grid container justify="center">
+            {renderNote()}
           </Grid>
           {renderOranizeFlow()}
-        </>
+        </Grid>
       );
     } else {
       return (
