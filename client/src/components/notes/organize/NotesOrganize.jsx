@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
-import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import {
   fetchNotesByCategory,
@@ -19,7 +18,13 @@ import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
 import NoteForProject from "./NoteForProject";
 import Calendar from "./Calendar";
-import { Grid, Typography, Switch, FormControlLabel } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Switch,
+  FormControlLabel,
+  Button,
+} from "@material-ui/core";
 
 function NotesOrganize({
   fetchNotesByCategory,
@@ -32,6 +37,7 @@ function NotesOrganize({
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
   const projects = useSelector((state) => Object.values(state.projects));
+  console.log(user);
   useEffect(() => {
     fetchNotesByCategory("in-tray");
     fetchProjects();
@@ -85,7 +91,6 @@ function NotesOrganize({
     }
   };
   const [advanced, setAdvanced] = useState(false);
-
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
@@ -105,9 +110,42 @@ function NotesOrganize({
   const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
   const toggleNoteForProject = () => setNoteForProjectShow(!noteForProjectShow);
   const toggleCalendar = () => setCalendarShow(!calendarShow);
+
   const renderOranizeFlow = () => {
     if (advanced) {
-      return <h1>Advanced Flow Goes Here</h1>;
+      return (
+        <Grid>
+          <Button onClick={() => categorizeNote(note.id, "next")}>Next Action</Button>
+          <Button onClick={() => toggleTimer()}>Two Minutes</Button>
+          <Button onClick={() => toggleProjectNew()}>Project</Button>
+          <Button onClick={() => toggleNoteForProject()}>Part of Project</Button>
+          <Button onClick={() => categorizeNote(note.id, "waiting")}>Waiting</Button>
+          <Button onClick={() => categorizeNote(note.id, "reference")}>Reference</Button>
+          <Button onClick={() => deleteNote(note.id)}>Trash</Button>
+          <Timer
+            show={timerShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleTimer={toggleTimer}
+            toggleActionable={toggleActionable}
+          />
+          <ProjectNew
+            show={projectNewShow}
+            deleteNote={deleteNote}
+            note={note}
+            toggleProjectNew={toggleProjectNew}
+            toggleActionable={toggleActionable}
+          />
+          <NoteForProject
+            projects={projects}
+            show={noteForProjectShow}
+            categorizeNote={categorizeNote}
+            noteId={noteId}
+            toggleNoteForProject={toggleNoteForProject}
+            toggleActionable={toggleActionable}
+          />
+        </Grid>
+      );
     } else {
       return (
         <>
