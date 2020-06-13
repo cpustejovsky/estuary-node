@@ -110,7 +110,7 @@ function NotesOrganize({
       return <h1>Advanced Flow Goes Here</h1>;
     } else {
       return (
-        <Grid justify="center" align="center">
+        <>
           <Actionable
             show={actionableShow}
             toggleActionable={toggleActionable}
@@ -172,7 +172,7 @@ function NotesOrganize({
             toggleNoteForProject={toggleNoteForProject}
             toggleActionable={toggleActionable}
           />
-        </Grid>
+        </>
       );
     }
   };
@@ -181,6 +181,7 @@ function NotesOrganize({
       return (
         <Grid
           justify="center"
+          align="center"
           style={{
             backgroundColor: "white",
             borderRadius: "10px",
@@ -192,10 +193,15 @@ function NotesOrganize({
           <Typography variant="h4" align="center">
             Organize Notes
           </Typography>{" "}
-          
           <FormControlLabel
+            style={{
+              marginTop: "5%",
+              display: "flex",
+              justifyContent: "center",
+            }}
             control={
               <Switch
+                size="small"
                 color="primary"
                 checked={advanced}
                 onChange={() => {
@@ -205,9 +211,7 @@ function NotesOrganize({
             }
             label={"Advanced View"}
           />
-          <Grid container justify="center">
-            {renderNote()}
-          </Grid>
+          {renderNote()}
           {renderOranizeFlow()}
         </Grid>
       );
