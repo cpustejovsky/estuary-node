@@ -274,6 +274,9 @@ function NotesOrganize({
                 checked={advanced}
                 onChange={() => {
                   toggleAdvanced();
+                  setProjectNewShow(false);
+                  setNoteForProjectShow(false);
+                  setTimerShow(false);
                 }}
               />
             }
