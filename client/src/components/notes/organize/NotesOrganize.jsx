@@ -24,6 +24,7 @@ import {
   Switch,
   FormControlLabel,
   Button,
+  ButtonGroup,
 } from "@material-ui/core";
 
 function NotesOrganize({
@@ -90,7 +91,7 @@ function NotesOrganize({
       }
     }
   };
-  const [advanced, setAdvanced] = useState(false);
+  const [advanced, setAdvanced] = useState(true);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
@@ -115,65 +116,97 @@ function NotesOrganize({
     if (advanced) {
       return (
         <Grid>
-          <Button onClick={() => categorizeNote(note.id, "next")}>
-            Next Action
-          </Button>
-          <Button
-            onClick={() => {
-              toggleTimer();
-              setProjectNewShow(false);
-              setNoteForProjectShow(false);
-            }}
-          >
-            Two Minutes
-          </Button>
-          <Button
-            onClick={() => {
-              toggleProjectNew();
-              setNoteForProjectShow(false);
-              setTimerShow(false);
-            }}
-          >
-            Project
-          </Button>
-          <Button
-            onClick={() => {
-              toggleNoteForProject();
-              setProjectNewShow(false);
-              setTimerShow(false);
-            }}
-          >
-            Part of Project
-          </Button>
-          <Button onClick={() => categorizeNote(note.id, "waiting")}>
-            Waiting
-          </Button>
-          <Button onClick={() => categorizeNote(note.id, "reference")}>
-            Reference
-          </Button>
-          <Button onClick={() => deleteNote(note.id)}>Trash</Button>
-          <Timer
-            show={timerShow}
-            categorizeNote={categorizeNote}
-            noteId={noteId}
-            toggleTimer={toggleTimer}
-            toggleActionable={toggleActionable}
-          />
-          <ProjectNew
-            show={projectNewShow}
-            deleteNote={deleteNote}
-            note={note}
-            toggleProjectNew={toggleProjectNew}
-            toggleActionable={toggleActionable}
-          />
-          <NoteForProject
-            projects={projects}
-            show={noteForProjectShow}
-            categorizeNote={categorizeNote}
-            noteId={noteId}
-            toggleNoteForProject={toggleNoteForProject}
-            toggleActionable={toggleActionable}
-          />
+          <ButtonGroup>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "next")}
+            >
+              Next Action
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                toggleTimer();
+                setProjectNewShow(false);
+                setNoteForProjectShow(false);
+              }}
+            >
+              Two Minutes
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                toggleProjectNew();
+                setNoteForProjectShow(false);
+                setTimerShow(false);
+              }}
+            >
+              Project
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                toggleNoteForProject();
+                setProjectNewShow(false);
+                setTimerShow(false);
+              }}
+            >
+              Part of Project
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "waiting")}
+            >
+              Waiting
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "reference")}
+            >
+              Reference
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => deleteNote(note.id)}
+            >
+              Trash
+            </Button>
+          </ButtonGroup>
+          <Grid>
+            <Timer
+              show={timerShow}
+              categorizeNote={categorizeNote}
+              noteId={noteId}
+              toggleTimer={toggleTimer}
+              toggleActionable={toggleActionable}
+            />
+            <ProjectNew
+              show={projectNewShow}
+              deleteNote={deleteNote}
+              note={note}
+              toggleProjectNew={toggleProjectNew}
+              toggleActionable={toggleActionable}
+            />
+            <NoteForProject
+              projects={projects}
+              show={noteForProjectShow}
+              categorizeNote={categorizeNote}
+              noteId={noteId}
+              toggleNoteForProject={toggleNoteForProject}
+              toggleActionable={toggleActionable}
+            />
+          </Grid>
         </Grid>
       );
     } else {
