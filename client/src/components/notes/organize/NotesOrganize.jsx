@@ -19,7 +19,7 @@ import NextAction from "./NextAction";
 import ProjectNew from "../../projects/ProjectNew";
 import NoteForProject from "./NoteForProject";
 import Calendar from "./Calendar";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Switch, FormControlLabel } from "@material-ui/core";
 
 function NotesOrganize({
   fetchNotesByCategory,
@@ -84,6 +84,8 @@ function NotesOrganize({
       }
     }
   };
+  const [advanced, setAdvanced] = useState(false);
+
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
@@ -93,6 +95,8 @@ function NotesOrganize({
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
   const [calendarShow, setCalendarShow] = useState(false);
 
+  const toggleAdvanced = () => setAdvanced(!advanced);
+
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
@@ -101,9 +105,10 @@ function NotesOrganize({
   const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
   const toggleNoteForProject = () => setNoteForProjectShow(!noteForProjectShow);
   const toggleCalendar = () => setCalendarShow(!calendarShow);
-
-  if (auth || user) {
-    if (inTrayArray && inTrayArray[0] !== undefined) {
+  const renderOranizeFlow = () => {
+    if (advanced) {
+      return <h1>Advanced Flow Goes Here</h1>;
+    } else {
       return (
         <Grid container spacing={3}>
           <Grid item xs></Grid>
@@ -190,6 +195,30 @@ function NotesOrganize({
           </Grid>
           <Grid item xs></Grid>
         </Grid>
+      );
+    }
+  };
+  if (auth || user) {
+    if (inTrayArray && inTrayArray[0] !== undefined) {
+      return (
+        <>
+          <Grid item>
+            {" "}
+            <FormControlLabel
+              control={
+                <Switch
+                  color="primary"
+                  checked={advanced}
+                  onChange={() => {
+                    toggleAdvanced();
+                  }}
+                />
+              }
+              label={"Advanced View"}
+            />
+          </Grid>
+          {renderOranizeFlow()}
+        </>
       );
     } else {
       return (
