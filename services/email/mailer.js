@@ -11,10 +11,8 @@ const fetchEmailUsers = async () => await User.find({ emailUpdates: true });
 
 module.exports = {
   async dailyEmailUpdate() {
-    console.log("daily email update running")
     let responseMessages = [];
     let fetchedUsers = await fetchEmailUsers();
-    console.log(`fetch Users length: ${fetchedUsers.length}`)
     for (const user of fetchedUsers) {
       let inTrayNotes = await Note.find({
         category: "in-tray",
@@ -37,16 +35,13 @@ module.exports = {
         html: dailyEmailTemplate(inTrayNotes, nextActions, incompleteProjects),
       };
       let response = await mailgun(modifiedNotes);
-      console.log(response)
       responseMessages.push(response.message);
     }
-    console.log(responseMessages)
     return responseMessages;
   },
   async weeklyEmailUpdate() {
     let responseMessages = [];
     let fetchedUsers = await fetchEmailUsers();
-    console.log(fetchedUsers.length)
     for (const user of fetchedUsers) {
       let completedProjects = await Project.find({
         _user: user._id,
