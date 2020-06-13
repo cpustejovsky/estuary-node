@@ -115,12 +115,42 @@ function NotesOrganize({
     if (advanced) {
       return (
         <Grid>
-          <Button onClick={() => categorizeNote(note.id, "next")}>Next Action</Button>
-          <Button onClick={() => toggleTimer()}>Two Minutes</Button>
-          <Button onClick={() => toggleProjectNew()}>Project</Button>
-          <Button onClick={() => toggleNoteForProject()}>Part of Project</Button>
-          <Button onClick={() => categorizeNote(note.id, "waiting")}>Waiting</Button>
-          <Button onClick={() => categorizeNote(note.id, "reference")}>Reference</Button>
+          <Button onClick={() => categorizeNote(note.id, "next")}>
+            Next Action
+          </Button>
+          <Button
+            onClick={() => {
+              toggleTimer();
+              setProjectNewShow(false);
+              setNoteForProjectShow(false);
+            }}
+          >
+            Two Minutes
+          </Button>
+          <Button
+            onClick={() => {
+              toggleProjectNew();
+              setNoteForProjectShow(false);
+              setTimerShow(false);
+            }}
+          >
+            Project
+          </Button>
+          <Button
+            onClick={() => {
+              toggleNoteForProject();
+              setProjectNewShow(false);
+              setTimerShow(false);
+            }}
+          >
+            Part of Project
+          </Button>
+          <Button onClick={() => categorizeNote(note.id, "waiting")}>
+            Waiting
+          </Button>
+          <Button onClick={() => categorizeNote(note.id, "reference")}>
+            Reference
+          </Button>
           <Button onClick={() => deleteNote(note.id)}>Trash</Button>
           <Timer
             show={timerShow}
