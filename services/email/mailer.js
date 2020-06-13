@@ -11,6 +11,7 @@ const fetchEmailUsers = async () => await User.find({ emailUpdates: true });
 
 module.exports = {
   async dailyEmailUpdate() {
+    console.log("dailyEmailUpdate is running")
     let responseMessages = [];
     let fetchedUsers = await fetchEmailUsers();
     for (const user of fetchedUsers) {

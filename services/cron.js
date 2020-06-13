@@ -12,8 +12,9 @@ module.exports = {
     );
   },
   dailyCron(func) {
+    console.log("starting daily cron job")
     return new CronJob(
-      "00 30 06 * * *",
+      "00 10 07 * * *",
       func,
       null,
       true,

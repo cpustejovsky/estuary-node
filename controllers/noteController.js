@@ -74,7 +74,6 @@ module.exports = {
     res.send({});
   },
   async fetchNoteStatistics(req, res) {
-    console.log("hit controller!");
     let foundNotes = await Note.find({ _user: req.user._id });
     let stats = {
       inTray: 0,
