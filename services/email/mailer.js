@@ -95,6 +95,7 @@ module.exports = {
       html: dailyEmailTemplate(inTrayNotes, nextActions, incompleteProjects),
     };
     let response = await mailgun(modifiedNotes);
+    console.log(response)
     return response;
   },
 };
