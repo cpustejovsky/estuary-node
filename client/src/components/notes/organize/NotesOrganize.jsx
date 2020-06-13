@@ -91,7 +91,7 @@ function NotesOrganize({
       }
     }
   };
-  const [advanced, setAdvanced] = useState(true);
+  const [advanced, setAdvanced] = useState(user.emailUpdates);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);

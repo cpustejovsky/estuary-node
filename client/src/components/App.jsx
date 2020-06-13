@@ -19,8 +19,7 @@ import ProjectsShow from "./projects/ProjectsShow";
 import ProjectNew from "./projects/ProjectNew";
 import Timer from "./notes/organize/Timer";
 
-function App({ fetchUser }) {
-  // const user = useSelector((state) => state.user);
+function App({ fetchUser, user }) {
   useEffect(() => {
     fetchUser();
   }, []);
