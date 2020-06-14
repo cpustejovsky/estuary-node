@@ -33,8 +33,8 @@ const UserEdit = (props) => {
     updatedData = {
       firstName: user.firstName,
       lastName: user.lastName,
-      emailAddress: user.email,
       emailUpdates: user.emailUpdates,
+      advancedView: user.advancedView
     };
   }
 
@@ -60,7 +60,6 @@ const UserEdit = (props) => {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit}>
                 <div>
@@ -88,22 +87,10 @@ const UserEdit = (props) => {
                 </div>
                 <br />
                 <div>
-                  <TextField
-                    type="email"
-                    name="lastName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.emailAddress}
-                    fullWidth
-                    label="Email Address"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={checked}
+                        checked={values.emailUpdates ? checked: null}
                         onChange={handleChange}
                         onClick={handleClick}
                         color="primary"
@@ -114,6 +101,24 @@ const UserEdit = (props) => {
                       />
                     }
                     label="Daily Email Updates"
+                  />
+                </div>
+                <br/>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={values.advancedView ? checked: null}
+                        onChange={handleChange}
+                        onClick={handleClick}
+                        color="primary"
+                        id="advanced-view"
+                        name="advancedView"
+                        onBlur={handleBlur}
+                        value={values.advancedView}
+                      />
+                    }
+                    label="Advanced Organization View"
                   />
                 </div>
                 <CardActions
