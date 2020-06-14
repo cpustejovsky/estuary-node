@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import _ from "lodash";
 import { Link as RouterLink } from "react-router-dom";
 import {
   fetchNotesByCategory,
   categorizeNote,
   deleteNote,
   fetchProjects,
-} from "../../../actions";
-import Loader from "../../partials/Loader";
-import Note from "../Note";
-import Actionable from "./Actionable";
-import NotActionable from "./NotActionable";
-import TwoMinutes from "./TwoMinutes";
-import Timer from "./Timer";
-import NextAction from "./NextAction";
-import ProjectNew from "../../projects/ProjectNew";
-import NoteForProject from "./NoteForProject";
-import Calendar from "./Calendar";
+} from "../../../../actions";
+
+import _ from "lodash";
+
+import {mapInTrayArray} from "./flowHelpers"
+import Loader from "../../../partials/Loader";
+import Note from "../../Note";
+import Actionable from "../Actionable";
+import NotActionable from "../NotActionable";
+import TwoMinutes from "../TwoMinutes";
+import Timer from "../Timer";
+import NextAction from "../NextAction";
+import ProjectNew from "../../../projects/ProjectNew";
+import NoteForProject from "../NoteForProject";
+import Calendar from "../Calendar";
 import {
   Grid,
   Typography,
@@ -42,34 +45,17 @@ function NotesOrganize({
     fetchNotesByCategory("in-tray");
     fetchProjects();
   }, []);
-  const MapInTrayArray = () => {
-    if (!_.isEmpty(notes)) {
-      return notes
-        .reverse()
-        .map(({ content, _id, tags, category }) => {
-          if (category === "in-tray") {
-            return {
-              id: _id,
-              history,
-              content,
-              tags,
-              category,
-            };
-          } else {
-            return null;
-          }
-        })
-        .filter((note) => note !== null);
-    }
-  };
-  const inTrayArray = MapInTrayArray();
+
+
+
+  const inTrayArray = mapInTrayArray(notes, history);
   let note =
     inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0] : null;
   let noteId = note && note !== null ? note.id : null;
   const renderNote = () => {
     if (inTrayArray) {
       if (!_.isEmpty(inTrayArray)) {
-        let inTray = inTrayArray.map((note) => {
+        return inTrayArray.map((note) => {
           if (note.category === "in-tray") {
             return (
               <Note
@@ -85,12 +71,12 @@ function NotesOrganize({
           } else {
             return null;
           }
-        });
-        return inTray[0];
+        })[0];
+        // return inTray[0];
       }
     }
   };
-  const [advanced, setAdvanced] = useState(user.emailUpdates);
+  const [advanced, setAdvanced] = useState(false);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);

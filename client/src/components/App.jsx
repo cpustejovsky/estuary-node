@@ -10,7 +10,7 @@ import Landing from "./Landing";
 import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
 import NotesShow from "./notes/NotesShow";
-import NotesOrganize from "./notes/organize/NotesOrganize";
+import NotesOrganize from "./notes/organize/flow/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
 import Test from "./Test";
