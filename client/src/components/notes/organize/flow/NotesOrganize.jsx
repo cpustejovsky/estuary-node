@@ -92,74 +92,76 @@ function NotesOrganize({
   const renderOranizeFlow = () => {
     if (advanced === null ? user.advancedView : advanced) {
       return (
-        <Grid>
-          <ButtonGroup>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => categorizeNote(note.id, "next")}
-            >
-              Next Action
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                toggle = { toggle };
-                setProjectNewShow(false);
-                setNoteForProjectShow(false);
-              }}
-            >
-              Two Minutes
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                toggle = { toggle };
-                setNoteForProjectShow(false);
-                setTimerShow(false);
-              }}
-            >
-              Project
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                toggle = { toggle };
-                setProjectNewShow(false);
-                setTimerShow(false);
-              }}
-            >
-              Part of Project
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => categorizeNote(note.id, "waiting")}
-            >
-              Waiting
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => categorizeNote(note.id, "reference")}
-            >
-              Reference
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => deleteNote(note.id)}
-            >
-              Trash
-            </Button>
-          </ButtonGroup>
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row wrap",
+            width: "400px",
+            justifyContent: "center",
+            flex: "1 1 auto"
+          }}
+        >
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => categorizeNote(note.id, "next")}
+          >
+            Next Action
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              toggle = { toggle };
+              setProjectNewShow(false);
+              setNoteForProjectShow(false);
+            }}
+          >
+            Two Minutes
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              toggle = { toggle };
+              setNoteForProjectShow(false);
+              setTimerShow(false);
+            }}
+          >
+            Project
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              toggle = { toggle };
+              setProjectNewShow(false);
+              setTimerShow(false);
+            }}
+          >
+            Part of Project
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => categorizeNote(note.id, "waiting")}
+          >
+            Waiting
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => categorizeNote(note.id, "reference")}
+          >
+            Reference
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => deleteNote(note.id)}
+          >
+            Trash
+          </Button>
           <Grid>
             <Timer
               show={timerShow}
@@ -181,7 +183,7 @@ function NotesOrganize({
               toggle={toggle}
             />
           </Grid>
-        </Grid>
+        </div>
       );
     } else {
       return (
