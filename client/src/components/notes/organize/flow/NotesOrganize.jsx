@@ -59,7 +59,7 @@ function NotesOrganize({
   const toggle = {
     Advanced() {
       if (advanced === null) {
-        setAdvanced(!user.emailUpdates);
+        setAdvanced(!user.advancedView);
       } else {
         setAdvanced(!advanced);
       }
@@ -90,7 +90,7 @@ function NotesOrganize({
     },
   };
   const renderOranizeFlow = () => {
-    if (advanced === null ? user.emailUpdates : advanced) {
+    if (advanced === null ? user.advancedView : advanced) {
       return (
         <Grid>
           <ButtonGroup>
@@ -259,7 +259,7 @@ function NotesOrganize({
               <Switch
                 size="small"
                 color="primary"
-                checked={advanced === null ? user.emailUpdates : advanced}
+                checked={advanced === null ? user.advancedView : advanced}
                 onChange={() => {
                   toggle.Advanced();
                   setProjectNewShow(false);

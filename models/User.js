@@ -17,9 +17,10 @@ const UserSchema = new Schema({
   displayName: String,
   age: Number,
   emailUpdates: { type: Boolean, default: false },
+  advancedView: { type: Boolean, default: false },
   freeWrites: [FreeWriteSchema],
   notes: [NoteSchema],
-  projects: [ProjectSchema]
+  projects: [ProjectSchema],
 });
 
 mongoose.model("users", UserSchema);
