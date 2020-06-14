@@ -46,7 +46,7 @@ function NotesOrganize({
     inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0] : null;
   let noteId = note && note !== null ? note.id : null;
 
-  const [advanced, setAdvanced] = useState(false);
+  const [advanced, setAdvanced] = useState(null);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
   const [twoMinutesShow, setTwoMinutesShow] = useState(false);
@@ -58,7 +58,11 @@ function NotesOrganize({
 
   const toggle = {
     Advanced() {
-      setAdvanced(!advanced);
+      if (advanced === null) {
+        setAdvanced(!user.emailUpdates);
+      } else {
+        setAdvanced(!advanced);
+      }
     },
     Actionable() {
       setActionableShow(!actionableShow);
@@ -86,7 +90,7 @@ function NotesOrganize({
     },
   };
   const renderOranizeFlow = () => {
-    if (advanced) {
+    if (advanced === null ? user.emailUpdates : advanced) {
       return (
         <Grid>
           <ButtonGroup>
@@ -101,7 +105,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggle={toggle}
+                toggle = { toggle };
                 setProjectNewShow(false);
                 setNoteForProjectShow(false);
               }}
@@ -112,7 +116,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggle={toggle}
+                toggle = { toggle };
                 setNoteForProjectShow(false);
                 setTimerShow(false);
               }}
@@ -125,7 +129,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggle={toggle}
+                toggle = { toggle };
                 setProjectNewShow(false);
                 setTimerShow(false);
               }}
@@ -255,7 +259,7 @@ function NotesOrganize({
               <Switch
                 size="small"
                 color="primary"
-                checked={advanced}
+                checked={advanced === null ? user.emailUpdates : advanced}
                 onChange={() => {
                   toggle.Advanced();
                   setProjectNewShow(false);
