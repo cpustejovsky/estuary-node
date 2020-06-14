@@ -24,25 +24,23 @@ export function mapInTrayArray(notes, history) {
 }
 
 export function renderNote(noteArr) {
-  if (noteArr) {
-    if (!_.isEmpty(noteArr)) {
-      return noteArr.map((note) => {
-        if (note.category === "in-tray") {
-          return (
-            <Note
-              key={note.id}
-              history={note.history}
-              id={note.id}
-              content={note.content}
-              tags={note.tags}
-              category={note.category}
-              organize={true}
-            />
-          );
-        } else {
-          return null;
-        }
-      })[0];
-    }
+  if (noteArr && !_.isEmpty(noteArr)) {
+    return noteArr.map((note) => {
+      if (note.category === "in-tray") {
+        return (
+          <Note
+            key={note.id}
+            history={note.history}
+            id={note.id}
+            content={note.content}
+            tags={note.tags}
+            category={note.category}
+            organize={true}
+          />
+        );
+      } else {
+        return null;
+      }
+    })[0];
   }
 }
