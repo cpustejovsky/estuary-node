@@ -8,11 +8,8 @@ import {
   fetchProjects,
 } from "../../../../actions";
 
-import _ from "lodash";
-
-import {mapInTrayArray} from "./flowHelpers"
+import { mapInTrayArray, renderNote } from "./flowHelpers";
 import Loader from "../../../partials/Loader";
-import Note from "../../Note";
 import Actionable from "../Actionable";
 import NotActionable from "../NotActionable";
 import TwoMinutes from "../TwoMinutes";
@@ -46,36 +43,11 @@ function NotesOrganize({
     fetchProjects();
   }, []);
 
-
-
   const inTrayArray = mapInTrayArray(notes, history);
   let note =
     inTrayArray && inTrayArray[0] !== undefined ? inTrayArray[0] : null;
   let noteId = note && note !== null ? note.id : null;
-  const renderNote = () => {
-    if (inTrayArray) {
-      if (!_.isEmpty(inTrayArray)) {
-        return inTrayArray.map((note) => {
-          if (note.category === "in-tray") {
-            return (
-              <Note
-                key={note.id}
-                history={note.history}
-                id={note.id}
-                content={note.content}
-                tags={note.tags}
-                category={note.category}
-                organize={true}
-              />
-            );
-          } else {
-            return null;
-          }
-        })[0];
-        // return inTray[0];
-      }
-    }
-  };
+
   const [advanced, setAdvanced] = useState(false);
   const [actionableShow, setActionableShow] = useState(true);
   const [notActionableShow, setNotActionableShow] = useState(false);
@@ -87,7 +59,6 @@ function NotesOrganize({
   const [calendarShow, setCalendarShow] = useState(false);
 
   const toggleAdvanced = () => setAdvanced(!advanced);
-
   const toggleActionable = () => setActionableShow(!actionableShow);
   const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
   const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
@@ -300,7 +271,7 @@ function NotesOrganize({
             }
             label={"Advanced View"}
           />
-          {renderNote()}
+          {renderNote(inTrayArray)}
           {renderOranizeFlow()}
         </Grid>
       );
