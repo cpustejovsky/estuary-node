@@ -202,6 +202,7 @@ export default function Todos() {
         <Todo subsubtodo text="components/" />
         <Todo subtodo text="create an informative and engaging landing page" />
         <Todo text="Things to come back to after refactor" />
+        <Todo subtodo text="add Material UI Snackbars" />
         <Todo subtodo text="Add additional email settings for user" />
         <Todo text="Hook up next action steps to to-dos in Habitica" />
         <Todo text="Create Chrome Extension for capturing notes" />
