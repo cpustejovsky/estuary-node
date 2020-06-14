@@ -19,6 +19,7 @@ module.exports = {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           emailUpdates: req.body.emailUpdates,
+          advancedView: req.body.advancedView,
         },
         { new: true }
       );
