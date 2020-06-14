@@ -7,7 +7,6 @@ import {
   deleteNote,
   fetchProjects,
 } from "../../../../actions";
-
 import { mapInTrayArray, renderNote } from "./flowHelpers";
 import Loader from "../../../partials/Loader";
 import Actionable from "../Actionable";
@@ -34,7 +33,6 @@ function NotesOrganize({
   categorizeNote,
   history,
 }) {
-  const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const notes = useSelector((state) => Object.values(state.notes));
   const projects = useSelector((state) => Object.values(state.projects));
@@ -230,7 +228,7 @@ function NotesOrganize({
       );
     }
   };
-  if (auth || user) {
+  if (user) {
     if (inTrayArray && inTrayArray[0] !== undefined) {
       return (
         <Grid
@@ -283,9 +281,9 @@ function NotesOrganize({
         </div>
       );
     }
-  } else if (auth === null && user === null) {
+  } else if (user === null) {
     return <Loader />;
-  } else if (!auth && !auth) {
+  } else if (!user) {
     return <>{history.push("/login")}</>;
   }
 }
