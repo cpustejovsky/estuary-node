@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-const Timer = ({ show, toggleTimer, toggleActionable, categorizeNote, noteId }) => {
+const Timer = ({ show, toggle, categorizeNote, noteId }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
-  function toggle() {
+  function timerChange() {
     setIsActive(!isActive);
   }
 
@@ -28,15 +28,18 @@ const Timer = ({ show, toggleTimer, toggleActionable, categorizeNote, noteId }) 
       <div className="app">
         <h1>Do It!</h1>
         <p>
-          Give yourself two minutes or 120 seconds to finish this task. Then
-          mark it done.
+          Give yourself two minutes (120s) to finish this task. Then mark it
+          done.
         </p>
         <div className="time">
           <h2>{seconds} seconds</h2>
         </div>
         <div className="row">
           {/* TODO: change colors to reflect stop and start */}
-          <Button color={isActive ? "primary" : "secondary"} onClick={toggle}>
+          <Button
+            color={isActive ? "primary" : "secondary"}
+            onClick={timerChange}
+          >
             {isActive ? "Pause" : "Start"}
           </Button>
           {/* Set item as done or complete */}
@@ -44,8 +47,8 @@ const Timer = ({ show, toggleTimer, toggleActionable, categorizeNote, noteId }) 
             className="button"
             onClick={() => {
               categorizeNote(noteId, "done");
-              toggleTimer();
-              toggleActionable();
+              toggle.Timer();
+              toggle.Actionable();
             }}
           >
             Done

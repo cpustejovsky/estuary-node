@@ -6,9 +6,7 @@ export default function NotActionable({
   noteId,
   categorizeNote,
   deleteNote,
-  toggleActionable,
-  toggleNotActionable,
-  toggleCalendar
+  toggle,
 }) {
   if (show) {
     return (
@@ -17,8 +15,8 @@ export default function NotActionable({
         <div>
           <Button
             onClick={() => {
-              toggleNotActionable();
-              toggleCalendar();
+              toggle.NotActionable();
+              toggle.Calendar();
             }}
           >
             It's something I need to schedule
@@ -28,8 +26,8 @@ export default function NotActionable({
           <Button
             onClick={() => {
               categorizeNote(noteId, "maybe");
-              toggleNotActionable();
-              toggleActionable();
+              toggle.NotActionable();
+              toggle.Actionable();
             }}
           >
             It's something I might want to look at later
@@ -39,8 +37,8 @@ export default function NotActionable({
           <Button
             onClick={() => {
               categorizeNote(noteId, "reference");
-              toggleNotActionable();
-              toggleActionable();
+              toggle.NotActionable();
+              toggle.Actionable();
             }}
           >
             It's Reference Material
@@ -50,8 +48,8 @@ export default function NotActionable({
           <Button
             onClick={() => {
               deleteNote(noteId);
-              toggleNotActionable();
-              toggleActionable();
+              toggle.NotActionable();
+              toggle.Actionable();
             }}
           >
             It's Trash

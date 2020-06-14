@@ -1,27 +1,22 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-export default function TwoMinutes({
-  show,
-  toggleTimer,
-  toggleTwoMinutes,
-  toggleNextAction,
-}) {
+export default function TwoMinutes({ show, toggle }) {
   if (show) {
     return (
       <>
         <h2>Will it take two minutes</h2>
         <Button
           onClick={() => {
-            toggleTwoMinutes();
-            toggleTimer();
+            toggle.TwoMinutes();
+            toggle.Timer();
           }}
         >
           Yes
         </Button>
         <Button
           onClick={() => {
-            toggleTwoMinutes();
-            toggleNextAction();
+            toggle.TwoMinutes();
+            toggle.NextAction();
           }}
         >
           No

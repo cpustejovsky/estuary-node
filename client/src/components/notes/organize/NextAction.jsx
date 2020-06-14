@@ -2,9 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 export default function NextAction({
   show,
-  toggleNextAction,
-  toggleProjectNew,
-  toggleNoteForProject,
+  toggle
 }) {
   if (show) {
     return (
@@ -12,16 +10,16 @@ export default function NextAction({
         <h2>Is this a next physical action or something larger (a project)?</h2>
         <Button
           onClick={() => {
-            toggleNextAction()
-            toggleNoteForProject();
+            toggle.NextAction()
+            toggle.NoteForProject();
           }}
         >
           Next Action
         </Button>
         <Button
           onClick={() => {
-            toggleNextAction();
-            toggleProjectNew();
+            toggle.NextAction();
+            toggle.ProjectNew();
           }}
         >
           Project

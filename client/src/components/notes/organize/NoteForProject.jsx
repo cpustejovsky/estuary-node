@@ -5,17 +5,16 @@ import { linkNoteToProject } from "../../../actions";
 import { Button, Card, CardContent } from "@material-ui/core";
 function NoteForProject({
   show,
-  toggleNoteForProject,
+  toggle,
   categorizeNote,
-  toggleActionable,
   noteId,
   projects,
   linkNoteToProject,
 }) {
   const selectProjectforNote = (noteId, projectId) => {
     linkNoteToProject(noteId, projectId);
-    toggleNoteForProject();
-    toggleActionable();
+    toggle.NoteForProject();
+    toggle.Actionable();
   };
   const renderProjects = () => {
     if (!_.isEmpty(projects)) {
@@ -43,8 +42,8 @@ function NoteForProject({
         <Button
           onClick={() => {
             categorizeNote(noteId, "next");
-            toggleNoteForProject();
-            toggleActionable();
+            toggle.NoteForProject();
+            toggle.Actionable();
           }}
         >
           Standalone Next Action

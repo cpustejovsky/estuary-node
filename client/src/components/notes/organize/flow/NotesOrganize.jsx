@@ -58,16 +58,35 @@ function NotesOrganize({
   const [noteForProjectShow, setNoteForProjectShow] = useState(false);
   const [calendarShow, setCalendarShow] = useState(false);
 
-  const toggleAdvanced = () => setAdvanced(!advanced);
-  const toggleActionable = () => setActionableShow(!actionableShow);
-  const toggleNotActionable = () => setNotActionableShow(!notActionableShow);
-  const toggleTwoMinutes = () => setTwoMinutesShow(!twoMinutesShow);
-  const toggleTimer = () => setTimerShow(!timerShow);
-  const toggleNextAction = () => setNextActionShow(!nextActionShow);
-  const toggleProjectNew = () => setProjectNewShow(!projectNewShow);
-  const toggleNoteForProject = () => setNoteForProjectShow(!noteForProjectShow);
-  const toggleCalendar = () => setCalendarShow(!calendarShow);
-
+  const toggle = {
+    Advanced() {
+      setAdvanced(!advanced);
+    },
+    Actionable() {
+      setActionableShow(!actionableShow);
+    },
+    NotActionable() {
+      setNotActionableShow(!notActionableShow);
+    },
+    TwoMinutes() {
+      setTwoMinutesShow(!twoMinutesShow);
+    },
+    Timer() {
+      setTimerShow(!timerShow);
+    },
+    NextAction() {
+      setNextActionShow(!nextActionShow);
+    },
+    ProjectNew() {
+      setProjectNewShow(!projectNewShow);
+    },
+    NoteForProject() {
+      setNoteForProjectShow(!noteForProjectShow);
+    },
+    Calendar() {
+      setCalendarShow(!calendarShow);
+    },
+  };
   const renderOranizeFlow = () => {
     if (advanced) {
       return (
@@ -84,7 +103,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggleTimer();
+                toggle={toggle}
                 setProjectNewShow(false);
                 setNoteForProjectShow(false);
               }}
@@ -95,7 +114,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggleProjectNew();
+                toggle={toggle}
                 setNoteForProjectShow(false);
                 setTimerShow(false);
               }}
@@ -108,7 +127,7 @@ function NotesOrganize({
               color="primary"
               variant="contained"
               onClick={() => {
-                toggleNoteForProject();
+                toggle={toggle}
                 setProjectNewShow(false);
                 setTimerShow(false);
               }}
@@ -144,23 +163,20 @@ function NotesOrganize({
               show={timerShow}
               categorizeNote={categorizeNote}
               noteId={noteId}
-              toggleTimer={toggleTimer}
-              toggleActionable={toggleActionable}
+              toggle={toggle}
             />
             <ProjectNew
               show={projectNewShow}
               deleteNote={deleteNote}
               note={note}
-              toggleProjectNew={toggleProjectNew}
-              toggleActionable={toggleActionable}
+              toggle={toggle}
             />
             <NoteForProject
               projects={projects}
               show={noteForProjectShow}
               categorizeNote={categorizeNote}
               noteId={noteId}
-              toggleNoteForProject={toggleNoteForProject}
-              toggleActionable={toggleActionable}
+              toggle={toggle}
             />
           </Grid>
         </Grid>
@@ -168,20 +184,13 @@ function NotesOrganize({
     } else {
       return (
         <>
-          <Actionable
-            show={actionableShow}
-            toggleActionable={toggleActionable}
-            toggleNotActionable={toggleNotActionable}
-            toggleTwoMinutes={toggleTwoMinutes}
-          />
+          <Actionable show={actionableShow} toggle={toggle} />
           <NotActionable
             show={notActionableShow}
             categorizeNote={categorizeNote}
             deleteNote={deleteNote}
             noteId={noteId}
-            toggleActionable={toggleActionable}
-            toggleNotActionable={toggleNotActionable}
-            toggleCalendar={toggleCalendar}
+            toggle={toggle}
           />
           <Calendar
             show={calendarShow}
@@ -189,45 +198,33 @@ function NotesOrganize({
             noteId={noteId}
             note={note}
             deleteNote={deleteNote}
-            toggleCalendar={toggleCalendar}
-            toggleActionable={toggleActionable}
+            toggle={toggle}
           />
           <TwoMinutes
             show={twoMinutesShow}
-            toggleTimer={toggleTimer}
-            toggleTwoMinutes={toggleTwoMinutes}
-            toggleActionable={toggleActionable}
             categorizeNote={categorizeNote}
-            toggleNextAction={toggleNextAction}
             noteId={noteId}
+            toggle={toggle}
           />
           <Timer
             show={timerShow}
             categorizeNote={categorizeNote}
             noteId={noteId}
-            toggleTimer={toggleTimer}
-            toggleActionable={toggleActionable}
+            toggle={toggle}
           />
-          <NextAction
-            show={nextActionShow}
-            toggleNextAction={toggleNextAction}
-            toggleProjectNew={toggleProjectNew}
-            toggleNoteForProject={toggleNoteForProject}
-          />
+          <NextAction show={nextActionShow} toggle={toggle} />
           <ProjectNew
             show={projectNewShow}
             deleteNote={deleteNote}
             note={note}
-            toggleProjectNew={toggleProjectNew}
-            toggleActionable={toggleActionable}
+            toggle={toggle}
           />
           <NoteForProject
             projects={projects}
             show={noteForProjectShow}
             categorizeNote={categorizeNote}
             noteId={noteId}
-            toggleNoteForProject={toggleNoteForProject}
-            toggleActionable={toggleActionable}
+            toggle={toggle}
           />
         </>
       );
@@ -262,7 +259,7 @@ function NotesOrganize({
                 color="primary"
                 checked={advanced}
                 onChange={() => {
-                  toggleAdvanced();
+                  toggle.Advanced();
                   setProjectNewShow(false);
                   setNoteForProjectShow(false);
                   setTimerShow(false);

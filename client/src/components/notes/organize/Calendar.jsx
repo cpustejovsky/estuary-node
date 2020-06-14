@@ -16,14 +16,13 @@ function Calendar({
   note,
   deleteNote,
   history,
-  toggleCalendar,
-  toggleActionable,
+  toggle
 }) {
   const submitValues = async (values) => {
     const response = await axios.post("/api/calendar", values);
     deleteNote(note.id);
-    toggleCalendar();
-    toggleActionable();
+    toggle.Calendar();
+    toggle.Actionable();
   };
 
   const DatePickerField = ({ field, handleBlur, form, ...other }) => {

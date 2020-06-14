@@ -1,28 +1,23 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 
-export default function Actionable({
-  show,
-  toggleActionable,
-  toggleNotActionable,
-  toggleTwoMinutes,
-}) {
+export default function Actionable({ show, toggle }) {
   if (show) {
     return (
       <>
         <h2>Is it actionable?</h2>
         <Button
           onClick={() => {
-            toggleActionable();
-            toggleTwoMinutes();
+            toggle.Actionable();
+            toggle.TwoMinutes();
           }}
         >
           Yes
         </Button>
         <Button
           onClick={() => {
-            toggleActionable();
-            toggleNotActionable();
+            toggle.Actionable();
+            toggle.NotActionable();
           }}
         >
           No
