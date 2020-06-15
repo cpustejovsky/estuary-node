@@ -5,7 +5,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 export default function About() {
   return (
-    <div className="site site__about">
+    <Grid className="site site__about">
       <Typography variant="h4">What is Estuary?</Typography>
       <p>
         Thanksgiving weekend 2019, I started reading{" "}
@@ -36,6 +36,6 @@ export default function About() {
       <Typography variant="h6">Sign up to follow Estuary's progress</Typography>
       <MailChimpForm />
       <Todos />
-    </div>
+    </Grid>
   );
 }
