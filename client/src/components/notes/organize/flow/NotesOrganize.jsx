@@ -92,76 +92,79 @@ function NotesOrganize({
   const renderOranizeFlow = () => {
     if (advanced === null ? user.advancedView : advanced) {
       return (
-        <div
-          style={{
-            display: "flex",
-            flexFlow: "row wrap",
-            width: "400px",
-            justifyContent: "center",
-            flex: "1 1 auto"
-          }}
-        >
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => categorizeNote(note.id, "next")}
-          >
-            Next Action
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              toggle = { toggle };
-              setProjectNewShow(false);
-              setNoteForProjectShow(false);
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexFlow: "row wrap",
+              width: "400px",
+              justifyContent: "center",
+              flex: "1 1 auto",
             }}
           >
-            Two Minutes
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              toggle = { toggle };
-              setNoteForProjectShow(false);
-              setTimerShow(false);
-            }}
-          >
-            Project
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              toggle = { toggle };
-              setProjectNewShow(false);
-              setTimerShow(false);
-            }}
-          >
-            Part of Project
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => categorizeNote(note.id, "waiting")}
-          >
-            Waiting
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => categorizeNote(note.id, "reference")}
-          >
-            Reference
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => deleteNote(note.id)}
-          >
-            Trash
-          </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "next")}
+            >
+              Next Action
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                console.log("clicked!");
+                setTimerShow(true);
+                setProjectNewShow(false);
+                setNoteForProjectShow(false);
+              }}
+            >
+              Two Minutes
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                toggle.ProjectNew();
+                setNoteForProjectShow(false);
+                setTimerShow(false);
+              }}
+            >
+              Project
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                toggle.NoteForProject();
+                setProjectNewShow(false);
+                setTimerShow(false);
+              }}
+            >
+              Part of Project
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "waiting")}
+            >
+              Waiting
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => categorizeNote(note.id, "reference")}
+            >
+              Reference
+            </Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => deleteNote(note.id)}
+            >
+              Trash
+            </Button>
+          </div>
           <Grid>
             <Timer
               show={timerShow}
@@ -183,7 +186,7 @@ function NotesOrganize({
               toggle={toggle}
             />
           </Grid>
-        </div>
+        </>
       );
     } else {
       return (
