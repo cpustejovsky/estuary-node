@@ -1,5 +1,5 @@
 var CronJob = require("cron").CronJob;
-
+//TODO: use heroku job scheduler if this doesn't work
 module.exports = {
   testCron(func) {
     console.log("hit!");
