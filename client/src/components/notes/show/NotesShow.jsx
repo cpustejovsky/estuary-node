@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import _ from "lodash";
-import { fetchNotesByCategory } from "../../actions";
-import Loader from "../partials/Loader";
-import Note from "./Note";
-import NotesNew from "./NoteNew";
-import { Link as RouterLink } from "react-router-dom";
-import { Button, Typography } from "@material-ui/core";
+import { fetchNotesByCategory } from "../../../actions";
+import Loader from "../../partials/Loader";
+import Note from "../Note";
+import NotesNew from "../NoteNew";
+import renderSubHeader from "./renderSubheader";
 function NotesShow({ fetchNotesByCategory, history, match }) {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
@@ -16,10 +15,9 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
       ? notes.filter((note) => note.category === match.params.name).length
       : 0;
   };
-  const notesLength = getNotesLength(notes);
   useEffect(() => {
     fetchNotesByCategory(match.params.name);
-  }, [match.params.name, notesLength]);
+  }, [match.params.name, getNotesLength(notes)]);
   //TODO: create blur or loading effect while it's loading the other category
   const renderNotes = () => {
     if (!_.isEmpty(notes)) {
@@ -40,43 +38,13 @@ function NotesShow({ fetchNotesByCategory, history, match }) {
         });
     }
   };
-  const renderSubHeader = () => {
-    if (renderNotesLength() > 0) {
-      return (
-        <div className="button button__notes">
-          <Typography variant="h4" className="button__text__left">
-            {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
-          </Typography>
-          <Button
-            component={RouterLink}
-            to="/notes/organize"
-            variant="contained"
-            color="primary"
-          >
-            Organize
-          </Button>
-        </div>
-      );
-    } else {
-      return (
-        <Typography variant="h4" align="center" style={{ marginTop: "20px" }}>
-          {match.params.name.toUpperCase()} ({renderNotesLength() || 0})
-        </Typography>
-      );
-    }
-  };
-  const renderNotesLength = () => {
-    if (!_.isEmpty(notes)) {
-      return notes.length;
-    }
-  };
   //TODO: what is a good way to deal with auth redirects?
   if (auth || user) {
     return (
-      <div >
+      <div>
         {/* <NoteHeader /> */}
         <div className="site__note">
-          {renderSubHeader()}
+          {renderSubHeader(notes, match)}
           <hr />
           {match.params.name === "in-tray" ? (
             <NotesNew history={history} />

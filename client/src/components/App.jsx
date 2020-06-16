@@ -9,7 +9,7 @@ import About from "./about/About";
 import Landing from "./Landing";
 import UserShow from "./user/UserShow";
 import UserEdit from "./user/UserEdit";
-import NotesShow from "./notes/NotesShow";
+import NotesShow from "./notes/show/NotesShow";
 import NotesOrganize from "./notes/organize/flow/NotesOrganize";
 import FreeWritesShow from "./freewrites/FreeWritesShow";
 import FreeWritesNew from "./freewrites/FreeWritesNew";
