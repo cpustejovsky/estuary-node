@@ -53,6 +53,7 @@ export default function Header() {
   const renderAuth = () => {
     if (user) {
       return (
+        //TODO: add breakpoints and mediaqueries to change properties based on mobile or desktop
         <>
           <MenuItem
             style={{ color: "white" }}
