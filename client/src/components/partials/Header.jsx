@@ -11,6 +11,7 @@ import {
   Menu,
   MenuItem,
   Hidden,
+  useMediaQuery
 } from "@material-ui/core/";
 import NoteHeader from "./NoteHeader";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -18,11 +19,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 export default function Header() {
   let loc = useLocation().pathname;
   let notesPage = loc.includes("notes") && !loc.includes("organize");
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    let headerHeight = document.getElementById("header").clientHeight;
-    setHeight(headerHeight);
-  }, [height]);
   const user = useSelector((state) => state.user);
   const MobileMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
