@@ -11,7 +11,6 @@ import {
   Menu,
   MenuItem,
   Hidden,
-  useMediaQuery
 } from "@material-ui/core/";
 import NoteHeader from "./NoteHeader";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -20,41 +19,18 @@ export default function Header() {
   let loc = useLocation().pathname;
   let notesPage = loc.includes("notes") && !loc.includes("organize");
   const user = useSelector((state) => state.user);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const MobileMenu = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-    const renderMobileAuth = () => {
-      if (user) {
-        return (
-          <>
-            <MenuItem component={RouterLink} onClick={handleClose} to="/user">
-              {user.firstName}
-            </MenuItem>
-            <MenuItem
-              component={Link}
-              underline="none"
-              onClick={handleClose}
-              href="/logout"
-            >
-              Log Out
-            </MenuItem>
-          </>
-        );
-      } else {
-        return (
-          <MenuItem component={RouterLink} onClick={handleClose} to="/login">
-            Log in
-          </MenuItem>
-        );
-      }
-    };
     return (
       <div>
         <MenuIcon
@@ -69,32 +45,7 @@ export default function Header() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
-            About
-          </MenuItem>
-          <MenuItem
-            component={RouterLink}
-            to="/free-writes"
-            onClick={handleClose}
-          >
-            Free Writes
-          </MenuItem>
-          <MenuItem
-            component={RouterLink}
-            to="/notes/in-tray"
-            onClick={handleClose}
-          >
-            Notes
-          </MenuItem>
-          <MenuItem
-            component={RouterLink}
-            to="/projects/list"
-            onClick={handleClose}
-          >
-            Projects
-          </MenuItem>
-          <hr></hr>
-          {renderMobileAuth()}
+          {renderMenu()}
         </Menu>
       </div>
     );
@@ -103,109 +54,109 @@ export default function Header() {
     if (user) {
       return (
         <>
-          <Button style={{ color: "white" }} component={RouterLink} to="/user">
+          <MenuItem
+            style={{ color: "white" }}
+            component={RouterLink}
+            to="/user"
+          >
             {user.firstName}
-          </Button>
-          <Button
+          </MenuItem>
+          <MenuItem
             component={Link}
             style={{ color: "white" }}
             underline="none"
             href="/logout"
           >
             Log Out
-          </Button>
+          </MenuItem>
         </>
       );
     } else {
       return (
-        <Button style={{ color: "white" }} component={RouterLink} to="/login">
+        <MenuItem style={{ color: "white" }} component={RouterLink} to="/login">
           Log in
-        </Button>
+        </MenuItem>
       );
     }
   };
-
-  return (
-    <>
-      <AppBar position="sticky" id="header" style={{ width: "100vw" }}>
-        <Toolbar
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
+  const renderMenu = () => {
+    return (
+      <>
+        <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
+          About
+        </MenuItem>
+        <MenuItem
+          component={RouterLink}
+          to="/free-writes"
+          onClick={handleClose}
         >
-          <Hidden mdUp>
+          Free Writes
+        </MenuItem>
+        <MenuItem
+          component={RouterLink}
+          to="/notes/in-tray"
+          onClick={handleClose}
+        >
+          Notes
+        </MenuItem>
+        <MenuItem
+          component={RouterLink}
+          to="/projects/list"
+          onClick={handleClose}
+        >
+          Projects
+        </MenuItem>
+        <hr></hr>
+        {renderAuth()}
+      </>
+    );
+  };
+  return (
+    <AppBar position="sticky" id="header" style={{ width: "100vw" }}>
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Hidden mdUp>
+          <Typography
+            component={RouterLink}
+            to="/"
+            style={{ color: "white", textDecoration: "none" }}
+            variant="h6"
+          >
+            Estuary
+          </Typography>
+          <IconButton
+            style={{ margin: "0" }}
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            {MobileMenu()}
+          </IconButton>
+        </Hidden>
+        <Hidden smDown>
+          <>
             <Typography
               component={RouterLink}
               to="/"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                paddingRight: "20px",
+                justifySelf: "center",
+              }}
               variant="h6"
             >
               Estuary
             </Typography>
-            <IconButton
-              style={{ margin: "0" }}
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-            >
-              {MobileMenu()}
-            </IconButton>
-          </Hidden>
-          <Hidden smDown>
-            <div style={{ flexGrow: 1 }}>
-              <Typography
-                component={RouterLink}
-                to="/"
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  paddingRight: "20px",
-                  justifySelf: "center",
-                }}
-                variant="h6"
-              >
-                Estuary
-              </Typography>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/about"
-              >
-                About
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/free-writes"
-              >
-                Free Writes
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/notes/in-tray"
-              >
-                Notes
-              </Button>
-              <Button
-                component={RouterLink}
-                style={{ color: "white" }}
-                underline="none"
-                to="/projects/list"
-              >
-                Projects
-              </Button>
-            </div>
-
-            {renderAuth()}
-          </Hidden>
-        </Toolbar>
-        {notesPage ? <NoteHeader /> : null}
-      </AppBar>
-    </>
+            {renderMenu()}
+          </>
+        </Hidden>
+      </Toolbar>
+      {notesPage ? <NoteHeader /> : null}
+    </AppBar>
   );
 }
