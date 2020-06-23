@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import NoteHeader from "./NoteHeader";
+import MenuIcon from "@material-ui/icons/Menu";
 import {
   Link,
   AppBar,
@@ -12,14 +14,21 @@ import {
   MenuItem,
   Hidden,
 } from "@material-ui/core/";
-import NoteHeader from "./NoteHeader";
-import MenuIcon from "@material-ui/icons/Menu";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  menuItems: {
+    [theme.breakpoints.up("md")]: {
+      color: "white",
+    },
+  },
+}));
 
 export default function Header() {
   let loc = useLocation().pathname;
   let notesPage = loc.includes("notes") && !loc.includes("organize");
   const user = useSelector((state) => state.user);
-
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -45,7 +54,7 @@ export default function Header() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {renderMenu()}
+          {renderMenu(true)}
         </Menu>
       </div>
     );
@@ -56,7 +65,7 @@ export default function Header() {
         //TODO: add breakpoints and mediaqueries to change properties based on mobile or desktop
         <>
           <MenuItem
-            style={{ color: "white" }}
+            className={classes.menuItems}
             component={RouterLink}
             to="/user"
           >
@@ -64,7 +73,7 @@ export default function Header() {
           </MenuItem>
           <MenuItem
             component={Link}
-            style={{ color: "white" }}
+            className={classes.menuItems}
             underline="none"
             href="/logout"
           >
@@ -74,13 +83,17 @@ export default function Header() {
       );
     } else {
       return (
-        <MenuItem style={{ color: "white" }} component={RouterLink} to="/login">
+        <MenuItem
+          className={classes.menuItems}
+          component={RouterLink}
+          to="/login"
+        >
           Log in
         </MenuItem>
       );
     }
   };
-  const renderMenu = () => {
+  const renderMenu = (mobile = false) => {
     return (
       <>
         <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
@@ -107,7 +120,7 @@ export default function Header() {
         >
           Projects
         </MenuItem>
-        <hr></hr>
+        {mobile ? <hr /> : null}
         {renderAuth()}
       </>
     );
