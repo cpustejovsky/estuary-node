@@ -17,9 +17,22 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+  menuContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+  },
   menuItems: {
+    display: "flex",
     [theme.breakpoints.up("md")]: {
       color: "white",
+      "& a": {
+        color: "white",
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
     },
   },
 }));
@@ -39,47 +52,18 @@ export default function Header() {
     setAnchorEl(null);
   };
 
-  const MobileMenu = () => {
-    return (
-      <div>
-        <MenuIcon
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        />
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {renderMenu(true)}
-        </Menu>
-      </div>
-    );
-  };
   const renderAuth = () => {
     if (user) {
       return (
         //TODO: add breakpoints and mediaqueries to change properties based on mobile or desktop
-        <>
-          <MenuItem
-            className={classes.menuItems}
-            component={RouterLink}
-            to="/user"
-          >
+        <div className={classes.menuItems}>
+          <MenuItem component={RouterLink} to="/user">
             {user.firstName}
           </MenuItem>
-          <MenuItem
-            component={Link}
-            className={classes.menuItems}
-            underline="none"
-            href="/logout"
-          >
+          <MenuItem component={Link} underline="none" href="/logout">
             Log Out
           </MenuItem>
-        </>
+        </div>
       );
     } else {
       return (
@@ -96,31 +80,33 @@ export default function Header() {
   const renderMenu = (mobile = false) => {
     return (
       <>
-        <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
-          About
-        </MenuItem>
-        <MenuItem
-          component={RouterLink}
-          to="/free-writes"
-          onClick={handleClose}
-        >
-          Free Writes
-        </MenuItem>
-        <MenuItem
-          component={RouterLink}
-          to="/notes/in-tray"
-          onClick={handleClose}
-        >
-          Notes
-        </MenuItem>
-        <MenuItem
-          component={RouterLink}
-          to="/projects/list"
-          onClick={handleClose}
-        >
-          Projects
-        </MenuItem>
-        {mobile ? <hr /> : null}
+        <div className={classes.menuItems}>
+          <MenuItem component={RouterLink} to="/about" onClick={handleClose}>
+            About
+          </MenuItem>
+          <MenuItem
+            component={RouterLink}
+            to="/free-writes"
+            onClick={handleClose}
+          >
+            Free Writes
+          </MenuItem>
+          <MenuItem
+            component={RouterLink}
+            to="/notes/in-tray"
+            onClick={handleClose}
+          >
+            Notes
+          </MenuItem>
+          <MenuItem
+            component={RouterLink}
+            to="/projects/list"
+            onClick={handleClose}
+          >
+            Projects
+          </MenuItem>
+          {mobile ? <hr /> : null}
+        </div>
         {renderAuth()}
       </>
     );
@@ -133,41 +119,39 @@ export default function Header() {
           justifyContent: "space-between",
         }}
       >
+        <Typography
+          component={RouterLink}
+          to="/"
+          style={{
+            color: "white",
+            textDecoration: "none",
+            paddingRight: "20px",
+            justifySelf: "center",
+          }}
+          variant="h6"
+        >
+          Estuary
+        </Typography>
         <Hidden mdUp>
-          <Typography
-            component={RouterLink}
-            to="/"
-            style={{ color: "white", textDecoration: "none" }}
-            variant="h6"
-          >
-            Estuary
-          </Typography>
           <IconButton
             style={{ margin: "0" }}
             edge="start"
             color="inherit"
             aria-label="menu"
           >
-            {MobileMenu()}
+            <MenuIcon aria-haspopup="true" onClick={handleClick} />
+            <Menu
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {renderMenu(true)}
+            </Menu>
           </IconButton>
         </Hidden>
-        <Hidden smDown>
-          <>
-            <Typography
-              component={RouterLink}
-              to="/"
-              style={{
-                color: "white",
-                textDecoration: "none",
-                paddingRight: "20px",
-                justifySelf: "center",
-              }}
-              variant="h6"
-            >
-              Estuary
-            </Typography>
-            {renderMenu()}
-          </>
+        <Hidden smDown className={classes.menuContainer}>
+          <div className={classes.menuContainer}>{renderMenu()}</div>
         </Hidden>
       </Toolbar>
       {notesPage ? <NoteHeader /> : null}
