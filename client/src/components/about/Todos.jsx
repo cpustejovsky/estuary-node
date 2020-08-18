@@ -118,17 +118,7 @@ export default function Todos() {
               text="If !event, create new event without attaching event"
             />
             <Todo complete subtodo text="create view for event creation" />
-
-            <Todo text="Add unit testing" />
-            <Todo complete subtodo text="Separate routes and controllers" />
-            <Todo complete subtodo text="Stub passport authentication" />
-            <Todo complete subtodo text="Create controller unit tests for:" />
-            <Todo complete subsubtodo text="user" />
-            <Todo complete subsubtodo text="free writes" />
-            <Todo complete subsubtodo text="projects" />
-            <Todo complete subsubtodo text="notes" />
-            <Todo complete subtodo text="freeWriteChecker test" />
-            <Todo text="Add email functionality" />
+            <Todo complete text="Add email functionality" />
             <Todo subtodo complete text="Connect MailGun to domain" />
             <Todo subtodo complete text="Connect MailGun to app" />
             <Todo subtodo complete text="Set up email functions" />
@@ -142,12 +132,25 @@ export default function Todos() {
             <Todo subsubtodo complete text="daily emails" />
             <Todo subsubtodo complete text="weekly emails" />
           </Collapse>
+          <Todo text="Habitica API" />
+          <Todo subtodo text="Add Habitica API credentials to User Model" />
+          <Todo subtodo text="Update" />
+          <Todo subtodo text="Add Habitica API credentials to User Model" />
           <Todo text="Add search and filter functionality" />
           <Todo subtodo text="Set priority for next actions" />
           <Todo subtodo text="Drag and drop next actions to show priority" />
           <Todo subtodo text="set up tag creation, edit, and display" />
           <Todo subtodo text="Set search up for tags" />
           <Todo subtodo text="Set search up for content/title" />
+          <Todo text="Add unit testing" />
+            <Todo complete subtodo text="Separate routes and controllers" />
+            <Todo complete subtodo text="Stub passport authentication" />
+            <Todo complete subtodo text="Create controller unit tests for:" />
+            <Todo complete subsubtodo text="user" />
+            <Todo complete subsubtodo text="free writes" />
+            <Todo complete subsubtodo text="projects" />
+            <Todo complete subsubtodo text="notes" />
+            <Todo complete subtodo text="freeWriteChecker test" />
           <Todo text="Performance" />
           <Todo subtodo text="add performance benchmarks, etc for React" />
           <Todo
