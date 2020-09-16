@@ -28,7 +28,7 @@
     "concurrently": "^5.1.0",
     "connect-flash": "^0.1.1",
     "cookie-session": "^1.4.0",
-    "cpustejovsky-dyno-waker": "^1.1.2",
+    "cpustejovsky-dyno-waker": "^1.0.4",
     "cron": "^1.8.2",
     "date-fns": "^2.13.0",
     "express": "^4.17.1",

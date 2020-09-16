@@ -49,8 +49,7 @@ require("./routes/projectRoutes")(app);
 require("./routes/emailRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  dynoWaker("normal", "life-together-calculator", "truthify");
-  dynoWaker("twitter-bot", "https://cpustejovsky-go-twitter-bot.herokuapp.com/run-twitter-bot");
+  dynoWaker("life-together-calculator", "truthify");
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(
