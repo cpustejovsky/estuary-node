@@ -1,4 +1,4 @@
-# Estuary (WIP)
+# Estuary
 Where your streams of consciousness meet
 
 - [Estuary (WIP)](#estuary-wip)
@@ -17,6 +17,8 @@ and also building a robust app that I can proudly show off in my portfolio.
 
 ## To-Dos
 Visit Estuary's [about page](https://cpustejovsky-estuary.herokuapp.com/about) for the latest to-dos.
+
+Current project is rebuilding Estuary's server in Go and database in PostgreSQL.
 
 ## Acknowledgments 
 
