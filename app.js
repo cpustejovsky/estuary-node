@@ -5,7 +5,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const flash = require("connect-flash");
-const dynoWaker = require("cpustejovsky-dyno-waker");
+const dynoWaker = require("cpustejovsky-dyno-waker").default;
 const cronJobs = require("./services/cron")
 require("./models/User");
 require("./services/passport/google");
@@ -49,7 +49,7 @@ require("./routes/projectRoutes")(app);
 require("./routes/emailRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  dynoWaker.Wake("life-together-calculator", "truthify");
+  dynoWaker(["life-together-calculator", "truthify"]);
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(
