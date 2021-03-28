@@ -49,7 +49,7 @@ require("./routes/projectRoutes")(app);
 require("./routes/emailRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
-  dynoWaker("life-together-calculator", "truthify");
+  dynoWaker.Wake("life-together-calculator", "truthify");
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(
